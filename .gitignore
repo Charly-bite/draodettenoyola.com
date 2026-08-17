@@ -1,0 +1,17 @@
+# OS & temporary files
+.DS_Store
+Thumbs.db
+*.log
+.vscode/
+.idea/
+
+# Python / ML tool temporary files
+__pycache__/
+*.pyc
+.venv/
+venv/
+env/
+.u2net/
+
+# Raw unsorted hash photos from root (all clean images live in /img)
+AC*.jpg

@@ -1,0 +1,505 @@
+{
+  "totalImages": 41,
+  "totalStickers": 8,
+  "contact": {
+    "name": "Odette ✌️",
+    "phone": "+5213311104269",
+    "chatId": "5213311104269@c.us"
+  },
+  "destination": "C:/Users/CarlosAlbertoAcevesC/NewDraPage",
+  "exportedAt": "2026-08-17T15:24:35.123Z",
+  "images": [
+    {
+      "index": 1,
+      "id": 29402,
+      "timestamp": "2026-08-11T01:15:30.246Z",
+      "sender": "Carlos",
+      "filename": "AC5DCF0DFD5B43BD36E4127A490256DC.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 73765,
+      "caption": ""
+    },
+    {
+      "index": 2,
+      "id": 29918,
+      "timestamp": "2026-08-14T19:02:13.690Z",
+      "sender": "Odette",
+      "filename": "AC33CF8B10CFF09E15ECAA0846ED532D.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 54602,
+      "caption": ""
+    },
+    {
+      "index": 3,
+      "id": 29919,
+      "timestamp": "2026-08-14T19:02:13.860Z",
+      "sender": "Odette",
+      "filename": "AC4A5A16737F15D0C8A2CC5C65E62E8E.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 54665,
+      "caption": ""
+    },
+    {
+      "index": 4,
+      "id": 29920,
+      "timestamp": "2026-08-14T19:02:16.170Z",
+      "sender": "Odette",
+      "filename": "ACB048874D5C416216028F98AA77D6B0.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 75358,
+      "caption": ""
+    },
+    {
+      "index": 5,
+      "id": 29921,
+      "timestamp": "2026-08-14T19:02:16.703Z",
+      "sender": "Odette",
+      "filename": "AC33F5BCE34B3066C51575C1D5488B87.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 50177,
+      "caption": ""
+    },
+    {
+      "index": 6,
+      "id": 29922,
+      "timestamp": "2026-08-14T19:02:17.120Z",
+      "sender": "Odette",
+      "filename": "ACE26BCCC2820F8A966D7AAD90006C46.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 58964,
+      "caption": ""
+    },
+    {
+      "index": 7,
+      "id": 29923,
+      "timestamp": "2026-08-14T19:02:17.243Z",
+      "sender": "Odette",
+      "filename": "AC44D0E85502AF6884367A8F21B6696F.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 58688,
+      "caption": ""
+    },
+    {
+      "index": 8,
+      "id": 29924,
+      "timestamp": "2026-08-14T19:02:18.100Z",
+      "sender": "Odette",
+      "filename": "ACBDC08979BAB6715D9B47D51218CB5A.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 58901,
+      "caption": ""
+    },
+    {
+      "index": 9,
+      "id": 29926,
+      "timestamp": "2026-08-14T19:02:44.200Z",
+      "sender": "Odette",
+      "filename": "AC486403449A8BEACE0996996F0DCD9E.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 178916,
+      "caption": ""
+    },
+    {
+      "index": 10,
+      "id": 30170,
+      "timestamp": "2026-08-15T00:58:56.730Z",
+      "sender": "Odette",
+      "filename": "AC802A19A2A07652C240F6218F1021ED.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 224925,
+      "caption": ""
+    },
+    {
+      "index": 11,
+      "id": 30171,
+      "timestamp": "2026-08-15T00:59:59.696Z",
+      "sender": "Odette",
+      "filename": "ACB5DC03968B9C6DFE60830C0E6765BE.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 167890,
+      "caption": ""
+    },
+    {
+      "index": 12,
+      "id": 30172,
+      "timestamp": "2026-08-15T01:00:00.020Z",
+      "sender": "Odette",
+      "filename": "AC3FC9D63CAA2EF1C5D23E11AB409F29.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 141219,
+      "caption": ""
+    },
+    {
+      "index": 13,
+      "id": 30173,
+      "timestamp": "2026-08-15T01:00:00.626Z",
+      "sender": "Odette",
+      "filename": "ACF65620346D0B76593059D17BE4E4D2.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 226110,
+      "caption": ""
+    },
+    {
+      "index": 14,
+      "id": 30174,
+      "timestamp": "2026-08-15T01:00:01.110Z",
+      "sender": "Odette",
+      "filename": "AC6141E6BF14715056355101DA437C25.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 121219,
+      "caption": ""
+    },
+    {
+      "index": 15,
+      "id": 30175,
+      "timestamp": "2026-08-15T01:00:01.350Z",
+      "sender": "Odette",
+      "filename": "AC9254A7AB9DF0026EC71BEA804DBE49.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 78216,
+      "caption": ""
+    },
+    {
+      "index": 16,
+      "id": 30176,
+      "timestamp": "2026-08-15T01:00:01.680Z",
+      "sender": "Odette",
+      "filename": "AC432C4E995494AC23F214507D785600.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 112771,
+      "caption": ""
+    },
+    {
+      "index": 17,
+      "id": 30177,
+      "timestamp": "2026-08-15T01:00:01.916Z",
+      "sender": "Odette",
+      "filename": "AC6C46B2E52795646FE9BCE450727F28.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 113601,
+      "caption": ""
+    },
+    {
+      "index": 18,
+      "id": 30178,
+      "timestamp": "2026-08-15T01:00:02.126Z",
+      "sender": "Odette",
+      "filename": "ACCA077885E5873333F9ACFC4893E967.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 127267,
+      "caption": ""
+    },
+    {
+      "index": 19,
+      "id": 30179,
+      "timestamp": "2026-08-15T01:00:02.360Z",
+      "sender": "Odette",
+      "filename": "AC3620A3F063CC0A2916438732C217B2.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 156725,
+      "caption": ""
+    },
+    {
+      "index": 20,
+      "id": 30180,
+      "timestamp": "2026-08-15T01:00:02.606Z",
+      "sender": "Odette",
+      "filename": "AC439D52FF5D0FC63C9B2A2A23938D2F.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 104138,
+      "caption": ""
+    },
+    {
+      "index": 21,
+      "id": 30181,
+      "timestamp": "2026-08-15T01:00:02.796Z",
+      "sender": "Odette",
+      "filename": "ACCA80E7BE13B3AB1684283FC1C49899.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 113554,
+      "caption": ""
+    },
+    {
+      "index": 22,
+      "id": 30182,
+      "timestamp": "2026-08-15T01:00:02.956Z",
+      "sender": "Odette",
+      "filename": "AC639DAC76969315F2ECB73DBA648BB3.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 75332,
+      "caption": ""
+    },
+    {
+      "index": 23,
+      "id": 30183,
+      "timestamp": "2026-08-15T01:00:03.286Z",
+      "sender": "Odette",
+      "filename": "AC8CB2EB89C2BDF69E6002CDE30B5346.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 65781,
+      "caption": ""
+    },
+    {
+      "index": 24,
+      "id": 30184,
+      "timestamp": "2026-08-15T01:00:03.443Z",
+      "sender": "Odette",
+      "filename": "AC282507DE7D46BDF4E81386CE24B62C.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 65264,
+      "caption": ""
+    },
+    {
+      "index": 25,
+      "id": 30185,
+      "timestamp": "2026-08-15T01:00:03.700Z",
+      "sender": "Odette",
+      "filename": "AC85EB6FACCE727F9B0651F245DB5919.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 49438,
+      "caption": ""
+    },
+    {
+      "index": 26,
+      "id": 30186,
+      "timestamp": "2026-08-15T01:00:04.016Z",
+      "sender": "Odette",
+      "filename": "AC348116B4D9DC7FA19BCA85348DFCEC.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 105445,
+      "caption": ""
+    },
+    {
+      "index": 27,
+      "id": 30188,
+      "timestamp": "2026-08-15T01:06:24.226Z",
+      "sender": "Odette",
+      "filename": "AC07548B131C82D5E610EEA44803E32E.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 204689,
+      "caption": ""
+    },
+    {
+      "index": 28,
+      "id": 30963,
+      "timestamp": "2026-08-16T19:59:52.383Z",
+      "sender": "Odette",
+      "filename": "AC4F0A425A44C67267613BAFA32598CF.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 60134,
+      "caption": ""
+    },
+    {
+      "index": 29,
+      "id": 30964,
+      "timestamp": "2026-08-16T19:59:52.630Z",
+      "sender": "Odette",
+      "filename": "AC2A65E06C6C25B12CD129AA8C6A67CA.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 46684,
+      "caption": ""
+    },
+    {
+      "index": 30,
+      "id": 30985,
+      "timestamp": "2026-08-16T20:12:24.906Z",
+      "sender": "Odette",
+      "filename": "AC2B8A8F6E912A3A3692AC765D29D37A.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 52465,
+      "caption": ""
+    },
+    {
+      "index": 31,
+      "id": 30986,
+      "timestamp": "2026-08-16T20:13:18.926Z",
+      "sender": "Odette",
+      "filename": "ACEB16FBD4E15672A6E59B0177EBD37C.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 50423,
+      "caption": ""
+    },
+    {
+      "index": 32,
+      "id": 30995,
+      "timestamp": "2026-08-16T20:16:14.063Z",
+      "sender": "Odette",
+      "filename": "ACFE4618FC2FBF89480F12040384220B.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 166019,
+      "caption": ""
+    },
+    {
+      "index": 33,
+      "id": 30996,
+      "timestamp": "2026-08-16T20:16:14.066Z",
+      "sender": "Odette",
+      "filename": "AC0FDC0C791E544045032FF096D6A632.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 166019,
+      "caption": ""
+    },
+    {
+      "index": 34,
+      "id": 30998,
+      "timestamp": "2026-08-16T20:18:53.326Z",
+      "sender": "Odette",
+      "filename": "AC9BC6388BF88CA17484280CEA340E1D.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 192030,
+      "caption": ""
+    },
+    {
+      "index": 35,
+      "id": 30999,
+      "timestamp": "2026-08-16T20:18:53.536Z",
+      "sender": "Odette",
+      "filename": "AC607FDE42092D78941431AECF11CD35.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 189112,
+      "caption": ""
+    },
+    {
+      "index": 36,
+      "id": 31000,
+      "timestamp": "2026-08-16T20:18:53.806Z",
+      "sender": "Odette",
+      "filename": "AC8E1450D8DC288986EC6836797F9B57.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 194021,
+      "caption": ""
+    },
+    {
+      "index": 37,
+      "id": 31001,
+      "timestamp": "2026-08-16T20:18:54.183Z",
+      "sender": "Odette",
+      "filename": "AC34B1BAA17CAB48CF945645FF00EE02.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 137811,
+      "caption": ""
+    },
+    {
+      "index": 38,
+      "id": 31002,
+      "timestamp": "2026-08-16T20:18:54.800Z",
+      "sender": "Odette",
+      "filename": "ACCA4BE35FA0C2995AC013565F4F1631.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 39361,
+      "caption": ""
+    },
+    {
+      "index": 39,
+      "id": 31003,
+      "timestamp": "2026-08-16T20:18:55.940Z",
+      "sender": "Odette",
+      "filename": "ACDA108E3D69E18680FC765F16FC9531.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 264497,
+      "caption": ""
+    },
+    {
+      "index": 40,
+      "id": 31004,
+      "timestamp": "2026-08-16T20:18:56.316Z",
+      "sender": "Odette",
+      "filename": "ACE111ACE2242A7181D96F5A136B6A39.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 53887,
+      "caption": ""
+    },
+    {
+      "index": 41,
+      "id": 31010,
+      "timestamp": "2026-08-16T20:19:58.523Z",
+      "sender": "Odette",
+      "filename": "ACD5BD9B80E9BFDED078E7CCBA7608E8.jpg",
+      "mime": "image/jpeg",
+      "sizeBytes": 60175,
+      "caption": "Mira. Está en mis productos c;"
+    }
+  ],
+  "stickers": [
+    {
+      "index": 1,
+      "id": 29403,
+      "timestamp": "2026-08-11T01:15:35.120Z",
+      "sender": "Carlos",
+      "filename": "AC603CD75B5C9C2584C493FF60EB83D8.webp",
+      "mime": "image/webp",
+      "sizeBytes": 40950,
+      "caption": ""
+    },
+    {
+      "index": 2,
+      "id": 29406,
+      "timestamp": "2026-08-11T01:18:26.086Z",
+      "sender": "Carlos",
+      "filename": "AC7CAB8FE07C932228F076A6C8DE574D.webp",
+      "mime": "image/webp",
+      "sizeBytes": 77640,
+      "caption": ""
+    },
+    {
+      "index": 3,
+      "id": 29481,
+      "timestamp": "2026-08-11T02:39:20.866Z",
+      "sender": "Carlos",
+      "filename": "AC85D8FCBADC9E87BCC9FDA8F3EA9A36.webp",
+      "mime": "image/webp",
+      "sizeBytes": 146200,
+      "caption": ""
+    },
+    {
+      "index": 4,
+      "id": 29523,
+      "timestamp": "2026-08-11T03:14:42.650Z",
+      "sender": "Carlos",
+      "filename": "ACAA00242A0342B847E92657AFD297B2.webp",
+      "mime": "image/webp",
+      "sizeBytes": 146200,
+      "caption": ""
+    },
+    {
+      "index": 5,
+      "id": 30274,
+      "timestamp": "2026-08-15T02:48:26.316Z",
+      "sender": "Carlos",
+      "filename": "ACF81E5D3049BDC84B4FCD8E213D3B12.webp",
+      "mime": "image/webp",
+      "sizeBytes": 476166,
+      "caption": ""
+    },
+    {
+      "index": 6,
+      "id": 30345,
+      "timestamp": "2026-08-15T04:03:20.586Z",
+      "sender": "Carlos",
+      "filename": "AC1650F96C23CFBAB933E57203D42BA1.webp",
+      "mime": "image/webp",
+      "sizeBytes": 41790,
+      "caption": ""
+    },
+    {
+      "index": 7,
+      "id": 30654,
+      "timestamp": "2026-08-16T00:54:35.333Z",
+      "sender": "Carlos",
+      "filename": "ACC8AE7DB0F9766A8547A887D8B78F21.webp",
+      "mime": "image/webp",
+      "sizeBytes": 40950,
+      "caption": ""
+    },
+    {
+      "index": 8,
+      "id": 30988,
+      "timestamp": "2026-08-16T20:15:13.473Z",
+      "sender": "Carlos",
+      "filename": "ACF4CBF206E4AEDE6805FF35F9A90193.webp",
+      "mime": "image/webp",
+      "sizeBytes": 427778,
+      "caption": ""
+    }
+  ]
+}

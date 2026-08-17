@@ -1,0 +1,337 @@
+/* ==========================================================================
+   RESPONSIVE — Desktop & Tablet Adaptations (Mobile-First)
+   ========================================================================== */
+
+/* ── Tablet (768px+) ─────────────────────────────────────────────────── */
+
+@media (min-width: 768px) {
+
+  /* Typography scale up */
+  h1 { font-size: var(--text-4xl); }
+  h2 { font-size: var(--text-3xl); }
+
+  /* Hero — side by side on tablet */
+  .hero {
+    padding: var(--space-8) 0 0;
+    min-height: auto;
+  }
+
+  .hero__inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .hero__content {
+    text-align: left;
+    flex: 1 1 55%;
+    padding-bottom: var(--space-4);
+    max-width: 55%;
+  }
+
+  .hero__badges {
+    justify-content: flex-start;
+  }
+
+  .hero__cta {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .hero__rating {
+    align-items: flex-start;
+  }
+
+  .hero__image-wrapper {
+    flex: 0 0 45%;
+    margin-top: 0;
+    justify-content: center;
+    align-self: flex-end;
+  }
+
+  .hero__cutout {
+    width: auto;
+    max-height: 520px;
+  }
+
+  .hero__image-wrapper::before {
+    width: 440px;
+    height: 440px;
+  }
+
+  .hero__shape-1 {
+    width: 400px;
+    height: 400px;
+    right: -50px;
+  }
+
+  .hero__shape-2 {
+    width: 350px;
+    height: 300px;
+    left: -60px;
+  }
+
+  /* Included Studies grid */
+  .included-studies__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 800px;
+  }
+
+  /* Services */
+  .service-card__header {
+    align-items: center;
+  }
+
+  /* Testimonials */
+  .testimonials__grid {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .testimonials__cards {
+    grid-template-columns: 1fr;
+  }
+
+  /* Insurance */
+  .insurance__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 700px;
+  }
+
+  /* Location */
+  .location__wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .location__map {
+    flex: 1;
+    aspect-ratio: auto;
+    min-height: 350px;
+  }
+
+  .location__info {
+    flex: 0 0 280px;
+  }
+
+  /* Footer */
+  .footer__top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer__links {
+    grid-template-columns: repeat(3, auto);
+    gap: var(--space-10);
+  }
+
+  /* Gallery slides larger */
+  .gallery__slide {
+    flex: 0 0 320px;
+    height: 400px;
+  }
+}
+
+/* ── Desktop (1024px+) ───────────────────────────────────────────────── */
+
+@media (min-width: 1024px) {
+
+  /* Typography */
+  h1 { font-size: var(--text-5xl); }
+  h2 { font-size: var(--text-4xl); }
+  h3 { font-size: var(--text-2xl); }
+
+  .container {
+    padding-inline: var(--space-8);
+  }
+
+  .section {
+    padding-block: var(--space-20);
+  }
+
+  /* Navbar desktop: show links, hide hamburger */
+  .navbar__links {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+
+  .navbar__links a {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-gray-600);
+    border-radius: var(--radius-md);
+    transition: all var(--duration-fast);
+  }
+
+  .navbar__links a:hover {
+    color: var(--color-teal-600);
+    background-color: var(--color-teal-50);
+  }
+
+  .navbar__links .btn {
+    margin-left: var(--space-2);
+  }
+
+  .navbar__hamburger {
+    display: none;
+  }
+
+  /* Hero desktop */
+  .hero {
+    padding: var(--space-8) 0 0;
+    min-height: auto;
+  }
+
+  .hero__inner {
+    gap: var(--space-8);
+    align-items: flex-end;
+    max-width: 1280px;
+  }
+
+  .hero__content {
+    max-width: 50%;
+    flex: 1 1 50%;
+    padding-bottom: var(--space-8);
+  }
+
+  .hero__image-wrapper {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: center;
+    align-self: flex-end;
+  }
+
+  .hero__cutout {
+    width: auto;
+    max-height: 600px;
+    filter: drop-shadow(0 20px 50px rgba(9, 25, 44, 0.22));
+  }
+
+  .hero__image-wrapper::before {
+    width: 520px;
+    height: 520px;
+    bottom: 0;
+  }
+
+  .hero__description {
+    font-size: var(--text-lg);
+  }
+
+  /* Included studies */
+  .included-studies__title {
+    font-size: var(--text-3xl);
+  }
+
+  /* Services grid for desktop */
+  .services__list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-6);
+    max-width: 900px;
+  }
+
+  /* About / E-E-A-T */
+  .about__profile {
+    flex-direction: row;
+    text-align: left;
+    gap: var(--space-8);
+  }
+
+  .about__photo {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* Testimonials */
+  .testimonials__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Insurance */
+  .insurance__grid {
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 900px;
+  }
+
+  /* FAQ two-column */
+  .faq__list {
+    max-width: 800px;
+  }
+
+  /* Gallery slides */
+  .gallery__slide {
+    flex: 0 0 360px;
+    height: 450px;
+  }
+
+  /* Floating CTA wider spacing */
+  .floating-cta {
+    left: var(--space-8);
+    right: var(--space-8);
+    max-width: var(--container-xl);
+    margin-inline: auto;
+  }
+
+  .floating-cta__btn {
+    width: 60px;
+    height: 60px;
+  }
+
+  .floating-cta__btn svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* ── Wide Desktop (1280px+) ──────────────────────────────────────────── */
+
+@media (min-width: 1280px) {
+
+  .hero__title {
+    font-size: var(--text-5xl);
+  }
+
+  .hero__inner {
+    max-width: 1360px;
+  }
+
+  .hero__cutout {
+    width: auto;
+    max-height: 660px;
+  }
+
+  .hero__image-wrapper::before {
+    width: 580px;
+    height: 580px;
+  }
+
+  .hero__shape-1 {
+    width: 600px;
+    height: 600px;
+    top: -100px;
+    right: 5%;
+  }
+
+  .hero__shape-2 {
+    width: 400px;
+    height: 350px;
+    top: 0;
+    left: 0;
+  }
+
+  .hero__shape-3 {
+    height: 160px;
+  }
+
+  .services__list {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1100px;
+  }
+
+  .about__profile {
+    gap: var(--space-12);
+  }
+}
