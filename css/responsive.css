@@ -12,7 +12,7 @@
 
   /* Hero — side by side on tablet */
   .hero {
-    padding: var(--space-8) 0 0;
+    padding: var(--space-8) 0 80px;
     min-height: auto;
   }
 
@@ -21,13 +21,17 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-6);
+    position: relative;
+    z-index: 5;
   }
 
   .hero__content {
     text-align: left;
     flex: 1 1 55%;
-    padding-bottom: var(--space-4);
+    padding-bottom: 0;
     max-width: 55%;
+    position: relative;
+    z-index: 6;
   }
 
   .hero__badges {
@@ -37,6 +41,8 @@
   .hero__cta {
     flex-direction: row;
     align-items: center;
+    position: relative;
+    z-index: 7;
   }
 
   .hero__rating {
@@ -101,17 +107,18 @@
   /* Location */
   .location__wrapper {
     flex-direction: row;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: var(--space-8);
   }
 
   .location__map {
-    flex: 1;
-    aspect-ratio: auto;
-    min-height: 350px;
+    flex: 1 1 60%;
+    min-height: 480px;
   }
 
   .location__info {
-    flex: 0 0 280px;
+    flex: 0 0 340px;
+    justify-content: center;
   }
 
   /* Footer */
@@ -181,7 +188,7 @@
 
   /* Hero desktop */
   .hero {
-    padding: var(--space-8) 0 0;
+    padding: var(--space-8) 0 90px;
     min-height: auto;
   }
 
@@ -189,12 +196,16 @@
     gap: var(--space-8);
     align-items: flex-end;
     max-width: 1280px;
+    position: relative;
+    z-index: 5;
   }
 
   .hero__content {
     max-width: 50%;
     flex: 1 1 50%;
-    padding-bottom: var(--space-8);
+    padding-bottom: 0;
+    position: relative;
+    z-index: 6;
   }
 
   .hero__image-wrapper {
