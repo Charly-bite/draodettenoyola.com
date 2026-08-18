@@ -630,18 +630,28 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       8. ABOUT / E-E-A-T
+       8. ABOUT / E-E-A-T (TRAYECTORIA MÉDICA Y ACADÉMICA)
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="about section" id="about">
     <div class="about__content">
       <!-- Profile Card -->
       <div class="about__profile reveal">
         <div class="about__photo-wrapper">
-          <img src="img/about-cutout.png" alt="Dra. Odette Noyola Landázuri" class="about__photo" width="260" height="320" loading="lazy">
+          <img src="img/about-cutout.png?v=2.2" alt="Dra. Giselle Odette Noyola Landázuri - Especialista en Medicina Materno Fetal" class="about__photo" width="280" height="280" loading="lazy">
         </div>
         <div>
-          <h2 class="about__name">Dra. Odette Noyola Landázuri</h2>
+          <span class="badge badge-teal" style="margin-bottom: var(--space-2); display: inline-block;">Médica de Alta Especialidad en Guadalajara</span>
+          <h2 class="about__name">Dra. Giselle Odette Noyola Landázuri</h2>
           <p class="about__specialty">Ginecología y Obstetricia · Medicina Materno Fetal</p>
+          
+          <!-- Alma Mater Quick Trust Badges -->
+          <div class="about__badges-row">
+            <span class="about__pill-badge">🎓 Egresada UDG (Universidad de Guadalajara)</span>
+            <span class="about__pill-badge">🏥 Formación UMAE Gineco-Obstetricia CMNO (IMSS)</span>
+            <span class="about__pill-badge">🇬🇧 FMF Certified (Londres)</span>
+            <span class="about__pill-badge">✓ Doble Certificación CMGO</span>
+          </div>
+
           <div class="about__credentials">
             <!-- TODO: ACTUALIZAR CÉDULAS -->
             <span>📋 Cédula Profesional: XXXXXXXX</span>
@@ -655,80 +665,77 @@
               <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
               <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
-            <span>Opiniones positivas</span>
+            <span>Opiniones positivas verificadas</span>
           </div>
         </div>
       </div>
 
-      <!-- Accordion: Formation -->
-      <div class="accordion reveal">
-        <div class="accordion__item">
-          <button class="accordion__trigger" aria-expanded="false">
-            <span>🎓 Pregrado — Médico Cirujano y Partero</span>
-            <span class="accordion__trigger-icon">+</span>
-          </button>
-          <div class="accordion__body">
-            <div class="accordion__body-inner">
-              <p>Médico Cirujano y Partero egresada de la <strong>Universidad de Guadalajara (UDG)</strong> con formación integral y excelencia en ciencias de la salud.</p>
+      <!-- PROMINENT ACADEMIC & HOSPITAL TRAJECTORY SHOWCASE -->
+      <div class="trajectory-section reveal">
+        <h3 class="trajectory__heading">Trayectoria Académica y Hospitalaria de Excelencia</h3>
+        <p class="trajectory__subheading">Formación médica y posgrados de alta especialidad cursados en las instituciones de mayor rigor y prestigio clínico de Guadalajara y el país.</p>
+
+        <div class="trajectory__grid">
+          <!-- Card 1: UDG Pregrado -->
+          <div class="trajectory-card">
+            <div class="trajectory-card__icon-wrap">
+              <span class="trajectory-card__badge">Alma Máter</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            </div>
+            <div class="trajectory-card__body">
+              <span class="trajectory-card__stage">Pregrado Médico</span>
+              <h4 class="trajectory-card__title">Universidad de Guadalajara (UDG)</h4>
+              <p class="trajectory-card__degree">Médico Cirujano y Partero · CUCS</p>
+              <p class="trajectory-card__desc">Egresada con honores de la máxima casa de estudios de Jalisco (Centro Universitario de Ciencias de la Salud), con formación científica integral y vocación médica de excelencia.</p>
             </div>
           </div>
-        </div>
-        <div class="accordion__item">
-          <button class="accordion__trigger" aria-expanded="false">
-            <span>🏥 Posgrado — Ginecología y Obstetricia</span>
-            <span class="accordion__trigger-icon">+</span>
-          </button>
-          <div class="accordion__body">
-            <div class="accordion__body-inner">
-              <p>Especialidad en Ginecología y Obstetricia realizada en la <strong>UMAE Hospital de Gineco-Obstetricia del Centro Médico Nacional de Occidente (CMNO / IMSS)</strong>, con aval universitario de la <strong>Universidad de Guadalajara (UDG)</strong>.</p>
+
+          <!-- Card 2: CMNO IMSS Especialidad -->
+          <div class="trajectory-card">
+            <div class="trajectory-card__icon-wrap">
+              <span class="trajectory-card__badge">Tercer Nivel</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2z"/><path d="M9 10h6M12 7v6"/></svg>
+            </div>
+            <div class="trajectory-card__body">
+              <span class="trajectory-card__stage">Posgrado — Especialidad</span>
+              <h4 class="trajectory-card__title">UMAE Hospital de Gineco-Obstetricia CMNO</h4>
+              <p class="trajectory-card__degree">Especialista en Ginecología y Obstetricia (IMSS / UDG)</p>
+              <p class="trajectory-card__desc">Residencia hospitalaria y práctica quirúrgica de alta complejidad en el Centro Médico Nacional de Occidente, el centro gineco-obstétrico de mayor referencia en el occidente de México.</p>
             </div>
           </div>
-        </div>
-        <div class="accordion__item">
-          <button class="accordion__trigger" aria-expanded="false">
-            <span>🧬 Subespecialidad — Medicina Materno Fetal</span>
-            <span class="accordion__trigger-icon">+</span>
-          </button>
-          <div class="accordion__body">
-            <div class="accordion__body-inner">
-              <p>Alta especialidad en Medicina Materno Fetal cursada en la <strong>UMAE Hospital de Gineco-Obstetricia CMNO (IMSS) / Universidad de Guadalajara (UDG)</strong>. Tesis de grado de especialidad: <em>«Predicción de Preeclampsia»</em>.</p>
+
+          <!-- Card 3: CMNO IMSS Subespecialidad & Tesis -->
+          <div class="trajectory-card trajectory-card--highlight">
+            <div class="trajectory-card__icon-wrap">
+              <span class="trajectory-card__badge badge--teal">Alta Especialidad</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2DD4BF" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <div class="trajectory-card__body">
+              <span class="trajectory-card__stage">Subespecialidad</span>
+              <h4 class="trajectory-card__title">Medicina Materno Fetal (CMNO / IMSS / UDG)</h4>
+              <p class="trajectory-card__thesis">🔬 Tesis de Grado: <em>«Predicción de Preeclampsia»</em></p>
+              <p class="trajectory-card__desc">Subespecialidad enfocada en diagnóstico prenatal de alta resolución, cribado anatómico fetal profundo y manejo clínico del embarazo de alto riesgo.</p>
             </div>
           </div>
-        </div>
-        <div class="accordion__item">
-          <button class="accordion__trigger" aria-expanded="false">
-            <span>📜 Certificaciones y Avales Oficiales</span>
-            <span class="accordion__trigger-icon">+</span>
-          </button>
-          <div class="accordion__body">
-            <div class="accordion__body-inner">
-              <p><strong>Fetal Medicine Foundation (FMF - Londres):</strong> Certificación internacional en Tamizaje de Primer Trimestre (11 a 13.6 semanas) y valoración Doppler feto-placentario avanzado.<br><br>
-              <strong>CMGO:</strong> Doble certificación vigente por el Consejo Mexicano de Ginecología y Obstetricia en Ginecología / Obstetricia y en Medicina Materno Fetal.<br><br>
-              <strong>Áreas de Alta Especialidad:</strong> Diagnóstico avanzado en Cardiología Fetal (Ecocardiografía) y Neurosonografía Fetal.</p>
+
+          <!-- Card 4: FMF Londres & CMGO -->
+          <div class="trajectory-card">
+            <div class="trajectory-card__icon-wrap">
+              <span class="trajectory-card__badge">Aval Internacional</span>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.21 13.89L7 21l5-3 5 3-1.21-7.12"/></svg>
+            </div>
+            <div class="trajectory-card__body">
+              <span class="trajectory-card__stage">Certificaciones Oficiales</span>
+              <h4 class="trajectory-card__title">FMF Londres & Consejo Mexicano (CMGO)</h4>
+              <p class="trajectory-card__degree">Doble Certificación CMGO · Certificación FMF</p>
+              <p class="trajectory-card__desc">Certificada por la <strong>Fetal Medicine Foundation</strong> en Tamizaje de 1er Trimestre y Doppler Feto-Placentario. Enfoque diagnóstico en Cardiología y Neurosonografía Fetal.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Institution Seals -->
+      <!-- Institution Seals Bar -->
       <div class="about__seals reveal">
-        <div class="about__seal">
-          <div class="about__seal-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="8" r="5"/>
-              <path d="M8.21 13.89L7 21l5-3 5 3-1.21-7.12"/>
-            </svg>
-          </div>
-          <span>FMF Londres</span>
-        </div>
-        <div class="about__seal">
-          <div class="about__seal-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3l9 7H3l9-7z"/>
-            </svg>
-          </div>
-          <span>CMGO</span>
-        </div>
         <div class="about__seal">
           <div class="about__seal-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -736,7 +743,8 @@
               <path d="M6 12v5c3 3 9 3 12 0v-5"/>
             </svg>
           </div>
-          <span>UDG</span>
+          <strong>Universidad de Guadalajara</strong>
+          <span>Médico Cirujano y Partero (UDG)</span>
         </div>
         <div class="about__seal">
           <div class="about__seal-icon">
@@ -745,7 +753,27 @@
               <path d="M9 10h6M12 7v6"/>
             </svg>
           </div>
-          <span>CMNO IMSS</span>
+          <strong>CMNO / IMSS</strong>
+          <span>UMAE Hospital Gineco-Obstetricia</span>
+        </div>
+        <div class="about__seal">
+          <div class="about__seal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="5"/>
+              <path d="M8.21 13.89L7 21l5-3 5 3-1.21-7.12"/>
+            </svg>
+          </div>
+          <strong>FMF Londres</strong>
+          <span>Fetal Medicine Foundation</span>
+        </div>
+        <div class="about__seal">
+          <div class="about__seal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3l9 7H3l9-7z"/>
+            </svg>
+          </div>
+          <strong>CMGO</strong>
+          <span>Consejo Gine y Materno Fetal</span>
         </div>
       </div>
 

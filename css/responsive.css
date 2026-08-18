@@ -89,6 +89,15 @@
     align-items: center;
   }
 
+  /* Trajectory & Seals */
+  .trajectory__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .about__seals {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
   /* Testimonials */
   .testimonials__cards {
     grid-template-columns: repeat(2, 1fr);
