@@ -15,3 +15,5 @@ env/
 
 # Raw unsorted hash photos from root (all clean images live in /img)
 AC*.jpg
+update18/
+
