@@ -248,9 +248,11 @@
       <!-- Desktop links -->
       <div class="navbar__links">
         <a href="#services">Servicios</a>
+        <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
         <a href="#about">Sobre Mí</a>
         <a href="#gallery">Galería</a>
         <a href="#testimonials">Testimonios</a>
+        <a href="#blog">Blog</a>
         <a href="#faq">FAQ</a>
         <a href="#location">Ubicación</a>
         <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita" class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">
@@ -272,9 +274,11 @@
       <div class="navbar__drawer-links">
         <a href="#hero">Inicio</a>
         <a href="#services">Servicios</a>
+        <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
         <a href="#about">Sobre Mí</a>
         <a href="#gallery">Galería</a>
         <a href="#testimonials">Testimonios</a>
+        <a href="#blog">Blog</a>
         <a href="#insurance">Aseguradoras</a>
         <a href="#faq">Preguntas Frecuentes</a>
         <a href="#location">Ubicación</a>
@@ -297,7 +301,7 @@
        3. PROMO BANNER
        ═══════════════════════════════════════════════════════════════════ -->
   <div class="promo-banner" id="promo-banner">
-    <p>Agenda tu cita y obtén tu <strong>ultrasonido diagnóstico incluido</strong> en la consulta</p>
+    <p>Consulta médica de alta especialidad en <strong>Medicina Materno Fetal</strong> con valoración ultrasonográfica de precisión integrada</p>
     <div class="promo-banner__schedule">
       <!-- TODO: ACTUALIZAR HORARIO cuando se confirme -->
       L-V: 9:00 a.m. – 6:00 p.m. · Sáb: 9:00 a.m. – 2:00 p.m.
@@ -411,9 +415,15 @@
        6. INCLUDED STUDIES
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="included-studies section" id="included-studies">
-    <h2 class="included-studies__title reveal">
-      ¡Todos los siguientes estudios y revisiones están <em>INCLUIDOS</em> en la consulta!
-    </h2>
+    <div class="section-header reveal" style="margin-bottom: var(--space-8);">
+      <span class="section-label">Atención Médica Integral</span>
+      <h2 class="included-studies__title" style="margin-bottom: var(--space-2);">
+        Protocolo Clínico y Diagnóstico Integral en Cada Consulta
+      </h2>
+      <p style="color: var(--color-gray-600); max-width: 650px; margin-inline: auto; text-align: center;">
+        Cada valoración médica con la Dra. Odette integra ecografía de alta definición y evaluación gineco-obstétrica completa, sin costos adicionales ocultos.
+      </p>
+    </div>
 
     <div class="included-studies__grid" data-stagger="120">
       <!-- Card 1 -->
@@ -527,6 +537,7 @@
         <p class="service-card__desc">Evaluación anatómica completa del feto órgano por órgano: sistema nervioso central, corazón, cara, extremidades y columna vertebral.</p>
         <div class="service-card__cta">
           <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20un%20ultrasonido%20estructural." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
+          <a href="ultrasonido-estructural.html" class="btn btn-sm btn-outline-teal">Detalles del Estudio →</a>
         </div>
       </div>
 
@@ -688,15 +699,29 @@
       <!-- Institution Seals -->
       <div class="about__seals reveal">
         <div class="about__seal">
-          <div class="about__seal-icon">🏅</div>
+          <div class="about__seal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="5"/>
+              <path d="M8.21 13.89L7 21l5-3 5 3-1.21-7.12"/>
+            </svg>
+          </div>
           <span>FMF</span>
         </div>
         <div class="about__seal">
-          <div class="about__seal-icon">🏛️</div>
+          <div class="about__seal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 21h18M3 10h18M5 10v11M19 10v11M9 10v11M15 10v11M12 3l9 7H3l9-7z"/>
+            </svg>
+          </div>
           <span>CMGO</span>
         </div>
         <div class="about__seal">
-          <div class="about__seal-icon">🎓</div>
+          <div class="about__seal-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5EEAD4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
           <span>Universidad</span>
         </div>
       </div>
@@ -705,45 +730,80 @@
       <h3 class="reveal" style="color: var(--color-white); text-align: center; margin-bottom: var(--space-8); font-size: var(--text-2xl);">Áreas de Especialidad</h3>
 
       <div class="specialties__list reveal">
+        <!-- Item 1: Diagnóstico Prenatal -->
         <div class="specialty-item">
-          <div class="specialty-item__image-wrapper">
-            <img src="img/spec-ultrasound.png" alt="Diagnóstico prenatal con ultrasonido" class="specialty-item__image" width="56" height="56" loading="lazy">
+          <div class="specialty-item__icon-wrapper">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="specialty-item__icon">
+              <rect x="6" y="8" width="36" height="26" rx="4" stroke="#14A8A1" stroke-width="2.5" fill="rgba(20,168,161,0.12)"/>
+              <circle cx="20" cy="21" r="7" stroke="#5EEAD4" stroke-width="1.8" stroke-dasharray="2 2"/>
+              <path d="M18 21C18 19.8 19 19 20 19C21 19 22 19.8 22 21C22 22.2 21 23 20 23" stroke="#14A8A1" stroke-width="2" stroke-linecap="round"/>
+              <path d="M12 28C14 26 17 26 20 27C23 28 26 27 28 25" stroke="#2DD4BF" stroke-width="2" stroke-linecap="round"/>
+              <path d="M24 38L24 34M16 40L32 40" stroke="#14A8A1" stroke-width="2.5" stroke-linecap="round"/>
+              <circle cx="34" cy="15" r="2" fill="#5EEAD4"/>
+            </svg>
           </div>
           <div class="specialty-item__text">
             <h4>Diagnóstico Prenatal</h4>
             <p>Ultrasonido de alta resolución para evaluación anatómica fetal completa con tecnología de última generación.</p>
           </div>
         </div>
+
+        <!-- Item 2: Embarazo de Alto Riesgo -->
         <div class="specialty-item">
-          <div class="specialty-item__image-wrapper">
-            <img src="img/spec-surgery.png" alt="Atención de parto y cesárea" class="specialty-item__image" width="56" height="56" loading="lazy">
+          <div class="specialty-item__icon-wrapper specialty-item__icon-wrapper--rose">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="specialty-item__icon">
+              <path d="M24 6L38 12V24C38 33 24 42 24 42C24 42 10 33 10 24V12L24 6Z" stroke="#F43F5E" stroke-width="2.5" fill="rgba(244,63,94,0.12)"/>
+              <path d="M16 24H20L22 18L26 28L28 22L30 24H32" stroke="#FB7185" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="24" cy="14" r="2.5" fill="#FDA4AF"/>
+            </svg>
           </div>
           <div class="specialty-item__text">
             <h4>Embarazo de Alto Riesgo</h4>
             <p>Manejo especializado de preeclampsia, restricción del crecimiento intrauterino, diabetes gestacional y complicaciones obstétricas.</p>
           </div>
         </div>
+
+        <!-- Item 3: Atención Humanizada del Parto -->
         <div class="specialty-item">
-          <div class="specialty-item__image-wrapper">
-            <img src="img/spec-newborn.png" alt="Cuidado del recién nacido" class="specialty-item__image" width="56" height="56" loading="lazy">
+          <div class="specialty-item__icon-wrapper specialty-item__icon-wrapper--gold">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="specialty-item__icon">
+              <path d="M10 34C10 34 14 28 20 28C24 28 26 30 29 32C32 34 36 34 38 32C40 30 40 26 36 24C32 22 28 24 25 22C22 20 21 16 18 16C14 16 10 20 10 26V34Z" fill="rgba(245,158,11,0.12)"/>
+              <path d="M8 36C12 36 16 32 22 32C26 32 30 35 34 35C38 35 41 32 41 28C41 24 37 22 33 22C29 22 26 19 22 19C17 19 12 23 8 28V36Z" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="32" cy="14" r="5" stroke="#FBBF24" stroke-width="2.2" fill="rgba(251,191,36,0.2)"/>
+              <path d="M30 14C30.5 13 32 13 33 14" stroke="#F59E0B" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M14 38C18 42 30 42 34 38" stroke="#FBBF24" stroke-width="2" stroke-linecap="round"/>
+            </svg>
           </div>
           <div class="specialty-item__text">
             <h4>Atención Humanizada del Parto</h4>
             <p>Acompañamiento cercano, cálido y seguro durante el parto y cesárea, priorizando el bienestar de mamá y bebé.</p>
           </div>
         </div>
+
+        <!-- Item 4: Doppler Fetal y Materno -->
         <div class="specialty-item">
-          <div class="specialty-item__image-wrapper">
-            <img src="img/spec-doppler.png" alt="Consulta prenatal con Doppler" class="specialty-item__image" width="56" height="56" loading="lazy">
+          <div class="specialty-item__icon-wrapper">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="specialty-item__icon">
+              <circle cx="24" cy="24" r="18" stroke="#06B6D4" stroke-width="2" stroke-dasharray="3 3" fill="rgba(6,182,212,0.08)"/>
+              <path d="M8 24C12 24 13 14 16 14C19 14 20 34 24 34C28 34 29 16 32 16C35 16 36 24 40 24" stroke="#22D3EE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 24C14 24 15 19 17 19C19 19 20 29 23 29C26 29 27 20 29 20C31 20 33 24 36 24" stroke="#14A8A1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+              <circle cx="24" cy="8" r="2" fill="#67E8F9"/>
+            </svg>
           </div>
           <div class="specialty-item__text">
             <h4>Doppler Fetal y Materno</h4>
             <p>Valoración del flujo sanguíneo en arterias uterinas, umbilical y cerebral media para monitoreo de bienestar fetal.</p>
           </div>
         </div>
+
+        <!-- Item 5: Ginecología Preventiva -->
         <div class="specialty-item">
-          <div class="specialty-item__image-wrapper">
-            <img src="img/hero-cutout.png" alt="Ginecología preventiva" class="specialty-item__image" width="56" height="56" loading="lazy">
+          <div class="specialty-item__icon-wrapper specialty-item__icon-wrapper--green">
+            <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="specialty-item__icon">
+              <circle cx="24" cy="18" r="10" stroke="#10B981" stroke-width="2.5" fill="rgba(16,185,129,0.12)"/>
+              <path d="M24 28V40M18 34H30" stroke="#10B981" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M20 18L23 21L28 15" stroke="#34D399" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
           </div>
           <div class="specialty-item__text">
             <h4>Ginecología Preventiva</h4>
@@ -767,28 +827,22 @@
     <div class="gallery__track-wrapper">
       <div class="gallery__track" id="gallery-track">
         <div class="gallery__slide">
-          <img src="img/hero-portrait.jpg" alt="Dra. Odette Noyola - Retrato profesional" loading="lazy">
+          <img src="img/gallery-ultrasound-4d.jpg" alt="Dra. Odette Noyola realizando valoración de ultrasonido fetal 4D de alta resolución" loading="lazy">
         </div>
         <div class="gallery__slide">
-          <img src="img/gallery-01.jpg" alt="Dra. Odette Noyola en el hospital" loading="lazy">
+          <img src="img/gallery-prenatal-consultation.jpg" alt="Dra. Odette en consulta médica de diagnóstico prenatal y medicina materno fetal" loading="lazy">
         </div>
         <div class="gallery__slide">
-          <img src="img/gallery-02.jpg" alt="Dra. Odette Noyola - Retrato formal" loading="lazy">
+          <img src="img/gallery-humanized-birth.jpg" alt="Dra. Odette Noyola en atención humanizada del nacimiento y recién nacido" loading="lazy">
         </div>
         <div class="gallery__slide">
-          <img src="img/ultrasound-clinic.jpg" alt="Dra. Odette realizando ultrasonido" loading="lazy">
+          <img src="img/gallery-doppler-scan.jpg" alt="Dra. Odette evaluando flujo vascular y Doppler fetal en equipo Voluson E10" loading="lazy">
         </div>
         <div class="gallery__slide">
-          <img src="img/gallery-03.jpg" alt="Dra. Odette en jardines clínicos" loading="lazy">
+          <img src="img/surgery-birth.jpg" alt="Dra. Odette Noyola en procedimiento quirúrgico obstétrico de alta especialidad" loading="lazy">
         </div>
         <div class="gallery__slide">
-          <img src="img/newborn-care.jpg" alt="Dra. Odette con recién nacido" loading="lazy">
-        </div>
-        <div class="gallery__slide">
-          <img src="img/gallery-04.jpg" alt="Dra. Odette - Retrato cuerpo completo" loading="lazy">
-        </div>
-        <div class="gallery__slide">
-          <img src="img/mentor-portrait.jpg" alt="Dra. Odette con su mentor" loading="lazy">
+          <img src="img/hero-portrait.jpg" alt="Dra. Odette Noyola - Especialista en Medicina Materno Fetal" loading="lazy">
         </div>
       </div>
     </div>
@@ -808,84 +862,122 @@
       <button class="gallery__dot" aria-label="Slide 3"></button>
       <button class="gallery__dot" aria-label="Slide 4"></button>
       <button class="gallery__dot" aria-label="Slide 5"></button>
+      <button class="gallery__dot" aria-label="Slide 6"></button>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       10. TESTIMONIALS
+       10. TESTIMONIALS (GOOGLE MAPS REVIEWS)
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="testimonials section" id="testimonials">
-    <div class="section-header reveal">
-      <span class="section-label">Opiniones</span>
-      <h2>Testimonios de Pacientes</h2>
-      <p>Lo que dicen quienes ya confiaron su salud en la Dra. Odette.</p>
-    </div>
-
-    <div class="testimonials__grid">
-      <!-- Highlight Card -->
-      <div class="testimonials__highlight reveal">
-        <h3>Testimonios de pacientes</h3>
-        <p>Descubre lo que dicen las futuras mamás y pacientes sobre la atención personalizada de la Dra. Odette.</p>
-        <a href="https://g.page/r/CST5pYN0eyRqEAI/review" class="btn btn-outline-white" target="_blank" rel="noopener">
-          Dejanos tu reseña ⭐
-        </a>
+    <div class="testimonials__container">
+      <div class="section-header reveal">
+        <span class="section-label">Opiniones en Google Maps</span>
+        <h2>Testimonios y Reseñas de Pacientes</h2>
+        <div class="testimonials__rating-badge">
+          <span style="color: #FBBF24;">⭐⭐⭐⭐⭐</span>
+          <strong>5.0 de 5.0</strong>
+          <span style="color: var(--color-gray-400);">·</span>
+          <span style="color: var(--color-gray-600);">Opiniones reales de pacientes en Guadalajara y Zapopan</span>
+        </div>
       </div>
 
-      <!-- Review Cards -->
+      <!-- 3 Spacious Cards Grid -->
       <div class="testimonials__cards" data-stagger="120">
-        <div class="testimonial-card" data-stagger-child>
-          <div class="testimonial-card__stars stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <!-- Card 1: Principal - Ivonne Salinas -->
+        <div class="testimonial-card testimonial-card--featured" data-stagger-child>
+          <div>
+            <div class="testimonial-card__header">
+              <span class="badge badge-teal">⭐ Reseña Destacada</span>
+              <span class="testimonial-card__google">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4285F4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>
+                Google Maps
+              </span>
+            </div>
+            <div class="testimonial-card__stars stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-card__text">"Excelente doctora. Durante las consultas mostró mucho profesionalismo y calidad humana, explicando cada detalle del ultrasonido y haciéndome sentir completamente segura y en las mejores manos en todo momento. 100% recomendada."</p>
           </div>
-          <p class="testimonial-card__text">"La Dra. Odette es increíblemente atenta y dedicada. Me explicó cada detalle del ultrasonido con mucha paciencia. Me sentí segura desde la primera consulta."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar testimonial-card__avatar--rose">I</div>
+            <div>
+              <div class="testimonial-card__name">Ivonne Salinas</div>
+              <div class="testimonial-card__source">Vía Google Maps · Reseña Verificada</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: María Guadalupe -->
+        <div class="testimonial-card" data-stagger-child>
+          <div>
+            <div class="testimonial-card__header">
+              <span class="badge badge-teal">Control Prenatal</span>
+              <span class="testimonial-card__google">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4285F4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>
+                Google Maps
+              </span>
+            </div>
+            <div class="testimonial-card__stars stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-card__text">"La Dra. Odette es increíblemente atenta y dedicada. Me explicó cada detalle del ultrasonido con mucha paciencia. Me sentí segura desde la primera consulta."</p>
+          </div>
           <div class="testimonial-card__author">
             <div class="testimonial-card__avatar">M</div>
             <div>
               <div class="testimonial-card__name">María Guadalupe</div>
-              <div class="testimonial-card__source">Vía Google</div>
+              <div class="testimonial-card__source">Vía Google Maps · Reseña Verificada</div>
             </div>
           </div>
         </div>
 
+        <!-- Card 3: Josefina Montoya -->
         <div class="testimonial-card" data-stagger-child>
-          <div class="testimonial-card__stars stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="testimonial-card__text">"Excelente doctora. Mi embarazo fue de alto riesgo y la Dra. Odette me acompañó con profesionalismo y calidez humana en todo momento. 100% recomendada."</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">A</div>
-            <div>
-              <div class="testimonial-card__name">Ana Fernanda</div>
-              <div class="testimonial-card__source">Vía Doctoralia</div>
+          <div>
+            <div class="testimonial-card__header">
+              <span class="badge badge-teal">Ginecología Integral</span>
+              <span class="testimonial-card__google">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#4285F4"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"/></svg>
+                Google Maps
+              </span>
             </div>
+            <div class="testimonial-card__stars stars">
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <p class="testimonial-card__text">"Se toma el tiempo de explicar y despejar todas las dudas. Es muy dedicada con sus pacientes. La Dra. Odette es la mejor ginecóloga que he visitado."</p>
           </div>
-        </div>
-
-        <div class="testimonial-card" data-stagger-child>
-          <div class="testimonial-card__stars stars">
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-            <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-          </div>
-          <p class="testimonial-card__text">"Se toma el tiempo de explicar y despejar todas las dudas. Es muy dedicada con sus pacientes. La Dra. Odette es la mejor ginecóloga que he visitado."</p>
           <div class="testimonial-card__author">
             <div class="testimonial-card__avatar">J</div>
             <div>
               <div class="testimonial-card__name">Josefina Montoya</div>
-              <div class="testimonial-card__source">Vía Google</div>
+              <div class="testimonial-card__source">Vía Google Maps · Reseña Verificada</div>
             </div>
           </div>
         </div>
+      </div>
+
+      <!-- Google Maps CTA Banner -->
+      <div class="testimonials__cta-banner reveal">
+        <div class="testimonials__cta-content">
+          <h3>¿Ya atendiste tu cita con la Dra. Odette?</h3>
+          <p>Tu opinión ayuda a más futuras mamás a encontrar atención médica especializada y de confianza.</p>
+        </div>
+        <a href="https://g.page/r/CST5pYN0eyRqEAI/review" class="btn btn-outline-white" target="_blank" rel="noopener">
+          ⭐⭐⭐⭐⭐ Dejar mi reseña en Google Maps
+        </a>
       </div>
     </div>
   </section>
@@ -935,7 +1027,71 @@
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       12. FAQ
+       12. BLOG & CLINICAL ARTICLES (GEO)
+       ═══════════════════════════════════════════════════════════════════ -->
+  <section class="blog-preview section" id="blog">
+    <div class="section-header reveal">
+      <span class="section-label">Artículos Clínicos & Consejos</span>
+      <h2>Guías Médicas para Futuras Mamás</h2>
+      <p>Información médica rigurosa sobre ultrasonidos avanzados, tamizajes genéticos y cuidados en el embarazo de alto riesgo en Guadalajara.</p>
+    </div>
+
+    <div class="blog-preview__grid" data-stagger="100">
+      <!-- Card 1 -->
+      <div class="blog-card" data-stagger-child>
+        <span class="badge badge-teal blog-card__tag">Diagnóstico Prenatal</span>
+        <h3 class="blog-card__title">
+          <a href="blog/cuando-hacer-ultrasonido-estructural.html">¿Cuándo y por qué realizar el Ultrasonido Estructural?</a>
+        </h3>
+        <p class="blog-card__excerpt">
+          Conoce por qué las semanas 18.0 a 24.0 son la ventana diagnóstica ideal para la revisión anatómica de los órganos del bebé y cómo prepararte.
+        </p>
+        <div class="blog-card__footer">
+          <span class="blog-card__time">⏱️ 5 min de lectura</span>
+          <a href="blog/cuando-hacer-ultrasonido-estructural.html" class="blog-card__link">Leer artículo →</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="blog-card" data-stagger-child>
+        <span class="badge badge-teal blog-card__tag">Primer Trimestre</span>
+        <h3 class="blog-card__title">
+          <a href="blog/tamizaje-genetico-primer-trimestre-guadalajara.html">Tamizaje Genético de Primer Trimestre en Guadalajara</a>
+        </h3>
+        <p class="blog-card__excerpt">
+          Explicación médica sobre la medición de translucencia nucal, hueso nasal y cálculo de riesgo para Síndrome de Down (semanas 11.0 a 13.6).
+        </p>
+        <div class="blog-card__footer">
+          <span class="blog-card__time">⏱️ 6 min de lectura</span>
+          <a href="blog/tamizaje-genetico-primer-trimestre-guadalajara.html" class="blog-card__link">Leer artículo →</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="blog-card" data-stagger-child>
+        <span class="badge badge-rose blog-card__tag">Alto Riesgo</span>
+        <h3 class="blog-card__title">
+          <a href="blog/signos-alarma-embarazo-alto-riesgo.html">Signos de Alarma en el Embarazo de Alto Riesgo</a>
+        </h3>
+        <p class="blog-card__excerpt">
+          Guía de síntomas críticos que no debes ignorar: dolor de cabeza intenso, zumbidos, sangrado o disminución de movimientos fetales.
+        </p>
+        <div class="blog-card__footer">
+          <span class="blog-card__time">⏱️ 4 min de lectura</span>
+          <a href="blog/signos-alarma-embarazo-alto-riesgo.html" class="blog-card__link">Leer artículo →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-preview__cta reveal">
+      <a href="blog/index.html" class="btn btn-primary">
+        Ver todos los artículos del Blog →
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════════════════
+       13. FAQ
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="faq section" id="faq">
     <div class="section-header reveal">
@@ -1078,6 +1234,9 @@
         <a href="https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7" class="btn btn-primary" target="_blank" rel="noopener" style="margin-top: var(--space-4); width: 100%;">
           Cómo llegar →
         </a>
+        <a href="https://g.page/r/CST5pYN0eyRqEAI/review" class="btn btn-outline" target="_blank" rel="noopener" style="margin-top: var(--space-2); width: 100%;">
+          ⭐ Dejar Reseña en Google Maps
+        </a>
       </div>
     </div>
   </section>
@@ -1114,8 +1273,10 @@
             <h4>Navegación</h4>
             <a href="#hero">Inicio</a>
             <a href="#services">Servicios</a>
+            <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
             <a href="#about">Sobre Mí</a>
             <a href="#gallery">Galería</a>
+            <a href="blog/index.html">Blog / Artículos</a>
           </div>
           <div class="footer__links-group">
             <h4>Pacientes</h4>
@@ -1123,6 +1284,7 @@
             <a href="#insurance">Aseguradoras</a>
             <a href="#faq">Preguntas Frecuentes</a>
             <a href="#location">Ubicación</a>
+            <a href="https://g.page/r/CST5pYN0eyRqEAI/review" target="_blank" rel="noopener">Dejar Reseña ⭐</a>
           </div>
           <div class="footer__links-group">
             <h4>Contacto</h4>

@@ -159,6 +159,18 @@ strong {
   transform: translateY(-2px);
 }
 
+.btn-outline-teal {
+  background: transparent;
+  color: var(--color-teal-700);
+  border: 2px solid var(--color-teal-500);
+}
+
+.btn-outline-teal:hover {
+  background-color: var(--color-teal-600);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
 /* ── Pill Badges ─────────────────────────────────────────────────────── */
 
 .badge {

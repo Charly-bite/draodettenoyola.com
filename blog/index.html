@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Blog Clínico y Artículos Médicos | Dra. Odette Noyola Landázuri</title>
+  <meta name="description" content="Artículos médicos, guías de diagnóstico prenatal y consejos clínicos sobre embarazo de alto riesgo y ultrasonidos en Guadalajara por la Dra. Odette Noyola.">
+  <meta name="keywords" content="blog ginecologia guadalajara, articulos embarazo alto riesgo, ultrasonido estructural semanas, tamizaje genetico guadalajara, Dra Odette Noyola">
+  <meta name="author" content="Dra. Odette Noyola Landázuri">
+  <meta name="geo.region" content="MX-JAL">
+  <meta name="geo.placename" content="Guadalajara">
+  <link rel="canonical" href="https://draodettenoyola.com/blog/">
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Artículos Clínicos & Diagnóstico Prenatal | Dra. Odette Noyola">
+  <meta property="og:description" content="Guías médicas confiables sobre salud materna, ultrasonidos especializados y cuidados en el embarazo de alto riesgo.">
+  <meta property="og:image" content="../img/hero-portrait.jpg">
+  <meta property="og:url" content="https://draodettenoyola.com/blog/">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="../img/logo.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics 4 -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
+
+  <style>
+    :root {
+      --brand-navy-950: oklch(0.18 0.05 258);
+      --brand-navy-900: oklch(0.23 0.06 258);
+      --brand-teal-600: oklch(0.52 0.13 182);
+      --brand-teal-500: oklch(0.62 0.14 182);
+      --brand-teal-100: oklch(0.95 0.03 182);
+      --brand-teal-50:  oklch(0.98 0.015 182);
+      --brand-rose-500: oklch(0.62 0.16 12);
+      --brand-rose-100: oklch(0.96 0.025 12);
+      --surface-bg: oklch(0.975 0.005 250);
+      --surface-white: #FFFFFF;
+      --text-main: oklch(0.22 0.02 260);
+      --text-muted: oklch(0.46 0.02 260);
+      --border-subtle: oklch(0.91 0.005 260);
+      --wa-green: #25D366;
+      --wa-green-hover: #1EBE5D;
+      --font-display: 'Plus Jakarta Sans', 'Outfit', sans-serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --radius-full: 9999px;
+      --shadow-sm: 0 2px 8px rgba(15, 40, 71, 0.06);
+      --shadow-md: 0 8px 24px -4px rgba(15, 40, 71, 0.08);
+      --shadow-lg: 0 16px 40px -8px rgba(15, 40, 71, 0.12);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--surface-bg);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 { font-family: var(--font-display); color: var(--brand-navy-950); font-weight: 700; line-height: 1.25; }
+    a { text-decoration: none; color: inherit; transition: all 0.2s ease; }
+    .container { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: clamp(1.2rem, 4vw, 2.5rem); }
+
+    /* Urgency bar */
+    .urgency-bar { background-color: #09192C; color: #fff; padding: 0.45rem 1rem; font-size: 0.84rem; text-align: center; }
+    .urgency-bar a { color: #fff; font-weight: 600; margin-right: 12px; }
+    .urgency-badge { background: #DC2626; color: #fff; padding: 2px 8px; border-radius: var(--radius-full); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+
+    /* Navbar */
+    .navbar { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(15, 40, 71, 0.08); padding: 0.75rem 0; }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+    .brand-group { display: flex; align-items: center; gap: 12px; }
+    .brand-img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--brand-teal-500); }
+    .brand-title { font-family: var(--font-display); font-weight: 800; font-size: 1.08rem; color: var(--brand-navy-950); }
+    .brand-sub { font-size: 0.76rem; font-weight: 600; color: var(--brand-teal-600); text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 14px; }
+    .nav-btn { background: var(--wa-green); color: #fff; padding: 0.55rem 1.2rem; border-radius: var(--radius-full); font-weight: 700; font-size: 0.88rem; }
+    .nav-btn:hover { background: var(--wa-green-hover); }
+
+    /* Hero */
+    .blog-hero {
+      background: linear-gradient(145deg, #09192C 0%, #0F2847 60%, #0B3B48 100%);
+      color: #fff;
+      padding: clamp(3rem, 6vw, 4.5rem) 0;
+      text-align: center;
+    }
+    .blog-hero h1 { color: #fff; font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 0.8rem; }
+    .blog-hero p { color: oklch(0.90 0.01 260); font-size: clamp(1rem, 1.3vw, 1.15rem); max-width: 700px; margin-inline: auto; }
+
+    /* Articles Grid */
+    .blog-section { padding: clamp(3rem, 5vw, 4.5rem) 0; }
+    .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; }
+    .article-card {
+      background: var(--surface-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .article-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--brand-teal-400);
+    }
+    .article-card__body { padding: 1.8rem; display: flex; flex-direction: column; flex: 1; }
+    .article-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--brand-teal-50);
+      color: var(--brand-teal-600);
+      padding: 0.3rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+    .article-badge.rose { background: var(--brand-rose-100); color: var(--brand-rose-500); }
+    .article-card h2 { font-size: 1.25rem; margin-bottom: 0.8rem; }
+    .article-card p { font-size: 0.92rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.4rem; }
+    .article-card__footer { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 1rem; }
+    .read-more { font-family: var(--font-display); font-weight: 700; color: var(--brand-teal-600); font-size: 0.9rem; }
+    .read-time { font-size: 0.8rem; color: var(--text-muted); }
+
+    /* Footer */
+    .site-footer { background: var(--brand-navy-950); color: oklch(0.70 0.01 260); padding: 3.5rem 0 2rem; font-size: 0.88rem; margin-top: 3rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
+    .footer-col h4 { color: #fff; font-size: 1rem; margin-bottom: 1rem; }
+    .footer-links { list-style: none; }
+    .footer-links li { margin-bottom: 0.5rem; }
+    .footer-links a:hover { color: var(--brand-teal-500); }
+  </style>
+</head>
+<body>
+
+  <div class="urgency-bar">
+    <a href="tel:+523327905726">📞 Citas y Urgencias: 33 2790 5726</a>
+    <span class="urgency-badge">Urgencias 24/7</span>
+  </div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="../index.html" class="brand-group">
+        <img src="../img/logo.jpg" alt="Logo Dra. Odette Noyola" class="brand-img">
+        <div>
+          <div class="brand-title">Dra. Odette Noyola</div>
+          <div class="brand-sub">Medicina Materno Fetal</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="../index.html#services" style="font-weight: 600; font-size: 0.9rem; color: var(--brand-navy-950);">Servicios</a>
+        <a href="../ultrasonido-estructural.html" style="font-weight: 600; font-size: 0.9rem; color: var(--brand-navy-950);">Ultrasonido Estructural</a>
+        <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20le%C3%AD%20su%20blog%20y%20quisiera%20agendar%20una%20cita." class="nav-btn" target="_blank" rel="noopener">Agendar Cita</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Blog Clínico y Divulgación Médica</h1>
+      <p>Información rigurosa, basada en evidencia y explicada con calidez humana sobre diagnóstico prenatal, salud materno fetal y embarazo seguro en Guadalajara.</p>
+    </div>
+  </section>
+
+  <main class="blog-section">
+    <div class="container">
+      <div class="articles-grid">
+
+        <!-- Article 1 -->
+        <article class="article-card">
+          <div class="article-card__body">
+            <span class="article-badge">Diagnóstico Prenatal</span>
+            <h2>¿Cuándo y por qué realizar el Ultrasonido Estructural en el embarazo?</h2>
+            <p>Conoce por qué las semanas 18.0 a 24.0 son la ventana diagnóstica ideal para la revisión anatómica de los órganos del bebé y cómo prepararte para tu cita.</p>
+            <div class="article-card__footer">
+              <span class="read-time">⏱️ 5 min de lectura</span>
+              <a href="cuando-hacer-ultrasonido-estructural.html" class="read-more">Leer artículo completo →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 2 -->
+        <article class="article-card">
+          <div class="article-card__body">
+            <span class="article-badge">Primer Trimestre</span>
+            <h2>Tamizaje Genético de Primer Trimestre en Guadalajara: Qué evalúa y semanas óptimas</h2>
+            <p>Explicación médica sobre la medición de translucencia nucal, hueso nasal y cálculo de riesgo para Síndrome de Down entre las semanas 11.0 y 13.6.</p>
+            <div class="article-card__footer">
+              <span class="read-time">⏱️ 6 min de lectura</span>
+              <a href="tamizaje-genetico-primer-trimestre-guadalajara.html" class="read-more">Leer artículo completo →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Article 3 -->
+        <article class="article-card">
+          <div class="article-card__body">
+            <span class="article-badge rose">Embarazo de Alto Riesgo</span>
+            <h2>Signos de Alarma en el Embarazo de Alto Riesgo: Cuándo consultar de urgencia</h2>
+            <p>Guía de síntomas críticos que no debes ignorar: dolor de cabeza intenso, zumbidos, sangrado o disminución de movimientos fetales. Atención inmediata en Guadalajara.</p>
+            <div class="article-card__footer">
+              <span class="read-time">⏱️ 4 min de lectura</span>
+              <a href="signos-alarma-embarazo-alto-riesgo.html" class="read-more">Leer artículo completo →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Dra. Odette Noyola Landázuri</h4>
+          <p>Medicina Materno Fetal · Ginecología y Obstetricia en Guadalajara / Zapopan, Jalisco.</p>
+          <div style="margin-top: 10px;">
+            <a href="https://g.page/r/CST5pYN0eyRqEAI/review" target="_blank" rel="noopener" style="color: var(--brand-teal-500); font-weight: 600; text-decoration: underline;">
+              ⭐ Deja tu reseña en Google Maps
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Enlaces</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html">Página Principal</a></li>
+            <li><a href="../ultrasonido-estructural.html">Ultrasonido Estructural</a></li>
+            <li><a href="../index.html#testimonials">Testimonios de Pacientes</a></li>
+            <li><a href="../index.html#location">Consultorio en Chapalita</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto Directo</h4>
+          <p>Av. Niño Obrero 1538, Chapalita Oriente, Guadalajara, Jal.</p>
+          <p style="margin-top: 6px;">Tel: <a href="tel:+523327905726" style="color: var(--brand-teal-500); font-weight: 600;">33 2790 5726</a></p>
+        </div>
+      </div>
+      <p style="text-align: center; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; font-size: 0.8rem;">
+        © 2026 Dra. Odette Noyola Landázuri. Información médica con fines educativos.
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>
