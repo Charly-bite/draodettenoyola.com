@@ -67,9 +67,10 @@
   }
 
   .hero__shape-1 {
-    width: 400px;
-    height: 400px;
-    right: -50px;
+    width: 320px;
+    height: 320px;
+    right: -20px;
+    top: 20px;
   }
 
   .hero__shape-2 {
@@ -79,6 +80,11 @@
   }
 
   /* Included Studies grid */
+  .included-studies__container {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+  }
+
   .included-studies__grid {
     grid-template-columns: repeat(3, 1fr);
     max-width: 800px;
@@ -197,8 +203,12 @@
     margin-left: var(--space-2);
   }
 
-  .navbar__hamburger {
-    display: none;
+  .navbar__hamburger,
+  .navbar__drawer,
+  .navbar__overlay {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
   }
 
   /* Hero desktop */
@@ -246,9 +256,22 @@
     font-size: var(--text-lg);
   }
 
-  /* Included studies */
+  /* Included studies desktop layout */
+  .included-studies__container {
+    grid-template-columns: minmax(360px, 420px) 1fr;
+    gap: var(--space-12);
+    align-items: center;
+    max-width: 1240px;
+  }
+
   .included-studies__title {
     font-size: var(--text-3xl);
+  }
+
+  .included-studies__grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: none;
+    gap: var(--space-5);
   }
 
   /* Services grid for desktop */
@@ -339,10 +362,10 @@
   }
 
   .hero__shape-1 {
-    width: 600px;
-    height: 600px;
-    top: -100px;
-    right: 5%;
+    width: 360px;
+    height: 360px;
+    top: 15px;
+    right: 4%;
   }
 
   .hero__shape-2 {

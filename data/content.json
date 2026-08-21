@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "titleAccent": "Especialista en Medicina Materno Fetal",
+    "titleSuffix": "en Guadalajara",
+    "name": "Dra. Odette Noyola Landázuri · Ginecología y Obstetricia",
+    "_updatedAt": "2026-08-21T00:00:00Z"
+  },
+  "promo": {
+    "text": "Consulta médica de alta especialidad en <strong>Medicina Materno Fetal</strong> con valoración ultrasonográfica de precisión integrada",
+    "schedule": "L-V: 9:00 a.m. – 6:00 p.m. · Sáb: 9:00 a.m. – 2:00 p.m.",
+    "_updatedAt": "2026-08-21T16:07:47.762Z"
+  },
+  "about": {
+    "name": "Dra. Giselle Odette Noyola Landázuri",
+    "specialty": "Ginecología y Obstetricia · Medicina Materno Fetal",
+    "_updatedAt": "2026-08-21T00:00:00Z"
+  },
+  "contact": {
+    "phone": "33 2790 5726",
+    "whatsapp": "523327905726",
+    "email": "",
+    "_updatedAt": "2026-08-21T00:00:00Z"
+  }
+}

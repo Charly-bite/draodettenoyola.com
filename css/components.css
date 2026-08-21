@@ -189,7 +189,9 @@
   background-color: var(--color-white);
   box-shadow: -8px 0 30px rgba(0, 0, 0, 0.15);
   transform: translateX(100%);
-  transition: transform var(--duration-slow) var(--ease-out);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform var(--duration-slow) var(--ease-out), visibility var(--duration-slow);
   z-index: var(--z-overlay);
   padding: var(--space-20) var(--space-8) var(--space-8);
   overflow-y: auto;
@@ -197,6 +199,8 @@
 
 .navbar__drawer.open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .navbar__drawer-links {
@@ -297,17 +301,34 @@
   min-height: 500px;
 }
 
-/* Organic cloud shapes - inspired by the reference */
+/* Organic decorative shapes for Hero */
 .hero__shape-1 {
   position: absolute;
-  top: -60px;
-  right: -80px;
-  width: 300px;
-  height: 300px;
-  background: linear-gradient(135deg, var(--color-rose-200), var(--color-rose-300));
-  border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
-  opacity: 0.5;
-  z-index: 0;
+  top: -40px;
+  right: -60px;
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle at 45% 45%, rgba(242, 206, 216, 0.45) 0%, rgba(20, 168, 161, 0.2) 60%, rgba(7, 17, 28, 0.03) 100%);
+  border-radius: 58% 42% 62% 38% / 44% 56% 44% 56%;
+  z-index: 1;
+  pointer-events: none;
+  animation: heroShapeMorph1 16s ease-in-out infinite alternate;
+  will-change: transform, border-radius;
+}
+
+@keyframes heroShapeMorph1 {
+  0% {
+    border-radius: 58% 42% 62% 38% / 44% 56% 44% 56%;
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    border-radius: 46% 54% 42% 58% / 58% 44% 56% 42%;
+    transform: rotate(5deg) scale(1.04);
+  }
+  100% {
+    border-radius: 58% 42% 62% 38% / 44% 56% 44% 56%;
+    transform: rotate(-4deg) scale(0.97);
+  }
 }
 
 .hero__shape-2 {
@@ -603,6 +624,146 @@
 .included-studies {
   padding: var(--space-16) var(--space-5);
   background-color: var(--color-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.included-studies__container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  align-items: center;
+}
+
+/* Left Visual Column */
+.included-studies__visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.included-studies__image-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+/* Organic backdrop blob/halo behind baby & doctor */
+.included-studies__backdrop-blob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 320px;
+  height: 320px;
+  border-radius: 43% 57% 62% 38% / 46% 41% 59% 54%;
+  background: linear-gradient(135deg, rgba(20, 168, 161, 0.18) 0%, rgba(240, 138, 93, 0.16) 60%, rgba(240, 201, 135, 0.12) 100%);
+  filter: blur(8px);
+  z-index: 1;
+  animation: blobRotate 12s linear infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes blobRotate {
+  0% {
+    border-radius: 43% 57% 62% 38% / 46% 41% 59% 54%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(1);
+  }
+  50% {
+    border-radius: 58% 42% 48% 52% / 51% 59% 41% 49%;
+    transform: translate(-50%, -50%) rotate(180deg) scale(1.06);
+  }
+  100% {
+    border-radius: 43% 57% 62% 38% / 46% 41% 59% 54%;
+    transform: translate(-50%, -50%) rotate(360deg) scale(1);
+  }
+}
+
+.included-studies__cutout {
+  width: auto;
+  max-width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 18px 36px rgba(9, 25, 44, 0.20));
+  transition: transform 0.4s var(--ease-out), filter 0.4s var(--ease-out);
+  will-change: transform;
+}
+
+.included-studies__cutout:hover {
+  transform: translateY(-4px) scale(1.02);
+  filter: drop-shadow(0 22px 42px rgba(20, 168, 161, 0.28));
+}
+
+/* Right Column Wrapper */
+.included-studies__content-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+}
+
+/* Trust Banner underneath cards */
+.included-studies__banner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  background: linear-gradient(135deg, rgba(20, 168, 161, 0.07) 0%, rgba(240, 138, 93, 0.07) 100%);
+  border: 1.5px solid rgba(20, 168, 161, 0.22);
+  border-radius: var(--radius-xl);
+  padding: var(--space-4) var(--space-5);
+  box-shadow: 0 4px 20px rgba(9, 25, 44, 0.04);
+  transition: all var(--duration-normal) var(--ease-out);
+  width: 100%;
+}
+
+.included-studies__banner:hover {
+  transform: translateY(-2px);
+  border-color: rgba(20, 168, 161, 0.45);
+  box-shadow: 0 10px 25px rgba(20, 168, 161, 0.12);
+  background: linear-gradient(135deg, rgba(20, 168, 161, 0.12) 0%, rgba(240, 138, 93, 0.12) 100%);
+}
+
+.included-studies__banner-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: var(--color-white);
+  border-radius: var(--radius-full);
+  box-shadow: 0 2px 8px rgba(9, 25, 44, 0.08);
+}
+
+.included-studies__banner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.included-studies__banner-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  color: var(--color-obsidian-900);
+  letter-spacing: -0.01em;
+}
+
+.included-studies__banner-desc {
+  font-size: var(--text-xs);
+  color: var(--color-gray-600);
+  line-height: var(--leading-normal);
+  margin: 0;
 }
 
 .included-studies__title {
@@ -804,12 +965,12 @@
 
 .about__photo-wrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(20, 168, 161, 0.3) 0%, rgba(10, 25, 47, 0.85) 75%);
+  background: radial-gradient(circle at 50% 40%, rgba(20, 168, 161, 0.35) 0%, rgba(7, 17, 28, 0.95) 75%);
   border: 3px solid var(--color-teal-400);
-  box-shadow: 0 0 35px rgba(20, 168, 161, 0.35);
+  box-shadow: 0 0 35px rgba(20, 168, 161, 0.4), 0 12px 30px rgba(0, 0, 0, 0.3);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -827,13 +988,27 @@
   pointer-events: none;
 }
 
+.about__photo-wrapper picture {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .about__photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 10%;
   position: relative;
   z-index: 1;
+  transform: scale(1.12);
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.about__photo-wrapper:hover .about__photo {
+  transform: scale(1.18);
 }
 
 .about__name {

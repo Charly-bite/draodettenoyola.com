@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStaggerAnimations();
   initCounterAnimations();
   initHeroScrollParallax();
+  initIncludedStudiesParallax();
   initMouseParallax();
 });
 
@@ -17,44 +18,43 @@ document.addEventListener('DOMContentLoaded', () => {
 function initHeroScrollParallax() {
   const hero = document.getElementById('hero');
   const cutout = hero?.querySelector('.hero__cutout');
-  const shape1 = hero?.querySelector('.hero__shape-1');
-  const shape2 = hero?.querySelector('.hero__shape-2');
+  const shape1 = document.getElementById('hero-shape-1') || hero?.querySelector('.hero__shape-1');
+  const shape2 = document.getElementById('hero-shape-2') || hero?.querySelector('.hero__shape-2');
   const heroContent = hero?.querySelector('.hero__content');
-  const halo = hero?.querySelector('.hero__image-wrapper');
 
-  if (!hero || !cutout) return;
+  if (!hero) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReducedMotion) return;
 
   let ticking = false;
-  let lastScrollY = window.scrollY;
 
   function updateParallax() {
     const scrollY = window.scrollY;
-    const heroRect = hero.getBoundingClientRect();
-    const heroHeight = heroRect.height || 600;
+    const heroHeight = hero.offsetHeight || 600;
 
-    if (scrollY <= heroHeight + 300) {
+    if (scrollY <= heroHeight + 400) {
       const progress = Math.min(1, Math.max(0, scrollY / heroHeight));
 
-      // Cutout moves at a subtle relaxed parallax speed
+      // Cutout moves at an energetic parallax speed
       if (cutout) {
-        cutout.style.transform = `translate3d(0, ${scrollY * 0.18}px, 0)`;
+        cutout.style.transform = `translate3d(0, ${scrollY * 0.22}px, 0)`;
       }
 
-      // Organic background shapes float with distinct rotational depth
+      // Surgery organic shape on right moves with opposite floating vector and dynamic scale
       if (shape1) {
-        shape1.style.transform = `translate3d(${scrollY * 0.09}px, ${-scrollY * 0.22}px, 0) rotate(${scrollY * 0.05}deg)`;
-      }
-      if (shape2) {
-        shape2.style.transform = `translate3d(${-scrollY * 0.08}px, ${-scrollY * 0.16}px, 0) rotate(${-scrollY * 0.04}deg)`;
+        shape1.style.transform = `translate3d(${scrollY * 0.12}px, ${-scrollY * 0.28}px, 0) rotate(${scrollY * 0.07}deg) scale(${1 - progress * 0.15})`;
       }
 
-      // Text content subtly floats and soft fades into subsequent section
+      // Left shape floats
+      if (shape2) {
+        shape2.style.transform = `translate3d(${-scrollY * 0.14}px, ${-scrollY * 0.20}px, 0) rotate(${-scrollY * 0.06}deg)`;
+      }
+
+      // Hero text gently drifts and fades
       if (heroContent && window.innerWidth >= 768) {
-        heroContent.style.transform = `translate3d(0, ${scrollY * 0.08}px, 0)`;
-        heroContent.style.opacity = `${Math.max(0, 1 - progress * 0.85)}`;
+        heroContent.style.transform = `translate3d(0, ${scrollY * 0.12}px, 0)`;
+        heroContent.style.opacity = `${Math.max(0, 1 - progress * 1.1)}`;
       }
     }
 
@@ -62,9 +62,47 @@ function initHeroScrollParallax() {
   }
 
   window.addEventListener('scroll', () => {
-    lastScrollY = window.scrollY;
     if (!ticking) {
       window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   INCLUDED STUDIES SCROLL PARALLAX — Multi-layer visual depth
+   ══════════════════════════════════════════════════════════════════════ */
+
+function initIncludedStudiesParallax() {
+  const section = document.getElementById('included-studies');
+  const cutout = section?.querySelector('.included-studies__cutout');
+  const blob = section?.querySelector('.included-studies__backdrop-blob');
+
+  if (!section || !cutout) return;
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  let ticking = false;
+
+  function updateStudiesParallax() {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    if (rect.top < windowHeight && rect.bottom > 0) {
+      const progress = (windowHeight - rect.top) / (windowHeight + rect.height);
+      const yOffset = (progress - 0.5) * 28;
+
+      if (cutout) {
+        cutout.style.transform = `translate3d(0, ${yOffset}px, 0)`;
+      }
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateStudiesParallax);
       ticking = true;
     }
   }, { passive: true });
@@ -131,7 +169,7 @@ function initMouseParallax() {
    ══════════════════════════════════════════════════════════════════════ */
 
 function initRevealAnimations() {
-  const revealElements = document.querySelectorAll('.reveal');
+  const revealElements = document.querySelectorAll('.reveal, .reveal-slide-right, .reveal-slide-left');
 
   if (!revealElements.length) return;
 

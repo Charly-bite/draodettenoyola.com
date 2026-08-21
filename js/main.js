@@ -44,6 +44,20 @@ function initNavbar() {
     link.addEventListener('click', closeDrawer);
   });
 
+  // Close drawer on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer?.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+
+  // Auto-close drawer on desktop resize
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 1024 && drawer?.classList.contains('open')) {
+      closeDrawer();
+    }
+  });
+
   // Navbar scroll effect
   let lastScroll = 0;
   window.addEventListener('scroll', () => {

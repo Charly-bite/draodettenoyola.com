@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel — Dra. Odette Noyola</title>
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Admin Styles -->
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       LOGIN SCREEN
+       ═══════════════════════════════════════ -->
+  <div id="login-screen" class="login">
+    <div class="login__card">
+      <div class="login__logo">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <h1 class="login__title">Panel de Administración</h1>
+      <p class="login__subtitle">Dra. Odette Noyola Landázuri</p>
+
+      <form id="login-form" class="login__form">
+        <div class="form-group">
+          <label for="login-user">Usuario</label>
+          <input type="text" id="login-user" name="username" autocomplete="username" required placeholder="admin">
+        </div>
+        <div class="form-group">
+          <label for="login-pass">Contraseña</label>
+          <input type="password" id="login-pass" name="password" autocomplete="current-password" required placeholder="••••••••">
+        </div>
+        <div id="login-error" class="login__error" hidden></div>
+        <button type="submit" class="btn btn--primary btn--full" id="login-btn">
+          <span>Iniciar Sesión</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+
+      <p class="login__footer">Acceso restringido a personal autorizado</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       ADMIN DASHBOARD SHELL
+       ═══════════════════════════════════════ -->
+  <div id="admin-shell" class="shell" hidden>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span>Admin Panel</span>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a href="#dashboard" class="sidebar__link active" data-page="dashboard">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#canvas" class="sidebar__link" data-page="canvas">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <span>Live Canvas</span>
+        </a>
+        <a href="#blog" class="sidebar__link" data-page="blog">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          <span>Blog</span>
+        </a>
+        <a href="#images" class="sidebar__link" data-page="images">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Imágenes</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <button id="logout-btn" class="sidebar__link sidebar__link--danger">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Cerrar Sesión</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Mobile topbar -->
+    <header class="topbar" id="topbar">
+      <button class="topbar__hamburger" id="sidebar-toggle">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <h2 class="topbar__title" id="topbar-title">Dashboard</h2>
+      <a href="/" target="_blank" class="topbar__site-link">Ver Sitio →</a>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main" id="main-content">
+
+      <!-- ═══ DASHBOARD PAGE ═══ -->
+      <section class="page" id="page-dashboard">
+        <div class="page__header">
+          <h1 class="page__title">Dashboard</h1>
+          <p class="page__subtitle">Resumen general del sitio</p>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--teal">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            </div>
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="stat-posts">0</span>
+              <span class="stat-card__label">Blog Posts</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--rose">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+            </div>
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="stat-images">0</span>
+              <span class="stat-card__label">Imágenes</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--amber">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+            </div>
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="stat-sections">11</span>
+              <span class="stat-card__label">Secciones en Canvas</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__icon stat-card__icon--green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="stat-published">0</span>
+              <span class="stat-card__label">Posts Publicados</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid">
+          <div class="card">
+            <h3 class="card__title">Posts Recientes</h3>
+            <div id="recent-posts" class="card__body">
+              <p class="text-muted">Cargando...</p>
+            </div>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Acciones Rápidas</h3>
+            <div class="card__body">
+              <button class="btn btn--primary btn--full" onclick="Admin.router.navigate('canvas')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+                Abrir Live Canvas Editor
+              </button>
+              <button class="btn btn--secondary btn--full" onclick="Admin.router.navigate('blog')" style="margin-top: 0.75rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                Nuevo Blog Post
+              </button>
+              <button class="btn btn--secondary btn--full" onclick="Admin.router.navigate('images')" style="margin-top: 0.75rem;">
+                Gestionar Imágenes
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ LIVE CANVAS VISUAL EDITOR PAGE ═══ -->
+      <section class="page page--canvas" id="page-canvas" hidden>
+        <!-- Canvas Studio Toolbar -->
+        <div class="canvas-topbar">
+          <div class="canvas-topbar__left">
+            <label for="canvas-page-select" class="canvas-topbar__label">Página:</label>
+            <select id="canvas-page-select" class="canvas-select">
+              <option value="index.html">🏠 Página Principal (Inicio)</option>
+              <option value="ultrasonido-estructural.html">🔬 Ultrasonido Estructural</option>
+              <option value="blog/index.html">📰 Blog Principal</option>
+            </select>
+          </div>
+
+          <div class="canvas-topbar__center">
+            <div class="canvas-device-group">
+              <button class="canvas-device-btn active" data-device="desktop" title="Vista Escritorio (100%)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                <span>Desktop</span>
+              </button>
+              <button class="canvas-device-btn" data-device="tablet" title="Vista Tablet (768px)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <span>Tablet</span>
+              </button>
+              <button class="canvas-device-btn" data-device="mobile" title="Vista Móvil (375px)">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                <span>Móvil</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="canvas-topbar__right">
+            <button id="canvas-preview-toggle" class="btn btn--sm btn--secondary" title="Probar navegación y enlaces">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Vista Previa</span>
+            </button>
+            <button id="canvas-reload-btn" class="btn btn--sm btn--ghost" title="Recargar canvas">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 11-.57-8.38l5.67-5.67"/></svg>
+            </button>
+            <button id="canvas-undo-btn" class="btn btn--sm btn--ghost" title="Deshacer" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13"/></svg>
+            </button>
+            <button id="canvas-save-btn" class="btn btn--sm btn--primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+              <span>Guardar Cambios</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Canvas Studio 3-Column Workspace -->
+        <div class="canvas-studio">
+          <!-- Left Panel: Layers / Sections Tree -->
+          <aside class="canvas-sidebar-left">
+            <div class="canvas-panel-header">
+              <span class="canvas-panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+                Secciones & Capas
+              </span>
+            </div>
+            <div class="canvas-tree-search">
+              <input type="text" id="canvas-section-search" placeholder="Buscar sección...">
+            </div>
+            <div id="canvas-sections-tree" class="canvas-tree">
+              <p class="text-muted text-sm" style="padding: 1rem;">Cargando estructura...</p>
+            </div>
+            <div class="canvas-sidebar-tip">
+              <strong>💡 Tips de Edición:</strong>
+              <p>• Haz <strong>doble clic</strong> en cualquier texto para editarlo directamente en la página.</p>
+              <p>• Haz <strong>clic</strong> en cualquier imagen para cambiarla al instante.</p>
+            </div>
+          </aside>
+
+          <!-- Center Panel: Interactive Live Canvas Viewport -->
+          <div class="canvas-viewport-area" id="canvas-viewport-area">
+            <div class="canvas-device-frame" id="canvas-device-frame">
+              <div class="canvas-device-notch" id="canvas-device-notch"></div>
+              <iframe id="canvas-iframe" src="/?canvas=1" frameborder="0" title="Live Canvas Viewport"></iframe>
+            </div>
+          </div>
+
+          <!-- Right Panel: Contextual Inspector -->
+          <aside class="canvas-sidebar-right" id="canvas-inspector">
+            <div class="canvas-panel-header">
+              <span class="canvas-panel-title">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                Inspector
+              </span>
+              <span id="inspector-tag-badge" class="inspector-tag">Selecciona un elemento</span>
+            </div>
+
+            <div class="inspector-body" id="inspector-body">
+              <div id="inspector-empty" class="inspector-empty">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5"/></svg>
+                <p>Haz clic en cualquier texto o imagen del canvas para inspeccionarlo y editarlo.</p>
+              </div>
+
+              <!-- Inspector Form (Active when element selected) -->
+              <div id="inspector-form" class="inspector-form" hidden>
+                <!-- Tabs -->
+                <div class="inspector-tabs">
+                  <button type="button" class="inspector-tab active" data-tab="content">Contenido</button>
+                  <button type="button" class="inspector-tab" data-tab="image" id="inspector-tab-img-btn" hidden>Imagen</button>
+                  <button type="button" class="inspector-tab" data-tab="styles">Estilo</button>
+                </div>
+
+                <!-- Tab 1: Text Content -->
+                <div class="inspector-tab-pane active" id="inspector-pane-content">
+                  <div class="form-group" id="inspector-text-group">
+                    <label for="inspector-text-input">Texto / HTML</label>
+                    <textarea id="inspector-text-input" rows="4" placeholder="Escribe el texto..."></textarea>
+                  </div>
+
+                  <div class="form-group" id="inspector-link-group" hidden>
+                    <label for="inspector-href-input">Enlace (URL / Ancla)</label>
+                    <input type="text" id="inspector-href-input" placeholder="https://... o #seccion">
+                  </div>
+                </div>
+
+                <!-- Tab 2: Image Replacement -->
+                <div class="inspector-tab-pane" id="inspector-pane-image">
+                  <div class="form-group">
+                    <label>Vista previa de imagen</label>
+                    <div class="inspector-img-preview" id="inspector-img-preview"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Reemplazar Imagen</label>
+                    <div class="inspector-img-actions">
+                      <button type="button" class="btn btn--secondary btn--full btn--sm" id="inspector-open-gallery-btn">
+                        🖼️ Elegir de Galería
+                      </button>
+                      <button type="button" class="btn btn--primary btn--full btn--sm" id="inspector-upload-img-btn" style="margin-top: 0.5rem;">
+                        ⬆️ Subir Nueva Foto
+                      </button>
+                      <button type="button" class="btn btn--ghost btn--full btn--sm" id="inspector-adjust-focal-btn" style="margin-top: 0.5rem; border: 1px solid var(--admin-border);">
+                        🎯 Ajustar Enfoque / Encuadre
+                      </button>
+                      <input type="file" id="inspector-file-input" accept="image/*" hidden>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inspector-alt-input">Texto Alternativo (Alt SEO)</label>
+                    <input type="text" id="inspector-alt-input" placeholder="Descripción de la imagen">
+                  </div>
+                </div>
+
+                <!-- Tab 3: Style Quick Adjustments -->
+                <div class="inspector-tab-pane" id="inspector-pane-styles">
+                  <div class="form-group">
+                    <label>Colores Rápidos</label>
+                    <div class="color-chips">
+                      <button type="button" class="color-chip" data-color="#14A8A1" style="background: #14A8A1;" title="Teal Brand"></button>
+                      <button type="button" class="color-chip" data-color="#04080F" style="background: #04080F;" title="Obsidian Deep"></button>
+                      <button type="button" class="color-chip" data-color="#E489A2" style="background: #E489A2;" title="Rose Brand"></button>
+                      <button type="button" class="color-chip" data-color="#FFFFFF" style="background: #FFFFFF;" title="White"></button>
+                      <button type="button" class="color-chip" data-color="#F59E0B" style="background: #F59E0B;" title="Amber"></button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Alineación de Texto</label>
+                    <div class="align-group">
+                      <button type="button" class="align-btn" data-align="left" title="Izquierda">⬅️</button>
+                      <button type="button" class="align-btn" data-align="center" title="Centro">↔️</button>
+                      <button type="button" class="align-btn" data-align="right" title="Derecha">➡️</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="inspector-actions">
+                  <button type="button" class="btn btn--sm btn--primary btn--full" id="inspector-apply-btn">
+                    Aplicar Cambios
+                  </button>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══ BLOG MANAGER PAGE ═══ -->
+      <section class="page" id="page-blog" hidden>
+        <div class="page__header">
+          <h1 class="page__title">Blog Manager</h1>
+          <p class="page__subtitle">Gestiona los artículos del blog</p>
+          <button class="btn btn--primary" id="new-post-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Nuevo Post
+          </button>
+        </div>
+
+        <!-- Blog list view -->
+        <div id="blog-list" class="blog-list">
+          <p class="text-muted">Cargando posts...</p>
+        </div>
+
+        <!-- Blog editor (hidden by default) -->
+        <div id="blog-editor" class="blog-editor" hidden>
+          <div class="blog-editor__header">
+            <button class="btn btn--ghost" id="blog-back-btn">← Volver a la lista</button>
+            <div class="blog-editor__actions">
+              <button class="btn btn--secondary" id="blog-save-btn">Guardar Borrador</button>
+              <button class="btn btn--primary" id="blog-publish-btn">Publicar</button>
+            </div>
+          </div>
+
+          <form id="blog-form" class="blog-form">
+            <input type="hidden" id="blog-slug" name="slug">
+
+            <div class="form-group">
+              <label for="blog-title">Título del Artículo</label>
+              <input type="text" id="blog-title" name="title" required placeholder="Ej: ¿Cuándo hacer el ultrasonido estructural?">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="blog-excerpt">Extracto / Resumen</label>
+                <textarea id="blog-excerpt" name="excerpt" rows="2" placeholder="Breve descripción para la lista del blog..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="blog-tags">Tags (separados por coma)</label>
+                <input type="text" id="blog-tags" name="tags" placeholder="ultrasonido, embarazo, diagnóstico">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="blog-meta-desc">Meta Description (SEO)</label>
+                <textarea id="blog-meta-desc" name="metaDescription" rows="2" placeholder="Descripción para motores de búsqueda..."></textarea>
+              </div>
+              <div class="form-group">
+                <label for="blog-meta-keys">Meta Keywords (SEO)</label>
+                <input type="text" id="blog-meta-keys" name="metaKeywords" placeholder="palabras clave para SEO">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="blog-cover">Imagen de Portada</label>
+              <div class="file-upload" id="blog-cover-upload">
+                <input type="file" id="blog-cover" name="coverImage" accept="image/*">
+                <div class="file-upload__preview" id="blog-cover-preview"></div>
+                <p class="file-upload__text">Arrastra una imagen o haz clic para seleccionar</p>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Contenido (Markdown)</label>
+              <div class="editor-tabs">
+                <button type="button" class="editor-tab active" data-tab="write">Escribir</button>
+                <button type="button" class="editor-tab" data-tab="preview">Vista Previa</button>
+              </div>
+              <textarea id="blog-content" name="content" rows="20" placeholder="Escribe el contenido en Markdown...
+
+## Subtítulo
+
+Párrafo de texto con **negrita** y *cursiva*.
+
+- Elemento de lista
+- Otro elemento
+
+> Cita destacada"></textarea>
+              <div id="blog-preview" class="editor-preview" hidden></div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- ═══ IMAGES MANAGER PAGE ═══ -->
+      <section class="page" id="page-images" hidden>
+        <div class="page__header">
+          <h1 class="page__title">Gestor de Imágenes</h1>
+          <p class="page__subtitle">Sube y administra las imágenes del sitio</p>
+        </div>
+
+        <div class="image-upload-zone" id="image-drop-zone">
+          <input type="file" id="image-upload-input" accept="image/*" multiple hidden>
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p>Arrastra imágenes aquí o <button class="btn btn--link" onclick="document.getElementById('image-upload-input').click()">selecciona archivos</button></p>
+          <span class="text-muted">JPG, PNG, WebP, SVG · Máx 10MB</span>
+        </div>
+
+        <div id="images-grid" class="images-grid">
+          <p class="text-muted">Cargando imágenes...</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       IMAGE PICKER MODAL (FOR LIVE CANVAS)
+       ═══════════════════════════════════════ -->
+  <div id="image-picker-modal" class="modal" hidden>
+    <div class="modal__overlay" id="modal-overlay"></div>
+    <div class="modal__card">
+      <div class="modal__header">
+        <h3 class="modal__title">Seleccionar Imagen para Canvas</h3>
+        <button type="button" class="modal__close" id="modal-close-btn">✕</button>
+      </div>
+      <div class="modal__body">
+        <div class="image-upload-zone" id="modal-drop-zone" style="padding: 1.5rem; margin-bottom: 1rem;">
+          <input type="file" id="modal-image-input" accept="image/*" hidden>
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          <p style="margin-top: 0.25rem;">Arrastra una nueva imagen o <button type="button" class="btn btn--link" onclick="document.getElementById('modal-image-input').click()">selecciona archivo</button></p>
+        </div>
+
+        <h4 style="font-size: 0.85rem; color: var(--admin-text-muted); margin-bottom: 0.75rem; text-transform: uppercase;">O elige de las imágenes existentes:</h4>
+        <div id="modal-images-grid" class="modal-images-grid">
+          <p class="text-muted text-sm">Cargando galería...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       IMAGE FOCAL POINT & CROP MODAL
+       ═══════════════════════════════════════ -->
+  <div id="focal-crop-modal" class="modal" hidden>
+    <div class="modal__overlay" id="focal-crop-overlay"></div>
+    <div class="modal__card modal__card--wide">
+      <div class="modal__header">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+          <h3 class="modal__title">Selector de Enfoque y Encuadre de Imagen</h3>
+        </div>
+        <button type="button" class="modal__close" id="focal-crop-close">✕</button>
+      </div>
+
+      <div class="modal__body focal-modal-body">
+        <!-- Left: Main Interactive Focal Canvas -->
+        <div class="focal-main-col">
+          <div class="focal-canvas-wrapper" id="focal-canvas-container">
+            <img id="focal-source-image" src="" alt="Source" class="focal-image">
+            <div id="focal-reticle" class="focal-reticle">
+              <div class="focal-reticle-ring"></div>
+              <div class="focal-reticle-dot"></div>
+              <div class="focal-reticle-crosshair-h"></div>
+              <div class="focal-reticle-crosshair-v"></div>
+            </div>
+            <div id="focal-coords-badge" class="focal-coords-badge">X: 50% · Y: 50%</div>
+          </div>
+          <p class="text-muted text-sm" style="text-align: center; margin-top: 0.5rem;">
+            🎯 <strong>Arrastra la retícula</strong> al punto principal de interés (rostro, objeto o área clave).
+          </p>
+
+          <!-- Controls Bar: Zoom & Rotate -->
+          <div class="focal-controls-bar">
+            <div class="focal-control-group">
+              <label for="focal-zoom-slider">Zoom:</label>
+              <input type="range" id="focal-zoom-slider" min="1" max="3" step="0.05" value="1">
+              <span id="focal-zoom-val" class="focal-val-badge">100%</span>
+            </div>
+
+            <div class="focal-control-group">
+              <label>Rotación:</label>
+              <button type="button" class="btn btn--sm btn--secondary" id="focal-rotate-left" title="Rotar 90° izquierda">↺ 90°</button>
+              <button type="button" class="btn btn--sm btn--secondary" id="focal-rotate-right" title="Rotar 90° derecha">↻ 90°</button>
+            </div>
+
+            <button type="button" class="btn btn--sm btn--ghost" id="focal-crop-reset" title="Restablecer valores">
+              Restablecer
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Multi-Device Previews -->
+        <div class="focal-preview-col">
+          <h4 class="focal-preview-heading">Previsualización en Vivo</h4>
+
+          <div class="focal-preview-card">
+            <span class="focal-preview-label">⭕ Avatar Circular (Sobre Mí)</span>
+            <div class="focal-preview-box focal-preview-circle">
+              <img id="focal-prev-circle-img" src="" alt="Circle Preview">
+            </div>
+          </div>
+
+          <div class="focal-preview-card">
+            <span class="focal-preview-label">🖥️ Banner Panorámico (16:9)</span>
+            <div class="focal-preview-box focal-preview-banner">
+              <img id="focal-prev-banner-img" src="" alt="Banner Preview">
+            </div>
+          </div>
+
+          <div class="focal-preview-card">
+            <span class="focal-preview-label">📱 Vista Móvil Vertical (4:5)</span>
+            <div class="focal-preview-box focal-preview-mobile">
+              <img id="focal-prev-mobile-img" src="" alt="Mobile Preview">
+            </div>
+          </div>
+
+          <div class="focal-preview-card">
+            <span class="focal-preview-label">⬛ Tarjeta Cuadrada (1:1)</span>
+            <div class="focal-preview-box focal-preview-square">
+              <img id="focal-prev-square-img" src="" alt="Square Preview">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal__footer focal-modal-footer">
+        <button type="button" class="btn btn--secondary" id="focal-crop-cancel">Cancelar</button>
+        <button type="button" class="btn btn--primary" id="focal-crop-apply">💾 Aplicar Enfoque y Subir</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast notifications -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Admin JS & Cropper -->
+  <script src="js/image-cropper.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

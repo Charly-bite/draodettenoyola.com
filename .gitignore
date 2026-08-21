@@ -5,6 +5,13 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Node.js
+node_modules/
+
+# Environment variables (secrets)
+.env
+.env.*
+
 # Python / ML tool temporary files
 __pycache__/
 *.pyc
@@ -13,7 +20,10 @@ venv/
 env/
 .u2net/
 
-# Raw unsorted hash photos from root (all clean images live in /img)
+# Raw unsorted hash photos and intermediate test cutouts
 AC*.jpg
 update18/
+img/test_*
+img/section_*
+img/desktop_no_*
 

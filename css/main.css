@@ -231,6 +231,30 @@ strong {
   transform: translateY(0);
 }
 
+.reveal-slide-right {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-slide-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-slide-left {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-slide-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 /* ── Accessibility ───────────────────────────────────────────────────── */
 
 .sr-only {

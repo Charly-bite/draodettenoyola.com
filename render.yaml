@@ -1,10 +1,19 @@
 services:
   - type: web
     name: dra-odette-page
-    env: static
-    buildCommand: ""
-    staticPublishPath: "."
+    env: node
+    buildCommand: "npm install"
+    startCommand: "node server.js"
     pullRequestPreviewsEnabled: true
+    envVars:
+      - key: ADMIN_USER
+        sync: false
+      - key: ADMIN_PASSWORD_HASH
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PORT
+        value: 10000
     headers:
       - path: /*
         name: X-Frame-Options

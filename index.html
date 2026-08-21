@@ -28,8 +28,12 @@
   <meta name="twitter:title" content="Dra. Odette Noyola · Medicina Materno Fetal Guadalajara">
   <meta name="twitter:description" content="Ginecología, Obstetricia y Diagnóstico Prenatal. Certificada FMF y CMGO.">
 
-  <!-- ═══ Favicon ═══ -->
-  <link rel="icon" type="image/jpeg" href="img/logo.jpg">
+  <!-- ═══ Favicon Suite ═══ -->
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=3.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png?v=3.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png?v=3.0">
+  <link rel="shortcut icon" href="favicon.ico?v=3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=3.0">
 
   <!-- ═══ Google Fonts ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -328,8 +332,8 @@
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="hero" id="hero">
     <!-- Decorative organic shapes -->
-    <div class="hero__shape-1" aria-hidden="true"></div>
-    <div class="hero__shape-2" aria-hidden="true"></div>
+    <div class="hero__shape-1" id="hero-shape-1" aria-hidden="true"></div>
+    <div class="hero__shape-2" id="hero-shape-2" aria-hidden="true"></div>
     <div class="hero__shape-3" aria-hidden="true"></div>
     <div class="hero__dots" aria-hidden="true"></div>
 
@@ -340,6 +344,7 @@
         <h1 class="hero__title reveal">
           <span class="hero__title-accent">Especialista en Medicina Materno Fetal</span><br>
           en Guadalajara
+
         </h1>
 
         <p class="hero__name reveal">Dra. Odette Noyola Landázuri · Ginecología y Obstetricia</p>
@@ -439,88 +444,113 @@
       </p>
     </div>
 
-    <div class="included-studies__grid" data-stagger="120">
-      <!-- Card 1 -->
-      <div class="study-card" data-stagger-child>
-        <div class="study-card__icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
-            <rect x="8" y="12" width="32" height="28" rx="4"/>
-            <circle cx="24" cy="26" r="8"/>
-            <line x1="44" y1="18" x2="56" y2="18"/>
-            <line x1="44" y1="26" x2="52" y2="26"/>
-            <path d="M48 34 L56 42" stroke-linecap="round"/>
-            <circle cx="56" cy="44" r="4" fill="#14A8A1" stroke="none"/>
-          </svg>
+    <div class="included-studies__container">
+      <!-- Visual with Doctor and Newborn baby cutout -->
+      <div class="included-studies__visual reveal-slide-right">
+        <div class="included-studies__image-wrapper">
+          <div class="included-studies__backdrop-blob" aria-hidden="true"></div>
+          <picture>
+            <source srcset="img/dra-baby-cutout.webp" type="image/webp">
+            <img src="img/dra-baby-cutout.png" alt="Dra. Odette Noyola sosteniendo a un recién nacido con calidez médica" class="included-studies__cutout" width="539" height="779" loading="lazy">
+          </picture>
         </div>
-        <p class="study-card__label">Ultrasonido Ginecológico</p>
       </div>
 
-      <!-- Card 2 -->
-      <div class="study-card" data-stagger-child>
-        <div class="study-card__icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
-            <ellipse cx="32" cy="30" rx="16" ry="20"/>
-            <circle cx="32" cy="26" r="7"/>
-            <path d="M28 24 C30 22, 34 22, 36 24" stroke-linecap="round"/>
-            <line x1="32" y1="30" x2="32" y2="34"/>
-          </svg>
-        </div>
-        <p class="study-card__label">Ultrasonido Obstétrico / Control Prenatal</p>
-      </div>
+      <!-- Right Column: Cards Grid + Banner underneath -->
+      <div class="included-studies__content-col">
+        <div class="included-studies__grid" data-stagger="100">
+          <!-- Card 1 -->
+          <div class="study-card" data-stagger-child>
+            <div class="study-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
+                <rect x="8" y="12" width="32" height="28" rx="4"/>
+                <circle cx="24" cy="26" r="8"/>
+                <line x1="44" y1="18" x2="56" y2="18"/>
+                <line x1="44" y1="26" x2="52" y2="26"/>
+                <path d="M48 34 L56 42" stroke-linecap="round"/>
+                <circle cx="56" cy="44" r="4" fill="#14A8A1" stroke="none"/>
+              </svg>
+            </div>
+            <p class="study-card__label">Ultrasonido Ginecológico</p>
+          </div>
 
-      <!-- Card 3 -->
-      <div class="study-card" data-stagger-child>
-        <div class="study-card__icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
-            <rect x="10" y="14" width="44" height="32" rx="3"/>
-            <polyline points="14,38 22,22 30,34 38,18 46,30 50,26" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="10" y1="50" x2="54" y2="50"/>
-          </svg>
-        </div>
-        <p class="study-card__label">Gráfica de Percentiles</p>
-      </div>
+          <!-- Card 2 -->
+          <div class="study-card" data-stagger-child>
+            <div class="study-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
+                <ellipse cx="32" cy="30" rx="16" ry="20"/>
+                <circle cx="32" cy="26" r="7"/>
+                <path d="M28 24 C30 22, 34 22, 36 24" stroke-linecap="round"/>
+                <line x1="32" y1="30" x2="32" y2="34"/>
+              </svg>
+            </div>
+            <p class="study-card__label">Ultrasonido Obstétrico / Control Prenatal</p>
+          </div>
 
-      <!-- Card 4 -->
-      <div class="study-card" data-stagger-child>
-        <div class="study-card__icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
-            <circle cx="32" cy="28" r="16"/>
-            <path d="M24 28 L30 28 L32 22 L34 34 L36 28 L40 28" stroke-linecap="round" stroke-linejoin="round"/>
-            <line x1="32" y1="44" x2="32" y2="56"/>
-            <line x1="24" y1="56" x2="40" y2="56"/>
-          </svg>
-        </div>
-        <p class="study-card__label">Valoración Integral de la Paciente</p>
-      </div>
+          <!-- Card 3 -->
+          <div class="study-card" data-stagger-child>
+            <div class="study-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
+                <rect x="10" y="14" width="44" height="32" rx="3"/>
+                <polyline points="14,38 22,22 30,34 38,18 46,30 50,26" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="10" y1="50" x2="54" y2="50"/>
+              </svg>
+            </div>
+            <p class="study-card__label">Gráfica de Percentiles</p>
+          </div>
 
-      <!-- Card 5 -->
-      <div class="study-card" data-stagger-child>
-        <div class="study-card__icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
-            <path d="M20 40 C20 24, 32 12, 32 12 C32 12, 44 24, 44 40" stroke-linecap="round"/>
-            <circle cx="32" cy="30" r="6"/>
-            <path d="M28 42 Q32 48, 36 42"/>
-            <line x1="16" y1="48" x2="48" y2="48"/>
-            <path d="M48 40 L54 34" stroke-linecap="round"/>
-            <path d="M54 34 L58 38" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <p class="study-card__label">Valoración de Crecimiento Fetal</p>
-      </div>
+          <!-- Card 4 -->
+          <div class="study-card" data-stagger-child>
+            <div class="study-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
+                <circle cx="32" cy="28" r="16"/>
+                <path d="M24 28 L30 28 L32 22 L34 34 L36 28 L40 28" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="32" y1="44" x2="32" y2="56"/>
+                <line x1="24" y1="56" x2="40" y2="56"/>
+              </svg>
+            </div>
+            <p class="study-card__label">Valoración Integral de la Paciente</p>
+          </div>
 
-      <!-- Card 6 -->
-      <div class="study-card" data-stagger-child>
-        <div class="study-card__icon">
-          <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
-            <path d="M32 12 C22 12, 14 20, 14 30 C14 40, 22 46, 32 46 C42 46, 50 40, 50 30 C50 20, 42 12, 32 12" stroke-linecap="round"/>
-            <path d="M24 26 Q28 22, 32 26 Q36 22, 40 26" stroke-linecap="round"/>
-            <line x1="32" y1="30" x2="32" y2="38"/>
-            <path d="M26 36 Q32 42, 38 36" stroke-linecap="round"/>
-            <line x1="32" y1="46" x2="32" y2="56"/>
-            <circle cx="32" cy="56" r="3" fill="#14A8A1" stroke="none"/>
-          </svg>
+          <!-- Card 5 -->
+          <div class="study-card" data-stagger-child>
+            <div class="study-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
+                <path d="M20 40 C20 24, 32 12, 32 12 C32 12, 44 24, 44 40" stroke-linecap="round"/>
+                <circle cx="32" cy="30" r="6"/>
+                <path d="M28 42 Q32 48, 36 42"/>
+                <line x1="16" y1="48" x2="48" y2="48"/>
+                <path d="M48 40 L54 34" stroke-linecap="round"/>
+                <path d="M54 34 L58 38" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <p class="study-card__label">Valoración de Crecimiento Fetal</p>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="study-card" data-stagger-child>
+            <div class="study-card__icon">
+              <svg viewBox="0 0 64 64" fill="none" stroke="#14A8A1" stroke-width="2.5">
+                <path d="M32 12 C22 12, 14 20, 14 30 C14 40, 22 46, 32 46 C42 46, 50 40, 50 30 C50 20, 42 12, 32 12" stroke-linecap="round"/>
+                <path d="M24 26 Q28 22, 32 26 Q36 22, 40 26" stroke-linecap="round"/>
+                <line x1="32" y1="30" x2="32" y2="38"/>
+                <path d="M26 36 Q32 42, 38 36" stroke-linecap="round"/>
+                <line x1="32" y1="46" x2="32" y2="56"/>
+                <circle cx="32" cy="56" r="3" fill="#14A8A1" stroke="none"/>
+              </svg>
+            </div>
+            <p class="study-card__label">Seguimiento de Neuro-desarrollo</p>
+          </div>
         </div>
-        <p class="study-card__label">Seguimiento de Neuro-desarrollo</p>
+
+        <!-- Trust Banner underneath 6 cards -->
+        <div class="included-studies__banner reveal">
+          <div class="included-studies__banner-icon" aria-hidden="true">💖</div>
+          <div class="included-studies__banner-content">
+            <strong class="included-studies__banner-title">Atención Cálida & Humana</strong>
+            <p class="included-studies__banner-desc">Cuidado integral de mamá y bebé con diagnóstico ultrasonográfico de precisión.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -637,7 +667,10 @@
       <!-- Profile Card -->
       <div class="about__profile reveal">
         <div class="about__photo-wrapper">
-          <img src="img/about-cutout.png?v=2.2" alt="Dra. Giselle Odette Noyola Landázuri - Especialista en Medicina Materno Fetal" class="about__photo" width="280" height="280" loading="lazy">
+          <picture>
+            <source srcset="img/dra-surgery-profile.webp?v=3.0" type="image/webp">
+            <img src="img/dra-surgery-profile.png?v=3.0" alt="Dra. Giselle Odette Noyola Landázuri - Especialista en Medicina Materno Fetal en Cirugía" class="about__photo" width="280" height="280" loading="lazy">
+          </picture>
         </div>
         <div>
           <span class="badge badge-teal" style="margin-bottom: var(--space-2); display: inline-block;">Médica de Alta Especialidad en Guadalajara</span>
