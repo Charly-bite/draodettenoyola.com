@@ -1023,12 +1023,29 @@
   font-weight: var(--weight-medium);
 }
 
+.about strong {
+  color: var(--color-white);
+}
+
 .about__credentials {
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-1);
+}
+
+.about__credentials span {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
   font-size: var(--text-sm);
-  color: var(--color-gray-300);
+  color: var(--color-gray-100);
+}
+
+.about__credentials strong {
+  color: var(--color-teal-300);
+  font-weight: var(--weight-semibold);
 }
 
 .about__stars {
@@ -1036,7 +1053,7 @@
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-sm);
-  color: var(--color-gray-300);
+  color: var(--color-gray-200);
 }
 
 /* About Badges Row */
