@@ -1431,15 +1431,32 @@
 
 .gallery__track-wrapper {
   position: relative;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-bottom: var(--space-6);
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+}
+
+.gallery__track-wrapper:active {
+  cursor: grabbing;
+}
+
+.gallery__track-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .gallery__track {
   display: flex;
   gap: var(--space-4);
   padding: var(--space-2) var(--space-5);
-  transition: transform 0.5s var(--ease-out);
+  scroll-snap-type: x mandatory;
+  width: max-content;
 }
 
 .gallery__slide {
@@ -1449,6 +1466,10 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 .gallery__slide img {

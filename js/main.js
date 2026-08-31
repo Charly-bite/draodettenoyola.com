@@ -142,86 +142,167 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ══════════════════════════════════════════════════════════════════════
-   GALLERY — Horizontal scroll carousel
+   GALLERY — Touch-safe scroll carousel with dot indicators
    ══════════════════════════════════════════════════════════════════════ */
 
+let isGallerySwiping = false;
+
 function initGallery() {
+  const wrapper = document.querySelector('.gallery__track-wrapper');
   const track = document.getElementById('gallery-track');
   const prevBtn = document.getElementById('gallery-prev');
   const nextBtn = document.getElementById('gallery-next');
   const dots = document.querySelectorAll('.gallery__dot');
 
-  if (!track) return;
+  if (!wrapper || !track) return;
 
-  let currentIndex = 0;
   const slides = track.querySelectorAll('.gallery__slide');
-  const totalSlides = slides.length;
-  const slideWidth = 300; // approximate slide width + gap
+  if (!slides.length) return;
 
-  function getVisibleSlides() {
-    const viewportWidth = track.parentElement.offsetWidth;
-    return Math.floor(viewportWidth / slideWidth) || 1;
+  function scrollToSlide(index) {
+    const targetIndex = Math.max(0, Math.min(index, slides.length - 1));
+    const slide = slides[targetIndex];
+    if (slide) {
+      const scrollPos = slide.offsetLeft - (wrapper.clientWidth - slide.offsetWidth) / 2;
+      wrapper.scrollTo({
+        left: Math.max(0, scrollPos),
+        behavior: 'smooth'
+      });
+    }
   }
 
-  function updatePosition() {
-    const visibleSlides = getVisibleSlides();
-    const maxIndex = Math.max(0, totalSlides - visibleSlides);
-    currentIndex = Math.min(currentIndex, maxIndex);
-    currentIndex = Math.max(0, currentIndex);
+  function getActiveIndex() {
+    const wrapperCenter = wrapper.scrollLeft + wrapper.clientWidth / 2;
+    let closestIndex = 0;
+    let minDistance = Infinity;
 
-    const offset = currentIndex * slideWidth;
-    track.style.transform = `translateX(-${offset}px)`;
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const distance = Math.abs(wrapperCenter - slideCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
 
-    // Update dots
+    return closestIndex;
+  }
+
+  function updateDots() {
+    const activeIndex = getActiveIndex();
     dots.forEach((dot, i) => {
-      dot.classList.toggle('active', i === currentIndex);
+      dot.classList.toggle('active', i === activeIndex);
     });
   }
 
-  prevBtn?.addEventListener('click', () => {
-    currentIndex = Math.max(0, currentIndex - 1);
-    updatePosition();
+  prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const currentIndex = getActiveIndex();
+    scrollToSlide(currentIndex - 1);
   });
 
-  nextBtn?.addEventListener('click', () => {
-    currentIndex++;
-    updatePosition();
+  nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const currentIndex = getActiveIndex();
+    scrollToSlide(currentIndex + 1);
   });
 
   dots.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      currentIndex = i;
-      updatePosition();
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToSlide(i);
     });
   });
 
-  // Touch swipe
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  track.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
-
-  track.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        currentIndex++;
-      } else {
-        currentIndex = Math.max(0, currentIndex - 1);
-      }
-      updatePosition();
+  // Track scroll for active dot updates
+  let scrollTimeout;
+  wrapper.addEventListener('scroll', () => {
+    if (!scrollTimeout) {
+      scrollTimeout = requestAnimationFrame(() => {
+        updateDots();
+        scrollTimeout = null;
+      });
     }
   }, { passive: true });
 
-  // Recalculate on resize
-  window.addEventListener('resize', updatePosition, { passive: true });
+  // Touch gesture disambiguation (prevents accidental Lightbox/modal triggers while swiping)
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let hasMoved = false;
+
+  wrapper.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      hasMoved = false;
+      isGallerySwiping = false;
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 1) {
+      const diffX = Math.abs(e.touches[0].clientX - touchStartX);
+      const diffY = Math.abs(e.touches[0].clientY - touchStartY);
+      if (diffX > 8 || diffY > 8) {
+        hasMoved = true;
+        isGallerySwiping = true;
+      }
+    }
+  }, { passive: true });
+
+  wrapper.addEventListener('touchend', () => {
+    if (hasMoved) {
+      setTimeout(() => {
+        isGallerySwiping = false;
+      }, 200);
+    } else {
+      isGallerySwiping = false;
+    }
+  }, { passive: true });
+
+  // Mouse drag-to-scroll support for desktop
+  let isMouseDown = false;
+  let mouseStartX = 0;
+  let mouseScrollLeft = 0;
+  let mouseMoved = false;
+
+  wrapper.addEventListener('mousedown', (e) => {
+    isMouseDown = true;
+    mouseMoved = false;
+    mouseStartX = e.pageX - wrapper.offsetLeft;
+    mouseScrollLeft = wrapper.scrollLeft;
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isMouseDown) return;
+    const x = e.pageX - wrapper.offsetLeft;
+    const walk = (x - mouseStartX) * 1.5;
+    if (Math.abs(walk) > 5) {
+      mouseMoved = true;
+      isGallerySwiping = true;
+    }
+    wrapper.scrollLeft = mouseScrollLeft - walk;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isMouseDown) {
+      isMouseDown = false;
+      if (mouseMoved) {
+        setTimeout(() => {
+          isGallerySwiping = false;
+        }, 150);
+      } else {
+        isGallerySwiping = false;
+      }
+    }
+  });
+
+  // Initial update
+  updateDots();
 }
 
 /* ══════════════════════════════════════════════════════════════════════
-   LIGHTBOX — Gallery image viewer
+   LIGHTBOX — Gallery image viewer (safe from swipe triggers)
    ══════════════════════════════════════════════════════════════════════ */
 
 function initLightbox() {
@@ -233,7 +314,14 @@ function initLightbox() {
   if (!lightbox) return;
 
   gallerySlides.forEach(img => {
-    img.addEventListener('click', () => {
+    img.addEventListener('click', (e) => {
+      // Prevent opening lightbox if user was swiping or dragging
+      if (isGallerySwiping) {
+        e.preventDefault();
+        e.stopPropagation();
+        return;
+      }
+
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
       lightbox.classList.add('open');
