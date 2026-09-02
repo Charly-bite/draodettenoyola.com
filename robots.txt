@@ -1,0 +1,9 @@
+# robots.txt for https://draodettenoyola.com
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /data/
+
+# Sitemap location
+Sitemap: https://draodettenoyola.com/sitemap.xml
