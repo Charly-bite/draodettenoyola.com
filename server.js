@@ -13,6 +13,25 @@ const PORT = process.env.PORT || 9996;
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// ─── SEO: Canonical www → non-www redirect ───
+app.use((req, res, next) => {
+  const host = req.headers.host;
+  if (host && host.startsWith('www.')) {
+    return res.redirect(301, `https://${host.replace('www.', '')}${req.url}`);
+  }
+  next();
+});
+
+// ─── Security: Block access to sensitive files ───
+app.use((req, res, next) => {
+  const blocked = /\.(md|env|ps1)$/i;
+  const blockedPaths = /^\/(AC[A-F0-9]+\.jpg|\.env|\.git|consultorio|_source|update18|data)/i;
+  if (blocked.test(req.path) || blockedPaths.test(req.path)) {
+    return res.status(404).send('Not found');
+  }
+  next();
+});
+
 // ─── CORS headers for API (same-origin in production) ───
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');

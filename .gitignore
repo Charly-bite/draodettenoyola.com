@@ -27,3 +27,6 @@ img/test_*
 img/section_*
 img/desktop_no_*
 
+# Archived development assets (moved from public root)
+_source/
+consultorio/
