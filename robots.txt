@@ -4,6 +4,8 @@ Allow: /
 Disallow: /admin/
 Disallow: /api/
 Disallow: /data/
+Disallow: /_source/
+Disallow: /consultorio/
 
 # Sitemap location
 Sitemap: https://draodettenoyola.com/sitemap.xml

@@ -33,3 +33,9 @@ services:
       - path: /js/*
         name: Cache-Control
         value: public, max-age=86400
+      - path: /*
+        name: Strict-Transport-Security
+        value: max-age=63072000; includeSubDomains; preload
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin

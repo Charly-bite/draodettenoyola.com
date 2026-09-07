@@ -1,19 +1,20 @@
 {
   "hero": {
-    "titleAccent": "Especialista en Medicina Materno Fetal",
-    "titleSuffix": "en Guadalajara",
-    "name": "Dra. Odette Noyola Landázuri · Ginecología y Obstetricia",
-    "_updatedAt": "2026-08-21T00:00:00Z"
+    "titleAccent": "Ginecóloga en Guadalajara",
+    "titleSuffix": "Ginecología, Obstetricia & Materno Fetal",
+    "name": "Dra. Odette Noyola Landázuri · Especialista Certificada CMGO y FMF",
+    "description": "Si buscas una ginecóloga en Guadalajara de máxima confianza y calidez humana, la Dra. Odette Noyola ofrece atención ginecológica integral, chequeo preventivo (Papanicolaou y ultrasonido), control prenatal y subespecialidad en Medicina Materno Fetal en Chapalita, Zapopan. Certificada por el CMGO y la Fetal Medicine Foundation.",
+    "_updatedAt": "2026-09-07T21:25:00Z"
   },
   "promo": {
-    "text": "Consulta médica de alta especialidad en <strong>Medicina Materno Fetal</strong> con valoración ultrasonográfica de precisión integrada",
+    "text": "Consulta médica de alta especialidad en <strong>Ginecología, Obstetricia y Medicina Materno Fetal</strong> con valoración ultrasonográfica de precisión integrada",
     "schedule": "L-V: 9:00 a.m. – 8:00 p.m. · Sáb: 9:00 a.m. – 2:00 p.m.",
-    "_updatedAt": "2026-08-28T19:30:00.000Z"
+    "_updatedAt": "2026-09-07T21:25:00Z"
   },
   "about": {
     "name": "Dra. Odette Noyola Landázuri",
     "specialty": "Ginecología y Obstetricia · Medicina Materno Fetal",
-    "_updatedAt": "2026-08-27T12:00:00Z"
+    "_updatedAt": "2026-09-07T21:25:00Z"
   },
   "contact": {
     "phone": "33 2790 5726",
