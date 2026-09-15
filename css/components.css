@@ -205,19 +205,21 @@
 
 .navbar__title {
   font-family: var(--font-heading);
-  font-size: 0.92rem;
-  font-weight: var(--weight-bold);
+  font-size: 1.05rem;
+  font-weight: 800;
   color: var(--color-obsidian-900);
-  line-height: var(--leading-tight);
+  line-height: 1.15;
   white-space: nowrap;
 }
 
 .navbar__subtitle {
-  font-size: 11px;
-  color: var(--color-teal-700);
+  font-size: 0.62rem;
+  color: var(--color-teal-600);
   font-weight: var(--weight-semibold);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.09em;
   white-space: nowrap;
+  text-transform: uppercase;
+  margin-top: 1px;
 }
 
 .navbar__links {
