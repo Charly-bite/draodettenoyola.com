@@ -53,10 +53,12 @@ app.use('/api', (req, res, next) => {
 const authRoutes = require('./api/auth');
 const contentRoutes = require('./api/content');
 const blogRoutes = require('./api/blog');
+const contactRoutes = require('./api/contact');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/blog', blogRoutes);
+app.use('/api/contact', contactRoutes);
 
 // ─── Admin Panel (served from /admin) ───
 app.use('/admin', express.static(path.join(__dirname, 'admin'), {

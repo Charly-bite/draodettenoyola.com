@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonialsCarousel();
   initLightbox();
   initSmoothScroll();
+  initContactModal();
 });
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -537,5 +538,151 @@ function initUrgencyCarousel() {
   carousel.addEventListener('focusin', stop);
   carousel.addEventListener('focusout', start);
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   CONTACT & SUPPORT MODAL — Form handler & interactive dialog
+   ══════════════════════════════════════════════════════════════════════ */
+
+function initContactModal() {
+  const modal = document.getElementById('contact-modal');
+  if (!modal) return;
+
+  const openBtn = document.getElementById('open-contact-modal-btn');
+  const footerLink = document.getElementById('footer-contact-modal-link');
+  const closeBtn = document.getElementById('contact-modal-close');
+  const overlay = document.getElementById('contact-modal-overlay');
+  const form = document.getElementById('contact-form');
+  const statusEl = document.getElementById('contact-status');
+  const submitBtn = document.getElementById('contact-submit-btn');
+  const submitText = submitBtn?.querySelector('.btn-submit__text');
+  const submitSpinner = submitBtn?.querySelector('.btn-submit__spinner');
+  const firstInput = document.getElementById('contact-name');
+
+  function openModal(e) {
+    if (e) e.preventDefault();
+    modal.removeAttribute('hidden');
+    // Force layout reflow before adding transition class
+    modal.offsetHeight;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => firstInput?.focus(), 150);
+  }
+
+  function closeModal() {
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      if (!modal.classList.contains('open')) {
+        modal.setAttribute('hidden', '');
+      }
+    }, 300);
+  }
+
+  // Event Listeners
+  openBtn?.addEventListener('click', openModal);
+  footerLink?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+  overlay?.addEventListener('click', closeModal);
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      closeModal();
+    }
+  });
+
+  // Form submission via Fetch
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Clear previous status
+      if (statusEl) {
+        statusEl.style.display = 'none';
+        statusEl.className = 'contact-form__status';
+        statusEl.textContent = '';
+      }
+
+      const formData = new FormData(form);
+      const name = (formData.get('name') || '').toString().trim();
+      const email = (formData.get('email') || '').toString().trim();
+      const phone = (formData.get('phone') || '').toString().trim();
+      const service = (formData.get('service') || '').toString().trim();
+      const message = (formData.get('message') || '').toString().trim();
+      const privacy = formData.get('privacy');
+      const _hp = (formData.get('_hp') || '').toString();
+
+      // Client-side validations
+      if (name.length < 2) {
+        showStatus('Por favor ingresa tu nombre completo.', 'error');
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        showStatus('Por favor ingresa un correo electrónico válido.', 'error');
+        return;
+      }
+
+      if (message.length < 5) {
+        showStatus('Por favor escribe un mensaje o consulta detallada.', 'error');
+        return;
+      }
+
+      if (!privacy) {
+        showStatus('Debes aceptar el Aviso de Privacidad para continuar.', 'error');
+        return;
+      }
+
+      // Set loading state
+      setLoading(true);
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({ name, email, phone, service, message, _hp })
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          showStatus('✓ ¡Mensaje enviado con éxito! Nos comunicaremos contigo a la brevedad.', 'success');
+          form.reset();
+          setTimeout(() => {
+            closeModal();
+            setTimeout(() => {
+              if (statusEl) statusEl.style.display = 'none';
+            }, 500);
+          }, 3200);
+        } else {
+          showStatus(result.error || 'Ocurrió un error al procesar tu solicitud. Por favor intenta más tarde o comunícate por WhatsApp.', 'error');
+        }
+      } catch (err) {
+        console.error('[Contact Form Error]:', err);
+        showStatus('Error de conexión con el servidor. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.', 'error');
+      } finally {
+        setLoading(false);
+      }
+    });
+  }
+
+  function showStatus(text, type) {
+    if (!statusEl) return;
+    statusEl.textContent = text;
+    statusEl.className = `contact-form__status ${type}`;
+    statusEl.style.display = 'block';
+  }
+
+  function setLoading(isLoading) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isLoading;
+    if (submitText) submitText.style.display = isLoading ? 'none' : 'inline';
+    if (submitSpinner) submitSpinner.style.display = isLoading ? 'inline' : 'none';
+  }
+}
+
 
 
