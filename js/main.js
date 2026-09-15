@@ -540,55 +540,32 @@ function initUrgencyCarousel() {
 }
 
 /* ══════════════════════════════════════════════════════════════════════
-   CONTACT & SUPPORT MODAL — Form handler & interactive dialog
+   CONTACT & SUPPORT SECTION — Form handler & smooth navigation
    ══════════════════════════════════════════════════════════════════════ */
 
 function initContactModal() {
-  const modal = document.getElementById('contact-modal');
-  if (!modal) return;
-
-  const openBtn = document.getElementById('open-contact-modal-btn');
-  const footerLink = document.getElementById('footer-contact-modal-link');
-  const closeBtn = document.getElementById('contact-modal-close');
-  const overlay = document.getElementById('contact-modal-overlay');
   const form = document.getElementById('contact-form');
   const statusEl = document.getElementById('contact-status');
   const submitBtn = document.getElementById('contact-submit-btn');
   const submitText = submitBtn?.querySelector('.btn-submit__text');
   const submitSpinner = submitBtn?.querySelector('.btn-submit__spinner');
   const firstInput = document.getElementById('contact-name');
+  const contactSection = document.getElementById('contacto');
 
-  function openModal(e) {
-    if (e) e.preventDefault();
-    modal.removeAttribute('hidden');
-    // Force layout reflow before adding transition class
-    modal.offsetHeight;
-    modal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    setTimeout(() => firstInput?.focus(), 150);
-  }
+  const openBtn = document.getElementById('open-contact-modal-btn');
+  const footerLink = document.getElementById('footer-contact-modal-link');
 
-  function closeModal() {
-    modal.classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(() => {
-      if (!modal.classList.contains('open')) {
-        modal.setAttribute('hidden', '');
-      }
-    }, 300);
-  }
-
-  // Event Listeners
-  openBtn?.addEventListener('click', openModal);
-  footerLink?.addEventListener('click', openModal);
-  closeBtn?.addEventListener('click', closeModal);
-  overlay?.addEventListener('click', closeModal);
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
+  function scrollToContact(e) {
+    if (contactSection) {
+      if (e) e.preventDefault();
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(() => firstInput?.focus(), 600);
     }
-  });
+  }
+
+  // Smooth scroll trigger listeners
+  openBtn?.addEventListener('click', scrollToContact);
+  footerLink?.addEventListener('click', scrollToContact);
 
   // Form submission via Fetch
   if (form) {
@@ -614,17 +591,20 @@ function initContactModal() {
       // Client-side validations
       if (name.length < 2) {
         showStatus('Por favor ingresa tu nombre completo.', 'error');
+        firstInput?.focus();
         return;
       }
 
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!email || !emailRegex.test(email)) {
         showStatus('Por favor ingresa un correo electrónico válido.', 'error');
+        document.getElementById('contact-email')?.focus();
         return;
       }
 
       if (message.length < 5) {
         showStatus('Por favor escribe un mensaje o consulta detallada.', 'error');
+        document.getElementById('contact-message')?.focus();
         return;
       }
 
@@ -651,12 +631,6 @@ function initContactModal() {
         if (response.ok && result.success) {
           showStatus('✓ ¡Mensaje enviado con éxito! Nos comunicaremos contigo a la brevedad.', 'success');
           form.reset();
-          setTimeout(() => {
-            closeModal();
-            setTimeout(() => {
-              if (statusEl) statusEl.style.display = 'none';
-            }, 500);
-          }, 3200);
         } else {
           showStatus(result.error || 'Ocurrió un error al procesar tu solicitud. Por favor intenta más tarde o comunícate por WhatsApp.', 'error');
         }
@@ -679,8 +653,8 @@ function initContactModal() {
   function setLoading(isLoading) {
     if (!submitBtn) return;
     submitBtn.disabled = isLoading;
-    if (submitText) submitText.style.display = isLoading ? 'none' : 'inline';
-    if (submitSpinner) submitSpinner.style.display = isLoading ? 'inline' : 'none';
+    if (submitText) submitText.style.display = isLoading ? 'none' : 'flex';
+    if (submitSpinner) submitSpinner.style.display = isLoading ? 'flex' : 'none';
   }
 }
 
