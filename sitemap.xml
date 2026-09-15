@@ -1,32 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://draodettenoyola.com/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg</image:loc>
+      <image:title>Dra. Odette Noyola Landázuri - Ginecóloga en Guadalajara</image:title>
+      <image:caption>Especialista en Ginecología, Obstetricia y Medicina Materno Fetal en Guadalajara y Zapopan.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/consultorio-ginecologico-chapalita-guadalajara.jpg</image:loc>
+      <image:title>Consultorio Ginecológico Dra. Odette Noyola en Chapalita Guadalajara</image:title>
+      <image:caption>Instalaciones y consultorio privado para atención ginecológica y control prenatal en Av. Niño Obrero 1538.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/ecografo-ge-voluson-ultrasonido-guadalajara.jpg</image:loc>
+      <image:title>Ecógrafo GE Voluson Ultrasonido Ginecológico Guadalajara</image:title>
+      <image:caption>Equipo de ultrasonido de alta resolución GE Voluson para chequeo ginecológico y evaluación prenatal en Guadalajara.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/consulta-ginecologica-interior-chapalita.jpg</image:loc>
+      <image:title>Área de Consulta Médica Ginecológica Chapalita</image:title>
+      <image:caption>Espacio cálido y privado para consulta ginecológica integral en Guadalajara.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/pantalla-ultrasonido-paciente-guadalajara.jpg</image:loc>
+      <image:title>Pantalla HD para Paciente en Consulta de Ultrasonido Guadalajara</image:title>
+      <image:caption>Monitor de alta definición para visualización de ecografías en tiempo real por la paciente y sus acompañantes.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/consultorio-fachada.jpg</image:loc>
+      <image:title>Fachada del Consultorio Ginecológico en Chapalita Oriente</image:title>
+      <image:caption>Acceso y estacionamiento para pacientes en Av. Niño Obrero 1538, Guadalajara.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://draodettenoyola.com/consulta-ginecologica-guadalajara.html</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg</image:loc>
+      <image:title>Dra. Odette Noyola - Consulta Ginecológica en Guadalajara</image:title>
+      <image:caption>Consulta médica ginecológica y control prenatal por especialista certificada CMGO y FMF.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/consulta-ginecologica-interior-chapalita.jpg</image:loc>
+      <image:title>Consultorio Médico Ginecológico en Chapalita</image:title>
+      <image:caption>Instalaciones privadas y equipadas para atención ginecológica en Chapalita Oriente, Guadalajara.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://draodettenoyola.com/chequeo-ginecologico-guadalajara.html</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/consultorio-ginecologico-chapalita-guadalajara.jpg</image:loc>
+      <image:title>Chequeo Ginecológico Integral en Guadalajara</image:title>
+      <image:caption>Consultorio acondicionado para chequeo ginecológico completo con ultrasonido pélvico y Papanicolaou.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg</image:loc>
+      <image:title>Dra. Odette Noyola Landázuri Chequeo Preventivo</image:title>
+      <image:caption>Revisión ginecológica preventiva anual sin dolor y con diagnóstico inmediato.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://draodettenoyola.com/ultrasonido-estructural.html</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/ecografo-ge-voluson-ultrasonido-guadalajara.jpg</image:loc>
+      <image:title>Ecógrafo GE Voluson HDlive Ultrasonido Estructural Guadalajara</image:title>
+      <image:caption>Tecnología de ultrasonido volumétrico GE Voluson HDlive para diagnóstico morfológico fetal avanzado.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/pantalla-ultrasonido-paciente-guadalajara.jpg</image:loc>
+      <image:title>Pantalla HD de Ultrasonido para Pacientes en Guadalajara</image:title>
+      <image:caption>Visualización en vivo del ultrasonido estructural y 4D para la mamá y acompañantes en el consultorio.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg</image:loc>
+      <image:title>Dra. Odette Noyola Especialista Materno Fetal</image:title>
+      <image:caption>Subespecialista certificada en Medicina Materno Fetal realizando ultrasonido estructural y genético.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>https://draodettenoyola.com/blog/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>

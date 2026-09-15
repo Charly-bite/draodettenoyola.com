@@ -9,6 +9,14 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 9996;
 
+// Global crash prevention for background server resilience
+process.on('uncaughtException', (err) => {
+  console.error('[!] Uncaught Exception prevented crash:', err?.message || err);
+});
+process.on('unhandledRejection', (reason) => {
+  console.error('[!] Unhandled Rejection prevented crash:', reason?.message || reason);
+});
+
 // ─── Body parsers ───
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
@@ -100,7 +108,7 @@ app.get('/admin/*', (req, res) => {
 });
 
 // ─── Start ───
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`
 ╔═══════════════════════════════════════════════════════╗
 ║   Dra. Odette Noyola — Server Running                ║

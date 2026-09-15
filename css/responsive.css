@@ -58,8 +58,11 @@
 
   .hero__cutout {
     width: auto;
-    max-height: 520px;
+    max-width: 350px;
+    max-height: 500px;
   }
+
+
 
   .hero__image-wrapper::before {
     width: 440px;
@@ -175,24 +178,30 @@
   }
 
   .section {
-    padding-block: var(--space-20);
+    padding-block: var(--space-24);
   }
 
   /* Navbar desktop: show links, hide hamburger */
   .navbar__links {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: var(--space-1);
+    justify-content: flex-end;
+    gap: 2px;
+    row-gap: var(--space-1);
   }
 
   .navbar__links a {
-    padding: var(--space-2) var(--space-3);
+    padding: var(--space-2) var(--space-2);
     font-size: var(--text-sm);
     font-weight: var(--weight-medium);
     color: var(--color-gray-600);
     border-radius: var(--radius-md);
+    white-space: nowrap;
     transition: all var(--duration-fast);
   }
+
+
 
   .navbar__links a:hover {
     color: var(--color-teal-600);
@@ -242,7 +251,8 @@
 
   .hero__cutout {
     width: auto;
-    max-height: 600px;
+    max-width: 420px;
+    max-height: 580px;
     filter: drop-shadow(0 20px 50px rgba(9, 25, 44, 0.22));
   }
 
@@ -274,24 +284,16 @@
     gap: var(--space-5);
   }
 
-  /* Services grid for desktop */
-  .services__list {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-6);
-    max-width: 900px;
-  }
-
   /* About / E-E-A-T */
   .about__profile {
     flex-direction: row;
-    text-align: left;
+    align-items: flex-start;
     gap: var(--space-8);
   }
 
-  .about__photo {
-    width: 220px;
-    height: 220px;
+  .about__photo-wrapper {
+    width: 300px;
+    height: 300px;
   }
 
   /* Testimonials */
@@ -320,22 +322,29 @@
     height: 450px;
   }
 
-  /* Floating CTA wider spacing */
+  /* Floating CTA prominent WhatsApp button */
   .floating-cta {
-    left: var(--space-8);
+    left: auto;
     right: var(--space-8);
-    max-width: var(--container-xl);
-    margin-inline: auto;
+    bottom: var(--space-8);
+    max-width: none;
+    margin-inline: 0;
   }
 
   .floating-cta__btn {
-    width: 60px;
-    height: 60px;
+    width: 88px;
+    height: 88px;
   }
 
   .floating-cta__btn svg {
-    width: 28px;
-    height: 28px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .floating-cta__whatsapp-expand {
+    right: 100px;
+    font-size: var(--text-base);
+    padding: var(--space-2) var(--space-5);
   }
 }
 
@@ -353,7 +362,8 @@
 
   .hero__cutout {
     width: auto;
-    max-height: 660px;
+    max-width: 460px;
+    max-height: 620px;
   }
 
   .hero__image-wrapper::before {
@@ -379,12 +389,20 @@
     height: 160px;
   }
 
-  .services__list {
-    grid-template-columns: repeat(3, 1fr);
-    max-width: 1100px;
-  }
-
   .about__profile {
     gap: var(--space-12);
   }
+
+  .about__photo-wrapper {
+    width: 320px;
+    height: 320px;
+  }
 }
+
+/* ── Mobile adjustments for Urgency Bar Carousel ─────────────────────── */
+@media (max-width: 600px) {
+  .urgency-bar__actions .urgency-bar__phone span {
+    display: none;
+  }
+}
+

@@ -1154,6 +1154,65 @@
         </div>
       </section>
 
+      <!-- TECHNOLOGY & EQUIPMENT SHOWCASE -->
+      <section class="tech-showcase-section" aria-labelledby="tech-heading" style="margin-top: clamp(2.5rem, 5vw, 4rem); margin-bottom: clamp(2.5rem, 5vw, 4rem);">
+        <div class="section-heading-wrap" style="text-align: center; margin-bottom: 2.5rem;">
+          <div class="section-eyebrow">Equipamiento Diagnóstico de Alta Gama</div>
+          <h2 id="tech-heading">Tecnología GE Voluson™ HDlive™ y Experiencia para la Paciente</h2>
+          <p style="max-width: 720px; margin-inline: auto; color: var(--text-soft, #64748b);">Visualización nítida y fidedigna para el diagnóstico anatómico de la subespecialista y máxima comodidad para ti y tu familia durante el estudio.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.75rem; align-items: stretch;">
+          <!-- Card 1: Ecografo GE Voluson -->
+          <div style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+            <div style="position: relative; overflow: hidden; aspect-ratio: 4/3;">
+              <picture>
+                <source srcset="img/ecografo-ge-voluson-ultrasonido-guadalajara.webp" type="image/webp">
+                <img src="img/ecografo-ge-voluson-ultrasonido-guadalajara.jpg" alt="Ecógrafo GE Voluson de alta definición en consultorio Dra. Odette Noyola en Guadalajara" width="960" height="1280" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+              </picture>
+              <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(13, 122, 117, 0.92); backdrop-filter: blur(4px); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+                GE Voluson™ HDlive™
+              </div>
+            </div>
+            <div style="padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brand-navy-950, #09192c);">Ecografía de Máxima Precisión Fetal</h3>
+                <p style="font-size: 0.95rem; color: var(--text-soft, #64748b); line-height: 1.6;">
+                  Contamos con ecógrafo <strong>GE Voluson</strong> en consultorio, el estándar de referencia mundial en medicina materno fetal. Permite reconstrucción volumétrica anatómica en tiempo real y detección hemodinámica precisa por Doppler Color.
+                </p>
+              </div>
+              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #0D7A75; font-weight: 600;">
+                <span>✓ Sondas volumétricas transabdominal y endocavitaria HD</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Pantalla para la paciente -->
+          <div style="background: white; border-radius: 16px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.05); display: flex; flex-direction: column;">
+            <div style="position: relative; overflow: hidden; aspect-ratio: 4/3;">
+              <picture>
+                <source srcset="img/pantalla-ultrasonido-paciente-guadalajara.webp" type="image/webp">
+                <img src="img/pantalla-ultrasonido-paciente-guadalajara.jpg" alt="Pantalla HD de visualización para la paciente durante el ultrasonido estructural en Guadalajara" width="960" height="1280" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
+              </picture>
+              <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(15, 23, 42, 0.88); backdrop-filter: blur(4px); color: white; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600;">
+                Pantalla Dedicada para Mamá
+              </div>
+            </div>
+            <div style="padding: 1.5rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--brand-navy-950, #09192c);">Visualización en Vivo para Mamá y Acompañantes</h3>
+                <p style="font-size: 0.95rem; color: var(--text-soft, #64748b); line-height: 1.6;">
+                  Mientras la Dra. Odette examina cada órgano en su monitor diagnóstico, tú y tu familia disfrutan cada detalle y movimiento de tu bebé en una <strong>pantalla de alta definición frente a la camilla</strong>.
+                </p>
+              </div>
+              <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #f1f5f9; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #0D7A75; font-weight: 600;">
+                <span>✓ Experiencia cálida, cercana y con acompañamiento familiar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ANATOMICAL BREAKDOWN GRID -->
       <section id="desglose-anatomico" aria-labelledby="anatomy-heading">
         <div class="section-heading-wrap">
@@ -1390,7 +1449,11 @@
         "description": "Médica especialista en Ginecología y Obstetricia con Subespecialidad en Medicina Materno Fetal en Guadalajara, certificada por el CMGO y la Fetal Medicine Foundation (FMF).",
         "telephone": "+523327905726",
         "url": "https://draodettenoyola.com",
-        "image": "img/hero-portrait.jpg",
+        "image": [
+          "https://draodettenoyola.com/img/ecografo-ge-voluson-ultrasonido-guadalajara.jpg",
+          "https://draodettenoyola.com/img/pantalla-ultrasonido-paciente-guadalajara.jpg",
+          "https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg"
+        ],
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
@@ -1408,6 +1471,7 @@
           "Ultrasonido Morfológico Fetal",
           "Tamizaje Anatómico Fetal del Segundo Trimestre"
         ],
+        "image": "https://draodettenoyola.com/img/ecografo-ge-voluson-ultrasonido-guadalajara.jpg",
         "procedureType": "https://schema.org/DiagnosticProcedure",
         "bodyLocation": "Feto / Útero Gestante",
         "howPerformed": "Procedimiento de ultrasonido obstétrico transabdominal de alta resolución (GE Voluson™ HDlive™) realizado por médico materno fetal entre las semanas 18.0 y 24.0.",

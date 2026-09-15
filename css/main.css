@@ -5,8 +5,8 @@
 body {
   font-family: var(--font-body);
   font-size: var(--text-base);
-  color: var(--color-gray-800);
-  background-color: var(--color-white);
+  color: var(--color-gray-600);
+  background-color: var(--color-paper);
   overflow-x: hidden;
 }
 
@@ -30,6 +30,31 @@ p {
 strong {
   font-weight: var(--weight-semibold);
   color: var(--color-obsidian-800);
+}
+
+a {
+  color: var(--color-teal-700);
+}
+
+/* ── Skip link (accesibilidad — navegación por teclado) ────────────────── */
+
+.skip-link {
+  position: absolute;
+  top: -48px;
+  left: var(--space-4);
+  z-index: 999;
+  background-color: var(--color-obsidian-900);
+  color: var(--color-white);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-md);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
+  font-size: var(--text-sm);
+  transition: top var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus-visible {
+  top: var(--space-4);
 }
 
 /* ── Container ───────────────────────────────────────────────────────── */
@@ -67,7 +92,7 @@ strong {
   font-family: var(--font-heading);
   font-size: var(--text-sm);
   font-weight: var(--weight-semibold);
-  color: var(--color-teal-600);
+  color: var(--color-teal-700);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: var(--space-2);
@@ -103,12 +128,12 @@ strong {
 .btn-whatsapp {
   background-color: var(--color-whatsapp);
   color: var(--color-white);
-  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
 }
 
 .btn-whatsapp:hover {
   background-color: var(--color-whatsapp-hover);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.38);
   transform: translateY(-2px);
 }
 
@@ -126,23 +151,24 @@ strong {
 .btn-primary {
   background-color: var(--color-teal-600);
   color: var(--color-white);
-  box-shadow: 0 4px 14px rgba(13, 122, 117, 0.3);
+  box-shadow: 0 4px 14px rgba(13, 122, 117, 0.25);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-teal-500);
-  box-shadow: 0 6px 20px rgba(13, 122, 117, 0.4);
+  background-color: var(--color-teal-800);
+  box-shadow: 0 6px 18px rgba(13, 122, 117, 0.32);
   transform: translateY(-2px);
 }
 
 .btn-outline {
   background: transparent;
   color: var(--color-obsidian-800);
-  border: 2px solid var(--color-obsidian-800);
+  border: 2px solid var(--color-gray-300);
 }
 
 .btn-outline:hover {
   background-color: var(--color-obsidian-800);
+  border-color: var(--color-obsidian-800);
   color: var(--color-white);
   transform: translateY(-2px);
 }
@@ -150,25 +176,41 @@ strong {
 .btn-outline-white {
   background: transparent;
   color: var(--color-white);
-  border: 2px solid rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.5);
 }
 
 .btn-outline-white:hover {
   background-color: var(--color-white);
-  color: var(--color-obsidian-800);
+  color: var(--color-obsidian-900);
   transform: translateY(-2px);
 }
 
 .btn-outline-teal {
   background: transparent;
   color: var(--color-teal-700);
-  border: 2px solid var(--color-teal-500);
+  border: 2px solid var(--color-teal-200);
 }
 
 .btn-outline-teal:hover {
   background-color: var(--color-teal-600);
+  border-color: var(--color-teal-600);
   color: var(--color-white);
   transform: translateY(-2px);
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
+  color: var(--color-teal-700);
+  transition: color var(--duration-fast) var(--ease-out), transform var(--duration-fast) var(--ease-out);
+}
+
+.btn-link:hover {
+  color: var(--color-teal-900);
+  transform: translateX(3px);
 }
 
 /* ── Pill Badges ─────────────────────────────────────────────────────── */
@@ -184,14 +226,20 @@ strong {
   line-height: 1.4;
 }
 
+.badge svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
 .badge-teal {
   background-color: var(--color-teal-100);
-  color: var(--color-teal-600);
+  color: var(--color-teal-700);
 }
 
 .badge-rose {
   background-color: var(--color-rose-100);
-  color: var(--color-rose-600);
+  color: var(--color-rose-700);
 }
 
 .badge-gold {
@@ -209,7 +257,7 @@ strong {
 .stars {
   display: inline-flex;
   gap: 2px;
-  color: #FBBF24;
+  color: var(--color-star);
 }
 
 .stars svg {
@@ -222,8 +270,8 @@ strong {
 
 .reveal {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 
 .reveal.revealed {
@@ -233,8 +281,8 @@ strong {
 
 .reveal-slide-right {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(-32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -245,8 +293,8 @@ strong {
 
 .reveal-slide-left {
   opacity: 0;
-  transform: translateX(40px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateX(32px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
@@ -271,7 +319,7 @@ strong {
 
 /* Focus visible for keyboard navigation */
 :focus-visible {
-  outline: 3px solid var(--color-teal-400);
+  outline: 3px solid var(--color-teal-500);
   outline-offset: 2px;
   border-radius: var(--radius-sm);
 }

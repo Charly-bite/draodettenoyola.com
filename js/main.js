@@ -4,6 +4,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   initNavbar();
+  initUrgencyCarousel();
   initFAQ();
   initGallery();
   initLightbox();
@@ -363,3 +364,60 @@ function initSmoothScroll() {
     });
   });
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   URGENCY BAR TEXT CAROUSEL — Rotador dinámico de mensajes clave
+   ══════════════════════════════════════════════════════════════════════ */
+
+function initUrgencyCarousel() {
+  const carousel = document.getElementById('urgency-carousel');
+  if (!carousel) return;
+
+  const slides = carousel.querySelectorAll('.urgency-bar__slide');
+  if (slides.length <= 1) return;
+
+  let currentIndex = 0;
+  let timer = null;
+  const delay = 3600; // 3.6 segundos de rotación
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  function nextSlide() {
+    const current = slides[currentIndex];
+    current.classList.remove('active');
+    current.classList.add('exiting');
+
+    currentIndex = (currentIndex + 1) % slides.length;
+    const next = slides[currentIndex];
+
+    setTimeout(() => {
+      current.classList.remove('exiting');
+    }, 450);
+
+    next.classList.add('active');
+  }
+
+  function start() {
+    if (!timer) {
+      timer = setInterval(nextSlide, delay);
+    }
+  }
+
+  function stop() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  start();
+
+  // Pausar rotación en hover o foco
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+}
+
+
