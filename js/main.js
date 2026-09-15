@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initUrgencyCarousel();
   initFAQ();
   initGallery();
+  initTestimonialsCarousel();
   initLightbox();
   initSmoothScroll();
 });
@@ -297,6 +298,123 @@ function initGallery() {
       }
     }
   });
+
+  // Initial update
+  updateDots();
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   TESTIMONIALS CAROUSEL — Touch-ready review carousel with dots & arrows
+   ══════════════════════════════════════════════════════════════════════ */
+
+function initTestimonialsCarousel() {
+  const wrapper = document.getElementById('testimonials-track-wrapper');
+  const track = document.getElementById('testimonials-track');
+  const prevBtn = document.getElementById('testimonials-prev');
+  const nextBtn = document.getElementById('testimonials-next');
+  const dots = document.querySelectorAll('.testimonials__dot');
+
+  if (!wrapper || !track) return;
+
+  const slides = track.querySelectorAll('.testimonials__slide');
+  if (!slides.length) return;
+
+  function scrollToSlide(index) {
+    const targetIndex = Math.max(0, Math.min(index, slides.length - 1));
+    const slide = slides[targetIndex];
+    if (slide) {
+      const scrollPos = slide.offsetLeft - (wrapper.clientWidth - slide.offsetWidth) / 2;
+      wrapper.scrollTo({
+        left: Math.max(0, scrollPos),
+        behavior: 'smooth'
+      });
+    }
+  }
+
+  function getActiveIndex() {
+    const wrapperCenter = wrapper.scrollLeft + wrapper.clientWidth / 2;
+    let closestIndex = 0;
+    let minDistance = Infinity;
+
+    slides.forEach((slide, index) => {
+      const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+      const distance = Math.abs(wrapperCenter - slideCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        closestIndex = index;
+      }
+    });
+
+    return closestIndex;
+  }
+
+  function updateDots() {
+    const activeIndex = getActiveIndex();
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === activeIndex);
+    });
+  }
+
+  prevBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const currentIndex = getActiveIndex();
+    const prevIndex = currentIndex > 0 ? currentIndex - 1 : slides.length - 1;
+    scrollToSlide(prevIndex);
+  });
+
+  nextBtn?.addEventListener('click', (e) => {
+    e.preventDefault();
+    const currentIndex = getActiveIndex();
+    const nextIndex = currentIndex < slides.length - 1 ? currentIndex + 1 : 0;
+    scrollToSlide(nextIndex);
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', (e) => {
+      e.preventDefault();
+      scrollToSlide(i);
+    });
+  });
+
+  // Track scroll for active dot updates
+  let scrollTimeout;
+  wrapper.addEventListener('scroll', () => {
+    if (!scrollTimeout) {
+      scrollTimeout = requestAnimationFrame(() => {
+        updateDots();
+        scrollTimeout = null;
+      });
+    }
+  }, { passive: true });
+
+  // Subtle auto-advance every 6.5s, pausing on interaction
+  let autoTimer = null;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function startAuto() {
+    if (prefersReducedMotion) return;
+    stopAuto();
+    autoTimer = setInterval(() => {
+      const currentIndex = getActiveIndex();
+      const nextIndex = (currentIndex + 1) % slides.length;
+      scrollToSlide(nextIndex);
+    }, 6500);
+  }
+
+  function stopAuto() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+    }
+  }
+
+  startAuto();
+
+  wrapper.addEventListener('mouseenter', stopAuto);
+  wrapper.addEventListener('mouseleave', startAuto);
+  wrapper.addEventListener('touchstart', stopAuto, { passive: true });
+  wrapper.addEventListener('focusin', stopAuto);
+  wrapper.addEventListener('focusout', startAuto);
 
   // Initial update
   updateDots();

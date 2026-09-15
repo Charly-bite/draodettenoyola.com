@@ -1648,11 +1648,128 @@
   }
 }
 
-.testimonials__cards {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-6);
+/* ══════════════════════════════════════════════════════════════════════
+   TESTIMONIALS CAROUSEL
+   ══════════════════════════════════════════════════════════════════════ */
+
+.testimonials__carousel-wrapper {
+  position: relative;
+  max-width: 760px;
+  margin-inline: auto;
   margin-top: var(--space-8);
+}
+
+.testimonials__track-wrapper {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
+  cursor: grab;
+  padding: var(--space-2) 0 var(--space-4);
+  width: 100%;
+}
+
+.testimonials__track-wrapper:active {
+  cursor: grabbing;
+}
+
+.testimonials__track-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.testimonials__track {
+  display: flex;
+  gap: var(--space-6);
+  scroll-snap-type: x mandatory;
+}
+
+.testimonials__slide {
+  flex: 0 0 100%;
+  width: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+  user-select: none;
+  -webkit-user-select: none;
+  display: flex;
+}
+
+.testimonials__slide .testimonial-card {
+  width: 100%;
+  margin: 0;
+}
+
+.testimonials__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.testimonials__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-white);
+  color: var(--color-teal-700);
+  border: 1.5px solid var(--color-teal-200);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.testimonials__btn:hover {
+  background-color: var(--color-teal-600);
+  color: var(--color-white);
+  border-color: var(--color-teal-600);
+  transform: scale(1.08);
+  box-shadow: var(--shadow-md);
+}
+
+.testimonials__btn:focus-visible {
+  outline: 2px solid var(--color-teal-500);
+  outline-offset: 2px;
+}
+
+.testimonials__btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.testimonials__dots {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.testimonials__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-gray-300);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-normal);
+  padding: 0;
+}
+
+.testimonials__dot.active {
+  background-color: var(--color-teal-600);
+  width: 28px;
+  border-radius: var(--radius-full);
+}
+
+.testimonials__cards {
+  display: none;
 }
 
 .testimonial-card {
@@ -2313,7 +2430,7 @@
 
 .blog-preview__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-6);
   max-width: var(--container-xl);
   margin-inline: auto;
@@ -2323,17 +2440,56 @@
   background-color: var(--color-white);
   border: 1px solid var(--color-gray-200);
   border-radius: var(--radius-2xl);
-  padding: var(--space-6);
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-sm);
   transition: all var(--duration-normal) var(--ease-out);
+  overflow: hidden;
 }
 
 .blog-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-lg);
   border-color: var(--color-teal-300);
+}
+
+.blog-card__image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background-color: var(--color-gray-100);
+}
+
+.blog-card__image-container picture,
+.blog-card__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.blog-card:hover .blog-card__img {
+  transform: scale(1.06);
+}
+
+.blog-card__image-container .blog-card__tag {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  margin-bottom: 0;
+}
+
+.blog-card__body {
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .blog-card__tag {
@@ -2761,41 +2917,43 @@
    ══════════════════════════════════════════════════════════════════════ */
 
 .insurance-logos {
-  margin-top: var(--space-8);
-  padding: var(--space-6) var(--space-5);
+  margin-top: var(--space-10);
+  padding: var(--space-8) var(--space-6);
   text-align: center;
   background: var(--color-teal-50, #f0fdfa);
-  border-radius: var(--radius-xl, 20px);
-  border: 1px solid var(--color-teal-100, #ccfbf1);
-  max-width: var(--container-lg, 1024px);
+  border-radius: var(--radius-2xl, 24px);
+  border: 1.5px solid var(--color-teal-100, #ccfbf1);
+  max-width: 1200px;
   margin-inline: auto;
 }
 
 .insurance-logos__header {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-weight: 700;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   color: var(--color-teal-800, #115e59);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .insurance-logos__header svg {
   color: var(--color-teal-600, #0d9488);
   flex-shrink: 0;
+  width: 24px;
+  height: 24px;
 }
 
 .insurance-logos__grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
-  max-width: 900px;
+  gap: 20px;
+  max-width: 1120px;
   margin-inline: auto;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
 }
 
 .insurance-logo-card {
@@ -2804,44 +2962,44 @@
   justify-content: center;
   background: var(--color-white, #fff);
   border: 1px solid var(--color-teal-100, #ccfbf1);
-  border-radius: var(--radius-lg, 16px);
-  padding: 14px 20px;
-  min-height: 64px;
-  flex: 1 1 150px;
-  max-width: 170px;
-  box-shadow: 0 2px 8px rgba(20, 168, 161, 0.04);
+  border-radius: var(--radius-xl, 20px);
+  padding: 20px 28px;
+  min-height: 96px;
+  flex: 1 1 180px;
+  max-width: 210px;
+  box-shadow: 0 4px 14px rgba(20, 168, 161, 0.06);
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .insurance-logo-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(20, 168, 161, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(20, 168, 161, 0.14);
   border-color: var(--color-teal-300, #5eead4);
 }
 
 .insurance-logo-card img {
-  height: 36px;
-  max-height: 38px;
+  height: 52px;
+  max-height: 56px;
   width: auto;
-  max-width: 130px;
+  max-width: 165px;
   object-fit: contain;
-  opacity: 0.9;
+  opacity: 0.92;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .insurance-logo-card:hover img {
   opacity: 1;
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .insurance-logo-card--square img {
-  height: 42px;
-  max-height: 44px;
-  max-width: 44px;
+  height: 58px;
+  max-height: 62px;
+  max-width: 62px;
 }
 
 .insurance-logo-card__fallback {
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 700;
   color: var(--color-teal-700, #0f766e);
   letter-spacing: 0.02em;
@@ -2849,12 +3007,12 @@
 
 .insurance-logos__cta {
   display: inline-block;
-  font-size: var(--text-sm);
+  font-size: var(--text-base);
   font-weight: 600;
   color: var(--color-teal-600, #0d9488);
   text-decoration: none;
-  padding: 6px 16px;
-  border: 1px solid var(--color-teal-200, #99f6e4);
+  padding: 10px 24px;
+  border: 1.5px solid var(--color-teal-200, #99f6e4);
   border-radius: var(--radius-full, 9999px);
   transition: background 0.2s, color 0.2s, border-color 0.2s;
 }
@@ -2871,64 +3029,64 @@
 
 @media (max-width: 640px) {
   .insurance-logos {
-    padding: var(--space-5) var(--space-3);
-    margin-inline: var(--space-3);
+    padding: var(--space-6) var(--space-4);
+    margin-inline: var(--space-2);
   }
 
   .insurance-logos__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 14px;
   }
 
   .insurance-logos__grid > .insurance-logo-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
-    max-width: 200px;
+    max-width: 240px;
     margin-inline: auto;
     width: 100%;
   }
 
   .insurance-logo-card {
-    padding: 10px 14px;
-    min-height: 54px;
+    padding: 14px 18px;
+    min-height: 80px;
     max-width: none;
   }
 
   .insurance-logo-card img {
-    max-height: 30px;
-    max-width: 110px;
+    max-height: 44px;
+    max-width: 135px;
   }
 
   .insurance-logo-card--square img {
-    height: 34px;
-    max-height: 36px;
-    max-width: 36px;
+    height: 48px;
+    max-height: 50px;
+    max-width: 50px;
   }
 }
 
 @media (min-width: 641px) and (max-width: 900px) {
   .insurance-logos__grid {
-    gap: 8px;
-    flex-wrap: nowrap;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .insurance-logo-card {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: 150px;
-    padding: 10px 10px;
-    min-height: 56px;
+    flex: 1 1 140px;
+    max-width: 180px;
+    padding: 16px 18px;
+    min-height: 82px;
   }
 
   .insurance-logo-card img {
-    max-width: 95px;
-    height: 30px;
+    max-width: 130px;
+    height: 44px;
   }
 
   .insurance-logo-card--square img {
-    height: 32px;
-    max-height: 34px;
-    max-width: 34px;
+    height: 46px;
+    max-height: 48px;
+    max-width: 48px;
   }
 }
 
