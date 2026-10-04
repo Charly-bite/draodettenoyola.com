@@ -55,13 +55,6 @@
   <link rel="stylesheet" href="css/responsive.css?v=5.4">
 
   <style>
-    /* Desactivar sticky en el encabezado (urgency bar y navbar) únicamente en el aviso de privacidad */
-    .urgency-bar,
-    .navbar {
-      position: static !important;
-      top: auto !important;
-    }
-
     .legal-page {
       padding-block: var(--space-8) var(--space-20);
       background-color: #f6f8f7;
@@ -109,117 +102,8 @@
       border: 1px solid var(--color-teal-200);
     }
 
-    /* Barra de Formato y Cumplimiento */
-    .format-toolbar {
-      background: var(--color-white);
-      border: 1.5px solid var(--color-teal-200);
-      border-radius: var(--radius-xl);
-      padding: var(--space-4) var(--space-6);
-      margin-bottom: var(--space-8);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-      box-shadow: 0 4px 12px rgba(17, 94, 89, 0.05);
-    }
-    .format-toolbar__info {
-      font-size: 0.85rem;
-      color: var(--color-teal-900);
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .format-toolbar__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .btn-format {
-      font-size: 0.825rem;
-      font-weight: 600;
-      padding: 6px 14px;
-      border-radius: 9999px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: all 0.2s;
-    }
-    .btn-format-toggle {
-      background: #f0fdfa;
-      border: 1px solid var(--color-teal-400);
-      color: var(--color-teal-900);
-    }
-    .btn-format-toggle:hover {
-      background: var(--color-teal-600);
-      color: #fff;
-    }
-    .btn-format-print {
-      background: var(--color-obsidian-900);
-      border: 1px solid var(--color-obsidian-900);
-      color: #fff;
-    }
-    .btn-format-print:hover {
-      background: var(--color-teal-800);
-      border-color: var(--color-teal-800);
-    }
-
-    /* Tarjetas Resumen de las 5 Preguntas Fundamentales */
-    .summary-section {
-      margin-bottom: var(--space-10);
-    }
-    .summary-heading {
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--color-obsidian-900);
-      margin-bottom: var(--space-4);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .summary-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-4);
-    }
-    @media (min-width: 640px) {
-      .summary-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-    @media (min-width: 900px) {
-      .summary-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-      .summary-card:nth-child(5) {
-        grid-column: span 2;
-      }
-    }
-    .summary-card {
-      background: var(--color-white);
-      border: 1px solid #e2e8f0;
-      border-top: 4px solid var(--color-teal-600);
-      border-radius: var(--radius-xl);
-      padding: var(--space-5);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
-    .summary-card h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--color-teal-900);
-      margin-bottom: 6px;
-    }
-    .summary-card p {
-      font-size: 0.85rem;
-      color: var(--color-gray-600);
-      line-height: 1.5;
-      margin: 0;
-    }
-
-    /* Tabla de Contenidos */
-    .legal-toc {
+    /* Índice con Accesos Rápidos */
+    .quick-nav {
       background: var(--color-white);
       border: 1.5px solid var(--color-teal-200);
       border-radius: var(--radius-2xl);
@@ -227,36 +111,65 @@
       margin-bottom: var(--space-10);
       box-shadow: 0 4px 16px rgba(17, 94, 89, 0.05);
     }
-    .legal-toc h3 {
-      font-size: var(--text-base);
-      font-weight: 700;
+    .quick-nav__title {
+      font-size: 1.15rem;
+      font-weight: 800;
       color: var(--color-teal-900);
-      margin-bottom: var(--space-4);
+      margin-bottom: var(--space-5);
       display: flex;
       align-items: center;
-      gap: var(--space-2);
+      gap: 10px;
     }
-    .legal-toc ol {
-      padding-left: var(--space-5);
+    .quick-nav__grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: var(--space-2);
+      gap: 10px;
     }
-    @media (min-width: 680px) {
-      .legal-toc ol {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-2) var(--space-6);
+    @media (min-width: 640px) {
+      .quick-nav__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px 16px;
       }
     }
-    .legal-toc a {
-      color: var(--color-teal-700);
-      text-decoration: none;
-      font-size: var(--text-sm);
-      transition: color 0.2s;
+    @media (min-width: 880px) {
+      .quick-nav__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px 16px;
+      }
     }
-    .legal-toc a:hover {
-      color: var(--color-teal-900);
-      text-decoration: underline;
+    .quick-nav__item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--color-obsidian-900);
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .quick-nav__item:hover {
+      background: #f0fdfa;
+      border-color: var(--color-teal-400);
+      color: var(--color-teal-800);
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.1);
+    }
+    .quick-nav__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      background: #ccfbf1;
+      color: #0f766e;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.75rem;
+      flex-shrink: 0;
     }
 
     /* Artículos Legales */
@@ -424,30 +337,91 @@
       background: var(--color-teal-900);
     }
 
-    /* Recuadro de Acuse y Firma */
-    .signature-card {
-      background: #fdfbf7;
-      border: 2px solid #e7dfd5;
+    /* Sección 15: Consentimiento Digital (Check Button) */
+    .digital-consent-card {
+      background: #f0fdf4;
+      border: 2px solid #86efac;
       border-radius: var(--radius-2xl);
       padding: var(--space-8);
       margin-top: var(--space-8);
+      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.08);
     }
-    .signature-lines {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-6);
-      margin-top: var(--space-6);
+    .consent-check-container {
+      background: #ffffff;
+      border: 1.5px solid #bbf7d0;
+      border-radius: var(--radius-xl);
+      padding: var(--space-5);
+      margin: var(--space-5) 0;
+      transition: all 0.2s ease;
     }
-    @media (min-width: 600px) {
-      .signature-lines {
-        grid-template-columns: 1fr 1fr;
-      }
+    .consent-check-container:hover {
+      border-color: #22c55e;
+      box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
     }
-    .signature-field {
-      border-bottom: 1.5px solid #64748b;
-      padding-bottom: 6px;
+    .consent-checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    .consent-checkbox-label input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      accent-color: var(--color-teal-600);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .consent-checkbox-label span {
+      font-size: 0.95rem;
+      color: #166534;
+      line-height: 1.5;
+    }
+    .consent-action-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 16px;
+      margin-top: var(--space-4);
+    }
+    .btn-consent-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #15803d;
+      color: #ffffff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+    }
+    .btn-consent-submit:hover:not(:disabled) {
+      background: #166534;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(21, 128, 61, 0.35);
+    }
+    .btn-consent-submit:disabled {
+      background: #cbd5e1;
+      color: #64748b;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+    .consent-confirmed-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #dcfce7;
+      color: #14532d;
+      border: 1px solid #86efac;
+      padding: 8px 16px;
+      border-radius: 9999px;
       font-size: 0.85rem;
-      color: #475569;
+      font-weight: 700;
     }
 
     /* Rejilla de contacto */
@@ -586,25 +560,39 @@
   <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       URGENCY BAR
+       1. URGENCY BAR
        ═══════════════════════════════════════════════════════════════════ -->
-  <header class="urgency-bar" aria-label="Aviso de urgencias">
-    <div class="urgency-bar__track">
-      <div class="urgency-bar__slide active">
-        <span class="urgency-bar__slide-text">Atención de urgencias gineco-obstétricas disponibles 24/7</span>
-        <div class="urgency-bar__actions">
-          <a href="tel:+523327905726" class="urgency-bar__phone" aria-label="Llamar al 33 2790 5726">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-            <span>33 2790 5726</span>
-          </a>
-          <a href="tel:+523327905726" class="urgency-bar__badge">URGENCIAS</a>
+  <div class="urgency-bar" id="urgency-bar">
+    <div class="urgency-bar__inner">
+      <!-- Carousel Slider -->
+      <div class="urgency-bar__carousel" id="urgency-carousel" aria-live="polite">
+        <div class="urgency-bar__slide active">
+          <span class="urgency-bar__slide-text">Atención ginecológica y control prenatal con calidez y precisión</span>
+        </div>
+        <div class="urgency-bar__slide">
+          <span class="urgency-bar__slide-text">Agenda tu cita hoy mismo en Chapalita · Guadalajara</span>
+        </div>
+        <div class="urgency-bar__slide">
+          <span class="urgency-bar__slide-text">Convenio con los principales seguros de gastos médicos</span>
+        </div>
+        <div class="urgency-bar__slide">
+          <span class="urgency-bar__slide-text">Atención de urgencias gineco-obstétricas disponibles 24/7</span>
         </div>
       </div>
+
+      <!-- Actions: Call & Urgencias -->
+      <div class="urgency-bar__actions">
+        <a href="tel:+523327905726" class="urgency-bar__phone" aria-label="33 2790 5726 - Llamar al consultorio">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.003 1.003 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25.92l-2.2 2.2z"/></svg>
+          <span>33 2790 5726</span>
+        </a>
+        <a href="tel:+523327905726" class="urgency-bar__badge" aria-label="Urgencias médicas 24/7">Urgencias</a>
+      </div>
     </div>
-  </header>
+  </div>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       NAVBAR
+       2. NAVBAR
        ═══════════════════════════════════════════════════════════════════ -->
   <nav class="navbar" id="navbar" aria-label="Navegación principal">
     <div class="navbar__inner">
@@ -612,7 +600,7 @@
         <img src="img/logo.jpg" alt="Logo Dra. Odette Noyola" class="navbar__logo" width="44" height="44" loading="eager">
         <div class="navbar__brand-text">
           <div class="navbar__title">Dra. Odette Noyola</div>
-          <div class="navbar__subtitle">Medicina Materno Fetal</div>
+          <div class="navbar__subtitle">GINECOLOGÍA · OBSTETRICIA · MATERNO FETAL</div>
         </div>
       </a>
 
@@ -687,77 +675,74 @@
         </div>
       </header>
 
-      <!-- Barra de Formato Oficial LFPDPPP -->
-      <div class="format-toolbar" aria-label="Barra de herramientas de lectura y formato">
-        <div class="format-toolbar__info">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
-          <span>Estándar Normativo: Formato Arial 12 pt · Interlineado 1.15 (Extensión: 3+ páginas)</span>
+      <!-- Índice de Secciones con Accesos Rápidos -->
+      <nav class="quick-nav" aria-label="Índice de accesos rápidos del aviso de privacidad">
+        <div class="quick-nav__title">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+          <span>Índice de Secciones · Accesos Rápidos</span>
         </div>
-        <div class="format-toolbar__actions">
-          <button type="button" class="btn-format btn-format-toggle" id="btn-toggle-formal-mode" aria-pressed="false">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M9.93 13.5h4.14L12 7.98zM20 2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-4.05 16.5l-1.14-3H9.17l-1.12 3H5.96l5.11-13h1.86l5.11 13h-2.09z"/></svg>
-            <span id="txt-formal-toggle">Alternar a Vista Arial 12 (1.15)</span>
-          </button>
-          <button type="button" class="btn-format btn-format-print" onclick="window.print()">
-            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
-            <span>Imprimir / Exportar PDF</span>
-          </button>
+        <div class="quick-nav__grid">
+          <a href="#responsable" class="quick-nav__item">
+            <span class="quick-nav__num">1</span>
+            <span>Identidad y Domicilio</span>
+          </a>
+          <a href="#secreto-profesional" class="quick-nav__item">
+            <span class="quick-nav__num">2</span>
+            <span>Principios y Secreto Médico</span>
+          </a>
+          <a href="#datos-recabados" class="quick-nav__item">
+            <span class="quick-nav__num">3</span>
+            <span>Datos Personales Generales</span>
+          </a>
+          <a href="#datos-sensibles" class="quick-nav__item">
+            <span class="quick-nav__num">4</span>
+            <span>Datos Sensibles de Salud</span>
+          </a>
+          <a href="#finalidades" class="quick-nav__item">
+            <span class="quick-nav__num">5</span>
+            <span>Finalidades del Tratamiento</span>
+          </a>
+          <a href="#negativa-secundarias" class="quick-nav__item">
+            <span class="quick-nav__num">6</span>
+            <span>Negativa Fines Secundarios</span>
+          </a>
+          <a href="#transferencias" class="quick-nav__item">
+            <span class="quick-nav__num">7</span>
+            <span>Transferencias de Datos</span>
+          </a>
+          <a href="#derechos-arco" class="quick-nav__item">
+            <span class="quick-nav__num">8</span>
+            <span>Ejercicio Derechos ARCO</span>
+          </a>
+          <a href="#revocacion" class="quick-nav__item">
+            <span class="quick-nav__num">9</span>
+            <span>Revocación de Consentimiento</span>
+          </a>
+          <a href="#limitacion" class="quick-nav__item">
+            <span class="quick-nav__num">10</span>
+            <span>Limitar Uso y Divulgación</span>
+          </a>
+          <a href="#cookies" class="quick-nav__item">
+            <span class="quick-nav__num">11</span>
+            <span>Cookies y Tecnologías Web</span>
+          </a>
+          <a href="#seguridad" class="quick-nav__item">
+            <span class="quick-nav__num">12</span>
+            <span>Seguridad y Custodia Legal</span>
+          </a>
+          <a href="#modificaciones" class="quick-nav__item">
+            <span class="quick-nav__num">13</span>
+            <span>Modificaciones al Aviso</span>
+          </a>
+          <a href="#autoridad" class="quick-nav__item">
+            <span class="quick-nav__num">14</span>
+            <span>Marco Regulatorio y Denuncia</span>
+          </a>
+          <a href="#consentimiento-digital" class="quick-nav__item">
+            <span class="quick-nav__num">15</span>
+            <span>Consentimiento Digital</span>
+          </a>
         </div>
-      </div>
-
-      <!-- Sección Resumen: Respuestas Clave para la Paciente -->
-      <section class="summary-section" aria-label="Resumen ejecutivo del aviso de privacidad">
-        <div class="summary-heading">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="#0f766e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
-          Guía Rápida: Lo más importante sobre el cuidado de su información
-        </div>
-        <div class="summary-grid">
-          <div class="summary-card">
-            <h4>1. ¿Quién cuida sus datos?</h4>
-            <p><strong>Dra. Giselle Odette Noyola Landázuri</strong> (médica gineco-obstetra y perinatóloga) y su equipo en consultorio médico privado en Chapalita, Guadalajara/Zapopan.</p>
-          </div>
-          <div class="summary-card">
-            <h4>2. ¿Qué datos recabamos?</h4>
-            <p>Datos de identificación, contacto y facturación, además de <strong>datos de salud sensibles</strong> (antecedentes médicos, ultrasonidos y notas de evolución) para su expediente clínico.</p>
-          </div>
-          <div class="summary-card">
-            <h4>3. ¿Para qué los usamos?</h4>
-            <p><strong>Fines médicos primarios:</strong> diagnóstico, recetas, cirugías, control prenatal y expediente clínico (NOM-004-SSA3-2012). Solo con su permiso opcional: boletines de salud y encuestas.</p>
-          </div>
-          <div class="summary-card">
-            <h4>4. ¿Con quién se comparten?</h4>
-            <p>Únicamente con laboratorios, hospitales o su aseguradora si usted lo autoriza para su atención. <strong>Jamás vendemos ni comercializamos</strong> sus datos.</p>
-          </div>
-          <div class="summary-card">
-            <h4>5. ¿Cómo puede ejercer sus Derechos ARCO?</h4>
-            <p>Envíe un correo a <a href="mailto:privacidad@saludintegral-ficticio.mx">privacidad@saludintegral-ficticio.mx</a> o <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>. Recibirá respuesta formal en un plazo máximo de <strong>20 días hábiles</strong>.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Tabla de Contenidos -->
-      <nav class="legal-toc" aria-label="Índice de secciones del aviso de privacidad">
-        <h3>
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-          Índice de Contenidos (Art. 15 LFPDPPP)
-        </h3>
-        <ol>
-          <li><a href="#responsable">1. Identidad y Domicilio del Responsable (Art. 15 Fracc. I)</a></li>
-          <li><a href="#secreto-profesional">2. Principios Legales y Deber de Secreto Médico</a></li>
-          <li><a href="#datos-recabados">3. Datos Personales Generales y Fiscales</a></li>
-          <li><a href="#datos-sensibles">4. Datos Personales Sensibles de Salud (Expediente Clínico)</a></li>
-          <li><a href="#finalidades">5. Finalidades y Tipos de Consentimiento (Art. 15 Fracc. II)</a></li>
-          <li><a href="#negativa-secundarias">6. Mecanismo de Negativa para Finalidades Secundarias</a></li>
-          <li><a href="#transferencias">7. Transferencia de Datos Personales (Art. 15 Fracc. V)</a></li>
-          <li><a href="#derechos-arco">8. Medios para Ejercer Derechos ARCO (Art. 15 Fracc. IV)</a></li>
-          <li><a href="#revocacion">9. Revocación del Consentimiento y Normas Sanitarias</a></li>
-          <li><a href="#limitacion">10. Opciones para Limitar Uso o Divulgación (Art. 15 Fracc. III)</a></li>
-          <li><a href="#cookies">11. Cookies, Web Beacons y Centro de Preferencias Web</a></li>
-          <li><a href="#seguridad">12. Medidas de Seguridad y Custodia Legal (5 años)</a></li>
-          <li><a href="#modificaciones">13. Notificación de Cambios al Aviso (Art. 15 Fracc. VI)</a></li>
-          <li><a href="#autoridad">14. Consentimiento y Autoridad Competente</a></li>
-          <li><a href="#constancia-firma">15. Constancia de Consentimiento Expreso del Titular</a></li>
-        </ol>
       </nav>
 
       <!-- Section 1 -->
@@ -780,7 +765,7 @@
           </div>
           <div class="legal-contact-item">
             <strong>Unidad de Protección de Datos (Mecanismo ARCO):</strong>
-            <a href="mailto:privacidad@saludintegral-ficticio.mx">privacidad@saludintegral-ficticio.mx</a>
+            <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a>
             <span style="display:block;font-size:0.75rem;color:#64748b;">(Con atención directa en: <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>)</span>
           </div>
           <div class="legal-contact-item">
@@ -915,7 +900,7 @@
           </label>
         </div>
         <p>
-          También puede manifestar su negativa enviando un correo electrónico a <a href="mailto:privacidad@saludintegral-ficticio.mx">privacidad@saludintegral-ficticio.mx</a> con el asunto: <em>"Negativa a Finalidades Secundarias"</em>. Hacemos constar categóricamente que la negativa al uso de sus datos para finalidades secundarias <strong>en ningún caso será motivo para negarle o condicionar la atención médica</strong> solicitada.
+          También puede manifestar su negativa enviando un correo electrónico a <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a> con el asunto: <em>"Negativa a Finalidades Secundarias"</em>. Hacemos constar categóricamente que la negativa al uso de sus datos para finalidades secundarias <strong>en ningún caso será motivo para negarle o condicionar la atención médica</strong> solicitada.
         </p>
       </article>
 
@@ -956,7 +941,7 @@
         <ol>
           <li>
             <strong>Canal de Recepción Oficial:</strong> Envíe su solicitud en escrito libre al correo electrónico de nuestra Unidad de Protección de Datos:  
-            👉 <a href="mailto:privacidad@saludintegral-ficticio.mx"><strong>privacidad@saludintegral-ficticio.mx</strong></a>  
+            👉 <a href="mailto:privacidad@draodettenoyola.com"><strong>privacidad@draodettenoyola.com</strong></a>  
             <em>(Con copia de respaldo a <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a> o entrega física en consultorio).</em>
           </li>
           <li>
@@ -996,7 +981,7 @@
           Usted puede revocar en cualquier momento el consentimiento que nos haya otorgado para el tratamiento de sus datos personales. No obstante, le informamos que debido a las obligaciones impuestas por la legislación de salud (NOM-004-SSA3-2012) o por la necesidad de dar cumplimiento a deberes fiscales, no en todos los casos podremos concluir el uso de sus datos de forma inmediata.
         </p>
         <p>
-          Para revocar su consentimiento, basta con remitir su petición al correo <a href="mailto:privacidad@saludintegral-ficticio.mx">privacidad@saludintegral-ficticio.mx</a> siguiendo los mismos requisitos previstos para las solicitudes ARCO.
+          Para revocar su consentimiento, basta con remitir su petición al correo <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a> siguiendo los mismos requisitos previstos para las solicitudes ARCO.
         </p>
       </article>
 
@@ -1010,7 +995,7 @@
           Con el fin de que usted pueda limitar el uso y divulgación de sus datos para propósitos informativos o no asistenciales, ponemos a su disposición los siguientes mecanismos:
         </p>
         <ul>
-          <li><strong>Lista de Exclusión Interna de la Clínica:</strong> Registro en nuestro padrón interno de exclusión publicitaria denominado <em>"Lista de Exclusión de Comunicaciones Médicas"</em>, solicitándolo mediante correo a <a href="mailto:privacidad@saludintegral-ficticio.mx">privacidad@saludintegral-ficticio.mx</a>.</li>
+          <li><strong>Lista de Exclusión Interna de la Clínica:</strong> Registro en nuestro padrón interno de exclusión publicitaria denominado <em>"Lista de Exclusión de Comunicaciones Médicas"</em>, solicitándolo mediante correo a <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a>.</li>
           <li><strong>Padrones Oficiales de Limitación:</strong> Inscripción en los registros de limitación publicitaria administrados por los organismos gubernamentales competentes de protección al consumidor en México.</li>
         </ul>
       </article>
@@ -1097,31 +1082,36 @@
         </div>
       </article>
 
-      <!-- Section 15: Constancia de Consentimiento Expreso -->
-      <article class="signature-card" id="constancia-firma">
+      <!-- Section 15: Consentimiento Digital del Titular -->
+      <article class="digital-consent-card" id="consentimiento-digital">
         <div class="legal-card-header">
-          <h2>15. Constancia de Consentimiento Expreso del Titular</h2>
-          <span class="badge-art15">Hoja de Expediente Clínico</span>
+          <h2>15. Consentimiento Digital del Titular</h2>
+          <span class="badge-art15" style="background:#dcfce7;color:#15803d;">Aceptación en Línea</span>
         </div>
-        <p style="font-size:0.9rem;color:#334155;line-height:1.6;">
-          <em>(Formato anexo para firma autógrafa física o aceptación digital al momento de la apertura formal de expediente clínico o historia gineco-obstétrica en consultorio médico privado):</em>
+        <p style="font-size:0.95rem;color:#1f2937;line-height:1.6;">
+          En cumplimiento con los Artículos 8° y 9° de la <strong>LFPDPPP</strong> y el estándar normativo de la <strong>NOM-004-SSA3-2012</strong>, usted puede manifestar su consentimiento expreso de manera digital para el tratamiento confidencial de sus datos personales y sensibles de salud:
         </p>
-        <blockquote style="margin:16px 0;padding:16px 20px;background:#fff;border-left:4px solid #0f766e;border-radius:8px;font-size:0.9rem;color:#1e293b;line-height:1.6;">
-          "Otorgo mi <strong>consentimiento expreso y por escrito</strong> para que la <strong>Dra. Giselle Odette Noyola Landázuri</strong> trate mis datos personales y mis <strong>datos personales sensibles de salud</strong> conforme a las finalidades primarias descritas en el presente Aviso de Privacidad Integral y en cumplimiento con la NOM-004-SSA3-2012 del Expediente Clínico."
+        <blockquote style="margin:16px 0;padding:16px 20px;background:#ffffff;border-left:4px solid #16a34a;border-radius:8px;font-size:0.92rem;color:#1e293b;line-height:1.6;border-top:1px solid #dcfce7;border-right:1px solid #dcfce7;border-bottom:1px solid #dcfce7;">
+          "Otorgo mi <strong>consentimiento expreso y digital</strong> para que la <strong>Dra. Giselle Odette Noyola Landázuri</strong> trate mis datos personales y mis <strong>datos personales sensibles de salud</strong> conforme a las finalidades primarias descritas en el presente Aviso de Privacidad Integral y para la debida integración de mi expediente clínico."
         </blockquote>
 
-        <div class="signature-lines">
-          <div>
-            <div class="signature-field">Nombre Completo de la Paciente o Titular:</div>
-          </div>
-          <div>
-            <div class="signature-field">Firma Autógrafa o Digital:</div>
-          </div>
-          <div>
-            <div class="signature-field">Lugar y Fecha: Guadalajara / Zapopan, Jal., a _____ de _____________ de 202__</div>
-          </div>
-          <div>
-            <div class="signature-field">Nombre del Familiar o Responsable (en caso de menores o urgencia):</div>
+        <div class="consent-check-container">
+          <label class="consent-checkbox-label" for="check-legal-consent">
+            <input type="checkbox" id="check-legal-consent">
+            <span>
+              <strong>He leído, comprendido y acepto íntegramente este Aviso de Privacidad Integral.</strong> Autorizo el tratamiento ético y confidencial de mis datos personales y de salud para fines de diagnóstico, atención médica y expediente clínico conforme a la NOM-004-SSA3-2012.
+            </span>
+          </label>
+        </div>
+
+        <div class="consent-action-row">
+          <button type="button" class="btn-consent-submit" id="btn-confirm-legal-consent" disabled>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            <span>Confirmar Consentimiento Digital</span>
+          </button>
+          <div id="consent-status-badge" class="consent-confirmed-badge" style="display:none;" aria-live="polite">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            <span id="consent-status-text">Consentimiento digital registrado correctamente</span>
           </div>
         </div>
       </article>
@@ -1231,18 +1221,58 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var btnFormal = document.getElementById('btn-toggle-formal-mode');
-      var docBody = document.getElementById('legal-document-body');
-      var txtFormal = document.getElementById('txt-formal-toggle');
+      var chkConsent = document.getElementById('check-legal-consent');
+      var btnConsent = document.getElementById('btn-confirm-legal-consent');
+      var badgeConsent = document.getElementById('consent-status-badge');
+      var textConsent = document.getElementById('consent-status-text');
 
-      if (btnFormal && docBody) {
-        btnFormal.addEventListener('click', function () {
-          var isFormal = docBody.classList.toggle('formal-mode');
-          btnFormal.setAttribute('aria-pressed', isFormal);
-          if (txtFormal) {
-            txtFormal.textContent = isFormal 
-              ? 'Volver a Vista Web Estilizada' 
-              : 'Alternar a Vista Arial 12 (1.15)';
+      var STORAGE_KEY = 'dra_odette_digital_privacy_accepted';
+
+      // Verificar si ya fue previamente aceptado en este navegador
+      try {
+        var savedConsent = localStorage.getItem(STORAGE_KEY);
+        if (savedConsent) {
+          var parsed = JSON.parse(savedConsent);
+          if (chkConsent) {
+            chkConsent.checked = true;
+            chkConsent.disabled = true;
+          }
+          if (btnConsent) {
+            btnConsent.style.display = 'none';
+          }
+          if (badgeConsent && textConsent) {
+            badgeConsent.style.display = 'inline-flex';
+            var fecha = parsed.date ? new Date(parsed.date).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Registrado';
+            textConsent.textContent = 'Consentimiento digital aceptado y registrado (' + fecha + ')';
+          }
+        }
+      } catch (e) {}
+
+      if (chkConsent && btnConsent) {
+        chkConsent.addEventListener('change', function () {
+          btnConsent.disabled = !chkConsent.checked;
+        });
+
+        btnConsent.addEventListener('click', function () {
+          if (!chkConsent.checked) return;
+
+          var record = {
+            accepted: true,
+            date: new Date().toISOString(),
+            version: '2026-09-integral'
+          };
+
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
+          } catch (e) {}
+
+          chkConsent.disabled = true;
+          btnConsent.style.display = 'none';
+
+          if (badgeConsent && textConsent) {
+            badgeConsent.style.display = 'inline-flex';
+            var now = new Date().toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            textConsent.textContent = 'Consentimiento digital confirmado con éxito (' + now + ')';
           }
         });
       }

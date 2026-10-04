@@ -186,42 +186,43 @@
     style.textContent = `
       .cookie-banner-wrap {
         position: fixed;
-        bottom: 24px;
-        left: 24px;
-        right: 24px;
-        max-width: 620px;
-        margin: 0 auto;
+        bottom: 16px;
+        right: 16px;
+        left: auto;
+        max-width: 380px;
+        width: calc(100% - 32px);
+        margin: 0;
         background: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 12px 36px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(13, 148, 136, 0.2);
-        padding: 20px 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16), 0 0 0 1px rgba(13, 148, 136, 0.2);
+        padding: 12px 14px;
         z-index: 99998;
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 8px;
         font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         color: #1e293b;
-        animation: cookieSlideUp 0.35s ease-out;
+        animation: cookieSlideUp 0.3s ease-out;
       }
       @keyframes cookieSlideUp {
-        from { transform: translateY(40px); opacity: 0; }
+        from { transform: translateY(30px); opacity: 0; }
         to { transform: translateY(0); opacity: 1; }
       }
       .cookie-banner-header {
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
       }
       .cookie-banner-title {
-        font-size: 15px;
+        font-size: 13px;
         font-weight: 700;
         color: #0f172a;
         margin: 0;
       }
       .cookie-banner-desc {
-        font-size: 13.5px;
+        font-size: 11.5px;
         color: #475569;
-        line-height: 1.5;
+        line-height: 1.4;
         margin: 0;
       }
       .cookie-banner-desc a {
@@ -232,16 +233,16 @@
       .cookie-banner-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 6px;
         align-items: center;
       }
       .btn-cookie-accept {
         background: #0f766e;
         color: #ffffff;
         border: none;
-        padding: 9px 18px;
+        padding: 6px 12px;
         border-radius: 9999px;
-        font-size: 13px;
+        font-size: 11.5px;
         font-weight: 600;
         cursor: pointer;
         transition: background 0.2s;
@@ -251,9 +252,9 @@
         background: #f1f5f9;
         color: #334155;
         border: 1px solid #cbd5e1;
-        padding: 9px 16px;
+        padding: 6px 10px;
         border-radius: 9999px;
-        font-size: 13px;
+        font-size: 11.5px;
         font-weight: 600;
         cursor: pointer;
         transition: background 0.2s;
@@ -263,11 +264,11 @@
         background: transparent;
         color: #0f766e;
         border: none;
-        font-size: 13px;
+        font-size: 11px;
         font-weight: 600;
         cursor: pointer;
         text-decoration: underline;
-        padding: 6px 10px;
+        padding: 4px 6px;
       }
       .btn-cookie-prefs:hover { color: #115e59; }
 
@@ -359,16 +360,16 @@
 
     banner.innerHTML = `
       <div class="cookie-banner-header">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="#0f766e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10c0-.55-.45-1-1-1s-1 .45-1 1c0 4.41-3.59 8-8 8s-8-3.59-8-8 3.59-8 8-8c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
-        <h4 class="cookie-banner-title">Privacidad y Preferencias de Cookies</h4>
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="#0f766e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10c0-.55-.45-1-1-1s-1 .45-1 1c0 4.41-3.59 8-8 8s-8-3.59-8-8 3.59-8 8-8c.55 0 1-.45 1-1s-.45-1-1-1z"/></svg>
+        <span class="cookie-banner-title">Cookies y Privacidad</span>
       </div>
       <p class="cookie-banner-desc">
-        Utilizamos cookies técnicas necesarias para el agendamiento y funcionamiento del portal, así como cookies analíticas para mejorar su experiencia. Conforme a la LFPDPPP, usted decide cuáles autorizar. Conozca los detalles en nuestro <a href="aviso-de-privacidad.html#cookies">Aviso de Privacidad</a>.
+        Usamos cookies técnicas para el funcionamiento del portal y analíticas opcionales. Puedes aceptarlas o configurarlas. <a href="aviso-de-privacidad.html#cookies">Detalles</a>.
       </p>
       <div class="cookie-banner-actions">
-        <button type="button" class="btn-cookie-accept" id="btn-cookie-accept-all">Aceptar todas</button>
-        <button type="button" class="btn-cookie-reject" id="btn-cookie-only-req">Solo necesarias</button>
-        <button type="button" class="btn-cookie-prefs" id="btn-cookie-custom">Configurar cookies</button>
+        <button type="button" class="btn-cookie-accept" id="btn-cookie-accept-all">Aceptar</button>
+        <button type="button" class="btn-cookie-reject" id="btn-cookie-only-req">Necesarias</button>
+        <button type="button" class="btn-cookie-prefs" id="btn-cookie-custom">Configurar</button>
       </div>
     `;
 
