@@ -29,12 +29,6 @@
   <meta property="og:image" content="https://draodettenoyola.com/img/hero-portrait.jpg">
   <meta property="og:locale" content="es_MX">
 
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Aviso de Privacidad Integral | Dra. Odette Noyola">
-  <meta name="twitter:description" content="Protección de datos personales y expediente clínico conforme a la legislación mexicana LFPDPPP y NOM-004-SSA3-2012.">
-  <meta name="twitter:image" content="https://draodettenoyola.com/img/hero-portrait.jpg">
-
   <!-- Favicon Suite -->
   <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=3.0">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png?v=3.0">
@@ -56,12 +50,12 @@
 
   <style>
     .legal-page {
-      padding-block: var(--space-8) var(--space-20);
+      padding-block: var(--space-10) var(--space-20);
       background-color: #f6f8f7;
       min-height: 80vh;
     }
     .legal-container {
-      max-width: 920px;
+      max-width: 900px;
       margin-inline: auto;
       padding-inline: var(--space-5);
     }
@@ -80,7 +74,7 @@
     }
     .legal-header {
       text-align: center;
-      margin-bottom: var(--space-8);
+      margin-bottom: var(--space-10);
     }
     .legal-header h1 {
       font-size: clamp(1.75rem, 4vw, 2.35rem);
@@ -101,9 +95,7 @@
       border-radius: var(--radius-full);
       border: 1px solid var(--color-teal-200);
     }
-
-    /* Índice con Accesos Rápidos */
-    .quick-nav {
+    .legal-toc {
       background: var(--color-white);
       border: 1.5px solid var(--color-teal-200);
       border-radius: var(--radius-2xl);
@@ -111,68 +103,37 @@
       margin-bottom: var(--space-10);
       box-shadow: 0 4px 16px rgba(17, 94, 89, 0.05);
     }
-    .quick-nav__title {
-      font-size: 1.15rem;
-      font-weight: 800;
+    .legal-toc h3 {
+      font-size: var(--text-base);
+      font-weight: 700;
       color: var(--color-teal-900);
-      margin-bottom: var(--space-5);
+      margin-bottom: var(--space-4);
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: var(--space-2);
     }
-    .quick-nav__grid {
+    .legal-toc ol {
+      padding-left: var(--space-5);
       display: grid;
       grid-template-columns: 1fr;
-      gap: 10px;
+      gap: var(--space-2);
     }
-    @media (min-width: 640px) {
-      .quick-nav__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px 16px;
+    @media (min-width: 680px) {
+      .legal-toc ol {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-2) var(--space-6);
       }
     }
-    @media (min-width: 880px) {
-      .quick-nav__grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px 16px;
-      }
-    }
-    .quick-nav__item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      background: #f8fafc;
-      border: 1px solid #e2e8f0;
-      border-radius: 12px;
+    .legal-toc a {
+      color: var(--color-teal-700);
       text-decoration: none;
-      color: var(--color-obsidian-900);
-      font-size: 0.85rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
+      font-size: var(--text-sm);
+      transition: color 0.2s;
     }
-    .quick-nav__item:hover {
-      background: #f0fdfa;
-      border-color: var(--color-teal-400);
-      color: var(--color-teal-800);
-      transform: translateY(-1px);
-      box-shadow: 0 2px 8px rgba(13, 148, 136, 0.1);
+    .legal-toc a:hover {
+      color: var(--color-teal-900);
+      text-decoration: underline;
     }
-    .quick-nav__num {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 22px;
-      background: #ccfbf1;
-      color: #0f766e;
-      border-radius: 6px;
-      font-weight: 800;
-      font-size: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    /* Artículos Legales */
     .legal-card {
       background: var(--color-white);
       border: 1px solid #e2e8f0;
@@ -180,35 +141,17 @@
       padding: var(--space-8);
       margin-bottom: var(--space-8);
       box-shadow: 0 4px 16px rgba(17, 94, 89, 0.04);
-      scroll-margin-top: 32px;
-    }
-    .legal-card-header {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 10px;
-      margin-bottom: var(--space-4);
-      padding-bottom: var(--space-3);
-      border-bottom: 2px solid #ccfbf1;
+      scroll-margin-top: 100px;
     }
     .legal-card h2 {
       font-size: var(--text-xl);
       color: var(--color-obsidian-900);
-      margin: 0;
+      margin-bottom: var(--space-4);
+      padding-bottom: var(--space-3);
+      border-bottom: 2px solid #ccfbf1;
       display: flex;
       align-items: center;
       gap: var(--space-3);
-    }
-    .badge-art15 {
-      font-size: 0.75rem;
-      font-weight: 700;
-      background: #ccfbf1;
-      color: #0f766e;
-      padding: 3px 10px;
-      border-radius: 9999px;
-      letter-spacing: 0.02em;
-      white-space: nowrap;
     }
     .legal-card h3 {
       font-size: var(--text-base);
@@ -248,183 +191,6 @@
       color: var(--color-teal-900);
       font-weight: 500;
     }
-
-    /* Píldoras de Consentimiento */
-    .consent-badge-box {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 12px;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      margin-top: 4px;
-      margin-bottom: 12px;
-    }
-    .consent-badge-express {
-      background: #fef2f2;
-      border: 1px solid #fecaca;
-      color: #991b1b;
-    }
-    .consent-badge-tacit {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      color: #1e40af;
-    }
-    .consent-badge-optional {
-      background: #fdf4ff;
-      border: 1px solid #f5d0fe;
-      color: #86198f;
-    }
-
-    /* Casilla interactiva de negativa para secundarias */
-    .optout-box {
-      background: #f8fafc;
-      border: 1.5px dashed #cbd5e1;
-      border-radius: var(--radius-xl);
-      padding: var(--space-5);
-      margin-block: var(--space-4);
-    }
-    .optout-checkbox-label {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      color: var(--color-gray-800);
-      line-height: 1.5;
-    }
-    .optout-checkbox-label input {
-      margin-top: 3px;
-      width: 18px;
-      height: 18px;
-      accent-color: var(--color-teal-600);
-      cursor: pointer;
-    }
-
-    /* Botón de Cookies Interactivo */
-    .cookie-action-banner {
-      background: #f0fdfa;
-      border: 1.5px solid var(--color-teal-300);
-      border-radius: var(--radius-xl);
-      padding: var(--space-5);
-      margin-block: var(--space-4);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-    }
-    .cookie-action-banner p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--color-teal-950);
-      max-width: 580px;
-    }
-    .btn-cookie-action {
-      background: var(--color-teal-700);
-      color: #fff;
-      font-weight: 600;
-      font-size: 0.875rem;
-      border: none;
-      border-radius: 9999px;
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: background 0.2s;
-      white-space: nowrap;
-    }
-    .btn-cookie-action:hover {
-      background: var(--color-teal-900);
-    }
-
-    /* Sección 15: Consentimiento Digital (Check Button) */
-    .digital-consent-card {
-      background: #f0fdf4;
-      border: 2px solid #86efac;
-      border-radius: var(--radius-2xl);
-      padding: var(--space-8);
-      margin-top: var(--space-8);
-      box-shadow: 0 4px 20px rgba(34, 197, 94, 0.08);
-    }
-    .consent-check-container {
-      background: #ffffff;
-      border: 1.5px solid #bbf7d0;
-      border-radius: var(--radius-xl);
-      padding: var(--space-5);
-      margin: var(--space-5) 0;
-      transition: all 0.2s ease;
-    }
-    .consent-check-container:hover {
-      border-color: #22c55e;
-      box-shadow: 0 2px 10px rgba(34, 197, 94, 0.1);
-    }
-    .consent-checkbox-label {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      cursor: pointer;
-      user-select: none;
-    }
-    .consent-checkbox-label input[type="checkbox"] {
-      width: 22px;
-      height: 22px;
-      margin-top: 2px;
-      accent-color: var(--color-teal-600);
-      cursor: pointer;
-      flex-shrink: 0;
-    }
-    .consent-checkbox-label span {
-      font-size: 0.95rem;
-      color: #166534;
-      line-height: 1.5;
-    }
-    .consent-action-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      margin-top: var(--space-4);
-    }
-    .btn-consent-submit {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #15803d;
-      color: #ffffff;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 9999px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
-    }
-    .btn-consent-submit:hover:not(:disabled) {
-      background: #166534;
-      transform: translateY(-1px);
-      box-shadow: 0 6px 16px rgba(21, 128, 61, 0.35);
-    }
-    .btn-consent-submit:disabled {
-      background: #cbd5e1;
-      color: #64748b;
-      cursor: not-allowed;
-      box-shadow: none;
-    }
-    .consent-confirmed-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #dcfce7;
-      color: #14532d;
-      border: 1px solid #86efac;
-      padding: 8px 16px;
-      border-radius: 9999px;
-      font-size: 0.85rem;
-      font-weight: 700;
-    }
-
-    /* Rejilla de contacto */
     .legal-contact-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -453,80 +219,6 @@
       font-size: var(--text-sm);
       color: var(--color-teal-700);
       word-break: break-word;
-    }
-
-    /* Modo Formal Dinámico: Arial 12pt, Interlineado 1.15 */
-    .formal-mode {
-      font-family: Arial, Helvetica, sans-serif !important;
-      font-size: 12pt !important;
-      line-height: 1.15 !important;
-      color: #111827 !important;
-    }
-    .formal-mode .legal-card,
-    .formal-mode .summary-card,
-    .formal-mode .legal-toc {
-      border-radius: 4px !important;
-      border-color: #94a3b8 !important;
-      box-shadow: none !important;
-    }
-    .formal-mode p,
-    .formal-mode li {
-      font-family: Arial, Helvetica, sans-serif !important;
-      font-size: 12pt !important;
-      line-height: 1.15 !important;
-      color: #111827 !important;
-    }
-    .formal-mode h1,
-    .formal-mode h2,
-    .formal-mode h3,
-    .formal-mode h4 {
-      font-family: Arial, Helvetica, sans-serif !important;
-      line-height: 1.25 !important;
-    }
-
-    /* Reglas para Impresión / Guardado en PDF */
-    @media print {
-      body {
-        font-family: Arial, Helvetica, sans-serif !important;
-        font-size: 12pt !important;
-        line-height: 1.15 !important;
-        color: #000 !important;
-        background: #fff !important;
-        margin: 0;
-        padding: 0;
-      }
-      .urgency-bar,
-      .navbar,
-      .footer,
-      .floating-cta,
-      .format-toolbar,
-      .legal-breadcrumbs,
-      .btn-cookie-action,
-      #dra-cookie-banner,
-      .cookie-banner-wrap {
-        display: none !important;
-      }
-      .legal-page {
-        padding: 0 !important;
-        background: #fff !important;
-      }
-      .legal-container {
-        max-width: 100% !important;
-        padding: 0 !important;
-      }
-      .legal-card {
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 0 16pt 0 !important;
-        margin-bottom: 16pt !important;
-        page-break-inside: avoid;
-      }
-      .legal-toc {
-        page-break-after: always;
-      }
-      .signature-card {
-        page-break-inside: avoid;
-      }
     }
   </style>
 
@@ -560,39 +252,25 @@
   <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       1. URGENCY BAR
+       URGENCY BAR
        ═══════════════════════════════════════════════════════════════════ -->
-  <div class="urgency-bar" id="urgency-bar">
-    <div class="urgency-bar__inner">
-      <!-- Carousel Slider -->
-      <div class="urgency-bar__carousel" id="urgency-carousel" aria-live="polite">
-        <div class="urgency-bar__slide active">
-          <span class="urgency-bar__slide-text">Atención ginecológica y control prenatal con calidez y precisión</span>
+  <header class="urgency-bar" aria-label="Aviso de urgencias">
+    <div class="urgency-bar__track">
+      <div class="urgency-bar__slide active">
+        <span class="urgency-bar__slide-text">Atención de urgencias gineco-obstétricas disponibles 24/7</span>
+        <div class="urgency-bar__actions">
+          <a href="tel:+523327905726" class="urgency-bar__phone" aria-label="Llamar al 33 2790 5726">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>33 2790 5726</span>
+          </a>
+          <a href="tel:+523327905726" class="urgency-bar__badge">URGENCIAS</a>
         </div>
-        <div class="urgency-bar__slide">
-          <span class="urgency-bar__slide-text">Agenda tu cita hoy mismo en Chapalita · Guadalajara</span>
-        </div>
-        <div class="urgency-bar__slide">
-          <span class="urgency-bar__slide-text">Convenio con los principales seguros de gastos médicos</span>
-        </div>
-        <div class="urgency-bar__slide">
-          <span class="urgency-bar__slide-text">Atención de urgencias gineco-obstétricas disponibles 24/7</span>
-        </div>
-      </div>
-
-      <!-- Actions: Call & Urgencias -->
-      <div class="urgency-bar__actions">
-        <a href="tel:+523327905726" class="urgency-bar__phone" aria-label="33 2790 5726 - Llamar al consultorio">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.003 1.003 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25.92l-2.2 2.2z"/></svg>
-          <span>33 2790 5726</span>
-        </a>
-        <a href="tel:+523327905726" class="urgency-bar__badge" aria-label="Urgencias médicas 24/7">Urgencias</a>
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- ═══════════════════════════════════════════════════════════════════
-       2. NAVBAR
+       NAVBAR
        ═══════════════════════════════════════════════════════════════════ -->
   <nav class="navbar" id="navbar" aria-label="Navegación principal">
     <div class="navbar__inner">
@@ -600,7 +278,7 @@
         <img src="img/logo.jpg" alt="Logo Dra. Odette Noyola" class="navbar__logo" width="44" height="44" loading="eager">
         <div class="navbar__brand-text">
           <div class="navbar__title">Dra. Odette Noyola</div>
-          <div class="navbar__subtitle">GINECOLOGÍA · OBSTETRICIA · MATERNO FETAL</div>
+          <div class="navbar__subtitle">Medicina Materno Fetal</div>
         </div>
       </a>
 
@@ -659,461 +337,269 @@
        MAIN LEGAL CONTENT
        ═══════════════════════════════════════════════════════════════════ -->
   <main id="main-content" class="legal-page">
-    <div class="legal-container" id="legal-document-body">
+    <div class="legal-container">
 
       <!-- Breadcrumbs -->
       <nav class="legal-breadcrumbs" aria-label="Ruta de navegación">
-        <a href="index.html">Inicio</a> &gt; <span>Aviso de Privacidad Integral</span>
+        <a href="index.html">Inicio</a> &gt; <span>Aviso de Privacidad</span>
       </nav>
 
       <!-- Legal Header -->
       <header class="legal-header">
-        <span class="badge badge-teal">Cumplimiento Integral LFPDPPP &amp; NOM-004-SSA3-2012</span>
+        <span class="badge badge-teal">Cumplimiento LFPDPPP &amp; NOM-004-SSA3-2012</span>
         <h1>Aviso de Privacidad Integral</h1>
         <div class="legal-meta">
-          Última actualización: 14 de septiembre de 2026 · Guadalajara / Zapopan, Jalisco, México
+          Última actualización: 14 de septiembre de 2026 · Guadalajara, Jalisco, México
         </div>
       </header>
 
-      <!-- Índice de Secciones con Accesos Rápidos -->
-      <nav class="quick-nav" aria-label="Índice de accesos rápidos del aviso de privacidad">
-        <div class="quick-nav__title">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
-          <span>Índice de Secciones · Accesos Rápidos</span>
-        </div>
-        <div class="quick-nav__grid">
-          <a href="#responsable" class="quick-nav__item">
-            <span class="quick-nav__num">1</span>
-            <span>Identidad y Domicilio</span>
-          </a>
-          <a href="#secreto-profesional" class="quick-nav__item">
-            <span class="quick-nav__num">2</span>
-            <span>Principios y Secreto Médico</span>
-          </a>
-          <a href="#datos-recabados" class="quick-nav__item">
-            <span class="quick-nav__num">3</span>
-            <span>Datos Personales Generales</span>
-          </a>
-          <a href="#datos-sensibles" class="quick-nav__item">
-            <span class="quick-nav__num">4</span>
-            <span>Datos Sensibles de Salud</span>
-          </a>
-          <a href="#finalidades" class="quick-nav__item">
-            <span class="quick-nav__num">5</span>
-            <span>Finalidades del Tratamiento</span>
-          </a>
-          <a href="#negativa-secundarias" class="quick-nav__item">
-            <span class="quick-nav__num">6</span>
-            <span>Negativa Fines Secundarios</span>
-          </a>
-          <a href="#transferencias" class="quick-nav__item">
-            <span class="quick-nav__num">7</span>
-            <span>Transferencias de Datos</span>
-          </a>
-          <a href="#derechos-arco" class="quick-nav__item">
-            <span class="quick-nav__num">8</span>
-            <span>Ejercicio Derechos ARCO</span>
-          </a>
-          <a href="#revocacion" class="quick-nav__item">
-            <span class="quick-nav__num">9</span>
-            <span>Revocación de Consentimiento</span>
-          </a>
-          <a href="#limitacion" class="quick-nav__item">
-            <span class="quick-nav__num">10</span>
-            <span>Limitar Uso y Divulgación</span>
-          </a>
-          <a href="#cookies" class="quick-nav__item">
-            <span class="quick-nav__num">11</span>
-            <span>Cookies y Tecnologías Web</span>
-          </a>
-          <a href="#seguridad" class="quick-nav__item">
-            <span class="quick-nav__num">12</span>
-            <span>Seguridad y Custodia Legal</span>
-          </a>
-          <a href="#modificaciones" class="quick-nav__item">
-            <span class="quick-nav__num">13</span>
-            <span>Modificaciones al Aviso</span>
-          </a>
-          <a href="#autoridad" class="quick-nav__item">
-            <span class="quick-nav__num">14</span>
-            <span>Marco Regulatorio y Denuncia</span>
-          </a>
-          <a href="#consentimiento-digital" class="quick-nav__item">
-            <span class="quick-nav__num">15</span>
-            <span>Consentimiento Digital</span>
-          </a>
-        </div>
+      <!-- Table of Contents -->
+      <nav class="legal-toc" aria-label="Índice de secciones del aviso de privacidad">
+        <h3>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+          Índice de Contenidos
+        </h3>
+        <ol>
+          <li><a href="#responsable">1. Identidad y Domicilio del Responsable</a></li>
+          <li><a href="#secreto-profesional">2. Principios y Secreto Profesional Médico</a></li>
+          <li><a href="#datos-recabados">3. Datos Personales Recabados</a></li>
+          <li><a href="#datos-sensibles">4. Datos Personales Sensibles (Salud)</a></li>
+          <li><a href="#finalidades">5. Finalidades del Tratamiento</a></li>
+          <li><a href="#negativa-secundarias">6. Negativa a Finalidades Secundarias</a></li>
+          <li><a href="#transferencias">7. Transferencia de Datos Personales</a></li>
+          <li><a href="#derechos-arco">8. Ejercicio de los Derechos ARCO</a></li>
+          <li><a href="#revocacion">9. Revocación del Consentimiento</a></li>
+          <li><a href="#limitacion">10. Limitación del Uso y Divulgación</a></li>
+          <li><a href="#cookies">11. Cookies y Tecnologías Web</a></li>
+          <li><a href="#seguridad">12. Medidas de Seguridad y Custodia (5 años)</a></li>
+          <li><a href="#modificaciones">13. Modificaciones al Aviso de Privacidad</a></li>
+          <li><a href="#autoridad">14. Consentimiento y Autoridad Reguladora (INAI)</a></li>
+        </ol>
       </nav>
 
       <!-- Section 1 -->
       <article class="legal-card" id="responsable">
-        <div class="legal-card-header">
-          <h2>1. Identidad y Domicilio del Responsable</h2>
-          <span class="badge-art15">Art. 15 Fracc. I LFPDPPP</span>
-        </div>
+        <h2>1. Identidad y Domicilio del Responsable</h2>
         <p>
-          En estricto apego a la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>, su Reglamento y los Lineamientos del Aviso de Privacidad vigentes en México, la <strong>Dra. Giselle Odette Noyola Landázuri</strong>, médica cirujana y especialista en Ginecología y Obstetricia con subespecialidad en Medicina Materno-Fetal (en lo sucesivo denominada como la <strong>"Responsable"</strong>), es la persona física titular y legalmente responsable del uso, almacenamiento, protección y tratamiento de sus datos personales.
+          En estricto cumplimiento con la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>, su Reglamento y los Lineamientos del Aviso de Privacidad emitidos por el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI), la <strong>Dra. Giselle Odette Noyola Landázuri</strong>, médica especialista en Ginecología y Obstetricia con subespecialidad en Medicina Materno-Fetal, con domicilio profesional para oír y recibir notificaciones en:
         </p>
         <div class="legal-contact-grid">
           <div class="legal-contact-item">
-            <strong>Consultorio Médico Privado:</strong>
+            <strong>Consultorio Médico:</strong>
             <span>Av. Niño Obrero 1538, Col. Chapalita Oriente, C.P. 45040, Guadalajara / Zapopan, Jalisco, México.</span>
           </div>
           <div class="legal-contact-item">
-            <strong>Cédulas Profesionales y Certificaciones:</strong>
+            <strong>Cédulas Profesionales:</strong>
             <span>C.P. 13408368 · Esp. 14815515 · Subesp. 15692501 (CMGO / FMF)</span>
           </div>
           <div class="legal-contact-item">
-            <strong>Unidad de Protección de Datos (Mecanismo ARCO):</strong>
-            <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a>
-            <span style="display:block;font-size:0.75rem;color:#64748b;">(Con atención directa en: <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>)</span>
+            <strong>Atención de Datos Personales:</strong>
+            <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>
           </div>
           <div class="legal-contact-item">
-            <strong>Teléfono y Atención Telefónica:</strong>
+            <strong>Teléfono de Contacto:</strong>
             <a href="tel:+523327905726">+52 33 2790 5726</a>
-            <span style="display:block;font-size:0.75rem;color:#64748b;">Lunes a Viernes de 9:00 a 19:00 hrs.</span>
           </div>
         </div>
         <p style="margin-top: var(--space-4);">
-          La Responsable asume plenamente el compromiso de salvaguardar su privacidad con los más altos estándares éticos, tecnológicos y médicos, asegurando que su información solo se empleará para velar por su salud y bienestar.
+          hace de su conocimiento que es la persona responsable del uso, tratamiento, custodia, confidencialidad y protección de los datos personales y datos personales sensibles que usted nos proporcione con motivo de la atención médica y los servicios de salud solicitados.
         </p>
       </article>
 
       <!-- Section 2 -->
       <article class="legal-card" id="secreto-profesional">
-        <div class="legal-card-header">
-          <h2>2. Principios y Secreto Profesional Médico</h2>
-          <span class="badge-art15">Principios LFPDPPP</span>
-        </div>
+        <h2>2. Principios y Secreto Profesional Médico</h2>
         <p>
-          El tratamiento de sus datos personales y sensibles se rige rigurosamente bajo los principios de <strong>licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad</strong> contemplados en el Artículo 6° de la LFPDPPP.
+          El tratamiento de sus datos personales se realiza bajo los principios de licitud, consentimiento, información, calidad, finalidad, lealtad, proporcionalidad y responsabilidad previstos en el Artículo 6° de la LFPDPPP.
         </p>
         <div class="legal-alert-box">
           <p>
-            <strong>Deber Inviolable de Secreto Médico:</strong> En nuestra práctica clínica, la confidencialidad no es solo un mandato legal, sino un pilar ético hipocrático. Toda la información vertida en consulta, historia clínica, estudios o notas de evolución está protegida por el <strong>Secreto Profesional Médico</strong> (Ley General de Salud y Código Penal), garantizando que jamás será divulgada a terceros sin mandamiento judicial expreso o su consentimiento por escrito.
+            <strong>Deber de Secreto Médico:</strong> Toda la información clínica compartida por la paciente se encuentra resguardada bajo el más riguroso Secreto Profesional Médico, conforme a lo establecido en la Ley General de Salud, el Código de Ética Médica y la legislación penal aplicable, garantizando que jamás será revelada a terceros sin mandato legal expreso o autorización por escrito de la titular.
           </p>
         </div>
       </article>
 
       <!-- Section 3 -->
       <article class="legal-card" id="datos-recabados">
-        <div class="legal-card-header">
-          <h2>3. Datos Personales Recabados (Generales y Fiscales)</h2>
-          <span class="badge-art15">Art. 15 LFPDPPP</span>
-        </div>
+        <h2>3. Datos Personales Recabados</h2>
         <p>
-          Para brindarle una atención médica oportuna y formalizar su expediente, recabamos las siguientes categorías de datos generales mediante entrevistas en consultorio, expedientes electrónicos, mensajes de WhatsApp, vía telefónica o formularios en nuestra página web:
+          Para llevar a cabo las finalidades descritas en el presente Aviso de Privacidad, recabamos las siguientes categorías de datos personales mediante entrevistas clínicas presenciales, cuestionarios de primer contacto, vía telefónica, mensajería instantánea (WhatsApp) o formularios web:
         </p>
         <ul>
-          <li><strong>Datos de Identificación:</strong> Nombre completo, edad, fecha y lugar de nacimiento, estado civil, ocupación, firma autógrafa y, en su caso, imagen ecográfica (fotografías diagnósticas de ultrasonidos fetales).</li>
-          <li><strong>Datos de Contacto:</strong> Domicilio particular (calle, colonia, código postal, municipio y entidad federativa), teléfono móvil, teléfono fijo y dirección de correo electrónico.</li>
-          <li><strong>Datos Fiscales y de Facturación:</strong> Registro Federal de Contribuyentes (RFC), razón social o nombre de facturación, domicilio fiscal y régimen tributario para la emisión de Comprobantes Fiscales Digitales por Internet (CFDI). <em>Nota: La Responsable no resguarda números completos de tarjetas de crédito o débito ni claves bancarias.</em></li>
-          <li><strong>Datos de Contacto de Emergencia:</strong> Nombre completo, grado de parentesco y número telefónico de familiares o personas de confianza designadas para ser informadas en situaciones de urgencia obstétrica o médica.</li>
+          <li><strong>Datos de Identificación:</strong> Nombre completo, edad, fecha y lugar de nacimiento, estado civil, firma autógrafa y fotografía diagnóstica (en ultrasonidos).</li>
+          <li><strong>Datos de Contacto:</strong> Domicilio particular, número de teléfono fijo y móvil personal, y correo electrónico.</li>
+          <li><strong>Datos de Facturación y Fiscales:</strong> Registro Federal de Contribuyentes (RFC), razón social o nombre para facturación, domicilio fiscal y régimen tributario, requeridos para la emisión de Comprobantes Fiscales Digitales por Internet (CFDI).</li>
+          <li><strong>Datos de Contacto de Emergencia:</strong> Nombre, parentesco y número telefónico de familiares o personas autorizadas para ser notificadas en caso de una urgencia médica o contingencia obstétrica.</li>
         </ul>
       </article>
 
       <!-- Section 4 -->
       <article class="legal-card" id="datos-sensibles">
-        <div class="legal-card-header">
-          <h2>4. Datos Personales Sensibles (Salud y Expediente Clínico)</h2>
-          <span class="badge-art15">Art. 3 Fracc. VI &amp; Art. 9 LFPDPPP</span>
-        </div>
+        <h2>4. Datos Personales Sensibles (Salud)</h2>
         <p>
-          En el ámbito médico gineco-obstétrico, el tratamiento de <strong>datos personales sensibles de salud</strong> es esencial para preservar la vida y la integridad física de la paciente y de su bebé. Estos datos requieren la máxima protección legal y abarcan:
+          De conformidad con los Artículos 3° Fracción VI y 9° de la LFPDPPP, se consideran <strong>datos personales sensibles</strong> aquellos que puedan revelar aspectos íntimos o cuya utilización indebida pueda dar origen a discriminación o conlleve un riesgo grave para la titular. En el ámbito médico, tratamos los siguientes datos de salud indispensables para la práctica ginecológica y obstétrica:
         </p>
         <ul>
-          <li><strong>Antecedentes Heredofamiliares:</strong> Historial familiar de diabetes, hipertensión, preeclampsia, cáncer de mama u ovario, trastornos genéticos o anomalías congénitas.</li>
-          <li><strong>Antecedentes Personales Patológicos y No Patológicos:</strong> Enfermedades crónicas, cirugías previas, alergias a fármacos o materiales médicos, vacunas, transfusiones sanguíneas y hábitos de estilo de vida.</li>
-          <li><strong>Historial Ginecológico y Obstétrico:</strong> Edad de menarca, características menstruales, fecha de última menstruación (FUM), métodos anticonceptivos empleados, número de embarazos, partos, cesáreas, pérdidas gestacionales y complicaciones previas.</li>
-          <li><strong>Exploración Física y Mediciones:</strong> Signos vitales (presión arterial, frecuencia cardíaca), peso, talla, índice de masa corporal, exploración ginecológica y mamaria.</li>
-          <li><strong>Estudios de Laboratorio y Gabinete:</strong> Reportes e imágenes de ultrasonido obstétrico de alta resolución (estructural, tamizaje de primer trimestre, Doppler fetoplacentario, 3D/4D/HD Live), Papanicolaou, colposcopías, biopsias y paneles genéticos.</li>
-          <li><strong>Notas de Evolución y Terapéutica:</strong> Diagnósticos clínicos, recetas médicas, protocolos de tratamiento farmacológico o quirúrgico y notas de atención hospitalaria.</li>
+          <li><strong>Antecedentes Heredofamiliares:</strong> Historial familiar de enfermedades crónico-degenerativas, genéticas, malformaciones congénitas o complicaciones obstétricas.</li>
+          <li><strong>Antecedentes Personales Patológicos y No Patológicos:</strong> Padecimientos previos y actuales, cirugías, alergias a medicamentos, transfusiones sanguíneas, tabaquismo o uso de sustancias.</li>
+          <li><strong>Antecedentes Gineco-Obstétricos:</strong> Edad de menarca, características del ciclo menstrual, fecha de última menstruación (FUM), métodos anticonceptivos utilizados, número de gestas, partos, cesáreas, abortos y complicaciones previas del embarazo.</li>
+          <li><strong>Exploración Física y Diagnóstica:</strong> Signos vitales, peso, talla, índice de masa corporal, exploración ginecológica y mamaria.</li>
+          <li><strong>Estudios de Gabinete y Laboratorio:</strong> Imágenes, reportes y mediciones de ultrasonido obstétrico de alta resolución (estructural, tamizaje de 1er trimestre, Doppler fetoplacentario, 3D/4D/HD Live), resultados de Papanicolaou, colposcopía, biopsias, perfil prenatal, cultivos y paneles genéticos.</li>
+          <li><strong>Evolución y Terapéutica:</strong> Diagnósticos clínicos, notas de evolución médica, planes de tratamiento farmacológico y quirúrgico, pronóstico y evolución del binomio madre-hijo.</li>
         </ul>
-        <div class="legal-alert-box">
-          <p>
-            <strong>Integración Obligatoria al Expediente Clínico:</strong> Todos los datos de salud se integran al Expediente Clínico en estricto cumplimiento con la <strong>Norma Oficial Mexicana NOM-004-SSA3-2012</strong>, garantizando su custodia, inalterabilidad y reserva absoluta.
-          </p>
-        </div>
+        <p>
+          Dichos datos se integran formalmente al <strong>Expediente Clínico</strong> en estricto cumplimiento con la <strong>Norma Oficial Mexicana NOM-004-SSA3-2012</strong>.
+        </p>
       </article>
 
       <!-- Section 5 -->
       <article class="legal-card" id="finalidades">
-        <div class="legal-card-header">
-          <h2>5. Finalidades del Tratamiento y Tipo de Consentimiento Requerido</h2>
-          <span class="badge-art15">Art. 15 Fracc. II LFPDPPP</span>
-        </div>
+        <h2>5. Finalidades del Tratamiento de Datos</h2>
         <p>
-          Para brindarle total transparencia, clasificamos las finalidades del tratamiento en <strong>primarias</strong> (necesarias para brindarle el servicio médico) y <strong>secundarias</strong> (completamente voluntarias), detallando el tipo de consentimiento requerido en cada supuesto:
+          Los datos personales recabados serán utilizados para las siguientes finalidades divididas entre primarias y secundarias:
         </p>
-
-        <h3>A. Finalidades Primarias (Indispensables para la atención médica)</h3>
-        <p>Son aquellas estrictamente necesarias para el servicio de salud solicitado; sin ellas, no es jurídicamente viable la relación médico-paciente:</p>
+        
+        <h3>Finalidades Primarias (Necesarias para la prestación del servicio médico):</h3>
         <ol>
-          <li><strong>Prestación de servicios médicos integrales:</strong> Consulta ginecológica, control prenatal, ultrasonido avanzado, evaluación fetal especializada y atención de partos o cirugías.</li>
-          <li><strong>Apertura y custodia del Expediente Clínico:</strong> Integración formal de la historia clínica en apego a la <strong>NOM-004-SSA3-2012</strong>.</li>
-          <li><strong>Emisión de diagnósticos y recetas:</strong> Prescripción médica, planes terapéuticos e indicación de análisis complementarios.</li>
-          <li><strong>Gestión y confirmación de citas:</strong> Agendamiento, recordatorios y seguimiento de citas presenciales vía teléfono, correo o WhatsApp.</li>
-          <li><strong>Entrega confidencial de resultados:</strong> Envío protegido de reportes de ultrasonido, interpretaciones médicas y notas de evolución.</li>
-          <li><strong>Atención de urgencias médicas:</strong> Comunicación inmediata con sus contactos de emergencia en caso de contingencia médica u obstétrica.</li>
-          <li><strong>Facturación electrónica:</strong> Emisión de comprobantes fiscales CFDI en cumplimiento de las obligaciones tributarias vigentes.</li>
-          <li><strong>Trámites con aseguradoras:</strong> Llenado de informes médicos para aseguradoras de gastos médicos mayores, exclusivamente cuando usted lo solicite por escrito para pago directo o reembolso.</li>
+          <li>Prestación de servicios médicos integrales de consulta ginecológica, control prenatal, ultrasonido obstétrico avanzado, medicina materno-fetal y atención de partos o cesáreas.</li>
+          <li>Integración, apertura, actualización, consulta y custodia obligatoria del Expediente Clínico de la paciente conforme a la NOM-004-SSA3-2012.</li>
+          <li>Emisión de diagnósticos, recetas médicas, órdenes de estudios clínicos y terapéutica personalizada.</li>
+          <li>Monitoreo, seguimiento y control de embarazos de bajo y alto riesgo obstétrico.</li>
+          <li>Comunicación directa con la paciente para la confirmación, recordatorio o reprogramación de citas médicas, así como la entrega confidencial de interpretaciones de ultrasonido y estudios.</li>
+          <li>Atención oportuna de emergencias o eventualidades médicas gineco-obstétricas.</li>
+          <li>Emisión de comprobantes fiscales (facturas electrónicas CFDI) y gestión administrativa de cobro.</li>
+          <li>Llenado de informes médicos y formatos de reembolso o pago directo para Aseguradoras de Gastos Médicos Mayores (GNP, MetLife, AXA, Seguros Monterrey, Banorte, entre otras), a solicitud expresa de la paciente.</li>
         </ol>
 
-        <div class="consent-badge-box consent-badge-express">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-          <span>Tipo de consentimiento para datos de salud: Consentimiento EXPRESO Y POR ESCRITO (Art. 8 y 9 LFPDPPP) recabado mediante firma autógrafa o electrónica.</span>
-        </div>
-        <div class="consent-badge-box consent-badge-tacit">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-          <span>Tipo de consentimiento para datos generales: Consentimiento tácito derivado de la solicitud voluntaria de consulta médica o citas en línea.</span>
-        </div>
-
-        <h3>B. Finalidades Secundarias (Opcionales y Voluntarias)</h3>
-        <p>No son indispensables para su consulta médica, pero nos ayudan a mantenerla informada y optimizar nuestra atención:</p>
+        <h3>Finalidades Secundarias (No indispensables para el servicio médico solicitado):</h3>
         <ol>
-          <li><strong>Boletín de educación en salud femenina:</strong> Envío de artículos médicos divulgativos sobre bienestar, nutrición y prevención ginecológica publicados en nuestro Blog.</li>
-          <li><strong>Encuestas de calidad:</strong> Evaluaciones breves y voluntarias sobre la calidez, puntualidad y satisfacción en su visita médica.</li>
-          <li><strong>Avisos de jornadas preventivas:</strong> Notificaciones sobre jornadas de tamizaje oportuno o nuevas tecnologías diagnósticas disponibles en consultorio.</li>
+          <li>Envío de comunicaciones informativas, artículos educativos sobre salud femenina y maternidad publicados en nuestro Blog médico.</li>
+          <li>Aplicación de encuestas voluntarias de satisfacción sobre la calidad de atención recibida en consultorio.</li>
         </ol>
-        <div class="consent-badge-box consent-badge-optional">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-          <span>Tipo de consentimiento para finalidades secundarias: Consentimiento VOLUNTARIO con derecho a negativa previa sin afectar su atención.</span>
-        </div>
       </article>
 
       <!-- Section 6 -->
       <article class="legal-card" id="negativa-secundarias">
-        <div class="legal-card-header">
-          <h2>6. Mecanismo de Negativa para Finalidades Secundarias</h2>
-          <span class="badge-art15">Art. 14 Reglamento LFPDPPP</span>
-        </div>
+        <h2>6. Negativa al Tratamiento de Finalidades Secundarias</h2>
         <p>
-          Usted tiene el derecho irrevocable de manifestar en cualquier momento que <strong>no desea</strong> que sus datos personales sean utilizados para las finalidades secundarias antes descritas.
+          En caso de que usted no desee que sus datos personales sean tratados para las <strong>finalidades secundarias</strong> antes señaladas, puede manifestar su negativa en cualquier momento mediante un correo electrónico dirigido a <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a> indicando en el asunto: <em>"Negativa de Tratamiento para Finalidades Secundarias"</em>.
         </p>
-        <div class="optout-box">
-          <label class="optout-checkbox-label">
-            <input type="checkbox" id="chk-optout-secondary">
-            <span>
-              <strong>Manifestación Expresa de Negativa:</strong><br>
-              <em>"No consiento que mis datos personales de contacto sean utilizados para el envío de boletines educativos de salud, encuestas de satisfacción o avisos informativos de jornadas de prevención médica."</em>
-            </span>
-          </label>
-        </div>
         <p>
-          También puede manifestar su negativa enviando un correo electrónico a <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a> con el asunto: <em>"Negativa a Finalidades Secundarias"</em>. Hacemos constar categóricamente que la negativa al uso de sus datos para finalidades secundarias <strong>en ningún caso será motivo para negarle o condicionar la atención médica</strong> solicitada.
+          La negativa para el uso de sus datos personales para estas finalidades no podrá ser motivo para negarle la atención médica o cualquiera de los servicios clínicos solicitados.
         </p>
       </article>
 
       <!-- Section 7 -->
       <article class="legal-card" id="transferencias">
-        <div class="legal-card-header">
-          <h2>7. Transferencia de Datos Personales (¿Con quién se comparten?)</h2>
-          <span class="badge-art15">Art. 15 Fracc. V &amp; Art. 36-37 LFPDPPP</span>
-        </div>
+        <h2>7. Transferencia de Datos Personales</h2>
         <p>
-          Sus datos personales y médicos sensibles son resguardados bajo estricto sigilo profesional y <strong>nunca son vendidos, cedidos ni comercializados</strong>. Únicamente se realizan transferencias en los siguientes supuestos:
+          Sus datos personales y sensibles de salud <strong>no serán transferidos ni divulgados a terceros sin su consentimiento previo y por escrito</strong>, salvo en las excepciones legalmente previstas en el Artículo 37 de la LFPDPPP, las cuales comprenden:
         </p>
         <ul>
-          <li><strong>Laboratorios de Análisis Clínicos y Patología:</strong> Transferencia de datos de identificación y solicitudes de estudio necesarias para procesar análisis biológicos, Papanicolaou, biopsias o cultivos. <em>(Requiere su consentimiento expreso al solicitar la orden).</em></li>
-          <li><strong>Centros Hospitalarios y Quirúrgicos:</strong> En caso de procedimientos quirúrgicos ginecológicos, partos o cesáreas programadas o de urgencia, se comparte el resumen clínico y notas preoperatorias con el personal médico y de enfermería tratante. <em>(Requiere consentimiento al programar el evento hospitalario).</em></li>
-          <li><strong>Compañías Aseguradoras (Gastos Médicos Mayores):</strong> Envío de informes médicos oficiales, recetas y resultados de estudios exclusivamente cuando usted solicite el trámite de reembolso o pago directo de honorarios. <em>(Requiere su consentimiento expreso y firma en los formatos de su aseguradora).</em></li>
-          <li><strong>Autoridades Sanitarias y Judiciales Competentes:</strong> En cumplimiento estricto con mandamientos judiciales debidamente fundados y motivados, o en casos de enfermedades infectocontagiosas de reporte epidemiológico obligatorio por ley ante la Secretaría de Salud. <em>(Transferencia legal exenta de consentimiento conforme al Artículo 37 de la LFPDPPP).</em></li>
+          <li>Cuando la transferencia sea necesaria para la prevención o el diagnóstico médico, la prestación de asistencia sanitaria o la gestión de servicios sanitarios (por ejemplo, a laboratorios de análisis clínicos, patólogos, médicos interconsultantes o centros hospitalarios para la atención de partos o cirugías).</li>
+          <li>Cuando la transferencia sea legalmente exigida por mandamiento fundado y motivado de una autoridad judicial o sanitaria competente en ejercicio de sus funciones.</li>
+          <li>Cuando se presente una situación de emergencia médica que ponga en peligro potencial la vida de la paciente o del producto de la gestación y no sea posible obtener el consentimiento inmediato.</li>
+          <li>A instituciones de Seguros de Gastos Médicos Mayores, exclusivamente cuando la paciente solicite la gestión de pago directo o el trámite de reembolso y autorice la entrega del informe médico correspondiente.</li>
         </ul>
       </article>
 
       <!-- Section 8 -->
       <article class="legal-card" id="derechos-arco">
-        <div class="legal-card-header">
-          <h2>8. Medios para Ejercer los Derechos ARCO (Plazo de 20 Días Hábiles)</h2>
-          <span class="badge-art15">Art. 15 Fracc. IV &amp; Art. 28-35 LFPDPPP</span>
-        </div>
+        <h2>8. Ejercicio de los Derechos ARCO</h2>
         <p>
-          Usted o su representante legal debidamente acreditado tienen el derecho irrenunciable de ejercer en todo momento sus <strong>Derechos ARCO</strong>:
+          De conformidad con el Capítulo IV de la LFPDPPP, usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (<strong>Acceso</strong>). Asimismo, es su derecho solicitar la corrección de su información personal en caso de que esté desactualizada, sea inexacta o incompleta (<strong>Rectificación</strong>); que la eliminemos de nuestros registros o bases de datos cuando considere que no está siendo utilizada conforme a los principios y deberes de la ley (<strong>Cancelación</strong>); así como oponerse al uso de sus datos para fines específicos (<strong>Oposición</strong>). Estos derechos se conocen como <strong>Derechos ARCO</strong>.
         </p>
-        <ul>
-          <li><strong>Acceso:</strong> Conocer qué datos personales suyos obran en nuestros archivos, para qué los utilizamos y las condiciones de su tratamiento.</li>
-          <li><strong>Rectificación:</strong> Solicitar la corrección o actualización de sus datos en caso de ser inexactos, desactualizados o incompletos.</li>
-          <li><strong>Cancelación:</strong> Solicitar la eliminación de sus datos de nuestros registros cuando considere que no están siendo tratados conforme a la ley.</li>
-          <li><strong>Oposición:</strong> Oponerse al tratamiento de sus datos para fines específicos o secundarios.</li>
-        </ul>
 
-        <h3>Mecanismo y Procedimiento Formal para Solicitud ARCO:</h3>
+        <h3>Procedimiento para presentar una Solicitud ARCO:</h3>
         <ol>
           <li>
-            <strong>Canal de Recepción Oficial:</strong> Envíe su solicitud en escrito libre al correo electrónico de nuestra Unidad de Protección de Datos:  
-            👉 <a href="mailto:privacidad@draodettenoyola.com"><strong>privacidad@draodettenoyola.com</strong></a>  
-            <em>(Con copia de respaldo a <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a> o entrega física en consultorio).</em>
+            <strong>Medio de presentación:</strong> Enviar su solicitud en formato libre por correo electrónico a <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>, o entregarla por escrito directamente en nuestro consultorio médico.
           </li>
           <li>
-            <strong>Requisitos que debe contener su solicitud:</strong>
+            <strong>Requisitos de la solicitud:</strong>
             <ul>
-              <li>Nombre completo de la paciente y medio para recibir la respuesta (correo electrónico preferente).</li>
-              <li>Copia digital de su identificación oficial vigente (INE o Pasaporte) para acreditar fehacientemente su identidad. En caso de actuar por representante, copia del poder notarial o carta poder firmada ante dos testigos.</li>
-              <li>Descripción clara y precisa de los datos respecto de los cuales desea ejercer el derecho (Acceso, Rectificación, Cancelación u Oposición).</li>
-              <li>En solicitudes de Rectificación, aportar la documentación que acredite la modificación solicitada.</li>
-              <li>Cualquier información complementaria que facilite localizar su registro (por ejemplo, fecha aproximada de su última consulta médica).</li>
+              <li>Nombre completo de la paciente y medio para comunicarle la respuesta (correo electrónico o número telefónico).</li>
+              <li>Documento oficial que acredite su identidad (INE, pasaporte o cédula profesional) o, en su caso, la representación legal correspondiente.</li>
+              <li>Descripción clara y precisa de los datos personales respecto de los que busca ejercer alguno de los derechos ARCO.</li>
+              <li>Cualquier otro elemento que facilite la localización de sus datos (por ejemplo, fecha aproximada de su consulta o número de expediente).</li>
+              <li>En caso de rectificación, adjuntar la documentación que sustente la modificación solicitada.</li>
             </ul>
           </li>
           <li>
-            <strong>Plazos Legales de Determinación y Respuesta:</strong>
-            <ul>
-              <li><strong>Plazo de Respuesta:</strong> La Responsable le comunicará la determinación adoptada en un plazo máximo e improrrogable de <strong>20 (veinte) días hábiles</strong>, contados a partir de la fecha en que se recibió formalmente su solicitud completa.</li>
-              <li><strong>Plazo de Ejecución:</strong> De resultar procedente su solicitud, la acción se hará efectiva dentro de los <strong>15 (quince) días hábiles</strong> siguientes a la fecha en que se le notifique la determinación.</li>
-              <li><strong>Prevención por información incompleta:</strong> Si su solicitud carece de algún dato esencial, se le prevendrá dentro de los 5 días hábiles siguientes para que subsane en un plazo de 10 días hábiles.</li>
-            </ul>
+            <strong>Plazos de respuesta:</strong> Conforme al Artículo 32 de la LFPDPPP, la Dra. Odette Noyola comunicará la determinación adoptada en un plazo máximo de <strong>veinte (20) días hábiles</strong> contados a partir de la fecha de recepción de la solicitud. De resultar procedente, se hará efectiva dentro de los <strong>quince (15) días hábiles</strong> siguientes.
           </li>
         </ol>
 
         <div class="legal-alert-box">
           <p>
-            <strong>Excepción Sanitaria Obligatoria para Cancelación:</strong> Conforme al numeral 5.4 de la Norma Oficial Mexicana <strong>NOM-004-SSA3-2012</strong>, existe la obligación legal y sanitaria estricta de <strong>conservar los expedientes clínicos por un periodo mínimo de 5 (cinco) años</strong> contados a partir de la fecha del último acto médico. Por disposición expresa del Artículo 26 Fracción II de la LFPDPPP, la cancelación total del expediente clínico no será procedente mientras persista dicha obligación legal de custodia sanitaria.
+            <strong>Excepción Legal de Cancelación en Materia Sanitaria:</strong> De acuerdo con el numeral 5.4 de la Norma Oficial Mexicana <strong>NOM-004-SSA3-2012</strong>, los expedientes clínicos son propiedad del médico y de la institución que los genera, y existe la obligación legal y sanitaria ineludible de <strong>conservarlos por un periodo mínimo de 5 (cinco) años</strong> contados a partir de la fecha del último acto médico. Por tal razón, la cancelación total del expediente clínico no será procedente mientras dicho plazo legal permanezca vigente.
           </p>
         </div>
       </article>
 
       <!-- Section 9 -->
       <article class="legal-card" id="revocacion">
-        <div class="legal-card-header">
-          <h2>9. Revocación del Consentimiento</h2>
-          <span class="badge-art15">Art. 8 LFPDPPP</span>
-        </div>
+        <h2>9. Revocación del Consentimiento</h2>
         <p>
-          Usted puede revocar en cualquier momento el consentimiento que nos haya otorgado para el tratamiento de sus datos personales. No obstante, le informamos que debido a las obligaciones impuestas por la legislación de salud (NOM-004-SSA3-2012) o por la necesidad de dar cumplimiento a deberes fiscales, no en todos los casos podremos concluir el uso de sus datos de forma inmediata.
+          Usted puede revocar el consentimiento que, en su caso, nos haya otorgado para el tratamiento de sus datos personales. Sin embargo, es importante que tenga en cuenta que no en todos los casos podremos atender su solicitud o concluir el uso de forma inmediata, debido a las obligaciones legales derivadas de la normativa de salud aplicable (NOM-004-SSA3-2012) o compromisos contractuales vigentes.
         </p>
         <p>
-          Para revocar su consentimiento, basta con remitir su petición al correo <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a> siguiendo los mismos requisitos previstos para las solicitudes ARCO.
+          Para conocer el procedimiento y requisitos para la revocación del consentimiento, comuníquese con nosotros a través del correo <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>.
         </p>
       </article>
 
       <!-- Section 10 -->
       <article class="legal-card" id="limitacion">
-        <div class="legal-card-header">
-          <h2>10. Opciones y Medios para Limitar el Uso o Divulgación de sus Datos</h2>
-          <span class="badge-art15">Art. 15 Fracc. III LFPDPPP</span>
-        </div>
+        <h2>10. Limitación del Uso y Divulgación de sus Datos</h2>
         <p>
-          Con el fin de que usted pueda limitar el uso y divulgación de sus datos para propósitos informativos o no asistenciales, ponemos a su disposición los siguientes mecanismos:
+          Con objeto de que usted pueda limitar el uso y divulgación de su información personal para fines no asistenciales, ponemos a su disposición nuestro listado de exclusión interno denominado <em>"Lista de Exclusión de Comunicaciones Médicas"</em>, a fin de que sus datos personales no sean tratados para fines informativos o promocionales. Para solicitar su registro, envíe un correo electrónico a <a href="mailto:contacto@draodettenoyola.com">contacto@draodettenoyola.com</a>.
         </p>
-        <ul>
-          <li><strong>Lista de Exclusión Interna de la Clínica:</strong> Registro en nuestro padrón interno de exclusión publicitaria denominado <em>"Lista de Exclusión de Comunicaciones Médicas"</em>, solicitándolo mediante correo a <a href="mailto:privacidad@draodettenoyola.com">privacidad@draodettenoyola.com</a>.</li>
-          <li><strong>Padrones Oficiales de Limitación:</strong> Inscripción en los registros de limitación publicitaria administrados por los organismos gubernamentales competentes de protección al consumidor en México.</li>
-        </ul>
       </article>
 
       <!-- Section 11 -->
       <article class="legal-card" id="cookies">
-        <div class="legal-card-header">
-          <h2>11. Cookies, Web Beacons y Tecnologías en Nuestro Sitio Web</h2>
-          <span class="badge-art15">Tecnologías de Rastreo</span>
-        </div>
+        <h2>11. Cookies y Tecnologías Web</h2>
         <p>
-          En nuestro sitio web <a href="https://draodettenoyola.com">draodettenoyola.com</a> utilizamos cookies, web beacons y tecnologías de almacenamiento local para garantizar el funcionamiento seguro del portal, permitir el agendamiento fluido de citas y compilar estadísticas de navegación:
+          Le informamos que en nuestra página de internet <a href="https://draodettenoyola.com">draodettenoyola.com</a> utilizamos cookies, web beacons y tecnologías similares con la finalidad de monitorear su comportamiento como usuario de internet, brindar un mejor servicio y experiencia al navegar, optimizar la velocidad de carga y conocer las estadísticas de acceso mediante Google Analytics.
         </p>
-        <ul>
-          <li><strong>Cookies Técnicas y Esenciales:</strong> Necesarias para la navegación, balanceo de carga, protocolos de seguridad HTTPS y retención de sesiones de usuario. Están siempre activas.</li>
-          <li><strong>Cookies Analíticas y de Rendimiento:</strong> Recopilan datos anónimos y métricas agregadas (navegador, páginas consultadas, tiempo de lectura y procedencia del tráfico) mediante Google Analytics y Google Tag Manager, con el fin de evaluar la claridad de nuestros artículos médicos. <em>En ningún caso capturan datos médicos íntimos ni información confidencial de salud.</em></li>
-        </ul>
-
-        <!-- Botón Interactivo vinculado a js/consent.js -->
-        <div class="cookie-action-banner">
-          <div>
-            <strong style="color:#0f766e;display:block;margin-bottom:4px;">Centro de Preferencias de Cookies Interactivo</strong>
-            <p>Usted tiene el control absoluto. Puede activar o desactivar las cookies analíticas de nuestro sitio en cualquier momento con un solo clic.</p>
-          </div>
-          <button type="button" class="btn-cookie-action" id="btn-cookie-settings" data-open-cookie-preferences>
-            ⚙️ Configurar Preferencias de Cookies
-          </button>
-        </div>
-
-        <p style="font-size:0.875rem;color:#64748b;margin-top:12px;">
-          También puede inhabilitar o borrar cookies directamente en los menús de privacidad de su navegador web habitual: 
-          Google Chrome, Safari, Mozilla Firefox o Microsoft Edge.
+        <p>
+          Los datos que se obtienen a través de estas tecnologías son datos estadísticos disociados y de navegación (tipo de navegador, sistema operativo, páginas visitadas y tiempo de permanencia), y en ningún caso capturan datos personales sensibles o información médica. Usted puede desactivar o borrar las cookies en cualquier momento ajustando la configuración de privacidad de su navegador web (Chrome, Safari, Firefox, Edge).
         </p>
       </article>
 
       <!-- Section 12 -->
       <article class="legal-card" id="seguridad">
-        <div class="legal-card-header">
-          <h2>12. Medidas de Seguridad y Custodia Obligatoria (5 Años)</h2>
-          <span class="badge-art15">Art. 19 LFPDPPP &amp; NOM-004-SSA3-2012</span>
-        </div>
+        <h2>12. Medidas de Seguridad y Custodia del Expediente Clínico</h2>
         <p>
-          La Dra. Odette Noyola ha implementado rigurosas medidas de seguridad administrativas, técnicas y físicas para resguardar la confidencialidad de su información:
+          La Dra. Odette Noyola ha implementado y mantiene las medidas de seguridad administrativas, técnicas y físicas requeridas por la LFPDPPP para proteger sus datos personales y su expediente clínico contra daño, pérdida, alteración, destrucción o el uso, acceso o tratamiento no autorizado.
         </p>
         <ul>
-          <li><strong>Cifrado Digital en Tránsito:</strong> Todo el tráfico en la página web se encuentra protegido mediante certificados SSL/TLS con cifrado HTTPS de alta seguridad.</li>
-          <li><strong>Seguridad del Expediente Clínico:</strong> Los expedientes físicos se custodian bajo llave en áreas restringidas del consultorio médico accesibles únicamente por personal clínico acreditado. Las plataformas digitales de respaldo emplean credenciales robustas y copias de seguridad encriptadas.</li>
-          <li><strong>Periodo de Custodia Sanitaria Legal:</strong> Conforme al marco médico mexicano (NOM-004-SSA3-2012), los expedientes clínicos se conservarán por un periodo mínimo obligatorio de <strong>5 años</strong> contados a partir del último acto médico. Transcurrido este periodo y no existiendo deber judicial o legal pendiente, la información será dada de baja o destruida de manera segura.</li>
+          <li><strong>Seguridad Digital:</strong> Uso de certificados SSL/TLS (HTTPS) con cifrado en tránsito para todas las comunicaciones web, accesos autenticados con contraseñas seguras y respaldos periódicos cifrados.</li>
+          <li><strong>Seguridad Física:</strong> Acceso restringido al archivo físico de expedientes en el consultorio, resguardado bajo llave y accesible únicamente por personal médico autorizado.</li>
+          <li><strong>Custodia Temporal Legal:</strong> Los expedientes clínicos se conservan por un plazo mínimo legal de <strong>5 años</strong> contados a partir de la fecha del último acto médico, conforme a la NOM-004-SSA3-2012. Concluido dicho periodo y no existiendo proceso legal o administrativo pendiente, se procederá a su destrucción o bloqueo definitivo mediante procedimientos seguros.</li>
         </ul>
       </article>
 
       <!-- Section 13 -->
       <article class="legal-card" id="modificaciones">
-        <div class="legal-card-header">
-          <h2>13. Procedimiento y Notificación de Cambios al Aviso</h2>
-          <span class="badge-art15">Art. 15 Fracc. VI LFPDPPP</span>
-        </div>
+        <h2>13. Modificaciones al Aviso de Privacidad</h2>
         <p>
-          El presente Aviso de Privacidad puede ser modificado, actualizado o reformado para cumplir con nuevas reformas legales, disposiciones en materia sanitaria, políticas internas o mejoras en nuestros servicios médicos.
+          El presente Aviso de Privacidad puede sufrir modificaciones, cambios o actualizaciones derivadas de nuevos requerimientos legales, de nuestras propias necesidades por los servicios médicos que ofrecemos, de nuestras prácticas de privacidad o de cambios en nuestro modelo de atención.
         </p>
         <p>
-          Cualquier modificación será notificada a las titulares a través de los siguientes canales:
+          Nos comprometemos a mantenerlo informado sobre los cambios que pueda sufrir este aviso a través de su publicación actualizada y permanente en nuestro sitio web: <a href="https://draodettenoyola.com/aviso-de-privacidad.html">https://draodettenoyola.com/aviso-de-privacidad.html</a>, indicando la fecha de última revisión.
         </p>
-        <ol>
-          <li><strong>Publicación permanente en nuestro portal web:</strong> En la sección accesible para todo público: <a href="https://draodettenoyola.com/aviso-de-privacidad.html">https://draodettenoyola.com/aviso-de-privacidad.html</a>.</li>
-          <li><strong>Avisos en el consultorio:</strong> Mediante avisos impresos visibles en la sala de espera y área de recepción médica.</li>
-          <li><strong>Fecha de versión:</strong> La indicación visible de la fecha de última actualización al calce y en el encabezado de este documento.</li>
-        </ol>
       </article>
 
       <!-- Section 14 -->
       <article class="legal-card" id="autoridad">
-        <div class="legal-card-header">
-          <h2>14. Consentimiento y Autoridad Competente</h2>
-          <span class="badge-art15">Marco Regulatorio</span>
-        </div>
+        <h2>14. Consentimiento y Autoridad Reguladora (INAI)</h2>
         <p>
-          Al acudir a consulta médica, solicitar servicios clínicos, agendar citas por nuestros medios electrónicos o firmar la hoja de historia clínica, usted declara haber tenido a la vista, leído, comprendido y aceptado íntegramente las condiciones de este <strong>Aviso de Privacidad Integral</strong>.
+          Al solicitar una consulta médica, proporcionar sus datos en consultorio, mediante medios electrónicos o firmar la hoja de consentimiento informado / historia clínica, usted confirma haber leído, comprendido y aceptado en su totalidad los términos del presente <strong>Aviso de Privacidad Integral</strong>.
         </p>
-        <div class="legal-alert-box">
-          <p>
-            <strong>Denuncia ante la Autoridad Garante:</strong> Si tras agotar los canales de atención de la Responsable usted considera que su derecho a la protección de datos personales ha sido vulnerado por alguna actuación u omisión, o detecta algún incumplimiento a las disposiciones de la LFPDPPP y su Reglamento, le informamos que tiene el derecho de acudir a presentar la queja, denuncia o inconformidad correspondiente <strong>a la institución que corresponda</strong> como órgano regulador y garante en materia de protección de datos personales en posesión de los particulares en México.
-          </p>
-        </div>
-      </article>
-
-      <!-- Section 15: Consentimiento Digital del Titular -->
-      <article class="digital-consent-card" id="consentimiento-digital">
-        <div class="legal-card-header">
-          <h2>15. Consentimiento Digital del Titular</h2>
-          <span class="badge-art15" style="background:#dcfce7;color:#15803d;">Aceptación en Línea</span>
-        </div>
-        <p style="font-size:0.95rem;color:#1f2937;line-height:1.6;">
-          En cumplimiento con los Artículos 8° y 9° de la <strong>LFPDPPP</strong> y el estándar normativo de la <strong>NOM-004-SSA3-2012</strong>, usted puede manifestar su consentimiento expreso de manera digital para el tratamiento confidencial de sus datos personales y sensibles de salud:
+        <p>
+          Si usted considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión de nuestra parte, o presume alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás ordenamientos aplicables, le informamos que puede interponer la queja o denuncia correspondiente ante el <strong>Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI)</strong>. Para mayor información, puede consultar el portal oficial en <a href="https://home.inai.org.mx/" target="_blank" rel="noopener noreferrer">home.inai.org.mx</a>.
         </p>
-        <blockquote style="margin:16px 0;padding:16px 20px;background:#ffffff;border-left:4px solid #16a34a;border-radius:8px;font-size:0.92rem;color:#1e293b;line-height:1.6;border-top:1px solid #dcfce7;border-right:1px solid #dcfce7;border-bottom:1px solid #dcfce7;">
-          "Otorgo mi <strong>consentimiento expreso y digital</strong> para que la <strong>Dra. Giselle Odette Noyola Landázuri</strong> trate mis datos personales y mis <strong>datos personales sensibles de salud</strong> conforme a las finalidades primarias descritas en el presente Aviso de Privacidad Integral y para la debida integración de mi expediente clínico."
-        </blockquote>
-
-        <div class="consent-check-container">
-          <label class="consent-checkbox-label" for="check-legal-consent">
-            <input type="checkbox" id="check-legal-consent">
-            <span>
-              <strong>He leído, comprendido y acepto íntegramente este Aviso de Privacidad Integral.</strong> Autorizo el tratamiento ético y confidencial de mis datos personales y de salud para fines de diagnóstico, atención médica y expediente clínico conforme a la NOM-004-SSA3-2012.
-            </span>
-          </label>
-        </div>
-
-        <div class="consent-action-row">
-          <button type="button" class="btn-consent-submit" id="btn-confirm-legal-consent" disabled>
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
-            <span>Confirmar Consentimiento Digital</span>
-          </button>
-          <div id="consent-status-badge" class="consent-confirmed-badge" style="display:none;" aria-live="polite">
-            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-            <span id="consent-status-text">Consentimiento digital registrado correctamente</span>
-          </div>
-        </div>
       </article>
 
     </div>
@@ -1207,7 +693,7 @@
        FLOATING CTA BUTTON
        ═══════════════════════════════════════════════════════════════════ -->
   <div class="floating-cta" aria-label="Contacto rápido por WhatsApp">
-    <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita" class="floating-cta__btn floating-cta__whatsapp" target="_blank" rel="noopener" aria-label="¡Agenda tu cita! por WhatsApp" id="floating-whatsapp">
+    <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita" class="floating-cta__btn floating-cta__whatsapp" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" id="floating-whatsapp">
       <span class="floating-cta__whatsapp-expand">¡Agenda tu cita!</span>
       <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.486a.5.5 0 00.61.61l4.452-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.38-1.573.5.5 0 00-.39-.058l-3.124 1.049 1.049-3.124a.5.5 0 00-.058-.39A9.94 9.94 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
     </a>
@@ -1215,68 +701,5 @@
 
   <!-- Scripts -->
   <script src="js/main.js?v=5.0" defer></script>
-  <script src="js/whatsapp-schedule.js?v=1.0" defer></script>
-  <script src="js/consent.js?v=1.0" defer></script>
-  <script src="js/analytics.js?v=1.0" defer></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      var chkConsent = document.getElementById('check-legal-consent');
-      var btnConsent = document.getElementById('btn-confirm-legal-consent');
-      var badgeConsent = document.getElementById('consent-status-badge');
-      var textConsent = document.getElementById('consent-status-text');
-
-      var STORAGE_KEY = 'dra_odette_digital_privacy_accepted';
-
-      // Verificar si ya fue previamente aceptado en este navegador
-      try {
-        var savedConsent = localStorage.getItem(STORAGE_KEY);
-        if (savedConsent) {
-          var parsed = JSON.parse(savedConsent);
-          if (chkConsent) {
-            chkConsent.checked = true;
-            chkConsent.disabled = true;
-          }
-          if (btnConsent) {
-            btnConsent.style.display = 'none';
-          }
-          if (badgeConsent && textConsent) {
-            badgeConsent.style.display = 'inline-flex';
-            var fecha = parsed.date ? new Date(parsed.date).toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Registrado';
-            textConsent.textContent = 'Consentimiento digital aceptado y registrado (' + fecha + ')';
-          }
-        }
-      } catch (e) {}
-
-      if (chkConsent && btnConsent) {
-        chkConsent.addEventListener('change', function () {
-          btnConsent.disabled = !chkConsent.checked;
-        });
-
-        btnConsent.addEventListener('click', function () {
-          if (!chkConsent.checked) return;
-
-          var record = {
-            accepted: true,
-            date: new Date().toISOString(),
-            version: '2026-09-integral'
-          };
-
-          try {
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(record));
-          } catch (e) {}
-
-          chkConsent.disabled = true;
-          btnConsent.style.display = 'none';
-
-          if (badgeConsent && textConsent) {
-            badgeConsent.style.display = 'inline-flex';
-            var now = new Date().toLocaleDateString('es-MX', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-            textConsent.textContent = 'Consentimiento digital confirmado con éxito (' + now + ')';
-          }
-        });
-      }
-    });
-  </script>
 </body>
 </html>

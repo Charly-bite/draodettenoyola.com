@@ -127,14 +127,14 @@ a {
 }
 
 .btn-whatsapp {
-  background-color: #0b8043;
+  background-color: var(--color-whatsapp);
   color: var(--color-white);
-  box-shadow: 0 4px 14px rgba(11, 128, 67, 0.3);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
 }
 
 .btn-whatsapp:hover {
-  background-color: #096836;
-  box-shadow: 0 6px 18px rgba(11, 128, 67, 0.38);
+  background-color: var(--color-whatsapp-hover);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.38);
   transform: translateY(-2px);
 }
 
@@ -235,14 +235,12 @@ a {
 
 .badge-teal {
   background-color: var(--color-teal-100);
-  color: #0f766e;
-  font-weight: 700;
+  color: var(--color-teal-700);
 }
 
 .badge-rose {
   background-color: var(--color-rose-100);
-  color: #9f1239;
-  font-weight: 700;
+  color: var(--color-rose-700);
 }
 
 .badge-gold {
@@ -273,14 +271,12 @@ a {
 
 .reveal {
   opacity: 0;
-  visibility: hidden;
   transform: translateY(24px);
-  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out), visibility 0.6s var(--ease-out);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
 }
 
 .reveal.revealed {
   opacity: 1;
-  visibility: visible;
   transform: translateY(0);
 }
 

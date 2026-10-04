@@ -222,11 +222,9 @@ function initStaggerAnimations() {
     children.forEach((child, index) => {
       if (prefersReducedMotion) {
         child.style.opacity = '1';
-        child.style.visibility = 'visible';
         child.style.transform = 'none';
       } else {
         setTimeout(() => {
-          child.style.visibility = 'visible';
           child.style.opacity = '1';
           child.style.transform = 'translateY(0)';
         }, index * delay);
@@ -252,9 +250,8 @@ function initStaggerAnimations() {
     children.forEach(child => {
       if (!prefersReducedMotion) {
         child.style.opacity = '0';
-        child.style.visibility = 'hidden';
         child.style.transform = 'translateY(20px)';
-        child.style.transition = 'opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), transform 0.6s cubic-bezier(0.33, 1, 0.68, 1), visibility 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
+        child.style.transition = 'opacity 0.6s cubic-bezier(0.33, 1, 0.68, 1), transform 0.6s cubic-bezier(0.33, 1, 0.68, 1)';
       }
     });
     observer.observe(container);

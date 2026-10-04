@@ -229,7 +229,6 @@
 
   .navbar__links .btn {
     margin-left: var(--space-3);
-    color: var(--color-white) !important;
   }
 
   .navbar__hamburger,
