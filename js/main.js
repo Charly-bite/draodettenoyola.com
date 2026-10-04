@@ -29,6 +29,7 @@ function initNavbar() {
     drawer.classList.toggle('open');
     overlay.classList.toggle('visible');
     hamburger.classList.toggle('active');
+    hamburger.setAttribute('aria-expanded', (!isOpen).toString());
     document.body.style.overflow = isOpen ? '' : 'hidden';
   }
 
@@ -36,6 +37,7 @@ function initNavbar() {
     drawer.classList.remove('open');
     overlay.classList.remove('visible');
     hamburger.classList.remove('active');
+    hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 

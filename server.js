@@ -21,6 +21,14 @@ process.on('unhandledRejection', (reason) => {
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
+// ─── Security headers ───
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'SAMEORIGIN');
+  res.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
+  next();
+});
+
 // ─── SEO: Canonical www → non-www redirect ───
 app.use((req, res, next) => {
   const host = req.headers.host;
@@ -54,11 +62,13 @@ const authRoutes = require('./api/auth');
 const contentRoutes = require('./api/content');
 const blogRoutes = require('./api/blog');
 const contactRoutes = require('./api/contact');
+const consentRoutes = require('./api/consent');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/consent', consentRoutes);
 
 // ─── Admin Panel (served from /admin) ───
 app.use('/admin', express.static(path.join(__dirname, 'admin'), {
@@ -107,6 +117,16 @@ app.use(express.static(__dirname, {
 // ─── Fallback: SPA admin routes ───
 app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
+// ─── 404 Custom Handler ───
+app.use((req, res) => {
+  const notFoundPath = path.join(__dirname, '404.html');
+  if (fs.existsSync(notFoundPath)) {
+    res.status(404).sendFile(notFoundPath);
+  } else {
+    res.status(404).send('Página no encontrada / 404 Not Found');
+  }
 });
 
 // ─── Start ───

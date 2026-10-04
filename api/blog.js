@@ -330,6 +330,15 @@ function getDefaultTemplate() {
   return `<!DOCTYPE html>
 <html lang="es-MX">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT9E760LFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-KT9E760LFF');
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{title}} | Dra. Odette Noyola</title>
@@ -341,6 +350,46 @@ function getDefaultTemplate() {
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{metaDescription}}">
   <meta property="og:image" content="{{coverImage}}">
+  <meta property="og:url" content="https://draodettenoyola.com/blog/{{slug}}.html">
+  <meta property="og:locale" content="es_MX">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{title}} | Dra. Odette Noyola">
+  <meta name="twitter:description" content="{{metaDescription}}">
+  <meta name="twitter:image" content="{{coverImage}}">
+
+  <!-- Schema.org Article JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": ["MedicalWebPage", "BlogPosting"],
+    "headline": "{{title}}",
+    "description": "{{metaDescription}}",
+    "image": "{{coverImage}}",
+    "datePublished": "{{publishDate}}",
+    "dateModified": "{{publishDate}}",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://draodettenoyola.com/blog/{{slug}}.html"
+    },
+    "author": {
+      "@type": "Physician",
+      "name": "Dra. Odette Noyola Landázuri",
+      "medicalSpecialty": ["ObstetricsAndGynecology", "MaternalFetalMedicine"],
+      "url": "https://draodettenoyola.com/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Dra. Odette Noyola Landázuri",
+      "url": "https://draodettenoyola.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://draodettenoyola.com/img/logo.jpg"
+      }
+    }
+  }
+  </script>
   <link rel="icon" type="image/svg+xml" href="../img/favicon.svg?v=3.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
