@@ -648,35 +648,18 @@ Párrafo de texto con **negrita** y *cursiva*.
         <div class="page__header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div>
             <h1 class="page__title">🚀 Centro de Mando SEO / GEO & Contenido Clínico</h1>
-            <p class="page__subtitle">Posicionamiento orgánico en Guadalajara/Zapopan, Sitemap automático y Plantillas Clínicas</p>
+            <p class="page__subtitle">Posicionamiento orgánico en Guadalajara/Zapopan, Copiloto LLM en Vivo y Sitemap automático</p>
           </div>
           <div style="display:flex; gap:0.75rem;">
             <button type="button" class="btn btn--primary btn--sm" onclick="Admin.rebuildSitemap()">🔄 Regenerar Sitemap.xml y Sincronizar GitHub</button>
           </div>
         </div>
 
-        <div class="dashboard-grid" style="grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: start;">
-          <div class="card">
-            <h3 class="card__title">Estado de Indexación, Schema.org y Páginas Clave</h3>
-            <div id="seo-pages-audit" class="card__body">
-              <p class="text-muted text-sm">Auditando páginas...</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <h3 class="card__title">Plantillas Clínicas de Alto Tráfico (1 Clic)</h3>
-            <p class="text-muted text-sm" style="margin-bottom:1rem;">Inicia un nuevo artículo optimizado para Google y asistentes IA con estructura médica lista:</p>
-            <div id="seo-templates-list" class="card__body">
-              <p class="text-muted text-sm">Cargando plantillas...</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Live LLM Content Studio inside SEO Command Center -->
-        <div class="card" style="margin-top:1.5rem;">
+        <!-- Live LLM Content Studio inside SEO Command Center (Top Priority) -->
+        <div class="card" style="margin-bottom:1.5rem; border:1px solid rgba(20,168,161,0.45); background:linear-gradient(145deg, rgba(20,168,161,0.08), rgba(11,24,39,0.95));">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.85rem;">
             <div>
-              <h3 class="card__title" style="margin-bottom:0.2rem;">🤖 Copiloto Clínico LLM en Vivo — Generación y Revisión de los 4 Artículos Pilar</h3>
+              <h3 class="card__title" style="margin-bottom:0.2rem; color:var(--admin-teal);">🤖 Copiloto Clínico LLM en Vivo — Generación y Revisión de los 4 Artículos Pilar</h3>
               <p class="text-muted text-sm">Selecciona cualquiera de los artículos publicados o escribe una instrucción para que nuestro LLM te guíe en vivo, audite el SEO o redacte nuevas secciones</p>
             </div>
             <span id="seo-copilot-engine" class="blog-item__status blog-item__status--published">Groq Llama-3.3-70B / Ollama Activo</span>
@@ -702,6 +685,23 @@ Párrafo de texto con **negrita** y *cursiva*.
               <button type="button" class="btn btn--primary btn--sm" onclick="Admin.openPostFromCopilot()">📝 Abrir este Artículo en el Editor</button>
             </div>
             <pre id="seo-copilot-result-text" style="white-space:pre-wrap; font-family:inherit; font-size:0.85rem; line-height:1.6; max-height:360px; overflow-y:auto; color:var(--admin-text); margin:0;"></pre>
+          </div>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: start;">
+          <div class="card">
+            <h3 class="card__title">Estado de Indexación, Schema.org y Páginas Clave</h3>
+            <div id="seo-pages-audit" class="card__body">
+              <p class="text-muted text-sm">Auditando páginas...</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card__title">Plantillas Clínicas de Alto Tráfico (1 Clic)</h3>
+            <p class="text-muted text-sm" style="margin-bottom:1rem;">Inicia un nuevo artículo optimizado para Google y asistentes IA con estructura médica lista:</p>
+            <div id="seo-templates-list" class="card__body">
+              <p class="text-muted text-sm">Cargando plantillas...</p>
+            </div>
           </div>
         </div>
       </section>
