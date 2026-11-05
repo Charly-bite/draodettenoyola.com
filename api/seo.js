@@ -164,6 +164,169 @@ router.post('/rebuild-sitemap', requireAuth, async (req, res) => {
   });
 });
 
+// ══════════════════════════════════════════════════════════════════════════
+//  COPILOTO CLÍNICO IA EN VIVO (Generación y Revisión de Contenido SEO/GEO)
+//  Usa Groq Llama-3.3-70B + Fallback Ollama Local (192.168.2.222:11434)
+// ══════════════════════════════════════════════════════════════════════════
+
+const CLINICAL_COPILOT_SYSTEM = `Eres el Copiloto Editorial Médico y Especialista SEO/GEO de la Dra. Giselle Odette Noyola Landázuri (Especialista Certificada en Ginecología, Obstetricia y Medicina Materno Fetal en Guadalajara / Zapopan, Jalisco).
+Tu objetivo es ayudar a la Dra. Odette en vivo a redactar, revisar, enriquecer y auditar sus artículos del blog médico y páginas del sitio web para atraer más pacientes en Guadalajara y aparecer #1 en Google y asistentes de IA (ChatGPT, Gemini, Perplexity).
+
+DATOS OFICIALES DEL CONSULTORIO (Úsalos siempre con precisión):
+- Ubicación: Av. Niño Obrero 1538, Col. Chapalita Oriente, C.P. 45040, Guadalajara / Zapopan, Jalisco (a 2 min de Glorieta Chapalita, cuenta con estacionamiento).
+- WhatsApp y Citas: 33 2790 5726.
+- Horario: Lunes a Viernes 9:00 a 20:00 hrs | Sábados 9:00 a 14:00 hrs.
+- Precios Oficiales (MXN):
+  • Chequeo Ginecológico Completo Anual: $1,200 MXN (incluye consulta, exploración mamaria, Papanicolaou, colposcopía, vaginoscopía y ultrasonido ginecológico en tiempo real).
+  • Consulta Ginecológica / Control Prenatal: $800 MXN (SOP, miomas, ciclo menstrual, infecciones, anticonceptivos DIU Mirena/Kyleena/implante).
+  • Ultrasonido Estructural 2do Trimestre (Sem 18-24): $1,700 MXN (Equipo GE Voluson HD Live).
+  • Tamizaje Genético 1er Trimestre (Sem 11-13.6): $1,700 MXN.
+  • Ultrasonido 3er Trimestre / Crecimiento y Doppler (Sem 28+): $1,500 MXN.
+- Aseguradoras en convenio: GNP, MetLife, AXA, Allianz, Seguros Monterrey New York Life, Mapfre, Banorte.
+
+REGLAS DE ESTILO:
+- Tono cálido, empático, ético (apego a COFEPRIS / NOM-004-SSA3-2012), claro para las pacientes y con alto rigor médico (E-E-A-T).
+- Usa formato Markdown limpio con subtítulos H2 (##) y H3 (###), listas con viñetas, negritas estratégicas y sección de Preguntas Frecuentes (FAQ) cuando redactes o mejores un artículo.`;
+
+async function callClinicalLlm(messages, maxTokens = 1800) {
+  const fetchFn = global.fetch;
+  const groqKey = process.env.GROQ_API_KEY || '';
+
+  if (fetchFn) {
+    if (groqKey) {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 18000);
+        const res = await fetchFn('https://api.groq.com/openai/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${groqKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: 'llama-3.3-70b-versatile',
+            messages,
+            temperature: 0.4,
+            max_tokens: maxTokens
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timer);
+        if (res.ok) {
+          const data = await res.json();
+          const reply = data.choices?.[0]?.message?.content;
+          if (reply && reply.trim()) {
+            return { text: reply.trim(), engine: 'Groq Llama-3.3-70B Clínico' };
+          }
+        }
+      } catch (_) {}
+    }
+
+    // Delegar al motor clínico WAOS en desarrollo (:6006) si está accesible
+    const waosNodes = ['http://192.168.2.218:6006', 'http://100.77.199.69:6006'];
+    for (const base of waosNodes) {
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 16000);
+        const res = await fetchFn(`${base}/api/odette/copilot`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ messages, maxTokens }),
+          signal: controller.signal
+        });
+        clearTimeout(timer);
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.reply) {
+            return { text: data.reply, engine: data.engine || 'Motor LLM Clínico (WAOS :6006)' };
+          }
+        }
+      } catch (_) {}
+    }
+
+    // Fallback a Ollama local en office-pc
+    try {
+      const ollamaUrl = process.env.OLLAMA_URL || 'http://127.0.0.1:11434';
+      const res = await fetchFn(`${ollamaUrl}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: process.env.OLLAMA_MODEL || 'huihui_ai/qwen3-abliterated:30b-a3b-instruct-2507-q4_K_M',
+          messages,
+          stream: false
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        if (data?.message?.content) {
+          return { text: data.message.content.trim(), engine: 'Ollama Local Qwen3-30B' };
+        }
+      }
+    } catch (_) {}
+  }
+
+  return {
+    text: 'No se pudo conectar temporalmente con el motor LLM. Intenta nuevamente en unos segundos.',
+    engine: 'Offline Fallback'
+  };
+}
+
+// POST /api/seo/ai-assistant — Guía en vivo para generación, revisión y auditoría de artículos
+router.post('/ai-assistant', requireAuth, async (req, res) => {
+  try {
+    const { mode = 'review', title = '', content = '', excerpt = '', instruction = '', tags = '' } = req.body || {};
+
+    let userPrompt = '';
+    if (mode === 'review') {
+      userPrompt = `Analiza y revisa el siguiente artículo médico de la Dra. Odette Noyola y entrégame una guía práctica en vivo con:
+1. **Puntuación SEO/GEO estimada (0-100)** y diagnóstico rápido de E-E-A-T médico.
+2. **3 Mejoras concretas** para atraer más pacientes en Guadalajara/Zapopan (palabras clave locales, claridad de precios, llamado a la acción).
+3. **Sugerencia de Meta Description optimizada** (máximo 155 caracteres) y **3 Preguntas Frecuentes (FAQ)** listas para copiar al final del artículo.
+
+TÍTULO ACTUAL: ${title || '(Sin título)'}
+EXTRACTO: ${excerpt || '(Sin extracto)'}
+TAGS: ${tags || '(Sin tags)'}
+CONTENIDO ACTUAL:
+${content || '(Aún sin contenido)'}`;
+    } else if (mode === 'improve' || mode === 'expand') {
+      userPrompt = `Reescribe, enriquece y perfecciona el siguiente artículo clínico de la Dra. Odette Noyola aplicando las mejores prácticas de SEO Médico Local en Guadalajara y GEO (respuesta directa en el primer párrafo, subtítulos H2/H3 claros, precios transparentes cuando aplique, sección de 3 Preguntas Frecuentes y llamado a la acción cálido hacia WhatsApp 33 2790 5726 en Chapalita Oriente).
+${instruction ? `\nINSTRUCCIÓN ESPECIAL DE LA DOCTORA: ${instruction}\n` : ''}
+Devuelve ÚNICAMENTE el artículo completo en formato Markdown listo para publicarse (sin comentarios introductorios fuera del artículo).
+
+TÍTULO: ${title}
+BORRADOR ACTUAL:
+${content}`;
+    } else if (mode === 'draft') {
+      userPrompt = `Redacta un artículo médico pilar completo, cálido, empático y optimizado para SEO/GEO en Guadalajara para el blog de la Dra. Odette Noyola.
+TEMA / TÍTULO: ${title || instruction || 'Salud Ginecológica y Prenatal en Guadalajara'}
+INSTRUCCIONES ADICIONALES: ${instruction || 'Incluir síntomas, cómo se realiza el diagnóstico en el consultorio de Chapalita Oriente, preguntas frecuentes (FAQ) y llamado a agendar por WhatsApp al 33 2790 5726.'}
+
+Devuelve ÚNICAMENTE el artículo en formato Markdown listo para pegar en el editor.`;
+    } else {
+      userPrompt = `Contexto del artículo actual:
+Título: ${title || '(Ninguno seleccionado)'}
+Contenido: ${(content || '').slice(0, 2500)}
+
+Solicitud de la Dra. Odette:
+${instruction || 'Dame recomendaciones para mejorar este artículo y atraer más pacientes.'}`;
+    }
+
+    const result = await callClinicalLlm([
+      { role: 'system', content: CLINICAL_COPILOT_SYSTEM },
+      { role: 'user', content: userPrompt }
+    ]);
+
+    res.json({
+      ok: true,
+      mode,
+      engine: result.engine,
+      reply: result.text
+    });
+  } catch (err) {
+    res.status(500).json({ ok: false, error: err.message });
+  }
+});
+
 module.exports = {
   router,
   regenerateSitemap,

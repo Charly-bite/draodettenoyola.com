@@ -624,58 +624,6 @@
       </div>
     </div>
 
-    <!-- Interactive 3-Click Clinical Pre-Triage & Quote Widget -->
-    <div class="reveal" id="cotizador-rapido" style="max-width: 980px; margin: 2.5rem auto 0; background: linear-gradient(145deg, rgba(13,122,117,0.12), rgba(11,24,39,0.92)); border: 1px solid rgba(20,168,161,0.35); border-radius: 20px; padding: 1.75rem 1.5rem; box-shadow: 0 18px 42px rgba(0,0,0,0.22);">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem;">
-        <div>
-          <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#14A8A1;">⚡ Pre-Cita y Cotizador en 3 Clics</span>
-          <h3 style="font-size:1.35rem; font-weight:800; margin-top:0.2rem; color:#ffffff;">¿Qué estudio o consulta necesitas hoy?</h3>
-        </div>
-        <div id="triage-price-badge" style="background:rgba(20,168,161,0.18); border:1px solid rgba(20,168,161,0.4); color:#2dd4bf; padding:0.45rem 0.9rem; border-radius:999px; font-weight:700; font-size:0.88rem;">
-          $1,200 MXN · Incluye Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido
-        </div>
-      </div>
-      <form id="clinical-triage-form" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap:0.85rem; align-items:end;">
-        <div>
-          <label for="triage-service" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">1. Estudio o Consulta</label>
-          <select id="triage-service" class="form-select" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
-            <option value="Chequeo Ginecológico Completo ($1,200 MXN)">Chequeo Ginecológico Completo ($1,200 MXN)</option>
-            <option value="Consulta Ginecológica / Control Prenatal ($800 MXN)">Consulta Ginecológica / Control Prenatal ($800 MXN)</option>
-            <option value="Ultrasonido Estructural 2do Trimestre ($1,700 MXN)">Ultrasonido Estructural Sem 18-24 ($1,700 MXN)</option>
-            <option value="Tamizaje Genético 1er Trimestre ($1,700 MXN)">Tamizaje Genético Sem 11-13.6 ($1,700 MXN)</option>
-            <option value="Ultrasonido 3er Trimestre / Doppler ($1,500 MXN)">Ultrasonido 3er Trimestre Sem 28+ ($1,500 MXN)</option>
-          </select>
-        </div>
-        <div>
-          <label for="triage-context" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">2. Motivo o Semanas</label>
-          <select id="triage-context" class="form-select" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
-            <option value="Revisión anual preventiva">Revisión anual preventiva</option>
-            <option value="Embarazo (1er Trimestre: Sem 1 a 13)">Embarazo (1er Trimestre: Sem 1–13)</option>
-            <option value="Embarazo (2do Trimestre: Sem 14 a 27)">Embarazo (2do Trimestre: Sem 14–27)</option>
-            <option value="Embarazo (3er Trimestre: Sem 28+)">Embarazo (3er Trimestre: Sem 28+)</option>
-            <option value="SOP / Ciclo menstrual / Miomas / Infección">SOP / Ciclo menstrual / Miomas / Infección</option>
-            <option value="Anticonceptivos (DIU Mirena / Implante)">Anticonceptivos (DIU Mirena / Implante)</option>
-          </select>
-        </div>
-        <div>
-          <label for="triage-insurance" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">3. Modalidad / Seguro</label>
-          <select id="triage-insurance" class="form-select" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
-            <option value="Particular (Pago en consultorio)">Particular (Efectivo / Tarjeta / Transferencia)</option>
-            <option value="Seguro GNP / MetLife / AXA / Allianz">Con Seguro (GNP, MetLife, AXA, Allianz, Mapfre)</option>
-            <option value="Requiero Factura Fiscal CFDI">Particular + Factura Fiscal para Reembolso</option>
-          </select>
-        </div>
-        <div>
-          <label for="triage-name" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">Tu Nombre (Opcional)</label>
-          <input type="text" id="triage-name" placeholder="Ej. Ana Sofía" class="form-input" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
-        </div>
-        <div>
-          <button type="submit" id="triage-submit-btn" class="btn btn-whatsapp" style="width:100%; justify-content:center; padding:0.72rem 1rem; border-radius:10px; font-weight:700;">
-            📲 Agendar Cita
-          </button>
-        </div>
-      </form>
-    </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════════════════

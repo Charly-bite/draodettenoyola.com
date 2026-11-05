@@ -442,6 +442,35 @@
             </div>
 
             <div class="form-group">
+              <div style="background:linear-gradient(145deg, rgba(20,168,161,0.12), rgba(11,24,39,0.95)); border:1px solid rgba(20,168,161,0.4); border-radius:12px; padding:1rem; margin-bottom:1rem;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.65rem;">
+                  <div>
+                    <strong style="color:var(--admin-teal); font-size:0.95rem;">🤖 Copiloto Clínico IA en Vivo (LLM SEO / GEO)</strong>
+                    <p class="text-muted text-sm" style="margin:0.15rem 0 0;">Revisa, audita o genera contenido médico optimizado para Guadalajara en tiempo real</p>
+                  </div>
+                  <div style="display:flex; gap:0.45rem; flex-wrap:wrap;">
+                    <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.runBlogAi('review')">🔍 Auditar y Revisar Artículo</button>
+                    <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.runBlogAi('improve')">✨ Enriquecer SEO + Agregar FAQs</button>
+                    <button type="button" class="btn btn--primary btn--sm" onclick="Admin.runBlogAi('draft')">✍️ Redactar Borrador desde Título</button>
+                  </div>
+                </div>
+                <div style="display:flex; gap:0.5rem;">
+                  <input type="text" id="blog-ai-instruction" placeholder="Instrucción libre para el LLM (ej. 'Agrega una sección sobre signos de alarma y menciona el precio del Chequeo $1,200')..." style="flex:1; padding:0.55rem 0.8rem; border-radius:8px; border:1px solid var(--admin-border); background:var(--admin-bg); color:var(--admin-text); font-size:0.85rem;">
+                  <button type="button" class="btn btn--primary btn--sm" onclick="Admin.runBlogAi('chat')">Preguntar a la IA</button>
+                </div>
+                <div id="blog-ai-output-box" hidden style="margin-top:0.85rem; padding:0.9rem; background:var(--admin-bg); border:1px solid var(--admin-border); border-radius:10px;">
+                  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                    <span id="blog-ai-engine-badge" style="font-size:0.75rem; color:var(--admin-teal); font-weight:700;">Motor LLM Clínico</span>
+                    <div style="display:flex; gap:0.4rem;">
+                      <button type="button" class="btn btn--primary btn--sm" onclick="Admin.applyAiToBlog('replace')">📥 Reemplazar Contenido</button>
+                      <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.applyAiToBlog('append')">➕ Insertar al Final</button>
+                      <button type="button" class="btn btn--ghost btn--sm" onclick="document.getElementById('blog-ai-output-box').hidden=true">Cerrar</button>
+                    </div>
+                  </div>
+                  <pre id="blog-ai-output-text" style="white-space:pre-wrap; font-family:inherit; font-size:0.84rem; line-height:1.55; max-height:320px; overflow-y:auto; color:var(--admin-text); margin:0;"></pre>
+                </div>
+              </div>
+
               <label>Contenido (Markdown)</label>
               <div class="editor-tabs">
                 <button type="button" class="editor-tab active" data-tab="write">Escribir</button>
@@ -540,7 +569,7 @@ Párrafo de texto con **negrita** y *cursiva*.
         <div class="page__header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div>
             <h1 class="page__title">🔥 Mapa de Calor de Clics y Atención</h1>
-            <p class="page__subtitle">Telemetría térmica Zero-PII en vivo (Sincronizado también con <code>office-pc:8003/heatmaps</code>)</p>
+            <p class="page__subtitle">Telemetría térmica Zero-PII en vivo · <a href="http://100.89.1.27:8003/heatmaps-odette" target="_blank" style="color:var(--admin-teal); font-weight:600; text-decoration:underline;">Abrir Estudio Térmico Independiente Dra. Odette (:8003/heatmaps-odette) ↗</a></p>
           </div>
           <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
             <select id="hm-page-select" class="canvas-select" onchange="Admin.loadHeatmap()">
@@ -640,6 +669,39 @@ Párrafo de texto con **negrita** y *cursiva*.
             <div id="seo-templates-list" class="card__body">
               <p class="text-muted text-sm">Cargando plantillas...</p>
             </div>
+          </div>
+        </div>
+
+        <!-- Live LLM Content Studio inside SEO Command Center -->
+        <div class="card" style="margin-top:1.5rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:0.85rem;">
+            <div>
+              <h3 class="card__title" style="margin-bottom:0.2rem;">🤖 Copiloto Clínico LLM en Vivo — Generación y Revisión de los 4 Artículos Pilar</h3>
+              <p class="text-muted text-sm">Selecciona cualquiera de los artículos publicados o escribe una instrucción para que nuestro LLM te guíe en vivo, audite el SEO o redacte nuevas secciones</p>
+            </div>
+            <span id="seo-copilot-engine" class="blog-item__status blog-item__status--published">Groq Llama-3.3-70B / Ollama Activo</span>
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr auto auto; gap:0.65rem; margin-bottom:0.85rem;">
+            <select id="seo-copilot-post-select" class="canvas-select" style="width:100%;">
+              <option value="sindrome-ovario-poliquistico-sop-tratamiento-guadalajara">1. Síndrome de Ovario Poliquístico (SOP) en Guadalajara</option>
+              <option value="colposcopia-y-papanicolaou-deteccion-vph-guadalajara">2. Colposcopía y Papanicolaou: Detección de VPH</option>
+              <option value="miomas-uterinos-y-sangrado-anormal-especialista-guadalajara">3. Miomas Uterinos y Sangrado Anormal: Diagnóstico Conservador</option>
+              <option value="metodos-anticonceptivos-diu-mirena-implante-guadalajara">4. Métodos Anticonceptivos: DIU Mirena, Kyleena e Implante</option>
+              <option value="ginecologa-en-guadalajara-chequeo-integral">5. Ginecóloga en Guadalajara: Guía de Chequeo Integral</option>
+              <option value="cuando-hacer-ultrasonido-estructural">6. ¿Cuándo realizar el Ultrasonido Estructural?</option>
+              <option value="tamizaje-genetico-primer-trimestre-guadalajara">7. Tamizaje Genético de Primer Trimestre</option>
+              <option value="signos-alarma-embarazo-alto-riesgo">8. Signos de Alarma en el Embarazo de Alto Riesgo</option>
+            </select>
+            <input type="text" id="seo-copilot-prompt" placeholder="Ej. 'Revisa qué preguntas frecuentes le faltan para posicionar mejor en Guadalajara'..." style="padding:0.55rem 0.85rem; border-radius:8px; border:1px solid var(--admin-border); background:var(--admin-bg); color:var(--admin-text);">
+            <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.runSeoCopilot('review')">🔍 Auditar Artículo</button>
+            <button type="button" class="btn btn--primary btn--sm" onclick="Admin.runSeoCopilot('improve')">✨ Mejorar con IA y Abrir Editor</button>
+          </div>
+          <div id="seo-copilot-result-box" hidden style="padding:1rem; background:var(--admin-surface-2); border:1px solid var(--admin-border); border-radius:10px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+              <strong style="color:var(--admin-teal); font-size:0.88rem;">Respuesta del Copiloto Clínico LLM:</strong>
+              <button type="button" class="btn btn--primary btn--sm" onclick="Admin.openPostFromCopilot()">📝 Abrir este Artículo en el Editor</button>
+            </div>
+            <pre id="seo-copilot-result-text" style="white-space:pre-wrap; font-family:inherit; font-size:0.85rem; line-height:1.6; max-height:360px; overflow-y:auto; color:var(--admin-text); margin:0;"></pre>
           </div>
         </div>
       </section>

@@ -1568,6 +1568,108 @@ const Admin = (() => {
     }
   }
 
+  // ─── Live Clinical LLM Copilot (Blog Editor & SEO Command Center) ───
+  async function runBlogAi(mode = 'review') {
+    const title = document.getElementById('blog-title')?.value || '';
+    const excerpt = document.getElementById('blog-excerpt')?.value || '';
+    const tags = document.getElementById('blog-tags')?.value || '';
+    const content = document.getElementById('blog-content')?.value || '';
+    const instruction = document.getElementById('blog-ai-instruction')?.value || '';
+
+    const outBox = document.getElementById('blog-ai-output-box');
+    const outText = document.getElementById('blog-ai-output-text');
+    const badge = document.getElementById('blog-ai-engine-badge');
+    if (outBox && outText) {
+      outBox.hidden = false;
+      outText.textContent = '⏳ Consultando a nuestro motor LLM Clínico en vivo...';
+    }
+
+    const res = await apiFetch('/seo/ai-assistant', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ mode, title, excerpt, tags, content, instruction })
+    });
+
+    if (res && res.ok) {
+      if (badge) badge.textContent = `🤖 ${res.engine || 'LLM Clínico'}`;
+      if (outText) outText.textContent = res.reply;
+      window._lastBlogAiReply = res.reply;
+      toast('Análisis / Redacción IA completada', 'success');
+    } else if (outText) {
+      outText.textContent = 'No se pudo obtener respuesta del motor IA en este momento.';
+    }
+  }
+
+  function applyAiToBlog(action = 'replace') {
+    const reply = window._lastBlogAiReply || document.getElementById('blog-ai-output-text')?.textContent || '';
+    const textarea = document.getElementById('blog-content');
+    if (!textarea || !reply) return;
+    if (action === 'replace') {
+      textarea.value = reply;
+      toast('Contenido reemplazado con la versión del Copiloto IA', 'success');
+    } else {
+      textarea.value = (textarea.value ? textarea.value + '\n\n' : '') + reply;
+      toast('Sección insertada al final del artículo', 'success');
+    }
+  }
+
+  async function runSeoCopilot(mode = 'review') {
+    const slug = document.getElementById('seo-copilot-post-select')?.value || '';
+    const instruction = document.getElementById('seo-copilot-prompt')?.value || '';
+    const box = document.getElementById('seo-copilot-result-box');
+    const txt = document.getElementById('seo-copilot-result-text');
+    const eng = document.getElementById('seo-copilot-engine');
+
+    if (box && txt) {
+      box.hidden = false;
+      txt.textContent = '⏳ Cargando artículo y consultando al Copiloto Clínico LLM en vivo...';
+    }
+
+    let post = { title: slug, content: '', excerpt: '', tags: [] };
+    if (slug) {
+      const fetched = await apiFetch(`/blog/posts/${slug}`, { headers: authHeaders() });
+      if (fetched && fetched.title) post = fetched;
+    }
+
+    const res = await apiFetch('/seo/ai-assistant', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({
+        mode: instruction && mode === 'review' ? 'chat' : mode,
+        title: post.title,
+        excerpt: post.excerpt,
+        tags: Array.isArray(post.tags) ? post.tags.join(', ') : (post.tags || ''),
+        content: post.content,
+        instruction
+      })
+    });
+
+    if (res && res.ok) {
+      if (eng) eng.textContent = res.engine || 'LLM Clínico Activo';
+      if (txt) txt.textContent = res.reply;
+      window._lastCopilotSlug = slug;
+      window._lastCopilotReply = res.reply;
+      window._lastCopilotMode = mode;
+      toast('Copiloto Clínico LLM respondió en vivo', 'success');
+    }
+  }
+
+  async function openPostFromCopilot() {
+    const slug = window._lastCopilotSlug || document.getElementById('seo-copilot-post-select')?.value;
+    if (!slug) return;
+    router.navigate('blog');
+    await editPost(slug);
+    if (window._lastCopilotReply) {
+      const outBox = document.getElementById('blog-ai-output-box');
+      const outText = document.getElementById('blog-ai-output-text');
+      if (outBox && outText) {
+        outBox.hidden = false;
+        outText.textContent = window._lastCopilotReply;
+        window._lastBlogAiReply = window._lastCopilotReply;
+      }
+    }
+  }
+
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', init);
 
@@ -1594,6 +1696,10 @@ const Admin = (() => {
     loadHeatmap,
     loadSeoOverview,
     useSeoTemplate,
-    rebuildSitemap
+    rebuildSitemap,
+    runBlogAi,
+    applyAiToBlog,
+    runSeoCopilot,
+    openPostFromCopilot
   };
 })();

@@ -661,57 +661,7 @@ function initContactModal() {
 
 
 
-/* ══════════════════════════════════════════════════════════════════════════
-   CLINICAL PRE-TRIAGE & QUOTE WIDGET (Cotizador y Pre-Cita Rápida 3 Clics)
-   ══════════════════════════════════════════════════════════════════════════ */
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('clinical-triage-form');
-  if (!form) return;
-
-  const serviceSelect = document.getElementById('triage-service');
-  const priceBadge = document.getElementById('triage-price-badge');
-
-  const prices = {
-    'Chequeo Ginecológico Completo ($1,200 MXN)': '$1,200 MXN · Incluye Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido',
-    'Consulta Ginecológica / Control Prenatal ($800 MXN)': '$800 MXN · Diagnóstico, SOP, Miomas, Anticonceptivos o Seguimiento',
-    'Ultrasonido Estructural 2do Trimestre ($1,700 MXN)': '$1,700 MXN · Semanas 18–24 (Alta Definición GE Voluson)',
-    'Tamizaje Genético 1er Trimestre ($1,700 MXN)': '$1,700 MXN · Semanas 11–13.6 (Cálculo de Riesgo Fetal)',
-    'Ultrasonido 3er Trimestre / Doppler ($1,500 MXN)': '$1,500 MXN · Semana 28 en adelante (Crecimiento y Bienestar)'
-  };
-
-  if (serviceSelect && priceBadge) {
-    serviceSelect.addEventListener('change', () => {
-      priceBadge.textContent = prices[serviceSelect.value] || '$800 – $1,700 MXN';
-    });
-  }
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const service = document.getElementById('triage-service')?.value || 'Chequeo Ginecológico Completo ($1,200 MXN)';
-    const context = document.getElementById('triage-context')?.value || 'Primera vez / Revisión preventiva';
-    const insurance = document.getElementById('triage-insurance')?.value || 'Particular';
-    const name = (document.getElementById('triage-name')?.value || '').trim();
-    const phone = (document.getElementById('triage-phone')?.value || '').trim();
-
-    try {
-      fetch('/api/waos/lead-intake', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          patientName: name || 'Paciente Web (Cotizador)',
-          phone: phone || 'web_triage',
-          serviceRequested: service,
-          gestationalWeeks: context,
-          insuranceCarrier: insurance
-        })
-      }).catch(() => {});
-    } catch (_) {}
-
-    const greeting = name ? `Hola Dra. Odette, soy *${name}*.` : 'Hola Dra. Odette,';
-    const msg = `${greeting} Me gustaría agendar cita desde su sitio web:\n• *Estudio/Consulta:* ${service}\n• *Motivo/Semanas:* ${context}\n• *Modalidad:* ${insurance}\n¿Qué horarios tiene disponibles?`;
-    window.open(`https://wa.me/523327905726?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
-  });
-});
+/* (Cotizador Rápido 3 Clics en pausa por solicitud de Mr. Dev) */
 
 /* ══════════════════════════════════════════════════════════════════════════
    HEATMAP TRACKER v2 — Zero-PII Click & Scroll Telemetry (dra_odette)

@@ -1,0 +1,13 @@
+{
+  "waState": {
+    "status": "qr",
+    "connected": false,
+    "qr": "2@dacWdlOeEQpD9Gdtt6xh3F3OIanxGyy/QItoirhU2JKIQoKduvG5bUv0E/eXFAgAR3r3Tt7BKpDAxaNNhvkbdPm8FpPQShwP2jY=,Qm4OCRf7m5QwrOSuKMcMwptmLAWf5LSDrwPnyA+e0m0=,vDpz1OGswVPHOnZVlH1Q+hOywjlLX7GTwduWPTP8uV8=,RjpGF436xI5Flad0d6hLvOsOk1BF9VYd2QDCCKq0Yvs=,1",
+    "phone": null,
+    "pushname": null,
+    "updatedAt": 1793845336331,
+    "aiAutoReplyEnabled": true
+  },
+  "leads": [],
+  "syncedAt": "2026-11-04T20:22:45.0404625-06:00"
+}
