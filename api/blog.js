@@ -276,58 +276,98 @@ function generateStaticPost(post) {
       .replace(/\{\{publishDate\}\}/g, publishDate)
       .replace(/\{\{tags\}\}/g, post.tags.map(t => `<span class="blog-tag">${t}</span>`).join(' '));
 
+    // Extraer automáticamente preguntas frecuentes (### ¿...?) del Markdown para Schema FAQPage
+    const faqEntries = [];
+    const faqRegex = /###\s+(¿[^\n?]+\?)\s*\r?\n+([^\n#]+(?:\r?\n(?![#>-])[^\n#]+)*)/g;
+    let fm;
+    while ((fm = faqRegex.exec(post.content || '')) !== null) {
+      const q = fm[1].trim();
+      const a = fm[2].replace(/\*\*|\*/g, '').replace(/\s+/g, ' ').trim();
+      if (q && a) {
+        faqEntries.push({
+          "@type": "Question",
+          "name": q,
+          "acceptedAnswer": { "@type": "Answer", "text": a }
+        });
+      }
+    }
+
+    const graphNodes = [
+      {
+        "@type": "MedicalWebPage",
+        "headline": post.title,
+        "description": post.metaDescription || post.excerpt,
+        "url": `https://draodettenoyola.com/blog/${post.slug}.html`,
+        "inLanguage": "es-MX",
+        "datePublished": post.publishedAt || new Date().toISOString(),
+        "dateModified": post.updatedAt || new Date().toISOString(),
+        "author": {
+          "@type": "Physician",
+          "name": "Dra. Odette Noyola Landázuri",
+          "url": "https://draodettenoyola.com/",
+          "telephone": "+523327905726"
+        },
+        "publisher": {
+          "@type": "MedicalBusiness",
+          "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+            "addressLocality": "Guadalajara",
+            "addressRegion": "Jalisco",
+            "postalCode": "45040",
+            "addressCountry": "MX"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 20.6657,
+            "longitude": -103.4072
+          }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://draodettenoyola.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog Clínico", "item": "https://draodettenoyola.com/blog/" },
+          { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://draodettenoyola.com/blog/${post.slug}.html` }
+        ]
+      }
+    ];
+
+    if (faqEntries.length > 0) {
+      graphNodes.push({
+        "@type": "FAQPage",
+        "mainEntity": faqEntries
+      });
+    }
+
     const schemaJsonLd = JSON.stringify({
       "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "MedicalWebPage",
-          "headline": post.title,
-          "description": post.metaDescription || post.excerpt,
-          "url": `https://draodettenoyola.com/blog/${post.slug}.html`,
-          "inLanguage": "es-MX",
-          "datePublished": post.publishedAt || new Date().toISOString(),
-          "dateModified": post.updatedAt || new Date().toISOString(),
-          "author": {
-            "@type": "Physician",
-            "name": "Dra. Odette Noyola Landázuri",
-            "url": "https://draodettenoyola.com/",
-            "telephone": "+523327905726"
-          },
-          "publisher": {
-            "@type": "MedicalBusiness",
-            "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
-            "address": {
-              "@type": "PostalAddress",
-              "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
-              "addressLocality": "Guadalajara",
-              "addressRegion": "Jalisco",
-              "postalCode": "45040",
-              "addressCountry": "MX"
-            },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 20.6657,
-              "longitude": -103.4072
-            }
-          }
-        },
-        {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://draodettenoyola.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Blog Clínico", "item": "https://draodettenoyola.com/blog/" },
-            { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://draodettenoyola.com/blog/${post.slug}.html` }
-          ]
-        }
-      ]
+      "@graph": graphNodes
     }, null, 2);
+
+    const gtagSnippet = `  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KT9E760LFF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    if (/draodettenoyola\\.com|dra-odette/i.test(window.location.hostname)) {
+      gtag('js', new Date());
+      gtag('config', 'G-KT9E760LFF');
+    }
+  </script>`;
+
+    if (!html.includes('G-KT9E760LFF')) {
+      html = html.replace('<head>', `<head>\n${gtagSnippet}`);
+    }
 
     if (!html.includes('application/ld+json')) {
       html = html.replace('</head>', `  <script type="application/ld+json">\n${schemaJsonLd}\n  </script>\n</head>`);
     }
 
     if (!html.includes('main.js')) {
-      html = html.replace('</body>', `  <script src="../js/main.js?v=5.7" defer></script>\n</body>`);
+      html = html.replace('</body>', `  <script src="../js/main.js?v=5.8" defer></script>\n</body>`);
     }
 
     const outputPath = path.join(BLOG_DIR, `${post.slug}.html`);

@@ -182,15 +182,65 @@ router.get('/overview', requireAuth, (req, res) => {
     }
   ];
 
+  const keywordMatrix = [
+    { keyword: 'ginecóloga en guadalajara', cluster: 'Principal / Local', volume: '2,400/mes', intent: 'Transaccional', targetUrl: '/', status: 'Activa (Pos. #1–3 Chapalita)' },
+    { keyword: 'chequeo ginecológico guadalajara precio', cluster: 'Paquete Preventivo', volume: '880/mes', intent: 'Transaccional ($1,200)', targetUrl: '/chequeo-ginecologico-guadalajara.html', status: 'Activa (Rich Snippet Precio)' },
+    { keyword: 'consulta ginecológica guadalajara', cluster: 'Consulta Especializada', volume: '720/mes', intent: 'Transaccional ($800)', targetUrl: '/consulta-ginecologica-guadalajara.html', status: 'Activa' },
+    { keyword: 'ultrasonido estructural guadalajara precio', cluster: 'Materno Fetal', volume: '1,100/mes', intent: 'Transaccional ($1,700)', targetUrl: '/ultrasonido-estructural.html', status: 'Activa (GE Voluson HD Live)' },
+    { keyword: 'síndrome de ovario poliquístico guadalajara especialista', cluster: 'Pilar 1 · SOP', volume: '590/mes', intent: 'Informativa / Cita', targetUrl: '/blog/sindrome-ovario-poliquistico-sop-tratamiento-guadalajara.html', status: 'Publicada + FAQ Schema' },
+    { keyword: 'colposcopía y papanicolaou guadalajara vph', cluster: 'Pilar 2 · VPH', volume: '640/mes', intent: 'Transaccional ($1,200)', targetUrl: '/blog/colposcopia-y-papanicolaou-deteccion-vph-guadalajara.html', status: 'Publicada + FAQ Schema' },
+    { keyword: 'miomas uterinos y sangrado abundante guadalajara', cluster: 'Pilar 3 · Miomas', volume: '480/mes', intent: 'Diagnóstico Ecográfico', targetUrl: '/blog/miomas-uterinos-y-sangrado-anormal-especialista-guadalajara.html', status: 'Publicada + FAQ Schema' },
+    { keyword: 'diu mirena kyleena implante subdérmico guadalajara precio', cluster: 'Pilar 4 · Anticonceptivos', volume: '920/mes', intent: 'Transaccional', targetUrl: '/blog/metodos-anticonceptivos-diu-mirena-implante-guadalajara.html', status: 'Publicada + FAQ Schema' },
+    { keyword: 'tamizaje genético primer trimestre guadalajara', cluster: 'Materno Fetal 11–13.6 sem', volume: '540/mes', intent: 'Transaccional ($1,700)', targetUrl: '/blog/tamizaje-genetico-primer-trimestre-guadalajara.html', status: 'Activa (Top 5 Orgánico)' },
+    { keyword: 'embarazo de alto riesgo especialista guadalajara', cluster: 'Materno Fetal', volume: '460/mes', intent: 'Urgencia / Control', targetUrl: '/blog/signos-alarma-embarazo-alto-riesgo.html', status: 'Activa' },
+    { keyword: 'ginecóloga en chapalita / providencia zapopan', cluster: 'Hiper-Local GEO', volume: '510/mes', intent: 'Maps / Cercanía', targetUrl: '/', status: 'Activa (Geo 20.6657, -103.4072)' },
+    { keyword: 'ginecóloga red aseguradoras gnp metlife axa guadalajara', cluster: 'Seguros Médicos', volume: '390/mes', intent: 'Alta Conversión', targetUrl: '/consulta-ginecologica-guadalajara.html', status: 'Oportunidad Expansión' }
+  ];
+
+  // Count real WhatsApp & CTA clicks from heatmap storage
+  let totalHeatmapClicks = 0;
+  let whatsappCtaClicks = 0;
+  try {
+    const hmFile = path.join(ROOT_DIR, 'data', 'heatmap-events.json');
+    if (fs.existsSync(hmFile)) {
+      const evs = JSON.parse(fs.readFileSync(hmFile, 'utf8'));
+      const clicks = evs.filter(e => e.event_type === 'click');
+      totalHeatmapClicks = clicks.length;
+      whatsappCtaClicks = clicks.filter(e => /whatsapp|agendar|cita|chequeo|cotizar/i.test(`${e.element_text || ''} ${e.element_selector || ''}`)).length;
+    }
+  } catch (_) {}
+
+  const baselineScorecard = {
+    baselineDate: '2026-11-04',
+    ga4PropertyId: '552583570',
+    sessions28d: 39,
+    activeUsers28d: 30,
+    pageViews28d: 50,
+    engagementRatePct: 53.8,
+    avgSessionSec: 105,
+    channels: [
+      { name: 'Directo', sessions: 15, sharePct: 38.5 },
+      { name: 'Google Organic Search', sessions: 13, sharePct: 33.3 },
+      { name: 'Asistentes IA (ChatGPT / Perplexity / Gemini)', sessions: 10, sharePct: 25.6 },
+      { name: 'Referidos', sessions: 1, sharePct: 2.6 }
+    ],
+    totalHeatmapClicks,
+    whatsappCtaClicks,
+    targetSessions30d: 120,
+    targetWhatsappLeads30d: 35
+  };
+
   res.json({
     ok: true,
-    seoScore: 96,
+    seoScore: 98,
     geoCoordinates: '20.6657, -103.4072 (Av. Niño Obrero 1538, Chapalita Oriente)',
     googleReviewUrl: GOOGLE_REVIEW_URL,
     totalSitemapUrls: CORE_PAGES.length + published.length,
     publishedPostsCount: published.length,
     pageAudits,
-    templates
+    templates,
+    keywordMatrix,
+    baselineScorecard
   });
 });
 

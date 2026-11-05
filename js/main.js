@@ -742,6 +742,30 @@ function initContactModal() {
   }
 
   document.addEventListener('click', (e) => {
+    // 1. Disparo automático de Conversiones GA4 (WhatsApp, Teléfono y Google Maps)
+    const linkEl = e.target && e.target.closest ? e.target.closest('a') : null;
+    if (linkEl && typeof window.gtag === 'function') {
+      const href = (linkEl.getAttribute('href') || '').toLowerCase();
+      const pagePath = window.location.pathname || '/';
+      if (href.includes('wa.me') || href.includes('whatsapp')) {
+        window.gtag('event', 'whatsapp_lead_click', {
+          event_category: 'conversion',
+          page_path: pagePath,
+          link_text: getSafeLabel(linkEl)
+        });
+      } else if (href.startsWith('tel:')) {
+        window.gtag('event', 'phone_call_click', {
+          event_category: 'conversion',
+          page_path: pagePath
+        });
+      } else if (href.includes('maps.app.goo.gl') || href.includes('g.page')) {
+        window.gtag('event', 'google_maps_click', {
+          event_category: 'engagement',
+          page_path: pagePath
+        });
+      }
+    }
+
     const vw = Math.max(window.innerWidth || 0, 1);
     const vh = Math.max(window.innerHeight || 0, 1);
     const dh = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight || 0, vh);

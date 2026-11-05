@@ -2,12 +2,12 @@
   "waState": {
     "status": "qr",
     "connected": false,
-    "qr": "2@xeHAB1k4lqy+GtsOoDZ/lSesxzJP5mLt6wXZSf8Cyw2sWcDTqGuiM0IwrKSzUwax1+iD2fEPRsTUcNCjYaVQDkjnhmy09yKSG5M=,Qm4OCRf7m5QwrOSuKMcMwptmLAWf5LSDrwPnyA+e0m0=,vDpz1OGswVPHOnZVlH1Q+hOywjlLX7GTwduWPTP8uV8=,NM7ZymF8/RY3SPRfB4epfOFdgC3DwGtIIT157xpLLZc=,1",
+    "qr": "2@vnuVLSbi2oqDYXhjXEatb+kfLPYDr32/kIUgK4+ixAMBqlJEEM4Hurl9t041lUyMggzRPxChYUj0ePoPrDL0D2NDaippQ06mIuQ=,Qm4OCRf7m5QwrOSuKMcMwptmLAWf5LSDrwPnyA+e0m0=,vDpz1OGswVPHOnZVlH1Q+hOywjlLX7GTwduWPTP8uV8=,F8YA6Bldl6HP0ujTfqwtCzYvuZp8VplfQ0ohSOIWHWo=,1",
     "phone": null,
     "pushname": null,
-    "updatedAt": 1793850358455,
+    "updatedAt": 1793854149436,
     "aiAutoReplyEnabled": true
   },
   "leads": [],
-  "syncedAt": "2026-11-05T03:46:12.375Z"
+  "syncedAt": "2026-11-05T04:49:33.717Z"
 }

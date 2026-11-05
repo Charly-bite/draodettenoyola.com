@@ -1593,6 +1593,67 @@ const Admin = (() => {
     const data = await apiFetch('/seo/overview', { headers: authHeaders() });
     if (!data) return;
 
+    const scEl = document.getElementById('seo-impact-scorecard');
+    if (scEl && data.baselineScorecard) {
+      const sc = data.baselineScorecard;
+      scEl.innerHTML = `
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:0.75rem; margin-bottom:1rem;">
+          <div style="padding:0.75rem; background:var(--admin-surface-2); border-radius:10px; border:1px solid var(--admin-border);">
+            <div style="font-size:0.75rem; color:var(--admin-text-muted);">Sesiones 28d (Base → Meta)</div>
+            <div style="font-size:1.25rem; font-weight:800; color:var(--admin-teal);">${sc.sessions28d} → ${sc.targetSessions30d}</div>
+            <div style="font-size:0.74rem; color:var(--admin-text-muted);">Usuarios activos: ${sc.activeUsers28d} · Retención: ${sc.engagementRatePct}%</div>
+          </div>
+          <div style="padding:0.75rem; background:var(--admin-surface-2); border-radius:10px; border:1px solid var(--admin-border);">
+            <div style="font-size:0.75rem; color:var(--admin-text-muted);">Clics a Botones de Cita WhatsApp</div>
+            <div style="font-size:1.25rem; font-weight:800; color:var(--admin-rose);">${sc.whatsappCtaClicks} clics (${sc.totalHeatmapClicks} totales)</div>
+            <div style="font-size:0.74rem; color:var(--admin-text-muted);">Meta 30d: ${sc.targetWhatsappLeads30d}+ prospectos agendados</div>
+          </div>
+        </div>
+        <div style="font-size:0.8rem; font-weight:700; margin-bottom:0.45rem; color:var(--admin-text);">Canales de Adquisición Actuales (GA4 Property ${sc.ga4PropertyId}):</div>
+        ${(sc.channels || []).map(ch => `
+          <div style="margin-bottom:0.5rem;">
+            <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.15rem;">
+              <span>${ch.name}</span>
+              <strong>${ch.sessions} sesiones (${ch.sharePct}%)</strong>
+            </div>
+            <div style="height:7px; background:var(--admin-surface-2); border-radius:999px; overflow:hidden;">
+              <div style="width:${Math.min(100, ch.sharePct)}%; height:100%; background:linear-gradient(90deg, var(--admin-teal), var(--admin-rose));"></div>
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }
+
+    const kwEl = document.getElementById('seo-keyword-matrix');
+    if (kwEl && data.keywordMatrix) {
+      kwEl.innerHTML = `
+        <table style="width:100%; border-collapse:collapse; font-size:0.83rem;">
+          <thead>
+            <tr style="border-bottom:1px solid var(--admin-border); text-align:left; color:var(--admin-text-muted);">
+              <th style="padding:0.55rem;">Keyword Objetivo (Guadalajara / Zapopan)</th>
+              <th style="padding:0.55rem;">Cluster Clínico</th>
+              <th style="padding:0.55rem;">Volumen Est.</th>
+              <th style="padding:0.55rem;">Intención</th>
+              <th style="padding:0.55rem;">URL Destino</th>
+              <th style="padding:0.55rem;">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${data.keywordMatrix.map(k => `
+              <tr style="border-bottom:1px solid var(--admin-border);">
+                <td style="padding:0.55rem; font-weight:700; color:var(--admin-text);">${k.keyword}</td>
+                <td style="padding:0.55rem;">${k.cluster}</td>
+                <td style="padding:0.55rem; color:var(--admin-teal); font-weight:600;">${k.volume}</td>
+                <td style="padding:0.55rem;">${k.intent}</td>
+                <td style="padding:0.55rem;"><a href="${k.targetUrl}" target="_blank" style="color:var(--admin-teal); text-decoration:underline;">${k.targetUrl}</a></td>
+                <td style="padding:0.55rem;"><span class="blog-item__status blog-item__status--published">${k.status}</span></td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
     const auditEl = document.getElementById('seo-pages-audit');
     if (auditEl) {
       auditEl.innerHTML = `
