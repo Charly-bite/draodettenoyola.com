@@ -278,34 +278,56 @@ function generateStaticPost(post) {
 
     const schemaJsonLd = JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "MedicalWebPage",
-      "headline": post.title,
-      "description": post.metaDescription || post.excerpt,
-      "url": `https://draodettenoyola.com/blog/${post.slug}.html`,
-      "datePublished": post.publishedAt || new Date().toISOString(),
-      "dateModified": post.updatedAt || new Date().toISOString(),
-      "author": {
-        "@type": "Physician",
-        "name": "Dra. Odette Noyola Landázuri",
-        "url": "https://draodettenoyola.com/",
-        "telephone": "+523327905726"
-      },
-      "publisher": {
-        "@type": "MedicalBusiness",
-        "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
-          "addressLocality": "Guadalajara",
-          "addressRegion": "Jalisco",
-          "postalCode": "45040",
-          "addressCountry": "MX"
+      "@graph": [
+        {
+          "@type": "MedicalWebPage",
+          "headline": post.title,
+          "description": post.metaDescription || post.excerpt,
+          "url": `https://draodettenoyola.com/blog/${post.slug}.html`,
+          "inLanguage": "es-MX",
+          "datePublished": post.publishedAt || new Date().toISOString(),
+          "dateModified": post.updatedAt || new Date().toISOString(),
+          "author": {
+            "@type": "Physician",
+            "name": "Dra. Odette Noyola Landázuri",
+            "url": "https://draodettenoyola.com/",
+            "telephone": "+523327905726"
+          },
+          "publisher": {
+            "@type": "MedicalBusiness",
+            "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+              "addressLocality": "Guadalajara",
+              "addressRegion": "Jalisco",
+              "postalCode": "45040",
+              "addressCountry": "MX"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 20.6657,
+              "longitude": -103.4072
+            }
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://draodettenoyola.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog Clínico", "item": "https://draodettenoyola.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": post.title, "item": `https://draodettenoyola.com/blog/${post.slug}.html` }
+          ]
         }
-      }
+      ]
     }, null, 2);
 
     if (!html.includes('application/ld+json')) {
       html = html.replace('</head>', `  <script type="application/ld+json">\n${schemaJsonLd}\n  </script>\n</head>`);
+    }
+
+    if (!html.includes('main.js')) {
+      html = html.replace('</body>', `  <script src="../js/main.js?v=5.7" defer></script>\n</body>`);
     }
 
     const outputPath = path.join(BLOG_DIR, `${post.slug}.html`);
@@ -373,7 +395,12 @@ function getDefaultTemplate() {
   <meta name="description" content="{{metaDescription}}">
   <meta name="keywords" content="{{metaKeywords}}">
   <meta name="author" content="Dra. Odette Noyola Landázuri">
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="MX-JAL">
+  <meta name="geo.placename" content="Guadalajara, Zapopan">
   <link rel="canonical" href="https://draodettenoyola.com/blog/{{slug}}.html">
+  <meta property="og:url" content="https://draodettenoyola.com/blog/{{slug}}.html">
+  <meta property="og:locale" content="es_MX">
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{title}}">
   <meta property="og:description" content="{{metaDescription}}">
@@ -450,7 +477,14 @@ function getDefaultBlogIndexTemplate() {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog Clínico | Dra. Odette Noyola Landázuri</title>
+  <title>Blog Ginecológico y Materno Fetal en Guadalajara | Dra. Odette Noyola</title>
+  <meta name="robots" content="index, follow">
+  <meta name="geo.region" content="MX-JAL">
+  <meta name="geo.placename" content="Guadalajara, Zapopan">
+  <link rel="canonical" href="https://draodettenoyola.com/blog/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://draodettenoyola.com/blog/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Blog Ginecológico y Materno Fetal en Guadalajara | Dra. Odette Noyola","url":"https://draodettenoyola.com/blog/","inLanguage":"es-MX"}</script>
   <meta name="description" content="Artículos médicos y guías de diagnóstico prenatal por la Dra. Odette Noyola.">
   <link rel="icon" type="image/svg+xml" href="../img/favicon.svg?v=3.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -497,6 +531,7 @@ function getDefaultBlogIndexTemplate() {
       {{blogCards}}
     </div>
   </main>
+  <script src="../js/main.js?v=5.7" defer></script>
 </body>
 </html>`;
 }

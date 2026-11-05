@@ -84,16 +84,28 @@ router.get('/overview', requireAuth, (req, res) => {
   } catch (_) {}
 
   const published = posts.filter(p => p.status === 'published');
-  const pageAudits = CORE_PAGES.map(p => {
+  const allAuditTargets = [
+    ...CORE_PAGES,
+    ...published.map(post => ({
+      loc: `https://draodettenoyola.com/blog/${post.slug}.html`,
+      file: `blog/${post.slug}.html`,
+      priority: '0.85',
+      changefreq: 'monthly',
+      label: `📄 Blog: ${post.title}`
+    }))
+  ];
+  const pageAudits = allAuditTargets.map(p => {
     const fullPath = path.join(ROOT_DIR, p.file);
     const exists = fs.existsSync(fullPath);
     let hasSchema = false;
     let hasHeatmap = false;
+    let hasCanonical = false;
     let title = p.label;
     if (exists) {
       const html = fs.readFileSync(fullPath, 'utf8');
       hasSchema = html.includes('application/ld+json');
       hasHeatmap = html.includes('main.js') || html.includes('api/heatmap');
+      hasCanonical = html.includes('rel="canonical"');
       const m = html.match(/<title>([^<]+)<\/title>/i);
       if (m) title = m[1].trim();
     }
@@ -102,7 +114,8 @@ router.get('/overview', requireAuth, (req, res) => {
       exists,
       title,
       hasSchema,
-      hasHeatmap
+      hasHeatmap,
+      hasCanonical
     };
   });
 
