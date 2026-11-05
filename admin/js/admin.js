@@ -1419,11 +1419,112 @@ const Admin = (() => {
     }
   }
 
+  let _hmVisualMode = 'thermal';
+  let _hmLastData = null;
+
+  function setHeatmapMode(mode) {
+    _hmVisualMode = mode;
+    const mThermal = document.getElementById('hm-mode-thermal');
+    const mPins = document.getElementById('hm-mode-pins');
+    const mLive = document.getElementById('hm-mode-live');
+    if (mThermal) mThermal.className = mode === 'thermal' ? 'btn btn--primary btn--sm' : 'btn btn--ghost btn--sm';
+    if (mPins) mPins.className = mode === 'pins' ? 'btn btn--primary btn--sm' : 'btn btn--ghost btn--sm';
+    if (mLive) mLive.className = mode === 'live' ? 'btn btn--primary btn--sm' : 'btn btn--ghost btn--sm';
+
+    const canvas = document.getElementById('hm-canvas');
+    const iframe = document.getElementById('hm-iframe');
+    if (mode === 'live') {
+      if (canvas) canvas.style.display = 'none';
+      if (iframe) iframe.style.pointerEvents = 'auto';
+    } else {
+      if (canvas) canvas.style.display = 'block';
+      if (iframe) iframe.style.pointerEvents = 'none';
+      renderHeatmapCanvas();
+    }
+  }
+
+  function updateHeatmapOpacity() {
+    const val = Number(document.getElementById('hm-opacity-slider')?.value || 85) / 100;
+    const canvas = document.getElementById('hm-canvas');
+    if (canvas) canvas.style.opacity = String(val);
+  }
+
+  function renderHeatmapCanvas() {
+    const canvas = document.getElementById('hm-canvas');
+    if (!canvas || !_hmLastData) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const pts = _hmLastData.points || [];
+    const maxWeight = Math.max(1, ...pts.map(p => p.weight || 1));
+    const baseRadius = Number(document.getElementById('hm-radius-slider')?.value || 40);
+
+    if (_hmVisualMode === 'pins') {
+      for (const pt of pts) {
+        const cx = (pt.x / 100) * w;
+        const cy = (pt.y / 100) * h;
+        const r = Math.min(20, 6 + (pt.weight || 1) * 1.4);
+        ctx.beginPath();
+        ctx.arc(cx, cy, r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(20, 168, 161, 0.72)';
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#ffffff';
+        ctx.stroke();
+      }
+    } else {
+      for (const pt of pts) {
+        const cx = (pt.x / 100) * w;
+        const cy = (pt.y / 100) * h;
+        const intensity = Math.min(1, (pt.weight || 1) / maxWeight);
+        const radius = baseRadius * (0.65 + intensity * 0.65);
+        const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, radius);
+        grad.addColorStop(0, `rgba(239, 68, 68, ${0.48 + intensity * 0.44})`);
+        grad.addColorStop(0.45, `rgba(245, 158, 11, ${0.32 + intensity * 0.35})`);
+        grad.addColorStop(0.8, `rgba(20, 168, 161, ${0.16 + intensity * 0.2})`);
+        grad.addColorStop(1, 'rgba(20, 168, 161, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    // Draw Top 6 Numbered Hotspot Badges (#1 - #6)
+    const topEls = (_hmLastData.top_elements || []).slice(0, 6);
+    topEls.forEach((el, idx) => {
+      if (typeof el.avg_x_pct !== 'number' || typeof el.avg_y_pct !== 'number') return;
+      const cx = (el.avg_x_pct / 100) * w;
+      const cy = (el.avg_y_pct / 100) * h;
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, 12, 0, Math.PI * 2);
+      ctx.fillStyle = idx === 0 ? '#14A8A1' : '#0B1827';
+      ctx.fill();
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.stroke();
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = '700 11px Inter, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(String(idx + 1), cx, cy);
+      ctx.restore();
+    });
+  }
+
   async function loadHeatmap() {
     const pageSel = document.getElementById('hm-page-select');
     const devSel = document.getElementById('hm-device-select');
+    const daysSel = document.getElementById('hm-days-select');
     const pagePath = pageSel ? pageSel.value : '/';
     const device = devSel ? devSel.value : 'all';
+    const days = daysSel ? daysSel.value : '28';
+
+    const liveUrlLink = document.getElementById('hm-open-live-url');
+    if (liveUrlLink) liveUrlLink.href = pagePath;
 
     const iframe = document.getElementById('hm-iframe');
     if (iframe && iframe.getAttribute('data-loaded-path') !== pagePath) {
@@ -1431,11 +1532,17 @@ const Admin = (() => {
       iframe.setAttribute('data-loaded-path', pagePath);
     }
 
-    const data = await apiFetch(`/heatmap/report?path=${encodeURIComponent(pagePath)}&device=${encodeURIComponent(device)}&days=30`);
+    const data = await apiFetch(`/heatmap/report?path=${encodeURIComponent(pagePath)}&device=${encodeURIComponent(device)}&days=${encodeURIComponent(days)}`);
     if (!data) return;
+    _hmLastData = data;
 
     document.getElementById('hm-stat-clicks').textContent = (data.totals && data.totals.clicks) || 0;
     document.getElementById('hm-stat-sessions').textContent = (data.totals && data.totals.unique_sessions) || 0;
+
+    const splitEl = document.getElementById('hm-device-split');
+    if (splitEl && data.totals) {
+      splitEl.textContent = `${data.totals.desktop_clicks || 0} Desktop · ${data.totals.mobile_clicks || 0} Móvil`;
+    }
 
     const zones = data.scroll_zones || [];
     const topZone = zones.slice().sort((a, b) => b.events - a.events)[0];
@@ -1445,45 +1552,22 @@ const Admin = (() => {
     const ctaClicks = topEls.filter(e => /whatsapp|agendar|cita|cotizar|chequeo/i.test(e.text || e.selector)).reduce((s, e) => s + e.share_pct, 0);
     document.getElementById('hm-stat-cta-share').textContent = `${Math.min(100, Math.round(ctaClicks))}%`;
 
-    // Render thermal canvas
-    const canvas = document.getElementById('hm-canvas');
-    if (canvas) {
-      const ctx = canvas.getContext('2d');
-      const w = canvas.width;
-      const h = canvas.height;
-      ctx.clearRect(0, 0, w, h);
-
-      const pts = data.points || [];
-      const maxWeight = Math.max(1, ...pts.map(p => p.weight || 1));
-
-      for (const pt of pts) {
-        const cx = (pt.x / 100) * w;
-        const cy = (pt.y / 100) * h;
-        const intensity = Math.min(1, (pt.weight || 1) / maxWeight);
-        const radius = 26 + intensity * 28;
-        const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, radius);
-        grad.addColorStop(0, `rgba(239, 68, 68, ${0.45 + intensity * 0.45})`);
-        grad.addColorStop(0.45, `rgba(245, 158, 11, ${0.3 + intensity * 0.35})`);
-        grad.addColorStop(0.8, `rgba(20, 168, 161, ${0.15 + intensity * 0.2})`);
-        grad.addColorStop(1, 'rgba(20, 168, 161, 0)');
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-    }
+    renderHeatmapCanvas();
 
     const topContainer = document.getElementById('hm-top-elements');
     if (topContainer) {
       topContainer.innerHTML = topEls.map((el, i) => `
-        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid var(--admin-border); font-size:0.84rem;">
-          <div style="max-width:72%;">
-            <div style="font-weight:600; color:var(--admin-text);">#${i + 1} ${el.text || el.tag}</div>
-            <div style="font-size:0.75rem; color:var(--admin-text-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${el.selector}</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.55rem 0; border-bottom:1px solid var(--admin-border); font-size:0.84rem;">
+          <div style="max-width:74%; display:flex; align-items:center; gap:0.55rem;">
+            <span style="display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:999px; background:${i === 0 ? 'var(--admin-teal)' : 'var(--admin-surface-2)'}; color:#fff; font-size:0.74rem; font-weight:700; flex-shrink:0;">${i + 1}</span>
+            <div style="min-width:0;">
+              <div style="font-weight:600; color:var(--admin-text); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${el.text || el.tag}</div>
+              <div style="font-size:0.74rem; color:var(--admin-text-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${el.selector}</div>
+            </div>
           </div>
           <div style="text-align:right;">
             <span style="font-weight:700; color:var(--admin-teal);">${el.clicks} clics</span>
-            <div style="font-size:0.75rem; color:var(--admin-text-muted);">${el.share_pct}%</div>
+            <div style="font-size:0.74rem; color:var(--admin-text-muted);">${el.share_pct}%</div>
           </div>
         </div>
       `).join('');
@@ -1694,6 +1778,9 @@ const Admin = (() => {
     quickReview,
     logoutWaos,
     loadHeatmap,
+    setHeatmapMode,
+    renderHeatmapCanvas,
+    updateHeatmapOpacity,
     loadSeoOverview,
     useSeoTemplate,
     rebuildSitemap,

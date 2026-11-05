@@ -1,9 +1,10 @@
 /**
  * API: Click Heatmap Tracker v2 & Analytics Storage (Dra. Odette Noyola)
+ * 100% autónomo en draodettenoyola.com/admin (sin depender de Tailscale/Mesh)
  * Compatible con:
  *   - POST /api/heatmap (ingesta de eventos Zero-PII desde draodettenoyola.com)
- *   - GET  /api/heatmap?action=export (sincronización con Heatmap Studio office-pc:8003/heatmaps)
- *   - GET  /api/heatmap/report (reporte visual térmico en draodettenoyola.com/admin)
+ *   - GET  /api/heatmap?action=export (sincronización opcional)
+ *   - GET  /api/heatmap/report (reporte visual térmico completo en draodettenoyola.com/admin)
  */
 const express = require('express');
 const fs = require('fs');
@@ -32,7 +33,6 @@ function buildBaselineEvents() {
     { path: '/', device: 'desktop', x: 34.6, y: 41.2, zone: '40-60', tag: 'a', selector: 'div.service-card__cta > a.btn.btn-whatsapp', text: 'Agendar Chequeo ($1,200)', weight: 10 },
     { path: '/', device: 'mobile', x: 49.0, y: 46.8, zone: '40-60', tag: 'a', selector: 'div.service-card__cta > a.btn.btn-outline-teal', text: 'Detalles de Consulta →', weight: 9 },
     { path: '/', device: 'desktop', x: 65.2, y: 52.1, zone: '40-60', tag: 'a', selector: 'div.service-card__cta > a.btn.btn-outline-teal', text: 'Detalles del Estudio →', weight: 8 },
-    { path: '/', device: 'mobile', x: 51.4, y: 26.3, zone: '20-40', tag: 'button', selector: 'button#triage-submit-btn', text: 'Cotizar y Agendar por WhatsApp', weight: 13 },
     { path: '/', device: 'mobile', x: 46.8, y: 74.2, zone: '60-80', tag: 'button', selector: 'button.faq__question', text: '¿Qué incluye el Chequeo Ginecológico Completo?', weight: 7 },
     { path: '/', device: 'desktop', x: 52.3, y: 83.5, zone: '80-100', tag: 'a', selector: 'a.location__map-btn', text: 'Cómo llegar en Google Maps', weight: 6 },
     // Chequeo Ginecológico page
@@ -41,7 +41,13 @@ function buildBaselineEvents() {
     // Consulta Ginecológica page
     { path: '/consulta-ginecologica-guadalajara.html', device: 'mobile', x: 49.5, y: 19.1, zone: '0-20', tag: 'a', selector: 'a.btn.btn-whatsapp', text: 'Agendar Consulta ($800 MXN)', weight: 9 },
     // Ultrasonido Estructural page
-    { path: '/ultrasonido-estructural.html', device: 'mobile', x: 51.2, y: 21.0, zone: '20-40', tag: 'a', selector: 'a.btn.btn-whatsapp', text: 'Agendar Ultrasonido Estructural', weight: 8 }
+    { path: '/ultrasonido-estructural.html', device: 'mobile', x: 51.2, y: 21.0, zone: '20-40', tag: 'a', selector: 'a.btn.btn-whatsapp', text: 'Agendar Ultrasonido Estructural', weight: 8 },
+    // Blog Index & 4 Pillar Articles
+    { path: '/blog/', device: 'mobile', x: 48.0, y: 28.5, zone: '20-40', tag: 'a', selector: 'article.blog-card > a.blog-card__link', text: 'Síndrome de Ovario Poliquístico (SOP) en Guadalajara', weight: 7 },
+    { path: '/blog/sindrome-ovario-poliquistico-sop-tratamiento-guadalajara.html', device: 'mobile', x: 50.4, y: 82.0, zone: '80-100', tag: 'a', selector: 'footer.blog-footer a', text: 'Agendar Cita por WhatsApp (SOP)', weight: 6 },
+    { path: '/blog/colposcopia-y-papanicolaou-deteccion-vph-guadalajara.html', device: 'mobile', x: 49.8, y: 81.5, zone: '80-100', tag: 'a', selector: 'footer.blog-footer a', text: 'Agendar Chequeo y Colposcopía ($1,200)', weight: 6 },
+    { path: '/blog/miomas-uterinos-y-sangrado-anormal-especialista-guadalajara.html', device: 'mobile', x: 51.0, y: 83.0, zone: '80-100', tag: 'a', selector: 'footer.blog-footer a', text: 'Agendar Valoración de Miomas', weight: 5 },
+    { path: '/blog/metodos-anticonceptivos-diu-mirena-implante-guadalajara.html', device: 'mobile', x: 50.1, y: 80.5, zone: '80-100', tag: 'a', selector: 'footer.blog-footer a', text: 'Cotizar DIU Mirena / Kyleena / Implante', weight: 6 }
   ];
 
   let idCounter = 1;
@@ -147,7 +153,7 @@ router.post('/', (req, res) => {
   }
 });
 
-// GET /api/heatmap?action=export — Pull sync for office-pc:8003/heatmaps
+// GET /api/heatmap?action=export — Pull sync
 router.get('/', (req, res) => {
   const action = req.query.action || 'report';
   if (action === 'export') {
@@ -169,7 +175,7 @@ router.get('/report', buildHeatmapReport);
 function buildHeatmapReport(req, res) {
   const pagePath = req.query.path || '/';
   const device = req.query.device || 'all';
-  const days = Math.min(90, Math.max(1, parseInt(req.query.days || '30', 10)));
+  const days = Math.min(90, Math.max(1, parseInt(req.query.days || '28', 10)));
   const cutoff = Math.floor(Date.now() / 1000) - days * 86400;
 
   const allEvents = loadEvents().filter(e => e.created_at >= cutoff);
@@ -181,6 +187,8 @@ function buildHeatmapReport(req, res) {
 
   const clicks = pageEvents.filter(e => e.event_type === 'click');
   const sessions = new Set(pageEvents.map(e => e.session_hash)).size;
+  const desktopClicks = clicks.filter(c => c.device_type === 'desktop').length;
+  const mobileClicks = clicks.filter(c => c.device_type !== 'desktop').length;
 
   // Group points for canvas
   const buckets = new Map();
@@ -195,19 +203,34 @@ function buildHeatmapReport(req, res) {
     return { x, y, weight, avg_y_px: Math.round((y / 100) * 3400) };
   });
 
-  // Top clicked elements
+  // Top clicked elements with average coordinates for numbered badges (#1 - #6)
   const elemMap = new Map();
   for (const c of clicks) {
     const key = `${c.element_selector}|${c.element_text}`;
-    const cur = elemMap.get(key) || { selector: c.element_selector, tag: c.element_tag, text: c.element_text, clicks: 0 };
+    const cur = elemMap.get(key) || {
+      selector: c.element_selector,
+      tag: c.element_tag,
+      text: c.element_text,
+      clicks: 0,
+      sumX: 0,
+      sumY: 0
+    };
     cur.clicks++;
+    cur.sumX += c.x_pct;
+    cur.sumY += c.y_pct;
     elemMap.set(key, cur);
   }
   const topElements = Array.from(elemMap.values())
     .sort((a, b) => b.clicks - a.clicks)
     .slice(0, 10)
-    .map(el => ({
-      ...el,
+    .map((el, idx) => ({
+      rank: idx + 1,
+      selector: el.selector,
+      tag: el.tag,
+      text: el.text,
+      clicks: el.clicks,
+      avg_x_pct: Number((el.sumX / Math.max(1, el.clicks)).toFixed(1)),
+      avg_y_pct: Number((el.sumY / Math.max(1, el.clicks)).toFixed(1)),
       share_pct: clicks.length ? Number(((el.clicks / clicks.length) * 100).toFixed(1)) : 0
     }));
 
@@ -231,6 +254,8 @@ function buildHeatmapReport(req, res) {
     days,
     totals: {
       clicks: clicks.length,
+      desktop_clicks: desktopClicks,
+      mobile_clicks: mobileClicks,
       scroll_samples: pageEvents.length - clicks.length,
       unique_sessions: sessions,
       avg_doc_h: 3600

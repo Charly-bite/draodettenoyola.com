@@ -564,14 +564,14 @@ Párrafo de texto con **negrita** y *cursiva*.
         </div>
       </section>
 
-      <!-- ═══ CLICK HEATMAP STUDIO PAGE ═══ -->
+      <!-- ═══ CLICK HEATMAP STUDIO PAGE (100% AUTÓNOMO EN LA WEB) ═══ -->
       <section class="page" id="page-heatmap" hidden>
         <div class="page__header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
           <div>
-            <h1 class="page__title">🔥 Mapa de Calor de Clics y Atención</h1>
-            <p class="page__subtitle">Telemetría térmica Zero-PII en vivo · <a href="http://100.89.1.27:8003/heatmaps-odette" target="_blank" style="color:var(--admin-teal); font-weight:600; text-decoration:underline;">Abrir Estudio Térmico Independiente Dra. Odette (:8003/heatmaps-odette) ↗</a></p>
+            <h1 class="page__title">🔥 Estudio de Mapa de Calor — Dra. Odette Noyola</h1>
+            <p class="page__subtitle">Telemetría térmica de clics y atención en tiempo real · 100% integrado en tu panel web</p>
           </div>
-          <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+          <div style="display:flex; gap:0.65rem; align-items:center; flex-wrap:wrap;">
             <select id="hm-page-select" class="canvas-select" onchange="Admin.loadHeatmap()">
               <option value="/">🏠 Inicio (index.html)</option>
               <option value="/chequeo-ginecologico-guadalajara.html">🩺 Chequeo Ginecológico ($1,200)</option>
@@ -587,12 +587,18 @@ Párrafo de texto con **negrita** y *cursiva*.
               <option value="/blog/tamizaje-genetico-primer-trimestre-guadalajara.html">📄 Blog: Tamizaje Genético 1er Trimestre</option>
               <option value="/blog/signos-alarma-embarazo-alto-riesgo.html">📄 Blog: Signos de Alarma Embarazo Alto Riesgo</option>
             </select>
+            <select id="hm-days-select" class="canvas-select" onchange="Admin.loadHeatmap()">
+              <option value="7">📅 Últimos 7 días</option>
+              <option value="14">📅 Últimos 14 días</option>
+              <option value="28" selected>📅 Últimos 28 días</option>
+              <option value="56">📅 Últimos 56 días</option>
+            </select>
             <select id="hm-device-select" class="canvas-select" onchange="Admin.loadHeatmap()">
               <option value="all">📱💻 Todos los dispositivos</option>
               <option value="mobile">📱 Solo Móvil</option>
               <option value="desktop">💻 Solo Escritorio</option>
             </select>
-            <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.loadHeatmap()">🔄 Actualizar</button>
+            <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.loadHeatmap()">🔄 Sincronizar</button>
           </div>
         </div>
 
@@ -618,26 +624,53 @@ Párrafo de texto con **negrita** y *cursiva*.
           <div class="stat-card">
             <div class="stat-card__data">
               <span class="stat-card__number" id="hm-stat-cta-share">0%</span>
-              <span class="stat-card__label">Interacción en Botones Cita</span>
+              <span class="stat-card__label">Conversión en Botones Cita</span>
             </div>
           </div>
         </div>
 
-        <div class="dashboard-grid" style="grid-template-columns: 1.55fr 1fr; gap: 1.5rem; align-items: start;">
-          <div class="card" style="padding:1rem;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
-              <h3 class="card__title" style="margin:0;">Lienzo Térmico sobre Página en Vivo</h3>
-              <span class="text-muted text-sm">Azul → Verde → Amarillo → Rojo (Máxima concentración)</span>
+        <div class="dashboard-grid" style="grid-template-columns: 1.65fr 1fr; gap: 1.5rem; align-items: start;">
+          <div class="card" style="padding:1rem; position:relative;">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <h3 class="card__title" style="margin:0;">Lienzo Térmico en Vivo</h3>
+                <a id="hm-open-live-url" href="/" target="_blank" style="font-size:0.8rem; color:var(--admin-teal); text-decoration:underline;">Abrir página ↗</a>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.65rem; flex-wrap:wrap;">
+                <div style="display:flex; background:var(--admin-surface-2); border:1px solid var(--admin-border); border-radius:999px; padding:2px;">
+                  <button type="button" id="hm-mode-thermal" class="btn btn--primary btn--sm" style="border-radius:999px; padding:0.25rem 0.7rem; font-size:0.76rem;" onclick="Admin.setHeatmapMode('thermal')">Mapa Térmico</button>
+                  <button type="button" id="hm-mode-pins" class="btn btn--ghost btn--sm" style="border-radius:999px; padding:0.25rem 0.7rem; font-size:0.76rem;" onclick="Admin.setHeatmapMode('pins')">Puntos</button>
+                  <button type="button" id="hm-mode-live" class="btn btn--ghost btn--sm" style="border-radius:999px; padding:0.25rem 0.7rem; font-size:0.76rem;" onclick="Admin.setHeatmapMode('live')">Interactuar</button>
+                </div>
+                <label style="font-size:0.76rem; color:var(--admin-text-muted); display:flex; align-items:center; gap:0.35rem;">
+                  Radio
+                  <input type="range" id="hm-radius-slider" min="20" max="68" value="40" style="width:70px;" oninput="Admin.renderHeatmapCanvas()">
+                </label>
+                <label style="font-size:0.76rem; color:var(--admin-text-muted); display:flex; align-items:center; gap:0.35rem;">
+                  Opacidad
+                  <input type="range" id="hm-opacity-slider" min="35" max="95" value="85" style="width:70px;" oninput="Admin.updateHeatmapOpacity()">
+                </label>
+              </div>
             </div>
-            <div id="hm-viewport-box" style="position:relative; width:100%; height:680px; border-radius:12px; overflow:hidden; border:1px solid var(--admin-border); background:#04080F;">
-              <iframe id="hm-iframe" src="/" style="width:100%; height:100%; border:0; pointer-events:none; opacity:0.82;"></iframe>
-              <canvas id="hm-canvas" width="900" height="680" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></canvas>
+            <div id="hm-viewport-box" style="position:relative; width:100%; height:720px; border-radius:12px; overflow:hidden; border:1px solid var(--admin-border); background:#04080F;">
+              <iframe id="hm-iframe" src="/" style="width:100%; height:100%; border:0; pointer-events:none; background:#fff;"></iframe>
+              <canvas id="hm-canvas" width="960" height="720" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:auto; opacity:0.85; cursor:crosshair;"></canvas>
+              <!-- Scroll Fold Guides -->
+              <div id="hm-fold-35" style="position:absolute; left:0; right:0; top:35%; border-top:1px dashed rgba(20,168,161,0.65); pointer-events:none;">
+                <span style="background:rgba(11,24,39,0.88); color:var(--admin-teal); font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:0 0 6px 0;">Atención Superior (0–35%)</span>
+              </div>
+              <div id="hm-fold-70" style="position:absolute; left:0; right:0; top:70%; border-top:1px dashed rgba(228,137,162,0.65); pointer-events:none;">
+                <span style="background:rgba(11,24,39,0.88); color:var(--admin-rose); font-size:0.7rem; font-weight:700; padding:2px 8px; border-radius:0 0 6px 0;">Zona Media (35–70%)</span>
+              </div>
             </div>
           </div>
 
           <div style="display:flex; flex-direction:column; gap:1.25rem;">
             <div class="card">
-              <h3 class="card__title">Top 10 Elementos Más Clicados</h3>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+                <h3 class="card__title" style="margin:0;">Top 10 Elementos Más Clicados</h3>
+                <span id="hm-device-split" style="font-size:0.75rem; color:var(--admin-teal); font-weight:600;">Desktop / Móvil</span>
+              </div>
               <div id="hm-top-elements" class="card__body">
                 <p class="text-muted text-sm">Cargando ranking de clics...</p>
               </div>
