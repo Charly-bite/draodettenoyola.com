@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const { requireAuth } = require('./middleware');
+const { autoPushToGitHub, regenerateSitemap } = require('./seo');
 
 const router = express.Router();
 
@@ -208,7 +209,9 @@ router.delete('/images/:imageId', requireAuth, (req, res) => {
 router.get('/page-list', requireAuth, (req, res) => {
   const pages = [
     { id: 'index.html', title: 'Página Principal (Inicio)', url: '/?canvas=1', path: 'index.html' },
-    { id: 'ultrasonido-estructural.html', title: 'Ultrasonido Estructural', url: '/ultrasonido-estructural.html?canvas=1', path: 'ultrasonido-estructural.html' },
+    { id: 'chequeo-ginecologico-guadalajara.html', title: 'Chequeo Ginecológico ($1,200)', url: '/chequeo-ginecologico-guadalajara.html?canvas=1', path: 'chequeo-ginecologico-guadalajara.html' },
+    { id: 'consulta-ginecologica-guadalajara.html', title: 'Consulta Ginecológica ($800)', url: '/consulta-ginecologica-guadalajara.html?canvas=1', path: 'consulta-ginecologica-guadalajara.html' },
+    { id: 'ultrasonido-estructural.html', title: 'Ultrasonido Estructural ($1,700)', url: '/ultrasonido-estructural.html?canvas=1', path: 'ultrasonido-estructural.html' },
     { id: 'blog/index.html', title: 'Blog Principal', url: '/blog/?canvas=1', path: 'blog/index.html' }
   ];
   res.json(pages);
@@ -255,9 +258,11 @@ router.post('/canvas-save', requireAuth, (req, res) => {
 
     // Write file
     fs.writeFileSync(targetPath, cleanHtml, 'utf-8');
+    regenerateSitemap();
+    autoPushToGitHub(`chore(canvas): actualizar ${safePage} desde Live Canvas`).catch(() => {});
 
     console.log(`✅ Live Canvas saved: ${safePage} (${cleanHtml.length} bytes)`);
-    res.json({ success: true, message: `Página "${safePage}" guardada y publicada exitosamente` });
+    res.json({ success: true, message: `Página "${safePage}" guardada y sincronizada con GitHub/Render exitosamente` });
   } catch (err) {
     console.error('Error saving canvas page:', err);
     res.status(500).json({ error: 'Error al guardar la página: ' + err.message });

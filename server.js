@@ -44,7 +44,7 @@ app.use((req, res, next) => {
 app.use('/api', (req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Heatmap-Key, X-Odette-Bridge-Key');
   if (req.method === 'OPTIONS') return res.sendStatus(200);
   next();
 });
@@ -54,11 +54,17 @@ const authRoutes = require('./api/auth');
 const contentRoutes = require('./api/content');
 const blogRoutes = require('./api/blog');
 const contactRoutes = require('./api/contact');
+const heatmapRoutes = require('./api/heatmap');
+const waosRoutes = require('./api/waos');
+const { router: seoRoutes } = require('./api/seo');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/content', contentRoutes);
 app.use('/api/blog', blogRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/heatmap', heatmapRoutes);
+app.use('/api/waos', waosRoutes);
+app.use('/api/seo', seoRoutes);
 
 // ─── Admin Panel (served from /admin) ───
 app.use('/admin', express.static(path.join(__dirname, 'admin'), {

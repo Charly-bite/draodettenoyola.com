@@ -276,6 +276,38 @@ function generateStaticPost(post) {
       .replace(/\{\{publishDate\}\}/g, publishDate)
       .replace(/\{\{tags\}\}/g, post.tags.map(t => `<span class="blog-tag">${t}</span>`).join(' '));
 
+    const schemaJsonLd = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "MedicalWebPage",
+      "headline": post.title,
+      "description": post.metaDescription || post.excerpt,
+      "url": `https://draodettenoyola.com/blog/${post.slug}.html`,
+      "datePublished": post.publishedAt || new Date().toISOString(),
+      "dateModified": post.updatedAt || new Date().toISOString(),
+      "author": {
+        "@type": "Physician",
+        "name": "Dra. Odette Noyola Landázuri",
+        "url": "https://draodettenoyola.com/",
+        "telephone": "+523327905726"
+      },
+      "publisher": {
+        "@type": "MedicalBusiness",
+        "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+          "addressLocality": "Guadalajara",
+          "addressRegion": "Jalisco",
+          "postalCode": "45040",
+          "addressCountry": "MX"
+        }
+      }
+    }, null, 2);
+
+    if (!html.includes('application/ld+json')) {
+      html = html.replace('</head>', `  <script type="application/ld+json">\n${schemaJsonLd}\n  </script>\n</head>`);
+    }
+
     const outputPath = path.join(BLOG_DIR, `${post.slug}.html`);
     fs.writeFileSync(outputPath, html, 'utf-8');
     console.log(`✅ Generated: blog/${post.slug}.html`);
@@ -318,6 +350,11 @@ function generateBlogIndex(posts) {
 
     const html = template.replace('{{blogCards}}', cardsHTML);
     const outputPath = path.join(BLOG_DIR, 'index.html');
+    try {
+      const { regenerateSitemap, autoPushToGitHub } = require('./seo');
+      regenerateSitemap();
+      autoPushToGitHub('chore(blog): actualizar articulos y sitemap.xml').catch(() => {});
+    } catch (_) {}
     fs.writeFileSync(outputPath, html, 'utf-8');
     console.log(`✅ Generated: blog/index.html (${published.length} posts)`);
   } catch (err) {
@@ -465,3 +502,6 @@ function getDefaultBlogIndexTemplate() {
 }
 
 module.exports = router;
+module.exports.generateStaticPost = generateStaticPost;
+module.exports.generateBlogIndex = generateBlogIndex;
+module.exports.readPosts = readPosts;

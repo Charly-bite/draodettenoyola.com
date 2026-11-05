@@ -154,7 +154,15 @@ const Admin = (() => {
       });
 
       // Update topbar title
-      const titles = { dashboard: 'Dashboard', content: 'Editor de Contenido', blog: 'Blog Manager', images: 'Gestor de Imágenes' };
+      const titles = {
+        dashboard: 'Dashboard',
+        canvas: 'Live Canvas Studio',
+        blog: 'Blog Manager',
+        images: 'Gestor de Imágenes',
+        waos: 'WhatsApp AI Bot (WAOS)',
+        heatmap: 'Mapa de Calor de Clics',
+        seo: 'Centro SEO & Contenido IA'
+      };
       document.getElementById('topbar-title').textContent = titles[page] || 'Dashboard';
 
       // Load page data
@@ -163,6 +171,9 @@ const Admin = (() => {
         case 'canvas': loadLiveCanvas(); break;
         case 'blog': loadBlogList(); break;
         case 'images': loadImages(); break;
+        case 'waos': refreshWaos(); break;
+        case 'heatmap': loadHeatmap(); break;
+        case 'seo': loadSeoOverview(); break;
       }
     }
   };
@@ -1276,6 +1287,287 @@ const Admin = (() => {
     }
   }
 
+  // ═══════════════════════════════════════
+  //  WAOS CLINICAL BOT + HEATMAP + SEO CENTER
+  // ═══════════════════════════════════════
+  async function refreshWaos() {
+    const data = await apiFetch('/waos/status', { headers: authHeaders() });
+    if (!data) return;
+
+    const st = data.waState || {};
+    const badge = document.getElementById('waos-status-badge');
+    const qrBox = document.getElementById('waos-qr-box');
+    const infoEl = document.getElementById('waos-connected-info');
+    const aiBtn = document.getElementById('waos-ai-toggle-btn');
+
+    if (badge) {
+      if (st.connected) {
+        badge.className = 'blog-item__status blog-item__status--published';
+        badge.textContent = '● Conectado en Vivo';
+      } else if (st.qr) {
+        badge.className = 'blog-item__status blog-item__status--draft';
+        badge.textContent = '○ Esperando Escaneo de QR';
+      } else {
+        badge.className = 'blog-item__status blog-item__status--draft';
+        badge.textContent = '○ Inicializando QR...';
+      }
+    }
+
+    if (aiBtn) {
+      aiBtn.textContent = st.aiAutoReplyEnabled !== false ? '🤖 IA Activa (Clic para pausar)' : '⏸️ IA en Pausa (Clic para activar)';
+    }
+
+    if (qrBox) {
+      if (st.connected) {
+        qrBox.innerHTML = `<div style="color:#0D7A75; padding:1.5rem; text-align:center;">
+          <div style="font-size:3rem; margin-bottom:0.5rem;">✅</div>
+          <div style="font-weight:700; font-size:1.05rem;">WhatsApp Vinculado</div>
+          <div style="font-size:0.85rem; color:#475569; margin-top:0.25rem;">${st.pushname || 'Dra. Odette'} (${st.phone || 'Activo'})</div>
+        </div>`;
+        if (infoEl) infoEl.textContent = `Tablas MSSQL activas: ${(data.tables || []).join(' · ')}`;
+      } else if (st.qr) {
+        const qrImgUrl = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&margin=8&data=${encodeURIComponent(st.qr)}`;
+        qrBox.innerHTML = `<img src="${qrImgUrl}" alt="Código QR WhatsApp Dra. Odette" width="250" height="250" style="display:block; border-radius:8px;">`;
+        if (infoEl) infoEl.textContent = 'Listo para escanear desde WhatsApp → Dispositivos vinculados';
+      } else {
+        qrBox.innerHTML = `<p style="color:#0B1827; font-weight:600; padding:1rem;">Generando código QR en el servidor WAOS...</p>`;
+      }
+    }
+
+    const tableWrap = document.getElementById('waos-leads-table-wrap');
+    if (tableWrap) {
+      const leads = data.leads || [];
+      if (leads.length === 0) {
+        tableWrap.innerHTML = `<p class="text-muted text-sm">Aún no hay pacientes registrados en <code>dbo.odette_patients_leads</code>. Cuando escriban por WhatsApp o usen el Cotizador Web aparecerán aquí automáticamente.</p>`;
+      } else {
+        tableWrap.innerHTML = `
+          <table style="width:100%; border-collapse:collapse; font-size:0.85rem;">
+            <thead>
+              <tr style="border-bottom:1px solid var(--admin-border); text-align:left; color:var(--admin-text-muted);">
+                <th style="padding:0.6rem;">Paciente</th>
+                <th style="padding:0.6rem;">Teléfono</th>
+                <th style="padding:0.6rem;">Servicio / Estudio</th>
+                <th style="padding:0.6rem;">Estado</th>
+                <th style="padding:0.6rem; text-align:right;">Acción</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${leads.map(l => `
+                <tr style="border-bottom:1px solid var(--admin-border);">
+                  <td style="padding:0.6rem; font-weight:600;">${l.patient_name || 'Paciente'}</td>
+                  <td style="padding:0.6rem; color:var(--admin-teal);">${l.phone || '-'}</td>
+                  <td style="padding:0.6rem;">${l.service_requested || 'Consulta'}</td>
+                  <td style="padding:0.6rem;"><span class="blog-item__status blog-item__status--published">${l.appointment_status || 'lead'}</span></td>
+                  <td style="padding:0.6rem; text-align:right;">
+                    <button type="button" class="btn btn--sm btn--ghost" onclick="Admin.quickReview('${l.phone || ''}', '${(l.patient_name || '').replace(/'/g, '')}')">⭐ Pedir Reseña</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+      }
+    }
+  }
+
+  async function toggleWaosAi() {
+    const res = await apiFetch('/waos/toggle-ai', {
+      method: 'POST',
+      headers: authHeaders()
+    });
+    if (res) {
+      toast(res.aiAutoReplyEnabled ? 'Asistente IA activado' : 'Asistente IA en pausa', 'success');
+      refreshWaos();
+    }
+  }
+
+  async function sendReviewRequest() {
+    const nameEl = document.getElementById('waos-review-name');
+    const phoneEl = document.getElementById('waos-review-phone');
+    const patientName = nameEl ? nameEl.value.trim() : '';
+    const phone = phoneEl ? phoneEl.value.trim() : '';
+    if (!phone) {
+      toast('Ingresa el número de WhatsApp de la paciente', 'error');
+      return;
+    }
+    await quickReview(phone, patientName);
+    if (nameEl) nameEl.value = '';
+    if (phoneEl) phoneEl.value = '';
+  }
+
+  async function quickReview(phone, patientName) {
+    const res = await apiFetch('/waos/send-review', {
+      method: 'POST',
+      headers: authHeaders(),
+      body: JSON.stringify({ phone, patientName })
+    });
+    if (res) {
+      toast(res.message || 'Solicitud procesada', 'success');
+      if (!res.sentViaBot && res.waMeFallback) {
+        window.open(res.waMeFallback, '_blank', 'noopener');
+      }
+      refreshWaos();
+    }
+  }
+
+  async function logoutWaos() {
+    if (!confirm('¿Reiniciar vinculación de WhatsApp y generar un nuevo código QR?')) return;
+    const res = await apiFetch('/waos/logout', { method: 'POST', headers: authHeaders() });
+    if (res) {
+      toast(res.message || 'Generando nuevo QR...', 'info');
+      setTimeout(refreshWaos, 2500);
+    }
+  }
+
+  async function loadHeatmap() {
+    const pageSel = document.getElementById('hm-page-select');
+    const devSel = document.getElementById('hm-device-select');
+    const pagePath = pageSel ? pageSel.value : '/';
+    const device = devSel ? devSel.value : 'all';
+
+    const iframe = document.getElementById('hm-iframe');
+    if (iframe && iframe.getAttribute('data-loaded-path') !== pagePath) {
+      iframe.src = pagePath;
+      iframe.setAttribute('data-loaded-path', pagePath);
+    }
+
+    const data = await apiFetch(`/heatmap/report?path=${encodeURIComponent(pagePath)}&device=${encodeURIComponent(device)}&days=30`);
+    if (!data) return;
+
+    document.getElementById('hm-stat-clicks').textContent = (data.totals && data.totals.clicks) || 0;
+    document.getElementById('hm-stat-sessions').textContent = (data.totals && data.totals.unique_sessions) || 0;
+
+    const zones = data.scroll_zones || [];
+    const topZone = zones.slice().sort((a, b) => b.events - a.events)[0];
+    document.getElementById('hm-stat-top-zone').textContent = topZone ? `${topZone.zone}%` : '0-20%';
+
+    const topEls = data.top_elements || [];
+    const ctaClicks = topEls.filter(e => /whatsapp|agendar|cita|cotizar|chequeo/i.test(e.text || e.selector)).reduce((s, e) => s + e.share_pct, 0);
+    document.getElementById('hm-stat-cta-share').textContent = `${Math.min(100, Math.round(ctaClicks))}%`;
+
+    // Render thermal canvas
+    const canvas = document.getElementById('hm-canvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      const pts = data.points || [];
+      const maxWeight = Math.max(1, ...pts.map(p => p.weight || 1));
+
+      for (const pt of pts) {
+        const cx = (pt.x / 100) * w;
+        const cy = (pt.y / 100) * h;
+        const intensity = Math.min(1, (pt.weight || 1) / maxWeight);
+        const radius = 26 + intensity * 28;
+        const grad = ctx.createRadialGradient(cx, cy, 2, cx, cy, radius);
+        grad.addColorStop(0, `rgba(239, 68, 68, ${0.45 + intensity * 0.45})`);
+        grad.addColorStop(0.45, `rgba(245, 158, 11, ${0.3 + intensity * 0.35})`);
+        grad.addColorStop(0.8, `rgba(20, 168, 161, ${0.15 + intensity * 0.2})`);
+        grad.addColorStop(1, 'rgba(20, 168, 161, 0)');
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const topContainer = document.getElementById('hm-top-elements');
+    if (topContainer) {
+      topContainer.innerHTML = topEls.map((el, i) => `
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid var(--admin-border); font-size:0.84rem;">
+          <div style="max-width:72%;">
+            <div style="font-weight:600; color:var(--admin-text);">#${i + 1} ${el.text || el.tag}</div>
+            <div style="font-size:0.75rem; color:var(--admin-text-muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${el.selector}</div>
+          </div>
+          <div style="text-align:right;">
+            <span style="font-weight:700; color:var(--admin-teal);">${el.clicks} clics</span>
+            <div style="font-size:0.75rem; color:var(--admin-text-muted);">${el.share_pct}%</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    const zonesContainer = document.getElementById('hm-scroll-zones');
+    if (zonesContainer) {
+      zonesContainer.innerHTML = zones.map(z => `
+        <div style="margin-bottom:0.65rem;">
+          <div style="display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:0.2rem;">
+            <span>Profundidad ${z.zone}%</span>
+            <strong>${z.events} eventos (${z.share_pct}%)</strong>
+          </div>
+          <div style="height:8px; background:var(--admin-surface-2); border-radius:999px; overflow:hidden;">
+            <div style="width:${Math.min(100, z.share_pct)}%; height:100%; background:linear-gradient(90deg, var(--admin-teal), var(--admin-rose));"></div>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+
+  async function loadSeoOverview() {
+    const data = await apiFetch('/seo/overview', { headers: authHeaders() });
+    if (!data) return;
+
+    const auditEl = document.getElementById('seo-pages-audit');
+    if (auditEl) {
+      auditEl.innerHTML = `
+        <div style="padding:0.85rem; background:var(--admin-surface-2); border-radius:10px; margin-bottom:1rem; border:1px solid var(--admin-border);">
+          <div style="font-weight:700; color:var(--admin-teal);">📍 GeoCoordinates Unificadas: ${data.geoCoordinates}</div>
+          <div style="font-size:0.83rem; color:var(--admin-text-muted); margin-top:0.25rem;">URLs en Sitemap.xml: <strong>${data.totalSitemapUrls}</strong> · Artículos Publicados: <strong>${data.publishedPostsCount}</strong></div>
+        </div>
+        ${(data.pageAudits || []).map(p => `
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:0.6rem 0; border-bottom:1px solid var(--admin-border); font-size:0.85rem;">
+            <div>
+              <div style="font-weight:600;">${p.label}</div>
+              <div style="font-size:0.75rem; color:var(--admin-text-muted);">${p.file} · Prioridad ${p.priority}</div>
+            </div>
+            <div style="display:flex; gap:0.4rem;">
+              <span class="blog-item__status blog-item__status--published">${p.hasSchema ? '✓ Schema' : 'Schema'}</span>
+              <span class="blog-item__status blog-item__status--published">${p.hasHeatmap ? '✓ Heatmap' : 'Heatmap'}</span>
+            </div>
+          </div>
+        `).join('')}
+      `;
+    }
+
+    const tplEl = document.getElementById('seo-templates-list');
+    if (tplEl) {
+      window._seoTemplates = data.templates || [];
+      tplEl.innerHTML = (data.templates || []).map((t, idx) => `
+        <div style="padding:0.85rem; background:var(--admin-surface-2); border:1px solid var(--admin-border); border-radius:10px; margin-bottom:0.75rem;">
+          <div style="font-weight:700; font-size:0.9rem; margin-bottom:0.3rem;">${t.title}</div>
+          <div style="font-size:0.8rem; color:var(--admin-text-muted); margin-bottom:0.6rem;">${t.excerpt}</div>
+          <button type="button" class="btn btn--sm btn--primary" onclick="Admin.useSeoTemplate(${idx})">✍️ Redactar con esta Plantilla</button>
+        </div>
+      `).join('');
+    }
+  }
+
+  function useSeoTemplate(idx) {
+    const t = (window._seoTemplates || [])[idx];
+    if (!t) return;
+    router.navigate('blog');
+    showBlogEditor({
+      slug: '',
+      title: t.title,
+      excerpt: t.excerpt,
+      tags: t.tags.split(',').map(s => s.trim()),
+      metaDescription: t.metaDescription,
+      metaKeywords: t.metaKeywords,
+      content: `## ¿Qué es y cuáles son los síntomas principales?\n\nEn nuestro consultorio en **Chapalita Oriente, Guadalajara**, atendemos de forma integral a pacientes que buscan un diagnóstico certero y cálido.\n\n### ¿Qué incluye la valoración con la Dra. Odette Noyola?\n\n- **Historia clínica detallada** y resolución de dudas.\n- **Ultrasonido de alta resolución** en tiempo real.\n- **Plan de tratamiento personalizado** basado en guías internacionales.\n\n> Agenda tu cita directamente por WhatsApp al **33 2790 5726** en Av. Niño Obrero 1538, Chapalita Oriente.`
+    });
+    toast('Plantilla clínica cargada en el editor', 'success');
+  }
+
+  async function rebuildSitemap() {
+    const res = await apiFetch('/seo/rebuild-sitemap', { method: 'POST', headers: authHeaders() });
+    if (res) {
+      toast(`Sitemap.xml actualizado (${res.totalUrls} URLs) y sincronizado con GitHub`, 'success');
+      loadSeoOverview();
+    }
+  }
+
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', init);
 
@@ -1293,6 +1585,15 @@ const Admin = (() => {
     toggleCanvasPreview,
     saveLiveCanvas,
     copyImagePath,
-    deleteImage
+    deleteImage,
+    refreshWaos,
+    toggleWaosAi,
+    sendReviewRequest,
+    quickReview,
+    logoutWaos,
+    loadHeatmap,
+    loadSeoOverview,
+    useSeoTemplate,
+    rebuildSitemap
   };
 })();

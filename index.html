@@ -6,9 +6,10 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-KT9E760LFF');
+    if (/draodettenoyola\.com|dra-odette/i.test(window.location.hostname)) {
+      gtag('js', new Date());
+      gtag('config', 'G-KT9E760LFF');
+    }
   </script>
 
   <meta charset="UTF-8">
@@ -124,8 +125,8 @@
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "20.6597",
-          "longitude": "-103.3999"
+          "latitude": "20.6657",
+          "longitude": "-103.4072"
         }
       },
       {
@@ -167,7 +168,33 @@
           }
         ],
         "priceRange": "$800 - $1,700 MXN",
-        "currenciesAccepted": "MXN"
+        "currenciesAccepted": "MXN",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "20.6657",
+          "longitude": "-103.4072"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "bestRating": "5",
+          "ratingCount": "18",
+          "reviewCount": "18"
+        },
+        "review": [
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "Ivonne Salinas" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "Excelente atención médica, explica todo con mucha paciencia y detalle durante el ultrasonido estructural."
+          },
+          {
+            "@type": "Review",
+            "author": { "@type": "Person", "name": "María Guadalupe" },
+            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+            "reviewBody": "La mejor ginecóloga en Guadalajara, instalaciones impecables en Chapalita y trato súper humano y cálido."
+          }
+        ]
       },
       {
         "@type": "MedicalProcedure",
@@ -328,11 +355,12 @@
       <!-- Desktop links -->
       <div class="navbar__links">
         <a href="#services">Servicios</a>
+        <a href="chequeo-ginecologico-guadalajara.html">Chequeo ($1,200)</a>
+        <a href="consulta-ginecologica-guadalajara.html">Consulta ($800)</a>
+        <a href="ultrasonido-estructural.html">US Estructural</a>
         <a href="#about">Sobre Mí</a>
-        <a href="#gallery">Consultorio</a>
         <a href="#testimonials">Testimonios</a>
         <a href="#blog">Blog</a>
-        <a href="#faq">FAQ</a>
         <a href="#location">Ubicación</a>
         <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita" class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.486a.5.5 0 00.61.61l4.452-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.38-1.573.5.5 0 00-.39-.058l-3.124 1.049 1.049-3.124a.5.5 0 00-.058-.39A9.94 9.94 0 012.524 12.524 9.94 9.94 0 0112 2a10 10 0 010 20z"/></svg>
@@ -455,12 +483,68 @@
       </h2>
     </div>
 
-    <!-- Pricing Cards Grid -->
+    <!-- Pricing Cards Grid (Reordenado por Volumen de Conversión Diaria) -->
     <div class="services__list" data-stagger="100">
-      <!-- Service 1: Ultrasonido Estructural -->
+      <!-- Service 1: Chequeo Ginecológico Completo ($1,200) -->
       <div class="service-card service-card--has-image" data-stagger-child>
         <div class="service-card__image">
-          <span class="service-card__tag">Alta Especialidad</span>
+          <span class="service-card__tag">Más Solicitado · Preventivo Anual</span>
+          <picture>
+            <source srcset="img/service-gynecology-checkup-v3.webp?v=4.3" type="image/webp">
+            <img src="img/service-gynecology-checkup-v3.jpg?v=4.3" alt="Instrumental clínico ginecológico de alta precisión para chequeo anual completo en Guadalajara" width="800" height="500" loading="lazy">
+          </picture>
+        </div>
+        <div class="service-card__body">
+          <div class="service-card__header">
+            <div class="service-card__info">
+              <h3 class="service-card__name">Chequeo Ginecológico Completo</h3>
+              <span class="service-card__weeks">Preventivo Anual · Incluye Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido</span>
+            </div>
+            <div class="service-card__price">
+              <span class="service-card__amount">$1,200</span>
+              <span class="service-card__currency">MXN</span>
+            </div>
+          </div>
+          <p class="service-card__desc">Chequeo anual preventivo: incluye valoración médica personalizada, exploración de mamas, toma de Papanicolaou, colposcopía, vaginoscopía y ecografía ginecológica en tiempo real.</p>
+          <div class="service-card__cta">
+            <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20un%20chequeo%20ginecol%C3%B3gico." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
+            <a href="chequeo-ginecologico-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles del Chequeo →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 2: Consulta Ginecológica y Control ($800) -->
+      <div class="service-card service-card--has-image" data-stagger-child>
+        <div class="service-card__image">
+          <span class="service-card__tag">Atención Médica Integral</span>
+          <picture>
+            <source srcset="img/service-consultation-v3.webp?v=4.3" type="image/webp">
+            <img src="img/service-consultation-v3.jpg?v=4.3" alt="Dra. Odette Noyola en consulta médica ginecológica personalizada y control prenatal en Guadalajara" width="800" height="500" loading="lazy">
+          </picture>
+        </div>
+        <div class="service-card__body">
+          <div class="service-card__header">
+            <div class="service-card__info">
+              <h3 class="service-card__name">Consulta Ginecológica y Control</h3>
+              <span class="service-card__weeks">Diagnóstico, Tratamiento y Seguimiento</span>
+            </div>
+            <div class="service-card__price">
+              <span class="service-card__amount">$800</span>
+              <span class="service-card__currency">MXN</span>
+            </div>
+          </div>
+          <p class="service-card__desc">Diagnóstico y tratamiento para desajustes del ciclo, infecciones, ovario poliquístico (SOP), miomas, anticoncepción (DIU / implante) y control prenatal.</p>
+          <div class="service-card__cta">
+            <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20consulta." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
+            <a href="consulta-ginecologica-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles de Consulta →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Service 3: Ultrasonido Estructural ($1,700) -->
+      <div class="service-card service-card--has-image" data-stagger-child>
+        <div class="service-card__image">
+          <span class="service-card__tag">Alta Especialidad Materno Fetal</span>
           <picture>
             <source srcset="img/service-ultrasound-structural-v5.webp?v=4.4" type="image/webp">
             <img src="img/service-ultrasound-structural-v5.jpg?v=4.4" alt="Dra. Odette Noyola realizando ultrasonido estructural fetal de alta definición con ecógrafo GE Voluson en Guadalajara" width="800" height="500" loading="lazy">
@@ -485,7 +569,7 @@
         </div>
       </div>
 
-      <!-- Service 2: Tamizaje Genético -->
+      <!-- Service 4: Tamizaje Genético ($1,700) -->
       <div class="service-card service-card--has-image" data-stagger-child>
         <div class="service-card__image">
           <span class="service-card__tag">Genética Fetal</span>
@@ -512,7 +596,7 @@
         </div>
       </div>
 
-      <!-- Service 3: US Tercer Trimestre -->
+      <!-- Service 5: US Tercer Trimestre ($1,500) -->
       <div class="service-card service-card--has-image" data-stagger-child>
         <div class="service-card__image">
           <span class="service-card__tag">Control Fetal</span>
@@ -538,62 +622,59 @@
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Service 4: Chequeo Ginecológico -->
-      <div class="service-card service-card--has-image" data-stagger-child>
-        <div class="service-card__image">
-          <span class="service-card__tag">Preventivo Anual</span>
-          <picture>
-            <source srcset="img/service-gynecology-checkup-v3.webp?v=4.3" type="image/webp">
-            <img src="img/service-gynecology-checkup-v3.jpg?v=4.3" alt="Instrumental clínico ginecológico de alta precisión para chequeo anual completo en Guadalajara" width="800" height="500" loading="lazy">
-          </picture>
+    <!-- Interactive 3-Click Clinical Pre-Triage & Quote Widget -->
+    <div class="reveal" id="cotizador-rapido" style="max-width: 980px; margin: 2.5rem auto 0; background: linear-gradient(145deg, rgba(13,122,117,0.12), rgba(11,24,39,0.92)); border: 1px solid rgba(20,168,161,0.35); border-radius: 20px; padding: 1.75rem 1.5rem; box-shadow: 0 18px 42px rgba(0,0,0,0.22);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1.25rem;">
+        <div>
+          <span style="font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:#14A8A1;">⚡ Pre-Cita y Cotizador en 3 Clics</span>
+          <h3 style="font-size:1.35rem; font-weight:800; margin-top:0.2rem; color:#ffffff;">¿Qué estudio o consulta necesitas hoy?</h3>
         </div>
-        <div class="service-card__body">
-          <div class="service-card__header">
-            <div class="service-card__info">
-              <h3 class="service-card__name">Chequeo Ginecológico Completo</h3>
-              <span class="service-card__weeks">Preventivo Anual · Incluye Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido</span>
-            </div>
-            <div class="service-card__price">
-              <span class="service-card__amount">$1,200</span>
-              <span class="service-card__currency">MXN</span>
-            </div>
-          </div>
-          <p class="service-card__desc">Chequeo anual preventivo: incluye valoración médica personalizada, exploración de mamas, toma de Papanicolaou, colposcopía, vaginoscopía y ecografía ginecológica en tiempo real.</p>
-          <div class="service-card__cta">
-            <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20un%20chequeo%20ginecol%C3%B3gico." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
-            <a href="chequeo-ginecologico-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles del Chequeo →</a>
-          </div>
+        <div id="triage-price-badge" style="background:rgba(20,168,161,0.18); border:1px solid rgba(20,168,161,0.4); color:#2dd4bf; padding:0.45rem 0.9rem; border-radius:999px; font-weight:700; font-size:0.88rem;">
+          $1,200 MXN · Incluye Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido
         </div>
       </div>
-
-      <!-- Service 5: Consulta General -->
-      <div class="service-card service-card--has-image" data-stagger-child>
-        <div class="service-card__image">
-          <span class="service-card__tag">Atención Médica</span>
-          <picture>
-            <source srcset="img/service-consultation-v3.webp?v=4.3" type="image/webp">
-            <img src="img/service-consultation-v3.jpg?v=4.3" alt="Dra. Odette Noyola en consulta médica ginecológica personalizada y control prenatal en Guadalajara" width="800" height="500" loading="lazy">
-          </picture>
+      <form id="clinical-triage-form" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap:0.85rem; align-items:end;">
+        <div>
+          <label for="triage-service" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">1. Estudio o Consulta</label>
+          <select id="triage-service" class="form-select" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
+            <option value="Chequeo Ginecológico Completo ($1,200 MXN)">Chequeo Ginecológico Completo ($1,200 MXN)</option>
+            <option value="Consulta Ginecológica / Control Prenatal ($800 MXN)">Consulta Ginecológica / Control Prenatal ($800 MXN)</option>
+            <option value="Ultrasonido Estructural 2do Trimestre ($1,700 MXN)">Ultrasonido Estructural Sem 18-24 ($1,700 MXN)</option>
+            <option value="Tamizaje Genético 1er Trimestre ($1,700 MXN)">Tamizaje Genético Sem 11-13.6 ($1,700 MXN)</option>
+            <option value="Ultrasonido 3er Trimestre / Doppler ($1,500 MXN)">Ultrasonido 3er Trimestre Sem 28+ ($1,500 MXN)</option>
+          </select>
         </div>
-        <div class="service-card__body">
-          <div class="service-card__header">
-            <div class="service-card__info">
-              <h3 class="service-card__name">Consulta Ginecológica y Control</h3>
-              <span class="service-card__weeks">Diagnóstico, Tratamiento y Seguimiento</span>
-            </div>
-            <div class="service-card__price">
-              <span class="service-card__amount">$800</span>
-              <span class="service-card__currency">MXN</span>
-            </div>
-          </div>
-          <p class="service-card__desc">Diagnóstico y tratamiento para desajustes del ciclo, infecciones, ovario poliquístico (SOP), miomas, anticoncepción (DIU / implante) y control prenatal.</p>
-          <div class="service-card__cta">
-            <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20consulta." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
-            <a href="consulta-ginecologica-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles de Consulta →</a>
-          </div>
+        <div>
+          <label for="triage-context" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">2. Motivo o Semanas</label>
+          <select id="triage-context" class="form-select" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
+            <option value="Revisión anual preventiva">Revisión anual preventiva</option>
+            <option value="Embarazo (1er Trimestre: Sem 1 a 13)">Embarazo (1er Trimestre: Sem 1–13)</option>
+            <option value="Embarazo (2do Trimestre: Sem 14 a 27)">Embarazo (2do Trimestre: Sem 14–27)</option>
+            <option value="Embarazo (3er Trimestre: Sem 28+)">Embarazo (3er Trimestre: Sem 28+)</option>
+            <option value="SOP / Ciclo menstrual / Miomas / Infección">SOP / Ciclo menstrual / Miomas / Infección</option>
+            <option value="Anticonceptivos (DIU Mirena / Implante)">Anticonceptivos (DIU Mirena / Implante)</option>
+          </select>
         </div>
-      </div>
+        <div>
+          <label for="triage-insurance" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">3. Modalidad / Seguro</label>
+          <select id="triage-insurance" class="form-select" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
+            <option value="Particular (Pago en consultorio)">Particular (Efectivo / Tarjeta / Transferencia)</option>
+            <option value="Seguro GNP / MetLife / AXA / Allianz">Con Seguro (GNP, MetLife, AXA, Allianz, Mapfre)</option>
+            <option value="Requiero Factura Fiscal CFDI">Particular + Factura Fiscal para Reembolso</option>
+          </select>
+        </div>
+        <div>
+          <label for="triage-name" style="display:block; font-size:0.8rem; font-weight:600; margin-bottom:0.35rem; color:#e2e8f0;">Tu Nombre (Opcional)</label>
+          <input type="text" id="triage-name" placeholder="Ej. Ana Sofía" class="form-input" style="width:100%; padding:0.65rem 0.8rem; border-radius:10px;">
+        </div>
+        <div>
+          <button type="submit" id="triage-submit-btn" class="btn btn-whatsapp" style="width:100%; justify-content:center; padding:0.72rem 1rem; border-radius:10px; font-weight:700;">
+            📲 Agendar Cita
+          </button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -1272,7 +1353,7 @@
             <a href="https://instagram.com/draodettenoyola" class="footer__social-link" target="_blank" rel="noopener" aria-label="Instagram">
               <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
             </a>
-            <a href="https://www.facebook.com" class="footer__social-link" target="_blank" rel="noopener" aria-label="Facebook">
+            <a href="https://g.page/r/CST5pYN0eyRqEAI/review" class="footer__social-link" target="_blank" rel="noopener" aria-label="Reseñas en Google">
               <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
             </a>
             <a href="https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7" class="footer__social-link" target="_blank" rel="noopener" aria-label="Google Maps">

@@ -79,6 +79,18 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
           <span>Imágenes</span>
         </a>
+        <a href="#waos" class="sidebar__link" data-page="waos">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          <span>WhatsApp Bot (QR)</span>
+        </a>
+        <a href="#heatmap" class="sidebar__link" data-page="heatmap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2c1.5 3.5 4 6 4 10a4 4 0 11-8 0c0-4 2.5-6.5 4-10z"/><path d="M8.5 14.5A2.5 2.5 0 0011 17"/></svg>
+          <span>Mapa de Calor</span>
+        </a>
+        <a href="#seo" class="sidebar__link" data-page="seo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          <span>Centro SEO & IA</span>
+        </a>
       </nav>
 
       <div class="sidebar__footer">
@@ -168,6 +180,15 @@
               <button class="btn btn--secondary btn--full" onclick="Admin.router.navigate('images')" style="margin-top: 0.75rem;">
                 Gestionar Imágenes
               </button>
+              <button class="btn btn--secondary btn--full" onclick="Admin.router.navigate('waos')" style="margin-top: 0.75rem; border-color: rgba(34,197,94,0.4); color: #4ade80;">
+                📱 Conectar WhatsApp Bot (Escanear QR)
+              </button>
+              <button class="btn btn--secondary btn--full" onclick="Admin.router.navigate('heatmap')" style="margin-top: 0.75rem; border-color: rgba(245,158,11,0.4); color: #fbbf24;">
+                🔥 Ver Mapa de Calor de Pacientes
+              </button>
+              <button class="btn btn--secondary btn--full" onclick="Admin.router.navigate('seo')" style="margin-top: 0.75rem; border-color: rgba(20,168,161,0.4); color: #2dd4bf;">
+                🚀 Centro SEO, Reseñas & Plantillas IA
+              </button>
             </div>
           </div>
         </div>
@@ -181,7 +202,9 @@
             <label for="canvas-page-select" class="canvas-topbar__label">Página:</label>
             <select id="canvas-page-select" class="canvas-select">
               <option value="index.html">🏠 Página Principal (Inicio)</option>
-              <option value="ultrasonido-estructural.html">🔬 Ultrasonido Estructural</option>
+              <option value="chequeo-ginecologico-guadalajara.html">🩺 Chequeo Ginecológico ($1,200)</option>
+              <option value="consulta-ginecologica-guadalajara.html">👩‍⚕️ Consulta Ginecológica ($800)</option>
+              <option value="ultrasonido-estructural.html">🔬 Ultrasonido Estructural ($1,700)</option>
               <option value="blog/index.html">📰 Blog Principal</option>
             </select>
           </div>
@@ -456,6 +479,168 @@ Párrafo de texto con **negrita** y *cursiva*.
 
         <div id="images-grid" class="images-grid">
           <p class="text-muted">Cargando imágenes...</p>
+        </div>
+      </section>
+
+      <!-- ═══ WHATSAPP AI BOT (WAOS CLÍNICO) PAGE ═══ -->
+      <section class="page" id="page-waos" hidden>
+        <div class="page__header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h1 class="page__title">📱 Asistente Clínico WhatsApp (WAOS)</h1>
+            <p class="page__subtitle">Instancia dedicada con tablas encriptadas <code>dbo.odette_conversations</code> y <code>dbo.odette_patients_leads</code></p>
+          </div>
+          <div style="display:flex; gap:0.75rem; align-items:center;">
+            <span id="waos-status-badge" class="blog-item__status blog-item__status--draft" style="font-size:0.85rem; padding:0.4rem 0.9rem;">Verificando...</span>
+            <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.refreshWaos()">🔄 Actualizar Estado</button>
+            <button type="button" class="btn btn--primary btn--sm" id="waos-ai-toggle-btn" onclick="Admin.toggleWaosAi()">🤖 IA Activa</button>
+          </div>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: minmax(310px, 380px) 1fr; gap: 1.5rem; align-items: start;">
+          <!-- Left Card: QR Scanner -->
+          <div class="card" style="text-align:center;">
+            <h3 class="card__title">Vinculación por Código QR</h3>
+            <p class="text-muted text-sm" style="margin-bottom:1rem;">Abre WhatsApp en el celular del consultorio → <strong>Dispositivos vinculados</strong> → <strong>Vincular un dispositivo</strong> y escanea este código:</p>
+            <div id="waos-qr-box" style="background:#ffffff; border-radius:16px; padding:1.25rem; display:inline-flex; align-items:center; justify-content:center; min-width:250px; min-height:250px; margin:0 auto 1rem; box-shadow:0 12px 32px rgba(0,0,0,0.35);">
+              <p style="color:#0B1827; font-weight:600; font-size:0.9rem;">Cargando código QR...</p>
+            </div>
+            <div id="waos-connected-info" style="margin-bottom:1rem; font-size:0.9rem; color:var(--admin-teal); font-weight:600;"></div>
+            <div style="display:flex; gap:0.5rem; justify-content:center;">
+              <button type="button" class="btn btn--ghost btn--sm" onclick="Admin.refreshWaos()">🔄 Recargar QR</button>
+              <button type="button" class="btn btn--danger btn--sm" onclick="Admin.logoutWaos()">Cerrar Sesión / Nuevo QR</button>
+            </div>
+          </div>
+
+          <!-- Right Card: Patient Leads & 1-Click Google Review Request -->
+          <div class="card">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+              <div>
+                <h3 class="card__title" style="margin-bottom:0.2rem;">Pacientes & Solicitud de Reseñas Google Maps ⭐</h3>
+                <p class="text-muted text-sm">Envía un mensaje cálido con el link directo de reseña en Google Maps al terminar la consulta</p>
+              </div>
+            </div>
+
+            <!-- Quick Send Review Form -->
+            <div style="display:grid; grid-template-columns: 1fr 1fr auto; gap:0.75rem; background:var(--admin-surface-2); padding:1rem; border-radius:12px; border:1px solid var(--admin-border); margin-bottom:1.25rem;">
+              <input type="text" id="waos-review-name" placeholder="Nombre de la paciente (ej. Ana Sofía)" style="padding:0.6rem 0.85rem; border-radius:8px; border:1px solid var(--admin-border); background:var(--admin-bg); color:var(--admin-text);">
+              <input type="tel" id="waos-review-phone" placeholder="WhatsApp 10 dígitos (ej. 3312345678)" style="padding:0.6rem 0.85rem; border-radius:8px; border:1px solid var(--admin-border); background:var(--admin-bg); color:var(--admin-text);">
+              <button type="button" class="btn btn--primary" onclick="Admin.sendReviewRequest()">⭐ Enviar Solicitud Reseña</button>
+            </div>
+
+            <h4 style="font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em; color:var(--admin-text-muted); margin-bottom:0.75rem;">Últimos Leads y Pacientes (<code>dbo.odette_patients_leads</code>)</h4>
+            <div id="waos-leads-table-wrap" style="overflow-x:auto;">
+              <p class="text-muted text-sm">Cargando pacientes...</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ CLICK HEATMAP STUDIO PAGE ═══ -->
+      <section class="page" id="page-heatmap" hidden>
+        <div class="page__header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h1 class="page__title">🔥 Mapa de Calor de Clics y Atención</h1>
+            <p class="page__subtitle">Telemetría térmica Zero-PII en vivo (Sincronizado también con <code>office-pc:8003/heatmaps</code>)</p>
+          </div>
+          <div style="display:flex; gap:0.75rem; align-items:center; flex-wrap:wrap;">
+            <select id="hm-page-select" class="canvas-select" onchange="Admin.loadHeatmap()">
+              <option value="/">🏠 Inicio (index.html)</option>
+              <option value="/chequeo-ginecologico-guadalajara.html">🩺 Chequeo Ginecológico ($1,200)</option>
+              <option value="/consulta-ginecologica-guadalajara.html">👩‍⚕️ Consulta Ginecológica ($800)</option>
+              <option value="/ultrasonido-estructural.html">🔬 Ultrasonido Estructural ($1,700)</option>
+            </select>
+            <select id="hm-device-select" class="canvas-select" onchange="Admin.loadHeatmap()">
+              <option value="all">📱💻 Todos los dispositivos</option>
+              <option value="mobile">📱 Solo Móvil</option>
+              <option value="desktop">💻 Solo Escritorio</option>
+            </select>
+            <button type="button" class="btn btn--secondary btn--sm" onclick="Admin.loadHeatmap()">🔄 Actualizar</button>
+          </div>
+        </div>
+
+        <div class="stats-grid" style="margin-bottom:1.5rem;">
+          <div class="stat-card">
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="hm-stat-clicks">0</span>
+              <span class="stat-card__label">Clics Registrados</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="hm-stat-sessions">0</span>
+              <span class="stat-card__label">Sesiones Únicas</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="hm-stat-top-zone">0-20%</span>
+              <span class="stat-card__label">Zona de Mayor Atención</span>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card__data">
+              <span class="stat-card__number" id="hm-stat-cta-share">0%</span>
+              <span class="stat-card__label">Interacción en Botones Cita</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: 1.55fr 1fr; gap: 1.5rem; align-items: start;">
+          <div class="card" style="padding:1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem;">
+              <h3 class="card__title" style="margin:0;">Lienzo Térmico sobre Página en Vivo</h3>
+              <span class="text-muted text-sm">Azul → Verde → Amarillo → Rojo (Máxima concentración)</span>
+            </div>
+            <div id="hm-viewport-box" style="position:relative; width:100%; height:680px; border-radius:12px; overflow:hidden; border:1px solid var(--admin-border); background:#04080F;">
+              <iframe id="hm-iframe" src="/" style="width:100%; height:100%; border:0; pointer-events:none; opacity:0.82;"></iframe>
+              <canvas id="hm-canvas" width="900" height="680" style="position:absolute; inset:0; width:100%; height:100%; pointer-events:none;"></canvas>
+            </div>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:1.25rem;">
+            <div class="card">
+              <h3 class="card__title">Top 10 Elementos Más Clicados</h3>
+              <div id="hm-top-elements" class="card__body">
+                <p class="text-muted text-sm">Cargando ranking de clics...</p>
+              </div>
+            </div>
+            <div class="card">
+              <h3 class="card__title">Retención por Profundidad de Scroll</h3>
+              <div id="hm-scroll-zones" class="card__body">
+                <p class="text-muted text-sm">Cargando zonas de scroll...</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ SEO & CONTENT IA COMMAND CENTER PAGE ═══ -->
+      <section class="page" id="page-seo" hidden>
+        <div class="page__header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+          <div>
+            <h1 class="page__title">🚀 Centro de Mando SEO / GEO & Contenido Clínico</h1>
+            <p class="page__subtitle">Posicionamiento orgánico en Guadalajara/Zapopan, Sitemap automático y Plantillas Clínicas</p>
+          </div>
+          <div style="display:flex; gap:0.75rem;">
+            <button type="button" class="btn btn--primary btn--sm" onclick="Admin.rebuildSitemap()">🔄 Regenerar Sitemap.xml y Sincronizar GitHub</button>
+          </div>
+        </div>
+
+        <div class="dashboard-grid" style="grid-template-columns: 1.2fr 1fr; gap: 1.5rem; align-items: start;">
+          <div class="card">
+            <h3 class="card__title">Estado de Indexación, Schema.org y Páginas Clave</h3>
+            <div id="seo-pages-audit" class="card__body">
+              <p class="text-muted text-sm">Auditando páginas...</p>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card__title">Plantillas Clínicas de Alto Tráfico (1 Clic)</h3>
+            <p class="text-muted text-sm" style="margin-bottom:1rem;">Inicia un nuevo artículo optimizado para Google y asistentes IA con estructura médica lista:</p>
+            <div id="seo-templates-list" class="card__body">
+              <p class="text-muted text-sm">Cargando plantillas...</p>
+            </div>
+          </div>
         </div>
       </section>
 

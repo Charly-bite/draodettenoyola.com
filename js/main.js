@@ -660,3 +660,185 @@ function initContactModal() {
 
 
 
+
+/* ══════════════════════════════════════════════════════════════════════════
+   CLINICAL PRE-TRIAGE & QUOTE WIDGET (Cotizador y Pre-Cita Rápida 3 Clics)
+   ══════════════════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('clinical-triage-form');
+  if (!form) return;
+
+  const serviceSelect = document.getElementById('triage-service');
+  const priceBadge = document.getElementById('triage-price-badge');
+
+  const prices = {
+    'Chequeo Ginecológico Completo ($1,200 MXN)': '$1,200 MXN · Incluye Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido',
+    'Consulta Ginecológica / Control Prenatal ($800 MXN)': '$800 MXN · Diagnóstico, SOP, Miomas, Anticonceptivos o Seguimiento',
+    'Ultrasonido Estructural 2do Trimestre ($1,700 MXN)': '$1,700 MXN · Semanas 18–24 (Alta Definición GE Voluson)',
+    'Tamizaje Genético 1er Trimestre ($1,700 MXN)': '$1,700 MXN · Semanas 11–13.6 (Cálculo de Riesgo Fetal)',
+    'Ultrasonido 3er Trimestre / Doppler ($1,500 MXN)': '$1,500 MXN · Semana 28 en adelante (Crecimiento y Bienestar)'
+  };
+
+  if (serviceSelect && priceBadge) {
+    serviceSelect.addEventListener('change', () => {
+      priceBadge.textContent = prices[serviceSelect.value] || '$800 – $1,700 MXN';
+    });
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const service = document.getElementById('triage-service')?.value || 'Chequeo Ginecológico Completo ($1,200 MXN)';
+    const context = document.getElementById('triage-context')?.value || 'Primera vez / Revisión preventiva';
+    const insurance = document.getElementById('triage-insurance')?.value || 'Particular';
+    const name = (document.getElementById('triage-name')?.value || '').trim();
+    const phone = (document.getElementById('triage-phone')?.value || '').trim();
+
+    try {
+      fetch('/api/waos/lead-intake', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          patientName: name || 'Paciente Web (Cotizador)',
+          phone: phone || 'web_triage',
+          serviceRequested: service,
+          gestationalWeeks: context,
+          insuranceCarrier: insurance
+        })
+      }).catch(() => {});
+    } catch (_) {}
+
+    const greeting = name ? `Hola Dra. Odette, soy *${name}*.` : 'Hola Dra. Odette,';
+    const msg = `${greeting} Me gustaría agendar cita desde su sitio web:\n• *Estudio/Consulta:* ${service}\n• *Motivo/Semanas:* ${context}\n• *Modalidad:* ${insurance}\n¿Qué horarios tiene disponibles?`;
+    window.open(`https://wa.me/523327905726?text=${encodeURIComponent(msg)}`, '_blank', 'noopener');
+  });
+});
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HEATMAP TRACKER v2 — Zero-PII Click & Scroll Telemetry (dra_odette)
+   ══════════════════════════════════════════════════════════════════════════ */
+(function () {
+  if (window.location.search.includes('canvas=1') || window.self !== window.top) return;
+
+  const ENDPOINT = '/api/heatmap';
+  const SITE_ID = 'dra_odette';
+  const queue = [];
+  let maxScrollZone = '';
+
+  let sid = sessionStorage.getItem('_odette_hm_sid');
+  if (!sid) {
+    sid = Math.random().toString(36).slice(2, 10) + Date.now().toString(36).slice(-4);
+    try { sessionStorage.setItem('_odette_hm_sid', sid); } catch (_) {}
+  }
+
+  function getDevice() {
+    const w = window.innerWidth || document.documentElement.clientWidth || 1024;
+    if (w < 768) return 'mobile';
+    if (w < 1024) return 'tablet';
+    return 'desktop';
+  }
+
+  function getScrollZone(yPct) {
+    if (yPct < 20) return '0-20';
+    if (yPct < 40) return '20-40';
+    if (yPct < 60) return '40-60';
+    if (yPct < 80) return '60-80';
+    return '80-100';
+  }
+
+  function buildSelector(el) {
+    if (!el || !el.tagName) return '';
+    const target = el.closest('a,button,[role="button"],input,select,.service-card,.faq__item') || el;
+    const tag = (target.tagName || '').toLowerCase();
+    const id = target.id ? '#' + target.id : '';
+    const cls = (typeof target.className === 'string' && target.className.trim())
+      ? '.' + target.className.trim().split(/\s+/).slice(0, 2).join('.')
+      : '';
+    return (tag + id + cls).slice(0, 140);
+  }
+
+  function getSafeLabel(el) {
+    if (!el) return '';
+    const target = el.closest('a,button,[role="button"],.service-card,.faq__question') || el;
+    const tag = (target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea') return target.getAttribute('placeholder') || target.name || tag;
+    return (target.getAttribute('aria-label') || target.innerText || target.textContent || '')
+      .replace(/\s+/g, ' ')
+      .trim()
+      .slice(0, 75);
+  }
+
+  function flush() {
+    if (!queue.length) return;
+    const batch = queue.splice(0, 25);
+    const payload = JSON.stringify({
+      site: SITE_ID,
+      path: window.location.pathname || '/',
+      device: getDevice(),
+      sid: sid,
+      events: batch
+    });
+    try {
+      if (navigator.sendBeacon) {
+        const blob = new Blob([payload], { type: 'application/json' });
+        if (navigator.sendBeacon(ENDPOINT, blob)) return;
+      }
+      fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true
+      }).catch(() => {});
+    } catch (_) {}
+  }
+
+  document.addEventListener('click', (e) => {
+    const vw = Math.max(window.innerWidth || 0, 1);
+    const vh = Math.max(window.innerHeight || 0, 1);
+    const dh = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight || 0, vh);
+    const pageX = typeof e.pageX === 'number' ? e.pageX : (e.clientX + window.scrollX);
+    const pageY = typeof e.pageY === 'number' ? e.pageY : (e.clientY + window.scrollY);
+    const xPct = Math.max(0, Math.min(100, (pageX / vw) * 100));
+    const yPct = Math.max(0, Math.min(100, (pageY / dh) * 100));
+
+    queue.push({
+      t: 'click',
+      x: Number(xPct.toFixed(2)),
+      y: Number(yPct.toFixed(2)),
+      yp: Math.round(pageY),
+      sz: getScrollZone(yPct),
+      vw: vw,
+      vh: vh,
+      dh: dh,
+      tag: (e.target && e.target.tagName ? e.target.tagName.toLowerCase() : ''),
+      sel: buildSelector(e.target),
+      txt: getSafeLabel(e.target)
+    });
+
+    if (queue.length >= 6) flush();
+  }, { passive: true, capture: true });
+
+  window.addEventListener('scroll', () => {
+    const vh = Math.max(window.innerHeight || 0, 1);
+    const dh = Math.max(document.documentElement.scrollHeight || 0, document.body.scrollHeight || 0, vh);
+    const bottomPct = Math.min(100, ((window.scrollY + vh) / dh) * 100);
+    const zone = getScrollZone(bottomPct);
+    if (zone > maxScrollZone) {
+      maxScrollZone = zone;
+      queue.push({
+        t: 'scroll',
+        x: 50,
+        y: Number(bottomPct.toFixed(1)),
+        yp: Math.round(window.scrollY + vh),
+        sz: zone,
+        vw: window.innerWidth || 0,
+        vh: vh,
+        dh: dh
+      });
+    }
+  }, { passive: true });
+
+  setInterval(flush, 6000);
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') flush();
+  });
+})();
