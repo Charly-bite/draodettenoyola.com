@@ -15,6 +15,29 @@ const ROOT_DIR = path.join(__dirname, '..');
 const SITEMAP_FILE = path.join(ROOT_DIR, 'sitemap.xml');
 const POSTS_FILE = path.join(ROOT_DIR, 'data', 'blog-posts.json');
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CST5pYN0eyRqEAI/review';
+const INDEXNOW_KEY = '8f4b2e91c7d34a659e12b804f5a3c712';
+
+async function notifyIndexNow(urls = []) {
+  try {
+    const keyFile = path.join(ROOT_DIR, `${INDEXNOW_KEY}.txt`);
+    if (!fs.existsSync(keyFile)) {
+      fs.writeFileSync(keyFile, INDEXNOW_KEY, 'utf8');
+    }
+    const resp = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8', 'User-Agent': 'DraOdette-SEO-Suite/1.0' },
+      body: JSON.stringify({
+        host: 'draodettenoyola.com',
+        key: INDEXNOW_KEY,
+        keyLocation: `https://draodettenoyola.com/${INDEXNOW_KEY}.txt`,
+        urlList: urls
+      })
+    });
+    return { ok: resp.status === 200 || resp.status === 202, status: resp.status, count: urls.length };
+  } catch (err) {
+    return { ok: false, error: err.message };
+  }
+}
 
 const CORE_PAGES = [
   { loc: 'https://draodettenoyola.com/', file: 'index.html', priority: '1.0', changefreq: 'weekly', label: 'Página Principal (Home)' },
@@ -60,7 +83,12 @@ ${urlsXml.join('\n')}
 </urlset>
 `;
   fs.writeFileSync(SITEMAP_FILE, xml, 'utf8');
-  return { totalUrls: CORE_PAGES.length + posts.length, publishedPosts: posts.length };
+  const allUrls = [
+    ...CORE_PAGES.map(p => p.loc),
+    ...posts.map(post => `https://draodettenoyola.com/blog/${post.slug}.html`)
+  ];
+  notifyIndexNow(allUrls).catch(() => {});
+  return { totalUrls: CORE_PAGES.length + posts.length, publishedPosts: posts.length, urls: allUrls };
 }
 
 function autoPushToGitHub(commitMsg = 'chore(admin): auto-sync contenido y SEO desde panel Dra. Odette') {
@@ -166,13 +194,15 @@ router.get('/overview', requireAuth, (req, res) => {
   });
 });
 
-// POST /api/seo/rebuild-sitemap — Regenera sitemap.xml y sincroniza con GitHub
+// POST /api/seo/rebuild-sitemap — Regenera sitemap.xml, notifica a IndexNow y sincroniza con GitHub
 router.post('/rebuild-sitemap', requireAuth, async (req, res) => {
   const stats = regenerateSitemap();
+  const indexNow = await notifyIndexNow(stats.urls || []);
   const gitResult = await autoPushToGitHub('chore(seo): regenerar sitemap.xml con nuevos articulos y landing pages');
   res.json({
     ok: true,
     ...stats,
+    indexNow,
     git: gitResult
   });
 });
