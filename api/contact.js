@@ -10,6 +10,27 @@ const path = require('path');
 const nodemailer = require('nodemailer');
 
 const DATA_FILE = path.join(__dirname, '..', 'data', 'contact_messages.json');
+const WHATSAPP_NUMBER = '523327905726';
+
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function buildWhatsappFallbackUrl({ name, phone, service, message }) {
+  const parts = [
+    'Hola Dra. Odette, acabo de enviar una consulta desde draodettenoyola.com.',
+    name ? `Nombre: ${name}` : '',
+    service ? `Motivo: ${service}` : '',
+    phone && phone !== 'No proporcionado' ? `Teléfono: ${phone}` : '',
+    message ? `Mensaje: ${message.slice(0, 260)}` : ''
+  ].filter(Boolean);
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(parts.join('\n'))}`;
+}
 
 // In-memory rate limiting (max 5 submissions per 15 minutes per IP)
 const rateLimitMap = new Map();
@@ -142,17 +163,32 @@ router.post('/', async (req, res) => {
   // 1. Always save to local backup
   saveMessageBackup(record);
 
+  const whatsappFallbackUrl = buildWhatsappFallbackUrl({
+    name: cleanName,
+    phone: cleanPhone,
+    service: cleanService,
+    message: cleanMessage
+  });
+
   // 2. Try sending via SMTP email
   const transporter = getTransporter();
   const recipientEmail = process.env.CONTACT_EMAIL || 'contacto@draodettenoyola.com';
 
   if (!transporter) {
-    console.log(`[Contact API] Mensaje recibido de ${cleanName} (${cleanEmail}). Almacenado en backup local. (Para entrega en buzón, configurar SMTP_USER y SMTP_PASS en .env).`);
-    return res.json({
+    console.log(`[Contact API] Mensaje registrado de ${cleanName} (${cleanService}). SMTP no configurado; devuelto fallback WhatsApp.`);
+    return res.status(200).json({
       success: true,
-      message: '¡Tu mensaje ha sido recibido con éxito! La Dra. Odette o su equipo se pondrán en contacto contigo a la brevedad.'
+      emailDelivered: false,
+      whatsappFallbackUrl,
+      message: '¡Tu solicitud fue registrada! Para confirmación más rápida de cita, también puedes enviarla por WhatsApp con un clic.'
     });
   }
+
+  const safeName = escapeHtml(cleanName);
+  const safeEmail = escapeHtml(cleanEmail);
+  const safePhone = escapeHtml(cleanPhone);
+  const safeService = escapeHtml(cleanService);
+  const safeMessage = escapeHtml(cleanMessage);
 
   const mailOptions = {
     from: `"Web Dra. Odette Noyola" <${process.env.SMTP_USER}>`,
@@ -179,21 +215,21 @@ ${cleanMessage}
       </div>
 
       <div style="background-color: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px;">
-        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Paciente / Remitente:</strong> ${cleanName}</p>
-        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Correo electrónico:</strong> <a href="mailto:${cleanEmail}" style="color: #0d9488;">${cleanEmail}</a></p>
-        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Teléfono / WhatsApp:</strong> <a href="tel:${cleanPhone}" style="color: #0d9488;">${cleanPhone}</a></p>
-        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Asunto / Servicio:</strong> <span style="background: #ccfbf1; color: #115e59; padding: 3px 8px; border-radius: 6px; font-weight: 600;">${cleanService}</span></p>
+        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Paciente / Remitente:</strong> ${safeName}</p>
+        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Correo electrónico:</strong> <a href="mailto:${safeEmail}" style="color: #0d9488;">${safeEmail}</a></p>
+        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Teléfono / WhatsApp:</strong> <a href="tel:${safePhone}" style="color: #0d9488;">${safePhone}</a></p>
+        <p style="margin: 0 0 10px; font-size: 15px;"><strong>Asunto / Servicio:</strong> <span style="background: #ccfbf1; color: #115e59; padding: 3px 8px; border-radius: 6px; font-weight: 600;">${safeService}</span></p>
         <p style="margin: 0; font-size: 13px; color: #94a3b8;"><strong>Fecha y Hora:</strong> ${new Date().toLocaleString('es-MX', { timeZone: 'America/Mexico_City' })}</p>
       </div>
 
       <div style="background-color: #ffffff; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0;">
         <h4 style="margin: 0 0 10px; color: #1e293b; font-size: 15px;">Mensaje de la paciente:</h4>
-        <div style="color: #334155; font-size: 15px; line-height: 1.6; white-space: pre-wrap; background: #f1f5f9; padding: 14px; border-radius: 8px;">${cleanMessage}</div>
+        <div style="color: #334155; font-size: 15px; line-height: 1.6; white-space: pre-wrap; background: #f1f5f9; padding: 14px; border-radius: 8px;">${safeMessage}</div>
       </div>
 
       <div style="text-align: center; margin-top: 20px;">
         <a href="https://wa.me/${cleanPhone.replace(/[^0-9]/g, '')}?text=Hola%20${encodeURIComponent(cleanName)}%2C%20recibimos%20tu%20mensaje%20en%20el%20consultorio%20de%20la%20Dra.%20Odette%20Noyola" style="display: inline-block; background-color: #25D366; color: #ffffff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 9999px; margin-right: 10px; font-size: 14px;">Responder por WhatsApp</a>
-        <a href="mailto:${cleanEmail}?subject=Re:%20Contacto%20Dra.%20Odette%20Noyola" style="display: inline-block; background-color: #0d9488; color: #ffffff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 9999px; font-size: 14px;">Responder por Correo</a>
+        <a href="mailto:${safeEmail}?subject=Re:%20Contacto%20Dra.%20Odette%20Noyola" style="display: inline-block; background-color: #0d9488; color: #ffffff; text-decoration: none; font-weight: bold; padding: 10px 20px; border-radius: 9999px; font-size: 14px;">Responder por Correo</a>
       </div>
 
       <div style="text-align: center; margin-top: 24px; font-size: 12px; color: #94a3b8;">
@@ -206,16 +242,20 @@ ${cleanMessage}
   try {
     await transporter.sendMail(mailOptions);
     console.log(`[Contact API] Correo enviado exitosamente a ${recipientEmail} para ${cleanName}`);
-    return res.json({
+    return res.status(200).json({
       success: true,
+      emailDelivered: true,
+      whatsappFallbackUrl,
       message: '¡Tu mensaje ha sido enviado con éxito! Nos comunicaremos contigo a la brevedad.'
     });
   } catch (mailErr) {
     console.error('[Contact API Mail Error]:', mailErr.message);
     // Even if SMTP failed, the message was preserved in JSON backup
-    return res.json({
+    return res.status(200).json({
       success: true,
-      message: '¡Tu mensaje ha sido registrado exitosamente en el consultorio! Nos comunicaremos contigo pronto.'
+      emailDelivered: false,
+      whatsappFallbackUrl,
+      message: '¡Tu solicitud fue registrada en el consultorio! Para confirmación inmediata de horario, continúa por WhatsApp con un clic.'
     });
   }
 });

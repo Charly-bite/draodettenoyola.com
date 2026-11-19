@@ -9,33 +9,31 @@ services:
     startCommand: "node server.js"
     pullRequestPreviewsEnabled: true
     envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
       - key: ADMIN_USER
         sync: false
       - key: ADMIN_PASSWORD_HASH
         sync: false
       - key: JWT_SECRET
         generateValue: true
-      - key: PORT
-        value: 10000
-    headers:
-      - path: /*
-        name: X-Frame-Options
-        value: SAMEORIGIN
-      - path: /*
-        name: X-Content-Type-Options
-        value: nosniff
-      - path: /img/*
-        name: Cache-Control
-        value: public, max-age=31536000, immutable
-      - path: /css/*
-        name: Cache-Control
-        value: public, max-age=86400
-      - path: /js/*
-        name: Cache-Control
-        value: public, max-age=86400
-      - path: /*
-        name: Strict-Transport-Security
-        value: max-age=63072000; includeSubDomains; preload
-      - path: /*
-        name: Referrer-Policy
-        value: strict-origin-when-cross-origin
+      - key: ODETTE_BRIDGE_KEY
+        sync: false
+      - key: WAOS_BRIDGE_URLS
+        sync: false
+      - key: HEATMAP_SYNC_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: CONTACT_EMAIL
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false

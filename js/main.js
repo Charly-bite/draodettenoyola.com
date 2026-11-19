@@ -554,6 +554,30 @@ function initContactModal() {
 
   const openBtn = document.getElementById('open-contact-modal-btn');
   const footerLink = document.getElementById('footer-contact-modal-link');
+  const WA_BASE = 'https://wa.me/523327905726';
+
+  function buildWhatsappHandoffUrl({ name, phone, service, message }) {
+    const lines = ['Hola Dra. Odette, quisiera agendar o consultar desde draodettenoyola.com:'];
+    if (name) lines.push(`• Nombre: ${name}`);
+    if (service) lines.push(`• Motivo/Estudio: ${service}`);
+    if (phone) lines.push(`• Teléfono: ${phone}`);
+    if (message) lines.push(`• Mensaje: ${message.slice(0, 300)}`);
+    if (lines.length === 1) {
+      return `${WA_BASE}?text=${encodeURIComponent('Hola Dra. Odette, quisiera agendar una cita en Chapalita.')}`;
+    }
+    return `${WA_BASE}?text=${encodeURIComponent(lines.join('\n'))}`;
+  }
+
+  function readFormValues() {
+    if (!form) return { name: '', phone: '', service: '', message: '' };
+    const fd = new FormData(form);
+    return {
+      name: (fd.get('name') || '').toString().trim(),
+      phone: (fd.get('phone') || '').toString().trim(),
+      service: (fd.get('service') || '').toString().trim(),
+      message: (fd.get('message') || '').toString().trim()
+    };
+  }
 
   function scrollToContact(e) {
     if (contactSection) {
@@ -566,6 +590,22 @@ function initContactModal() {
   // Smooth scroll trigger listeners
   openBtn?.addEventListener('click', scrollToContact);
   footerLink?.addEventListener('click', scrollToContact);
+
+  // Wire any direct WhatsApp CTA buttons inside/around #contacto to carry current form fields
+  document.querySelectorAll('[data-whatsapp-form-cta]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const url = buildWhatsappHandoffUrl(readFormValues());
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'whatsapp_lead_click', {
+          event_category: 'conversion',
+          page_path: window.location.pathname || '/',
+          link_text: 'whatsapp_form_cta'
+        });
+      }
+      window.open(url, '_blank', 'noopener,noreferrer');
+    });
+  });
 
   // Form submission via Fetch
   if (form) {
@@ -613,6 +653,17 @@ function initContactModal() {
         return;
       }
 
+      // Track GA4 lead conversion on valid form submission
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'lead',
+          event_label: 'contact_form',
+          service: service || 'general'
+        });
+      }
+
+      const waHandoffUrl = buildWhatsappHandoffUrl({ name, phone, service, message });
+
       // Set loading state
       setLoading(true);
 
@@ -626,26 +677,76 @@ function initContactModal() {
           body: JSON.stringify({ name, email, phone, service, message, _hp })
         });
 
-        const result = await response.json();
+        let result = null;
+        try {
+          const rawBody = await response.text();
+          result = rawBody ? JSON.parse(rawBody) : null;
+        } catch (_) {
+          result = null;
+        }
 
-        if (response.ok && result.success) {
-          showStatus('✓ ¡Mensaje enviado con éxito! Nos comunicaremos contigo a la brevedad.', 'success');
+        if (response.ok && result && result.success) {
+          const finalWaUrl = result.whatsappFallbackUrl || waHandoffUrl;
+          const successMsg = result.message || '✓ ¡Mensaje enviado con éxito! Nos comunicaremos contigo a la brevedad.';
+          showStatus(successMsg, 'success', {
+            waUrl: finalWaUrl,
+            waLabel: 'Confirmar horario más rápido por WhatsApp →'
+          });
           form.reset();
+        } else if (result && result.error) {
+          showStatus(result.error, 'error', {
+            waUrl: waHandoffUrl,
+            waLabel: 'Enviar esta solicitud por WhatsApp →'
+          });
         } else {
-          showStatus(result.error || 'Ocurrió un error al procesar tu solicitud. Por favor intenta más tarde o comunícate por WhatsApp.', 'error');
+          showStatus(
+            'Tu mensaje está listo para enviarse directamente por WhatsApp al consultorio (sin volver a escribir tus datos):',
+            'success',
+            {
+              waUrl: waHandoffUrl,
+              waLabel: 'Enviar solicitud por WhatsApp ahora →'
+            }
+          );
         }
       } catch (err) {
         console.error('[Contact Form Error]:', err);
-        showStatus('Error de conexión con el servidor. Por favor intenta de nuevo o escríbenos directamente por WhatsApp.', 'error');
+        showStatus(
+          'No pudimos conectar con el servidor de correo en este momento. Envía tu solicitud prellenada por WhatsApp con un clic:',
+          'error',
+          {
+            waUrl: waHandoffUrl,
+            waLabel: 'Enviar solicitud por WhatsApp ahora →'
+          }
+        );
       } finally {
         setLoading(false);
       }
     });
   }
 
-  function showStatus(text, type) {
+  function showStatus(text, type, opts = {}) {
     if (!statusEl) return;
-    statusEl.textContent = text;
+    statusEl.textContent = '';
+    const msgSpan = document.createElement('span');
+    msgSpan.textContent = text;
+    statusEl.appendChild(msgSpan);
+
+    if (opts.waUrl) {
+      const br = document.createElement('br');
+      const link = document.createElement('a');
+      link.href = opts.waUrl;
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
+      link.textContent = opts.waLabel || 'Continuar por WhatsApp →';
+      link.style.display = 'inline-block';
+      link.style.marginTop = '8px';
+      link.style.fontWeight = '700';
+      link.style.textDecoration = 'underline';
+      link.style.color = 'inherit';
+      statusEl.appendChild(br);
+      statusEl.appendChild(link);
+    }
+
     statusEl.className = `contact-form__status ${type}`;
     statusEl.style.display = 'block';
   }

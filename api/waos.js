@@ -5,6 +5,7 @@
  * la Dra. Odette vea su QR en vivo, estatus de WhatsApp y tabla de pacientes.
  */
 const express = require('express');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const { requireAuth } = require('./middleware');
@@ -12,12 +13,19 @@ const { requireAuth } = require('./middleware');
 const router = express.Router();
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const CACHE_FILE = path.join(DATA_DIR, 'waos-bridge-cache.json');
-const BRIDGE_KEY = process.env.ODETTE_BRIDGE_KEY || 'odette-waos-bridge-2026';
+const BRIDGE_KEY = (process.env.ODETTE_BRIDGE_KEY || '').trim();
 const WAOS_URLS = [
-  process.env.ODETTE_WAOS_URL || 'http://100.89.1.27:6006',
-  'http://100.77.199.69:6006',
-  'http://192.168.2.218:6006'
-];
+  ...(process.env.WAOS_BRIDGE_URLS || '').split(','),
+  process.env.ODETTE_WAOS_URL || ''
+].map(u => u.trim().replace(/\/+$/, '')).filter(Boolean);
+
+function safeKeyEqual(provided, expected) {
+  if (!provided || !expected) return false;
+  const a = Buffer.from(String(provided));
+  const b = Buffer.from(String(expected));
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
 
 let bridgeState = {
   waState: {
@@ -74,10 +82,13 @@ async function fetchFromWaosNode(endpoint, options = {}) {
   return null;
 }
 
-// POST /api/waos/bridge-sync — Recibe push cada 20s o en eventos QR desde desarrollo (:6006)
+// POST /api/waos/bridge-sync — Recibe push cada 20s o en eventos QR desde nodo WAOS
 router.post('/bridge-sync', (req, res) => {
+  if (!BRIDGE_KEY) {
+    return res.status(503).json({ ok: false, error: 'Bridge key not configured' });
+  }
   const key = req.headers['x-odette-bridge-key'] || '';
-  if (key !== BRIDGE_KEY) {
+  if (!safeKeyEqual(key, BRIDGE_KEY)) {
     return res.status(403).json({ ok: false, error: 'Invalid bridge key' });
   }
   const { waState, leads, syncedAt } = req.body || {};

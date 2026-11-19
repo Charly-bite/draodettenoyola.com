@@ -6,6 +6,14 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
+    if (/^(www\.)?draodettenoyola\.com$/i.test(window.location.hostname)) {
+      gtag('js', new Date());
+      gtag('config', 'G-KT9E760LFF');
+    }
+  </script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-KT9E760LFF');
   </script>
@@ -14,27 +22,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- SEO Primary Meta Tags -->
-  <title>Aviso de Privacidad Integral | Dra. Odette Noyola · Ginecología y Obstetricia</title>
-  <meta name="description" content="Aviso de Privacidad Integral de la Dra. Odette Noyola Landázuri en estricto cumplimiento con la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP) y la NOM-004-SSA3-2012 del Expediente Clínico.">
+  <title>Aviso de Privacidad Integral | Dra. Odette Noyola</title>
+  <meta name="description" content="Aviso de Privacidad Integral de la Dra. Giselle Odette Noyola Landázuri conforme a la LFPDPPP vigente y NOM-004-SSA3-2012 del Expediente Clínico.">
   <meta name="robots" content="index, follow">
-  <meta name="author" content="Dra. Odette Noyola Landázuri">
+  <meta name="author" content="Dra. Giselle Odette Noyola Landázuri">
   <link rel="canonical" href="https://draodettenoyola.com/aviso-de-privacidad.html">
   <meta name="color-scheme" content="light">
 
   <!-- Open Graph / Social Sharing -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Aviso de Privacidad Integral | Dra. Odette Noyola">
-  <meta property="og:description" content="Protección de datos personales y expediente clínico conforme a la legislación mexicana LFPDPPP y NOM-004-SSA3-2012.">
+  <meta property="og:description" content="Protección de datos personales y expediente clínico conforme a la legislación mexicana LFPDPPP vigente y NOM-004-SSA3-2012.">
   <meta property="og:url" content="https://draodettenoyola.com/aviso-de-privacidad.html">
   <meta property="og:image" content="https://draodettenoyola.com/img/hero-portrait.jpg">
   <meta property="og:locale" content="es_MX">
 
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Aviso de Privacidad Integral | Dra. Odette Noyola">
+  <meta name="twitter:description" content="Protección de datos personales y expediente clínico conforme a la LFPDPPP vigente y NOM-004-SSA3-2012.">
+  <meta name="twitter:image" content="https://draodettenoyola.com/img/hero-portrait.jpg">
+
   <!-- Favicon Suite -->
-  <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png?v=3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png?v=3.0">
-  <link rel="shortcut icon" href="favicon.ico?v=3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=3.0">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=6.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png?v=6.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png?v=6.0">
+  <link rel="shortcut icon" href="favicon.ico?v=6.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=6.0">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,11 +56,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="css/variables.css?v=5.4">
-  <link rel="stylesheet" href="css/reset.css?v=5.4">
-  <link rel="stylesheet" href="css/main.css?v=5.4">
-  <link rel="stylesheet" href="css/components.css?v=5.4">
-  <link rel="stylesheet" href="css/responsive.css?v=5.4">
+  <link rel="stylesheet" href="css/variables.css?v=6.0">
+  <link rel="stylesheet" href="css/reset.css?v=6.0">
+  <link rel="stylesheet" href="css/main.css?v=6.0">
+  <link rel="stylesheet" href="css/components.css?v=6.0">
+  <link rel="stylesheet" href="css/responsive.css?v=6.0">
 
   <style>
     .legal-page {
@@ -103,7 +117,7 @@
       margin-bottom: var(--space-10);
       box-shadow: 0 4px 16px rgba(17, 94, 89, 0.05);
     }
-    .legal-toc h3 {
+    .legal-toc h2, .legal-toc h3 {
       font-size: var(--text-base);
       font-weight: 700;
       color: var(--color-teal-900);
@@ -215,6 +229,7 @@
       margin-bottom: 4px;
     }
     .legal-contact-item span,
+    .footer__col h3 { font-size: var(--text-sm); font-weight: 700; color: var(--color-white); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: var(--space-4); }
     .legal-contact-item a {
       font-size: var(--text-sm);
       color: var(--color-teal-700);
@@ -224,26 +239,59 @@
 
   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Aviso de Privacidad Integral",
-    "description": "Aviso de Privacidad de la Dra. Odette Noyola conforme a la LFPDPPP y la NOM-004-SSA3-2012.",
-    "url": "https://draodettenoyola.com/aviso-de-privacidad.html",
-    "publisher": {
-      "@type": "MedicalBusiness",
-      "name": "Dra. Odette Noyola · Ginecología y Medicina Materno Fetal",
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://draodettenoyola.com/aviso-de-privacidad.html",
+      "name": "Aviso de Privacidad Integral | Dra. Odette Noyola",
+      "description": "Aviso de Privacidad Integral de la Dra. Giselle Odette Noyola Landázuri conforme a la LFPDPPP vigente y NOM-004-SSA3-2012 del Expediente Clínico.",
+      "url": "https://draodettenoyola.com/aviso-de-privacidad.html",
+      "inLanguage": "es-MX",
+      "publisher": {
+        "@id": "https://draodettenoyola.com/#clinic"
+      }
+    },
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://draodettenoyola.com/#clinic",
+      "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Medicina Materno Fetal",
+      "url": "https://draodettenoyola.com/",
       "telephone": "+523327905726",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Av. Niño Obrero 1538",
-        "addressLocality": "Guadalajara",
+        "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+        "addressLocality": "Zapopan",
         "addressRegion": "Jalisco",
         "postalCode": "45040",
         "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.665716,
+        "longitude": -103.407222
       }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://draodettenoyola.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Aviso de Privacidad",
+          "item": "https://draodettenoyola.com/aviso-de-privacidad.html"
+        }
+      ]
     }
-  }
+  ]
+}
   </script>
 </head>
 <body>
@@ -274,7 +322,7 @@
        ═══════════════════════════════════════════════════════════════════ -->
   <nav class="navbar" id="navbar" aria-label="Navegación principal">
     <div class="navbar__inner">
-      <a href="index.html" class="navbar__brand" aria-label="Ir al inicio">
+      <a href="/" class="navbar__brand" aria-label="Ir al inicio">
         <img src="img/logo.jpg" alt="Logo Dra. Odette Noyola" class="navbar__logo" width="44" height="44" loading="eager">
         <div class="navbar__brand-text">
           <div class="navbar__title">Dra. Odette Noyola</div>
@@ -283,16 +331,16 @@
       </a>
 
       <div class="navbar__links">
-        <a href="index.html#services">Servicios</a>
-        <a href="consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
-        <a href="chequeo-ginecologico-guadalajara.html">Chequeo Anual</a>
-        <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
-        <a href="index.html#about">Sobre Mí</a>
-        <a href="index.html#gallery">Consultorio</a>
-        <a href="index.html#testimonials">Testimonios</a>
-        <a href="index.html#blog">Blog</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#location">Ubicación</a>
+        <a href="/#services">Servicios</a>
+        <a href="/consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
+        <a href="/chequeo-ginecologico-guadalajara.html">Chequeo Anual</a>
+        <a href="/ultrasonido-estructural.html">Ultrasonido Estructural</a>
+        <a href="/#about">Sobre Mí</a>
+        <a href="/#gallery">Consultorio</a>
+        <a href="/#testimonials">Testimonios</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#location">Ubicación</a>
       </div>
 
       <div class="navbar__cta">
@@ -312,16 +360,16 @@
     <!-- Mobile Drawer -->
     <div class="navbar__drawer" id="navbar-drawer" aria-label="Menú de navegación">
       <div class="navbar__drawer-links">
-        <a href="index.html#services">Servicios</a>
-        <a href="consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
-        <a href="chequeo-ginecologico-guadalajara.html">Chequeo Anual</a>
-        <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
-        <a href="index.html#about">Sobre Mí</a>
-        <a href="index.html#gallery">Consultorio</a>
-        <a href="index.html#testimonials">Testimonios</a>
-        <a href="index.html#blog">Blog</a>
-        <a href="index.html#faq">FAQ</a>
-        <a href="index.html#location">Ubicación</a>
+        <a href="/#services">Servicios</a>
+        <a href="/consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
+        <a href="/chequeo-ginecologico-guadalajara.html">Chequeo Anual</a>
+        <a href="/ultrasonido-estructural.html">Ultrasonido Estructural</a>
+        <a href="/#about">Sobre Mí</a>
+        <a href="/#gallery">Consultorio</a>
+        <a href="/#testimonials">Testimonios</a>
+        <a href="/blog/">Blog</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#location">Ubicación</a>
       </div>
       <div class="navbar__drawer-cta">
         <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita" class="btn btn-whatsapp" target="_blank" rel="noopener">
@@ -341,7 +389,7 @@
 
       <!-- Breadcrumbs -->
       <nav class="legal-breadcrumbs" aria-label="Ruta de navegación">
-        <a href="index.html">Inicio</a> &gt; <span>Aviso de Privacidad</span>
+        <a href="/">Inicio</a> &gt; <span>Aviso de Privacidad</span>
       </nav>
 
       <!-- Legal Header -->
@@ -355,10 +403,10 @@
 
       <!-- Table of Contents -->
       <nav class="legal-toc" aria-label="Índice de secciones del aviso de privacidad">
-        <h3>
+        <h2>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
           Índice de Contenidos
-        </h3>
+        </h2>
         <ol>
           <li><a href="#responsable">1. Identidad y Domicilio del Responsable</a></li>
           <li><a href="#secreto-profesional">2. Principios y Secreto Profesional Médico</a></li>
@@ -373,7 +421,7 @@
           <li><a href="#cookies">11. Cookies y Tecnologías Web</a></li>
           <li><a href="#seguridad">12. Medidas de Seguridad y Custodia (5 años)</a></li>
           <li><a href="#modificaciones">13. Modificaciones al Aviso de Privacidad</a></li>
-          <li><a href="#autoridad">14. Consentimiento y Autoridad Reguladora (INAI)</a></li>
+          <li><a href="#autoridad">14. Consentimiento y Autoridad Competente</a></li>
         </ol>
       </nav>
 
@@ -381,7 +429,7 @@
       <article class="legal-card" id="responsable">
         <h2>1. Identidad y Domicilio del Responsable</h2>
         <p>
-          En estricto cumplimiento con la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>, su Reglamento y los Lineamientos del Aviso de Privacidad emitidos por el Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI), la <strong>Dra. Giselle Odette Noyola Landázuri</strong>, médica especialista en Ginecología y Obstetricia con subespecialidad en Medicina Materno-Fetal, con domicilio profesional para oír y recibir notificaciones en:
+          En estricto cumplimiento con la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP)</strong>, su Reglamento y los Lineamientos del Aviso de Privacidad aplicables bajo la regulación de la Secretaría Anticorrupción y Buen Gobierno (conforme a la reforma de 2025 a la LFPDPPP), la <strong>Dra. Giselle Odette Noyola Landázuri</strong>, médica especialista en Ginecología y Obstetricia con subespecialidad en Medicina Materno-Fetal, con domicilio profesional para oír y recibir notificaciones en:
         </p>
         <div class="legal-contact-grid">
           <div class="legal-contact-item">
@@ -560,7 +608,7 @@
       <article class="legal-card" id="cookies">
         <h2>11. Cookies y Tecnologías Web</h2>
         <p>
-          Le informamos que en nuestra página de internet <a href="https://draodettenoyola.com">draodettenoyola.com</a> utilizamos cookies, web beacons y tecnologías similares con la finalidad de monitorear su comportamiento como usuario de internet, brindar un mejor servicio y experiencia al navegar, optimizar la velocidad de carga y conocer las estadísticas de acceso mediante Google Analytics.
+          Le informamos que en nuestra página de internet <a href="https://draodettenoyola.com/">draodettenoyola.com</a> utilizamos cookies, web beacons y tecnologías similares con la finalidad de monitorear su comportamiento como usuario de internet, brindar un mejor servicio y experiencia al navegar, optimizar la velocidad de carga y conocer las estadísticas de acceso mediante Google Analytics.
         </p>
         <p>
           Los datos que se obtienen a través de estas tecnologías son datos estadísticos disociados y de navegación (tipo de navegador, sistema operativo, páginas visitadas y tiempo de permanencia), y en ningún caso capturan datos personales sensibles o información médica. Usted puede desactivar o borrar las cookies en cualquier momento ajustando la configuración de privacidad de su navegador web (Chrome, Safari, Firefox, Edge).
@@ -593,12 +641,12 @@
 
       <!-- Section 14 -->
       <article class="legal-card" id="autoridad">
-        <h2>14. Consentimiento y Autoridad Reguladora (INAI)</h2>
+        <h2>14. Consentimiento y Autoridad Competente</h2>
         <p>
           Al solicitar una consulta médica, proporcionar sus datos en consultorio, mediante medios electrónicos o firmar la hoja de consentimiento informado / historia clínica, usted confirma haber leído, comprendido y aceptado en su totalidad los términos del presente <strong>Aviso de Privacidad Integral</strong>.
         </p>
         <p>
-          Si usted considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión de nuestra parte, o presume alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás ordenamientos aplicables, le informamos que puede interponer la queja o denuncia correspondiente ante el <strong>Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales (INAI)</strong>. Para mayor información, puede consultar el portal oficial en <a href="https://home.inai.org.mx/" target="_blank" rel="noopener noreferrer">home.inai.org.mx</a>.
+          Si usted considera que su derecho a la protección de sus datos personales ha sido lesionado por alguna conducta u omisión de nuestra parte, o presume alguna violación a las disposiciones previstas en la Ley Federal de Protección de Datos Personales en Posesión de los Particulares, su Reglamento y demás ordenamientos aplicables, le informamos que puede interponer la queja o denuncia correspondiente ante la <strong>Secretaría Anticorrupción y Buen Gobierno</strong>, autoridad federal competente en materia de protección de datos personales en posesión de los particulares conforme a la reforma de la LFPDPPP vigente desde 2025. Para mayor información, puede consultar el portal oficial en <a href="https://www.gob.mx/buengobierno" target="_blank" rel="noopener noreferrer">gob.mx/buengobierno</a>.
         </p>
       </article>
 
@@ -635,24 +683,24 @@
 
         <!-- Col 2: Navigation -->
         <div class="footer__col">
-          <h4>Navegación</h4>
+          <h3>Navegación</h3>
           <ul class="footer__links">
-            <li><a href="index.html#services">Servicios y Precios</a></li>
-            <li><a href="consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a></li>
-            <li><a href="chequeo-ginecologico-guadalajara.html">Chequeo Anual Femenino</a></li>
-            <li><a href="ultrasonido-estructural.html">Ultrasonido Estructural</a></li>
-            <li><a href="index.html#about">Sobre la Dra. Odette</a></li>
-            <li><a href="index.html#gallery">Consultorio</a></li>
-            <li><a href="index.html#testimonials">Opiniones de Pacientes</a></li>
-            <li><a href="index.html#insurance">Aseguradoras</a></li>
-            <li><a href="index.html#faq">Preguntas Frecuentes</a></li>
-            <li><a href="index.html#location">Ubicación en Chapalita</a></li>
+            <li><a href="/#services">Servicios y Precios</a></li>
+            <li><a href="/consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a></li>
+            <li><a href="/chequeo-ginecologico-guadalajara.html">Chequeo Anual Femenino</a></li>
+            <li><a href="/ultrasonido-estructural.html">Ultrasonido Estructural</a></li>
+            <li><a href="/#about">Sobre la Dra. Odette</a></li>
+            <li><a href="/#gallery">Consultorio</a></li>
+            <li><a href="/#testimonials">Opiniones de Pacientes</a></li>
+            <li><a href="/#insurance">Aseguradoras</a></li>
+            <li><a href="/#faq">Preguntas Frecuentes</a></li>
+            <li><a href="/#location">Ubicación en Chapalita</a></li>
           </ul>
         </div>
 
         <!-- Col 3: Contact info -->
         <div class="footer__col">
-          <h4>Contacto y Citas</h4>
+          <h3>Contacto y Citas</h3>
           <ul class="footer__contact-list">
             <li>
               <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
@@ -683,7 +731,7 @@
         </div>
         <p class="footer__copy">
           © 2026 Dra. Odette Noyola Landázuri. Todos los derechos reservados. |
-          <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>
+          <a href="/aviso-de-privacidad.html">Aviso de Privacidad</a>
         </p>
       </div>
     </div>
@@ -700,6 +748,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/main.js?v=5.0" defer></script>
+  <script src="js/main.js?v=6.0" defer></script>
 </body>
 </html>

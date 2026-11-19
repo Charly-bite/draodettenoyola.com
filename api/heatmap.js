@@ -7,13 +7,28 @@
  *   - GET  /api/heatmap/report (reporte visual térmico completo en draodettenoyola.com/admin)
  */
 const express = require('express');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
+const { requireAuth } = require('./middleware');
 
 const router = express.Router();
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const HEATMAP_FILE = path.join(DATA_DIR, 'heatmap-events.json');
-const SYNC_KEY = process.env.HEATMAP_SYNC_KEY || 'qb-heatmap-sync-2026';
+const SYNC_KEY = (process.env.HEATMAP_SYNC_KEY || '').trim();
+const ALLOW_DEMO_SEED = process.env.HEATMAP_ALLOW_DEMO_SEED === 'true';
+
+function safeKeyEqual(provided, expected) {
+  if (!provided || !expected) return false;
+  const a = Buffer.from(String(provided));
+  const b = Buffer.from(String(expected));
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
+}
+
+function isSyntheticSeedEvent(ev) {
+  return Boolean(ev && /^odette_\d+$/.test(String(ev.session_hash || '')));
+}
 
 function ensureDataDir() {
   if (!fs.existsSync(DATA_DIR)) {
@@ -84,18 +99,21 @@ function buildBaselineEvents() {
 function loadEvents() {
   ensureDataDir();
   if (!fs.existsSync(HEATMAP_FILE)) {
-    const initial = buildBaselineEvents();
-    fs.writeFileSync(HEATMAP_FILE, JSON.stringify(initial, null, 2), 'utf8');
-    return initial;
+    if (ALLOW_DEMO_SEED) {
+      const initial = buildBaselineEvents();
+      fs.writeFileSync(HEATMAP_FILE, JSON.stringify(initial, null, 2), 'utf8');
+      return initial;
+    }
+    return [];
   }
   try {
     const raw = fs.readFileSync(HEATMAP_FILE, 'utf8');
     const parsed = JSON.parse(raw);
-    if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    if (Array.isArray(parsed)) {
+      return ALLOW_DEMO_SEED ? parsed : parsed.filter(e => !isSyntheticSeedEvent(e));
+    }
   } catch (_) {}
-  const fallback = buildBaselineEvents();
-  fs.writeFileSync(HEATMAP_FILE, JSON.stringify(fallback, null, 2), 'utf8');
-  return fallback;
+  return [];
 }
 
 function saveEvents(events) {
@@ -153,12 +171,15 @@ router.post('/', (req, res) => {
   }
 });
 
-// GET /api/heatmap?action=export — Pull sync
-router.get('/', (req, res) => {
+// GET /api/heatmap?action=export — Pull sync (key-authenticated) or admin report (JWT-authenticated)
+router.get('/', (req, res, next) => {
   const action = req.query.action || 'report';
   if (action === 'export') {
+    if (!SYNC_KEY) {
+      return res.status(503).json({ ok: false, error: 'Heatmap sync key not configured' });
+    }
     const key = req.headers['x-heatmap-key'] || req.query.key || '';
-    if (key !== SYNC_KEY) {
+    if (!safeKeyEqual(key, SYNC_KEY)) {
       return res.status(403).json({ ok: false, error: 'Unauthorized' });
     }
     const sinceId = parseInt(req.query.since_id || '0', 10);
@@ -167,10 +188,10 @@ router.get('/', (req, res) => {
     return res.json({ ok: true, count: events.length, events });
   }
 
-  return buildHeatmapReport(req, res);
+  return requireAuth(req, res, () => buildHeatmapReport(req, res));
 });
 
-router.get('/report', buildHeatmapReport);
+router.get('/report', requireAuth, buildHeatmapReport);
 
 function buildHeatmapReport(req, res) {
   const pagePath = req.query.path || '/';

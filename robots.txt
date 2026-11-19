@@ -1,6 +1,7 @@
 # robots.txt for https://draodettenoyola.com
 User-agent: *
 Allow: /
+Allow: /llms.txt
 Disallow: /admin/
 Disallow: /api/
 Disallow: /data/

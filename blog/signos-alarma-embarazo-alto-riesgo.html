@@ -6,17 +6,17 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    if (/draodettenoyola\.com|dra-odette/i.test(window.location.hostname)) {
+    if (/^(www\.)?draodettenoyola\.com$/i.test(window.location.hostname)) {
       gtag('js', new Date());
       gtag('config', 'G-KT9E760LFF');
     }
   </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Signos de Alarma en el Embarazo de Alto Riesgo | Dra. Odette Noyola</title>
-  <meta name="description" content="Signos de alarma en el embarazo de alto riesgo: cuándo acudir a urgencias y qué síntomas vigilar.">
-  <meta name="keywords" content="signos alarma embarazo, embarazo alto riesgo, urgencias embarazo">
-  <meta name="author" content="Dra. Odette Noyola Landázuri">
+  <title>Signos de Alarma en Embarazo Alto Riesgo | Dra. Odette</title>
+  <meta name="description" content="Signos de alarma en embarazo de alto riesgo: sangrado, preeclampsia y movimientos fetales. Subespecialista Materno Fetal en Guadalajara: 33 2790 5726.">
+  <meta name="keywords" content="signos alarma embarazo alto riesgo, preeclampsia sintomas embarazo, especialista embarazo alto riesgo guadalajara, medicina materno fetal zapopan">
+  <meta name="author" content="Dra. Giselle Odette Noyola Landázuri">
   <meta name="robots" content="index, follow">
   <meta name="geo.region" content="MX-JAL">
   <meta name="geo.placename" content="Guadalajara, Zapopan">
@@ -24,80 +24,199 @@
   <meta property="og:url" content="https://draodettenoyola.com/blog/signos-alarma-embarazo-alto-riesgo.html">
   <meta property="og:locale" content="es_MX">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="Signos de Alarma en el Embarazo de Alto Riesgo">
-  <meta property="og:description" content="Signos de alarma en el embarazo de alto riesgo: cuándo acudir a urgencias y qué síntomas vigilar.">
-  <meta property="og:image" content="../img/hero-portrait.jpg">
-  <link rel="icon" type="image/svg+xml" href="../img/favicon.svg?v=3.0">
+  <meta property="og:title" content="Signos de Alarma en Embarazo Alto Riesgo | Dra. Odette">
+  <meta property="og:description" content="Signos de alarma en embarazo de alto riesgo: sangrado, preeclampsia y movimientos fetales. Subespecialista Materno Fetal en Guadalajara: 33 2790 5726.">
+  <meta property="og:image" content="https://draodettenoyola.com/img/pantalla-ultrasonido-paciente-guadalajara.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Signos de Alarma en Embarazo Alto Riesgo | Dra. Odette">
+  <meta name="twitter:description" content="Signos de alarma en embarazo de alto riesgo: sangrado, preeclampsia y movimientos fetales. Subespecialista Materno Fetal en Guadalajara: 33 2790 5726.">
+  <meta name="twitter:image" content="https://draodettenoyola.com/img/pantalla-ultrasonido-paciente-guadalajara.jpg">
+  <link rel="icon" type="image/svg+xml" href="../img/favicon.svg?v=6.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png?v=6.0">
+  <link rel="shortcut icon" href="../favicon.ico?v=6.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png?v=6.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #04080F; --surface: #0B1827; --border: #1a2d44;
-      --text: #e8edf3; --muted: #8a9bb5; --teal: #14A8A1; --rose: #E489A2;
+      --text: #e8edf3; --muted: #98abc4; --teal: #14A8A1; --rose: #E489A2;
+      --wa-green: #25D366; --wa-green-hover: #1EBE5D;
       --font-display: 'Plus Jakarta Sans', sans-serif; --font-body: 'Inter', sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; }
-    .blog-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; }
-    .blog-header__inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; gap: 1rem; }
-    .blog-header__back { color: var(--teal); text-decoration: none; font-weight: 600; }
+    body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.72; }
+    .blog-header { background: var(--surface); border-bottom: 1px solid var(--border); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+    .blog-header__inner { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+    .blog-header__nav { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .blog-header__back { color: var(--teal); text-decoration: none; font-weight: 600; font-size: 0.92rem; }
     .blog-header__back:hover { text-decoration: underline; }
-    .blog-hero { max-width: 800px; margin: 3rem auto 0; padding: 0 1.5rem; }
-    .blog-hero__cover { width: 100%; border-radius: 16px; margin-bottom: 2rem; }
-    .blog-hero__date { color: var(--teal); font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
-    .blog-hero__title { font-family: var(--font-display); font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 800; line-height: 1.2; margin: 0.75rem 0 1rem; }
-    .blog-hero__excerpt { color: var(--muted); font-size: 1.125rem; line-height: 1.6; }
+    .blog-header__cta { background: var(--wa-green); color: #04130a; text-decoration: none; font-weight: 700; font-size: 0.86rem; padding: 0.48rem 1rem; border-radius: 999px; }
+    .blog-hero { max-width: 860px; margin: 2.5rem auto 0; padding: 0 1.5rem; }
+    .blog-hero__cover { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; margin-bottom: 1.75rem; display: block; }
+    .blog-hero__date { color: var(--teal); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .blog-hero__title { font-family: var(--font-display); font-size: clamp(1.7rem, 4vw, 2.5rem); font-weight: 800; line-height: 1.2; margin: 0.65rem 0 1rem; }
+    .blog-hero__excerpt { color: var(--muted); font-size: 1.08rem; line-height: 1.62; }
     .blog-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem; }
     .blog-tag { background: rgba(20, 168, 161, 0.15); color: var(--teal); padding: 0.25rem 0.75rem; border-radius: 999px; font-size: 0.8rem; font-weight: 500; }
-    .blog-content { max-width: 800px; margin: 2rem auto 4rem; padding: 0 1.5rem; }
-    .blog-content h2 { font-family: var(--font-display); font-size: 1.5rem; font-weight: 700; margin: 2rem 0 1rem; color: var(--teal); }
-    .blog-content h3 { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
+    .blog-content { max-width: 860px; margin: 2rem auto 4rem; padding: 0 1.5rem; }
+    .blog-content h2 { font-family: var(--font-display); font-size: 1.45rem; font-weight: 700; margin: 2.1rem 0 0.85rem; color: var(--teal); }
+    .blog-content h3 { font-family: var(--font-display); font-size: 1.18rem; font-weight: 600; margin: 1.5rem 0 0.65rem; color: #f4f7fb; }
     .blog-content p { margin-bottom: 1rem; color: var(--text); }
-    .blog-content ul, .blog-content ol { margin: 1rem 0 1rem 1.5rem; }
+    .blog-content ul, .blog-content ol { margin: 0.9rem 0 1.15rem 1.5rem; }
     .blog-content li { margin-bottom: 0.5rem; }
-    .blog-content blockquote { border-left: 3px solid var(--teal); padding: 1rem 1.5rem; margin: 1.5rem 0; background: rgba(20, 168, 161, 0.05); border-radius: 0 8px 8px 0; }
-    .blog-content img { max-width: 100%; border-radius: 12px; margin: 1.5rem 0; }
-    .blog-content strong { color: var(--teal); }
-    .blog-content a { color: var(--teal); }
-    .blog-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; }
-    .blog-footer__inner { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+    .blog-content blockquote { border-left: 3px solid var(--teal); padding: 1rem 1.4rem; margin: 1.5rem 0; background: rgba(20, 168, 161, 0.08); border-radius: 0 10px 10px 0; }
+    .blog-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 1.5rem 0; }
+    .blog-content strong { color: #7cece5; }
+    .blog-content a { color: var(--teal); text-decoration: underline; }
+    .article-wa-cta {
+      margin: 2.4rem 0; padding: 1.6rem; border-radius: 16px;
+      background: linear-gradient(135deg, rgba(20, 168, 161, 0.16), rgba(37, 211, 102, 0.12));
+      border: 1px solid rgba(20, 168, 161, 0.4);
+    }
+    .article-wa-cta h2 { margin: 0 0 0.5rem; font-size: 1.25rem; color: #fff; }
+    .article-wa-cta p { margin-bottom: 1.1rem; color: var(--text); font-size: 0.96rem; }
+    .article-wa-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+    .btn-wa-article {
+      display: inline-flex; align-items: center; gap: 0.45rem; background: var(--wa-green); color: #04130a !important;
+      text-decoration: none !important; font-weight: 800; padding: 0.75rem 1.35rem; border-radius: 999px; font-size: 0.94rem;
+    }
+    .btn-wa-article:hover { background: var(--wa-green-hover); }
+    .btn-tel-article {
+      display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(255,255,255,0.08); color: #fff !important;
+      text-decoration: none !important; font-weight: 600; padding: 0.75rem 1.2rem; border-radius: 999px; font-size: 0.9rem; border: 1px solid var(--border);
+    }
+    .related-services-box { margin: 2.2rem 0; padding: 1.5rem; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; }
+    .related-services-box h2 { margin: 0 0 1rem; font-size: 1.2rem; color: #fff; }
+    .related-services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.9rem; }
+    .related-service-card {
+      display: block; padding: 1rem; background: rgba(255,255,255,0.03); border: 1px solid var(--border);
+      border-radius: 12px; text-decoration: none !important; transition: border-color 0.2s, transform 0.2s;
+    }
+    .related-service-card:hover { border-color: var(--teal); transform: translateY(-2px); }
+    .related-service-card strong { display: block; color: var(--teal); font-size: 0.95rem; margin-bottom: 0.35rem; }
+    .related-service-card span { display: block; color: var(--muted); font-size: 0.85rem; line-height: 1.45; }
+    .author-box {
+      margin-top: 2.2rem; padding: 1.4rem; background: var(--surface); border: 1px solid var(--border);
+      border-left: 4px solid var(--rose); border-radius: 12px;
+    }
+    .author-box__label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--rose); margin-bottom: 0.3rem; }
+    .author-box__name { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.35rem; }
+    .author-box__bio { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.65rem; }
+    .author-box__cedulas { display: flex; flex-wrap: wrap; gap: 0.45rem; font-size: 0.78rem; }
+    .author-box__cedulas span { background: rgba(20, 168, 161, 0.14); color: #b9f5f0; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 600; }
+    .blog-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 2rem 0; text-align: center; font-size: 0.9rem; color: var(--muted); }
+    .blog-footer__inner { max-width: 860px; margin: 0 auto; padding: 0 1.5rem; }
     .blog-footer a { color: var(--teal); text-decoration: none; font-weight: 600; }
+    .mobile-sticky-cta { display: none; }
+    @media (max-width: 768px) {
+      body { padding-bottom: 72px; }
+      .mobile-sticky-cta {
+        display: grid; grid-template-columns: 1.35fr 1fr 1fr; gap: 0.5rem;
+        position: fixed; left: 0; right: 0; bottom: 0; z-index: 1001;
+        background: rgba(9, 25, 44, 0.97); backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+        padding: 0.55rem 0.75rem calc(0.55rem + env(safe-area-inset-bottom));
+      }
+      .mobile-sticky-cta a {
+        display: inline-flex; align-items: center; justify-content: center; gap: 0.3rem;
+        min-height: 44px; border-radius: 999px; font-size: 0.82rem; font-weight: 700;
+        text-decoration: none; color: #fff; background: rgba(255, 255, 255, 0.12);
+      }
+      .mobile-sticky-cta a.cta-wa { background: var(--wa-green); color: #04130a; }
+    }
   </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "MedicalWebPage",
-      "headline": "Signos de Alarma en el Embarazo de Alto Riesgo",
-      "description": "Signos de alarma en el embarazo de alto riesgo: cuándo acudir a urgencias y qué síntomas vigilar.",
+      "@type": [
+        "BlogPosting",
+        "MedicalWebPage"
+      ],
+      "@id": "https://draodettenoyola.com/blog/signos-alarma-embarazo-alto-riesgo.html#article",
+      "headline": "Signos de Alarma en el Embarazo de Alto Riesgo: Cuándo Acudir a Urgencias",
+      "description": "Signos de alarma en embarazo de alto riesgo: sangrado, preeclampsia y movimientos fetales. Subespecialista Materno Fetal en Guadalajara: 33 2790 5726.",
+      "image": "https://draodettenoyola.com/img/pantalla-ultrasonido-paciente-guadalajara.jpg",
       "url": "https://draodettenoyola.com/blog/signos-alarma-embarazo-alto-riesgo.html",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://draodettenoyola.com/blog/signos-alarma-embarazo-alto-riesgo.html"
+      },
       "inLanguage": "es-MX",
       "datePublished": "2026-08-05T00:00:00Z",
-      "dateModified": "2026-08-21T00:00:00Z",
+      "dateModified": "2026-11-19T11:00:00Z",
       "author": {
-        "@type": "Physician",
-        "name": "Dra. Odette Noyola Landázuri",
-        "url": "https://draodettenoyola.com/",
-        "telephone": "+523327905726"
+        "@id": "https://draodettenoyola.com/#physician"
       },
       "publisher": {
-        "@type": "MedicalBusiness",
-        "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
-          "addressLocality": "Guadalajara",
-          "addressRegion": "Jalisco",
-          "postalCode": "45040",
-          "addressCountry": "MX"
+        "@id": "https://draodettenoyola.com/#clinic"
+      }
+    },
+    {
+      "@type": "Physician",
+      "@id": "https://draodettenoyola.com/#physician",
+      "name": "Dra. Odette Noyola Landázuri",
+      "alternateName": "Dra. Giselle Odette Noyola Landázuri",
+      "url": "https://draodettenoyola.com/",
+      "image": "https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg",
+      "telephone": "+523327905726",
+      "medicalSpecialty": [
+        "https://schema.org/Gynecologic",
+        "https://schema.org/Obstetric"
+      ],
+      "hasCredential": [
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula Profesional SEP",
+          "identifier": "13408368"
         },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 20.6657,
-          "longitude": -103.4072
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula Especialidad Ginecología y Obstetricia SEP",
+          "identifier": "14815515"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Cédula Subespecialidad Medicina Materno Fetal SEP",
+          "identifier": "15692501"
+        },
+        {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "Certificación CMGO y Fetal Medicine Foundation (FMF)"
         }
+      ],
+      "worksFor": {
+        "@id": "https://draodettenoyola.com/#clinic"
+      }
+    },
+    {
+      "@type": "MedicalClinic",
+      "@id": "https://draodettenoyola.com/#clinic",
+      "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Medicina Materno Fetal",
+      "url": "https://draodettenoyola.com/",
+      "telephone": "+523327905726",
+      "priceRange": "$800 - $1,700 MXN",
+      "areaServed": [
+        "Guadalajara",
+        "Zapopan",
+        "Chapalita",
+        "Chapalita Oriente"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+        "addressLocality": "Zapopan",
+        "addressRegion": "Jalisco",
+        "postalCode": "45040",
+        "addressCountry": "MX"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.665716,
+        "longitude": -103.407222
       }
     },
     {
@@ -112,14 +231,68 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Blog Clínico",
+          "name": "Blog Médico",
           "item": "https://draodettenoyola.com/blog/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Signos de Alarma en el Embarazo de Alto Riesgo",
+          "name": "Signos de Alarma en el Embarazo de Alto Riesgo: Cuándo Acudir a Urgencias",
           "item": "https://draodettenoyola.com/blog/signos-alarma-embarazo-alto-riesgo.html"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://draodettenoyola.com/blog/signos-alarma-embarazo-alto-riesgo.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Qué es un embarazo de alto riesgo y por qué requiere seguimiento materno fetal?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Un embarazo de alto riesgo es aquel en el que existe una condición materna, placentaria o fetal que incrementa la probabilidad de complicaciones durante la gestación o el nacimiento. Entre las causas más frecuentes se encuentran hipertensión arterial o antecedentes de preeclampsia, diabetes gestacional o pregestacional, embarazo gemelar, edad materna mayor a 35 años, pérdida gestacional previa, alteraciones tiroideas o restricción del crecimiento intrauterino (RCIU). Conforme a la NOM-007-SSA2-2016 y las guías del ACOG, identificar estos factores a tiempo y llevar control con una subespecialista en Medicina Materno Fetal permite prevenir eventos graves mediante vigilancia Doppler, ajuste terapéutico oportuno y planificación segura del nacimiento."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuáles son los signos de alarma en el embarazo por los que debes acudir a urgencias?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Si presentas cualquiera de los siguientes síntomas —en cualquier trimestre— debes comunicarte de inmediato con tu obstetra o acudir a valoración hospitalaria de urgencias:"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo se vigila un embarazo de alto riesgo en Guadalajara con la Dra. Odette Noyola?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En nuestro consultorio en Av. Niño Obrero 1538, Col. Chapalita Oriente (Zapopan / Guadalajara), la Dra. Giselle Odette Noyola Landázuri (Subespecialista en Medicina Materno Fetal · UMAE CMNO IMSS · FMF · CMGO) ofrece seguimiento obstétrico integral que combina consulta clínica detallada ($800 MXN), tamizajes de alta precisión (Tamizaje Genético 1er Trimestre $1,700 MXN y Ultrasonido Estructural $1,700 MXN) y Ultrasonido de Tercer Trimestre con Doppler feto-placentario ($1,500 MXN) para vigilar el flujo sanguíneo del bebé y anticipar complicaciones."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué hospitales privados en Guadalajara y Zapopan cubrimos para urgencias y nacimientos?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Acompañamos la resolución del embarazo —parto humanizado o cesárea segura— y atención de contingencias obstétricas en los principales hospitales privados del Área Metropolitana de Guadalajara, incluyendo Hospital Puerta de Hierro, Hospital San Javier, Hospital Ángeles del Carmen y Hospital Santa María Chapalita, trabajando además con las principales aseguradoras de Gastos Médicos Mayores. Agenda tu consulta de control prenatal al 33 2790 5726 para diseñar un plan de vigilancia personalizado para ti y tu bebé."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cómo ayuda el Doppler fetal y obstétrico a prevenir complicaciones en el alto riesgo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En el seguimiento del embarazo de alto riesgo, el ultrasonido Doppler color y pulsado es una herramienta fundamental respaldada por ISUOG y FMF. Desde el primer trimestre (semanas 11 a 13.6) permite medir la resistencia de las arterias uterinas maternas para detectar pacientes con riesgo elevado de desarrollar preeclampsia temprana o restricción del crecimiento fetal, abriendo la ventana para iniciar prevención farmacológica oportuna antes de la semana 16."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuándo conviene iniciar control prenatal especializado si tienes factores de riesgo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lo ideal es acudir a valoración especializada desde la semana 6 a 8 del embarazo —o incluso en consulta preconcepcional si ya tienes diagnóstico de hipertensión, diabetes, enfermedades autoinmunes, hipotiroidismo o antecedentes obstétricos complejos—. En tu Consulta de Control Prenatal ($800 MXN) en Av. Niño Obrero 1538, Chapalita Oriente, establecemos un calendario claro de estudios (Tamizaje Genético $1,700 MXN, Ultrasonido Estructural $1,700 MXN y Ultrasonido Doppler de Tercer Trimestre $1,500 MXN) y canal abierto de orientación ante cualquier síntoma."
+          }
         }
       ]
     }
@@ -130,39 +303,100 @@
 <body>
   <header class="blog-header">
     <div class="blog-header__inner">
-      <a href="../index.html" class="blog-header__back">← Inicio</a>
-      <a href="index.html" class="blog-header__back">Blog</a>
+      <nav class="blog-header__nav" aria-label="Navegación del blog">
+        <a href="/" class="blog-header__back">← Inicio</a>
+        <a href="/blog/" class="blog-header__back">Blog Médico</a>
+        <a href="/chequeo-ginecologico-guadalajara.html" class="blog-header__back">Chequeo $1,200</a>
+        <a href="/ultrasonido-estructural.html" class="blog-header__back">Ultrasonido Estructural</a>
+      </nav>
+      <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20le%C3%AD%20su%20gu%C3%ADa%20sobre%20Control%20de%20Embarazo%20de%20Alto%20Riesgo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita%20en%20Chapalita." class="blog-header__cta" target="_blank" rel="noopener noreferrer">Agendar Cita</a>
     </div>
   </header>
   <main>
     <div class="blog-hero">
-      <img src="../img/hero-portrait.jpg" alt="Signos de Alarma en el Embarazo de Alto Riesgo" class="blog-hero__cover">
+      <img src="../img/pantalla-ultrasonido-paciente-guadalajara.jpg" alt="Signos de Alarma en el Embarazo de Alto Riesgo: Cuándo Acudir a Urgencias" class="blog-hero__cover" width="1200" height="675">
       <time class="blog-hero__date">4 de agosto de 2026</time>
-      <h1 class="blog-hero__title">Signos de Alarma en el Embarazo de Alto Riesgo</h1>
-      <p class="blog-hero__excerpt">Conoce los signos de alarma más importantes durante un embarazo de alto riesgo y cuándo acudir a urgencias.</p>
-      <div class="blog-tags"><span class="blog-tag">embarazo alto riesgo</span> <span class="blog-tag">signos de alarma</span> <span class="blog-tag">urgencias</span></div>
+      <h1 class="blog-hero__title">Signos de Alarma en el Embarazo de Alto Riesgo: Cuándo Acudir a Urgencias</h1>
+      <p class="blog-hero__excerpt">Guía médica de signos de alarma obstétricos (sangrado, preeclampsia, disminución de movimientos fetales) y seguimiento especializado en Guadalajara.</p>
+      <div class="blog-tags"><span class="blog-tag">embarazo alto riesgo</span> <span class="blog-tag">signos de alarma</span> <span class="blog-tag">preeclampsia</span> <span class="blog-tag">medicina materno fetal</span></div>
     </div>
     <article class="blog-content">
-      <h2>Signos de Alarma</h2>
-<p>Durante un embarazo de alto riesgo, es fundamental identificar los signos de alarma que requieren atención médica inmediata.</p>
-<h2>¿Cuándo acudir a urgencias?</h2>
+      <h2>¿Qué es un embarazo de alto riesgo y por qué requiere seguimiento materno fetal?</h2>
+<p>Un <strong>embarazo de alto riesgo</strong> es aquel en el que existe una condición materna, placentaria o fetal que incrementa la probabilidad de complicaciones durante la gestación o el nacimiento. Entre las causas más frecuentes se encuentran <strong>hipertensión arterial o antecedentes de preeclampsia</strong>, <strong>diabetes gestacional o pregestacional</strong>, embarazo gemelar, edad materna mayor a 35 años, pérdida gestacional previa, alteraciones tiroideas o <strong>restricción del crecimiento intrauterino (RCIU)</strong>. Conforme a la <strong>NOM-007-SSA2-2016</strong> y las guías del <strong>ACOG</strong>, identificar estos factores a tiempo y llevar control con una subespecialista en <strong>Medicina Materno Fetal</strong> permite prevenir eventos graves mediante vigilancia Doppler, ajuste terapéutico oportuno y planificación segura del nacimiento.</p>
+<h2>¿Cuáles son los signos de alarma en el embarazo por los que debes acudir a urgencias?</h2>
+<p>Si presentas cualquiera de los siguientes síntomas —en cualquier trimestre— debes comunicarte de inmediato con tu obstetra o acudir a valoración hospitalaria de urgencias:</p>
 <ul>
-<li>Sangrado vaginal</li>
-<li>Dolor abdominal intenso</li>
-<li>Pérdida de líquido amniótico</li>
-<li>Disminución de movimientos fetales</li>
-<li>Dolor de cabeza severo</li>
-<li>Visión borrosa</li>
-<li>Hinchazón súbita de manos o cara</li>
+<li><strong>Sangrado transvaginal</strong> de cualquier intensidad (rojo brillante u oscuro), acompañado o no de cólicos.</li>
+<li><strong>Dolor de cabeza intenso y persistente</strong>, visión borrosa, destellos de luz (fosfenos), zumbido de oídos (acúfenos) o dolor agudo en la boca del estómago (epigastralgia): datos clásicos de <strong>preeclampsia con criterios de severidad</strong>.</li>
+<li><strong>Cifras de presión arterial elevadas</strong> (≥140/90 mmHg en reposo) o hinchazón súbita de cara y manos.</li>
+<li><strong>Salida de líquido claro por vagina</strong> (sospecha de ruptura prematura de membranas), aunque no haya dolor.</li>
+<li><strong>Disminución marcada o ausencia de movimientos fetales</strong> a partir de la semana 28 (menos de 10 movimientos en 2 horas estando recostada de lado izquierdo tras ingerir alimento).</li>
+<li><strong>Contracciones uterinas regulares y dolorosas</strong> antes de la semana 37 (más de 4 en una hora) o dolor abdominal intenso que no cede con reposo.</li>
+<li><strong>Fiebre mayor a 38 °C</strong>, escalofríos o ardor severo al orinar.</li>
 </ul>
+<h2>¿Cómo se vigila un embarazo de alto riesgo en Guadalajara con la Dra. Odette Noyola?</h2>
+<p>En nuestro consultorio en <strong>Av. Niño Obrero 1538, Col. Chapalita Oriente (Zapopan / Guadalajara)</strong>, la <strong>Dra. Giselle Odette Noyola Landázuri</strong> (Subespecialista en Medicina Materno Fetal · UMAE CMNO IMSS · FMF · CMGO) ofrece seguimiento obstétrico integral que combina consulta clínica detallada ($800 MXN), tamizajes de alta precisión (<a href="/blog/tamizaje-genetico-primer-trimestre-guadalajara.html">Tamizaje Genético 1er Trimestre</a> $1,700 MXN y <a href="/ultrasonido-estructural.html">Ultrasonido Estructural</a> $1,700 MXN) y <strong>Ultrasonido de Tercer Trimestre con Doppler feto-placentario ($1,500 MXN)</strong> para vigilar el flujo sanguíneo del bebé y anticipar complicaciones.</p>
+<h2>¿Qué hospitales privados en Guadalajara y Zapopan cubrimos para urgencias y nacimientos?</h2>
+<p>Acompañamos la resolución del embarazo —parto humanizado o cesárea segura— y atención de contingencias obstétricas en los principales hospitales privados del Área Metropolitana de Guadalajara, incluyendo <strong>Hospital Puerta de Hierro</strong>, <strong>Hospital San Javier</strong>, <strong>Hospital Ángeles del Carmen</strong> y <strong>Hospital Santa María Chapalita</strong>, trabajando además con las principales aseguradoras de Gastos Médicos Mayores. Agenda tu <a href="/consulta-ginecologica-guadalajara.html">consulta de control prenatal</a> al <strong>33 2790 5726</strong> para diseñar un plan de vigilancia personalizado para ti y tu bebé.</p>
+<h2>¿Cómo ayuda el Doppler fetal y obstétrico a prevenir complicaciones en el alto riesgo?</h2>
+<p>En el seguimiento del embarazo de alto riesgo, el <strong>ultrasonido Doppler color y pulsado</strong> es una herramienta fundamental respaldada por <strong>ISUOG</strong> y <strong>FMF</strong>. Desde el primer trimestre (semanas 11 a 13.6) permite medir la resistencia de las <strong>arterias uterinas maternas</strong> para detectar pacientes con riesgo elevado de desarrollar <strong>preeclampsia temprana</strong> o restricción del crecimiento fetal, abriendo la ventana para iniciar prevención farmacológica oportuna antes de la semana 16.</p>
+<p>En el segundo y tercer trimestre, la vigilancia hemodinámica de la <strong>arteria umbilical</strong>, la <strong>arteria cerebral media</strong> y el <strong>ductus venoso</strong> confirma si la placenta nutre y oxigena adecuadamente al bebé. Cuando se detecta algún cambio temprano, podemos ajustar la frecuencia de citas, optimizar el control de presión arterial o glucosa, y elegir el momento más seguro para el nacimiento conforme a las recomendaciones de la <strong>NOM-007-SSA2-2016</strong> y <strong>ACOG</strong>.</p>
+<h2>¿Cuándo conviene iniciar control prenatal especializado si tienes factores de riesgo?</h2>
+<p>Lo ideal es acudir a valoración especializada desde la <strong>semana 6 a 8 del embarazo</strong> —o incluso en consulta preconcepcional si ya tienes diagnóstico de hipertensión, diabetes, enfermedades autoinmunes, hipotiroidismo o antecedentes obstétricos complejos—. En tu <a href="/consulta-ginecologica-guadalajara.html">Consulta de Control Prenatal ($800 MXN)</a> en <strong>Av. Niño Obrero 1538, Chapalita Oriente</strong>, establecemos un calendario claro de estudios (<a href="/blog/tamizaje-genetico-primer-trimestre-guadalajara.html">Tamizaje Genético $1,700 MXN</a>, <a href="/ultrasonido-estructural.html">Ultrasonido Estructural $1,700 MXN</a> y Ultrasonido Doppler de Tercer Trimestre $1,500 MXN) y canal abierto de orientación ante cualquier síntoma.</p>
 
+
+      <section class="article-wa-cta" aria-label="Agendar consulta en Guadalajara">
+        <h2>¿Deseas una valoración médica en Guadalajara o Zapopan?</h2>
+        <p>Atención en consultorio privado en <strong>Av. Niño Obrero 1538, Col. Chapalita Oriente, C.P. 45040</strong>. Agenda tu cita directamente por WhatsApp o llamada.</p>
+        <div class="article-wa-actions">
+          <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20le%C3%AD%20su%20gu%C3%ADa%20sobre%20Control%20de%20Embarazo%20de%20Alto%20Riesgo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita%20en%20Chapalita." class="btn-wa-article" target="_blank" rel="noopener noreferrer">💬 Agendar por WhatsApp (33 2790 5726)</a>
+          <a href="tel:+523327905726" class="btn-tel-article">📞 Llamar al Consultorio</a>
+          <a href="https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7" class="btn-tel-article" target="_blank" rel="noopener noreferrer">📍 Cómo llegar</a>
+        </div>
+      </section>
+
+      
+      <aside class="related-services-box" aria-label="Servicios médicos relacionados">
+        <h2>Servicios Relacionados en Nuestro Consultorio</h2>
+        <div class="related-services-grid">
+          <a href="/ultrasonido-estructural.html" class="related-service-card">
+            <strong>Ultrasonido Estructural Fetal ($1,700 MXN)</strong>
+            <span>Evaluación anatómica órgano por órgano (semanas 18–24) con GE Voluson HDlive y certificación FMF.</span>
+          </a>
+          <a href="/consulta-ginecologica-guadalajara.html" class="related-service-card">
+            <strong>Consulta Ginecológica y Control Prenatal ($800 MXN)</strong>
+            <span>Seguimiento de embarazo de bajo y alto riesgo en Chapalita Oriente, Guadalajara / Zapopan.</span>
+          </a>
+          <a href="/chequeo-ginecologico-guadalajara.html" class="related-service-card">
+            <strong>Chequeo Ginecológico Completo ($1,200 MXN)</strong>
+            <span>Consulta, Papanicolaou, colposcopía, vaginoscopía, ultrasonido pélvico y revisión mamaria.</span>
+          </a>
+        </div>
+      </aside>
+
+      <section class="author-box" aria-label="Revisión clínica y credenciales médicas">
+        <div class="author-box__label">Revisión Clínica · Medicina Basada en Evidencia</div>
+        <div class="author-box__name">Dra. Giselle Odette Noyola Landázuri</div>
+        <p class="author-box__bio">Médica Cirujana por la Universidad de Guadalajara (UDG), Especialista en Ginecología y Obstetricia y Subespecialista en Medicina Materno Fetal por la UMAE Hospital de Gineco-Obstetricia CMNO (IMSS). Certificada por el Consejo Mexicano de Ginecología y Obstetricia (CMGO) y la Fetal Medicine Foundation (FMF).</p>
+        <div class="author-box__cedulas">
+          <span>Céd. Prof. SEP: 13408368</span>
+          <span>Céd. Esp. SEP: 14815515</span>
+          <span>Céd. Subesp. Materno-Fetal: 15692501</span>
+          <span>Certificada CMGO · FMF</span>
+        </div>
+      </section>
     </article>
   </main>
   <footer class="blog-footer">
     <div class="blog-footer__inner">
-      <p>Dra. Odette Noyola Landázuri · <a href="https://wa.me/523327905726">Agendar Cita</a></p>
+      <p>Dra. Giselle Odette Noyola Landázuri · Av. Niño Obrero 1538, Chapalita Oriente, Zapopan / Guadalajara · <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20le%C3%AD%20su%20gu%C3%ADa%20sobre%20Control%20de%20Embarazo%20de%20Alto%20Riesgo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita%20en%20Chapalita." target="_blank" rel="noopener noreferrer">Agendar Cita</a> · <a href="/aviso-de-privacidad.html">Aviso de Privacidad</a></p>
     </div>
   </footer>
-  <script src="../js/main.js?v=5.8" defer></script>
+  <nav class="mobile-sticky-cta" aria-label="Acciones rápidas de cita">
+    <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20le%C3%AD%20su%20gu%C3%ADa%20sobre%20Control%20de%20Embarazo%20de%20Alto%20Riesgo%20y%20me%20gustar%C3%ADa%20agendar%20una%20cita%20en%20Chapalita." class="cta-wa" target="_blank" rel="noopener noreferrer">💬 WhatsApp</a>
+    <a href="tel:+523327905726">📞 Llamar</a>
+    <a href="https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7" target="_blank" rel="noopener noreferrer">📍 Cómo llegar</a>
+  </nav>
+  <script src="../js/main.js?v=6.0" defer></script>
 </body>
 </html>

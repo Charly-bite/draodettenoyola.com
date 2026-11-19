@@ -6,7 +6,7 @@
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    if (/draodettenoyola\.com|dra-odette/i.test(window.location.hostname)) {
+    if (/^(www\.)?draodettenoyola\.com$/i.test(window.location.hostname)) {
       gtag('js', new Date());
       gtag('config', 'G-KT9E760LFF');
     }
@@ -16,37 +16,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- ═══ SEO Meta Tags ═══ -->
-  <title>Ginecóloga en Guadalajara | Dra. Odette Noyola · Ginecología y Obstetricia</title>
-  <meta name="description" content="¿Buscas ginecóloga en Guadalajara? Dra. Odette Noyola: especialista certificada en Ginecología, Obstetricia y Materno Fetal en Chapalita. Chequeo ginecológico, Papanicolaou, ultrasonido y control prenatal. Citas: 33 2790 5726.">
+  <title>Ginecóloga en Guadalajara | Dra. Odette Noyola · Chapalita</title>
+  <meta name="description" content="Ginecóloga y Materno Fetal en Chapalita, Guadalajara y Zapopan. Chequeo completo ($1,200), consulta ($800) y ultrasonido estructural. Citas: 33 2790 5726.">
   <meta name="keywords" content="ginecología guadalajara, ginecóloga en guadalajara, ginecólogo guadalajara, ginecología zapopan, consulta ginecológica guadalajara, chequeo ginecológico, papanicolaou guadalajara, ultrasonido ginecológico, ginecóloga chapalita, ginecología y obstetricia, control prenatal guadalajara, medicina materno fetal, Dra Odette Noyola">
-  <meta name="author" content="Dra. Odette Noyola Landázuri">
+  <meta name="author" content="Dra. Giselle Odette Noyola Landázuri">
   <meta name="robots" content="index, follow">
-  <!-- TODO: ACTUALIZAR CANONICAL cuando se defina el dominio -->
   <link rel="canonical" href="https://draodettenoyola.com/">
   <meta name="geo.region" content="MX-JAL">
   <meta name="geo.placename" content="Guadalajara, Zapopan">
 
   <!-- ═══ Open Graph ═══ -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Ginecóloga en Guadalajara | Dra. Odette Noyola · Ginecología y Obstetricia">
-  <meta property="og:description" content="Especialista en Ginecología, Obstetricia y Medicina Materno Fetal en Chapalita, Guadalajara / Zapopan. Chequeo ginecológico, Papanicolaou, ultrasonido y control prenatal. Citas: 33 2790 5726.">
+  <meta property="og:title" content="Ginecóloga en Guadalajara | Dra. Odette Noyola · Chapalita">
+  <meta property="og:description" content="Ginecóloga y Materno Fetal en Chapalita, Guadalajara y Zapopan. Chequeo completo ($1,200), consulta ($800) y ultrasonido estructural. Citas: 33 2790 5726.">
   <meta property="og:image" content="https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg">
   <meta property="og:url" content="https://draodettenoyola.com/">
   <meta property="og:locale" content="es_MX">
 
   <!-- ═══ Twitter Card ═══ -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ginecóloga en Guadalajara | Dra. Odette Noyola">
+  <meta name="twitter:title" content="Ginecóloga en Guadalajara | Dra. Odette Noyola · Chapalita">
   <meta name="twitter:description" content="Ginecología integral, Obstetricia y Medicina Materno Fetal en Chapalita, Guadalajara y Zapopan. Certificada CMGO y FMF.">
+  <meta name="twitter:image" content="https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg">
 
   <!-- ═══ Favicon Suite ═══ -->
-  <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=3.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png?v=3.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png?v=3.0">
-  <link rel="shortcut icon" href="favicon.ico?v=3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=3.0">
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg?v=6.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png?v=6.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png?v=6.0">
+  <link rel="shortcut icon" href="favicon.ico?v=6.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png?v=6.0">
   <link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#0D7A75">
+
+  <!-- ═══ Hero LCP Preload ═══ -->
+  <link rel="preload" as="image" href="img/dra-odette-noyola-ginecologa-guadalajara-cutout.webp" type="image/webp">
 
   <!-- ═══ Google Fonts ═══ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,25 +57,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- ═══ Stylesheets (Cache-busted) ═══ -->
-  <link rel="stylesheet" href="css/variables.css?v=5.6">
-  <link rel="stylesheet" href="css/reset.css?v=5.6">
-  <link rel="stylesheet" href="css/main.css?v=5.6">
-  <link rel="stylesheet" href="css/components.css?v=5.6">
-  <link rel="stylesheet" href="css/responsive.css?v=5.6">
+  <link rel="stylesheet" href="css/variables.css?v=6.0">
+  <link rel="stylesheet" href="css/reset.css?v=6.0">
+  <link rel="stylesheet" href="css/main.css?v=6.0">
+  <link rel="stylesheet" href="css/components.css?v=6.0">
+  <link rel="stylesheet" href="css/responsive.css?v=6.0">
 
-  <!-- ═══ Schema.org JSON-LD (E-E-A-T + GEO) ═══ -->
+  <!-- ═══ Schema.org JSON-LD (E-E-A-T + GEO Unified Graph) ═══ -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "WebSite",
+        "@id": "https://draodettenoyola.com/#website",
+        "url": "https://draodettenoyola.com/",
+        "name": "Dra. Odette Noyola Landázuri | Ginecóloga y Materno Fetal en Guadalajara",
+        "inLanguage": "es-MX",
+        "publisher": {
+          "@id": "https://draodettenoyola.com/#clinic"
+        }
+      },
+      {
         "@type": "Physician",
+        "@id": "https://draodettenoyola.com/#physician",
         "name": "Dra. Odette Noyola Landázuri",
         "alternateName": [
+          "Dra. Giselle Odette Noyola Landázuri",
+          "Dra. Odette Noyola",
           "Dra. Odette Landázuri",
-          "Dra. Odette Noyola"
+          "Giselle Odette Noyola-Landázuri"
         ],
-        "description": "Especialista en Medicina Materno Fetal, Ginecología y Obstetricia en Guadalajara, Jalisco. Formación en UMAE Hospital de Gineco-Obstetricia CMNO (IMSS / UDG). Certificada por la Fetal Medicine Foundation y el Consejo Mexicano de Ginecología y Obstetricia (CMGO).",
+        "jobTitle": "Especialista en Ginecología y Obstetricia · Subespecialista en Medicina Materno Fetal",
+        "description": "Especialista en Ginecología, Obstetricia y Medicina Materno Fetal en Chapalita Oriente, Guadalajara y Zapopan, Jalisco. Formación en Universidad de Guadalajara (UDG) y UMAE Hospital de Gineco-Obstetricia CMNO IMSS. Certificada por el Consejo Mexicano de Ginecología y Obstetricia (CMGO) y la Fetal Medicine Foundation (FMF). Primera autora de estudio clínico publicado en PubMed (2026) sobre Doppler de arteria oftálmica y predicción de preeclampsia.",
         "image": [
           "https://draodettenoyola.com/img/dra-odette-noyola-ginecologa-guadalajara.jpg",
           "https://draodettenoyola.com/img/consultorio-ginecologico-chapalita-guadalajara.jpg",
@@ -80,10 +97,8 @@
           "https://draodettenoyola.com/img/hero-portrait.jpg"
         ],
         "medicalSpecialty": [
-          "ObstetricsAndGynecology",
-          "Gynecologic",
-          "Obstetric",
-          "MaternalFetalMedicine"
+          "https://schema.org/Gynecologic",
+          "https://schema.org/Obstetric"
         ],
         "knowsAbout": [
           "Ginecología",
@@ -97,7 +112,56 @@
           "Síndrome de Ovario Poliquístico (SOP)",
           "Control Prenatal",
           "Ultrasonido Estructural Fetal",
-          "Embarazo de Alto Riesgo"
+          "Tamizaje Genético de Primer Trimestre",
+          "Embarazo de Alto Riesgo",
+          "Predicción de Preeclampsia y Doppler de Arteria Oftálmica"
+        ],
+        "hasCredential": [
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Cédula Profesional",
+            "name": "Cédula Profesional Licenciatura en Medicina: 13408368",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Secretaría de Educación Pública (SEP), México"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Cédula de Especialidad",
+            "name": "Cédula de Especialidad en Ginecología y Obstetricia: 14815515",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Secretaría de Educación Pública (SEP), México"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Cédula de Subespecialidad",
+            "name": "Cédula de Subespecialidad en Medicina Materno Fetal: 15692501",
+            "recognizedBy": {
+              "@type": "GovernmentOrganization",
+              "name": "Secretaría de Educación Pública (SEP), México"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Certificación de Consejo Médico",
+            "name": "Certificación Vigente en Ginecología y Obstetricia (CMGO)",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Consejo Mexicano de Ginecología y Obstetricia (CMGO)"
+            }
+          },
+          {
+            "@type": "EducationalOccupationalCredential",
+            "credentialCategory": "Certificación Internacional",
+            "name": "Certificación Internacional en Medicina Fetal (FMF)",
+            "recognizedBy": {
+              "@type": "Organization",
+              "name": "Fetal Medicine Foundation (FMF)"
+            }
+          }
         ],
         "alumniOf": [
           {
@@ -109,54 +173,113 @@
             "name": "UMAE Hospital de Gineco-Obstetricia Centro Médico Nacional de Occidente (CMNO / IMSS)"
           }
         ],
+        "hospitalAffiliation": [
+          {
+            "@type": "Hospital",
+            "name": "Hospital Puerta de Hierro",
+            "address": { "@type": "PostalAddress", "addressLocality": "Zapopan", "addressRegion": "Jalisco", "addressCountry": "MX" }
+          },
+          {
+            "@type": "Hospital",
+            "name": "Hospital San Javier",
+            "address": { "@type": "PostalAddress", "addressLocality": "Guadalajara", "addressRegion": "Jalisco", "addressCountry": "MX" }
+          },
+          {
+            "@type": "Hospital",
+            "name": "Hospital Ángeles del Carmen",
+            "address": { "@type": "PostalAddress", "addressLocality": "Guadalajara", "addressRegion": "Jalisco", "addressCountry": "MX" }
+          },
+          {
+            "@type": "Hospital",
+            "name": "Hospital Santa María Chapalita",
+            "address": { "@type": "PostalAddress", "addressLocality": "Zapopan", "addressRegion": "Jalisco", "addressCountry": "MX" }
+          }
+        ],
+        "worksFor": {
+          "@id": "https://draodettenoyola.com/#clinic"
+        },
         "telephone": "+523327905726",
+        "email": "contacto@draodettenoyola.com",
         "url": "https://draodettenoyola.com/",
         "sameAs": [
           "https://instagram.com/draodettenoyola",
-          "https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7"
+          "https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7",
+          "https://pubmed.ncbi.nlm.nih.gov/42586580/",
+          "https://doi.org/10.1111/jog.70449",
+          "https://www.doctosan.com/mx/es/medico/guadalajara/dra-odette-noyola-landazuri-materno-fetal-ginecologia-y-obstetricia-guadalajara-3r7jgo/"
+        ],
+        "areaServed": [
+          { "@type": "City", "name": "Guadalajara" },
+          { "@type": "City", "name": "Zapopan" },
+          { "@type": "Place", "name": "Chapalita" },
+          { "@type": "Place", "name": "Chapalita Oriente" },
+          { "@type": "Place", "name": "Ciudad del Sol" },
+          { "@type": "Place", "name": "Providencia" },
+          { "@type": "Place", "name": "Puerta de Hierro" }
         ],
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Av. Niño Obrero 1538",
-          "addressLocality": "Guadalajara",
+          "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+          "addressLocality": "Zapopan",
           "addressRegion": "Jalisco",
           "postalCode": "45040",
           "addressCountry": "MX"
         },
         "geo": {
           "@type": "GeoCoordinates",
-          "latitude": "20.6657",
-          "longitude": "-103.4072"
+          "latitude": 20.665716,
+          "longitude": -103.407222
         }
       },
       {
-        "@type": "MedicalBusiness",
-        "name": "Dra. Odette Noyola Landázuri - Ginecóloga en Guadalajara | Materno Fetal",
+        "@type": "MedicalClinic",
+        "@id": "https://draodettenoyola.com/#clinic",
+        "name": "Consultorio Dra. Odette Noyola Landázuri · Ginecología y Materno Fetal",
+        "url": "https://draodettenoyola.com/",
         "image": [
           "https://draodettenoyola.com/img/consultorio-ginecologico-chapalita-guadalajara.jpg",
           "https://draodettenoyola.com/img/ecografo-ge-voluson-ultrasonido-guadalajara.jpg",
           "https://draodettenoyola.com/img/consultorio-fachada.jpg"
         ],
         "telephone": "+523327905726",
+        "email": "contacto@draodettenoyola.com",
         "medicalSpecialty": [
-          "ObstetricsAndGynecology",
-          "Gynecologic",
-          "Obstetric",
-          "MaternalFetalMedicine"
+          "https://schema.org/Gynecologic",
+          "https://schema.org/Obstetric"
         ],
+        "founder": {
+          "@id": "https://draodettenoyola.com/#physician"
+        },
+        "employee": {
+          "@id": "https://draodettenoyola.com/#physician"
+        },
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Av. Niño Obrero 1538",
-          "addressLocality": "Guadalajara",
+          "streetAddress": "Av. Niño Obrero 1538, Chapalita Oriente",
+          "addressLocality": "Zapopan",
           "addressRegion": "Jalisco",
           "postalCode": "45040",
-          "addressCountry": "MX",
-          "name": "Chapalita Oriente"
+          "addressCountry": "MX"
         },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 20.665716,
+          "longitude": -103.407222
+        },
+        "hasMap": "https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7",
+        "areaServed": [
+          { "@type": "City", "name": "Guadalajara" },
+          { "@type": "City", "name": "Zapopan" },
+          { "@type": "Place", "name": "Chapalita" },
+          { "@type": "Place", "name": "Chapalita Oriente" },
+          { "@type": "Place", "name": "Ciudad del Sol" },
+          { "@type": "Place", "name": "Providencia" },
+          { "@type": "Place", "name": "Puerta de Hierro" }
+        ],
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
             "opens": "09:00",
             "closes": "20:00"
           },
@@ -169,92 +292,83 @@
         ],
         "priceRange": "$800 - $1,700 MXN",
         "currenciesAccepted": "MXN",
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "20.6657",
-          "longitude": "-103.4072"
-        },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5.0",
-          "bestRating": "5",
-          "ratingCount": "18",
-          "reviewCount": "18"
-        },
-        "review": [
-          {
-            "@type": "Review",
-            "author": { "@type": "Person", "name": "Ivonne Salinas" },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-            "reviewBody": "Excelente atención médica, explica todo con mucha paciencia y detalle durante el ultrasonido estructural."
-          },
-          {
-            "@type": "Review",
-            "author": { "@type": "Person", "name": "María Guadalupe" },
-            "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
-            "reviewBody": "La mejor ginecóloga en Guadalajara, instalaciones impecables en Chapalita y trato súper humano y cálido."
-          }
-        ]
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Chequeo Ginecológico Completo (Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido)",
-        "description": "Chequeo anual preventivo integral que incluye valoración médica personalizada, exploración mamaria clínica, toma de muestra para Papanicolaou (citología cervical), colposcopía, vaginoscopía y ultrasonido ginecológico de alta resolución en tiempo real.",
-        "howPerformed": "Consulta ginecológica en consultorio con ultrasonido y citología cervical",
-        "procedureType": "http://schema.org/DiagnosticProcedure",
-        "offers": {
-          "@type": "Offer",
-          "price": "1200",
-          "priceCurrency": "MXN"
-        }
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Consulta Ginecológica y Control Prenatal",
-        "description": "Consulta ginecológica especializada para diagnóstico y tratamiento de infecciones, síndrome de ovario poliquístico (SOP), miomas, asesoría anticonceptiva y seguimiento de embarazo.",
-        "procedureType": "http://schema.org/DiagnosticProcedure",
-        "offers": {
-          "@type": "Offer",
-          "price": "800",
-          "priceCurrency": "MXN"
-        }
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Ultrasonido Estructural (Morfológico Fetal)",
-        "description": "Evaluación anatómica completa del feto órgano por órgano: sistema nervioso central, corazón, cara, extremidades y columna. Semanas 18 a 24.",
-        "howPerformed": "Ultrasonido de alta resolución transabdominal",
-        "procedureType": "http://schema.org/DiagnosticProcedure",
-        "offers": {
-          "@type": "Offer",
-          "price": "1700",
-          "priceCurrency": "MXN"
-        }
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Tamizaje Genético de Primer Trimestre",
-        "description": "Medición de translucencia nucal, hueso nasal y cálculo de riesgo de aneuploidías (Síndrome de Down, Edwards, Patau). Semanas 11 a 13.6.",
-        "procedureType": "http://schema.org/DiagnosticProcedure",
-        "offers": {
-          "@type": "Offer",
-          "price": "1700",
-          "priceCurrency": "MXN"
-        }
-      },
-      {
-        "@type": "MedicalProcedure",
-        "name": "Ultrasonido de Tercer Trimestre",
-        "description": "Valoración del crecimiento fetal, Doppler feto-placentario, líquido amniótico y bienestar fetal. A partir de la semana 28.",
-        "procedureType": "http://schema.org/DiagnosticProcedure",
-        "offers": {
-          "@type": "Offer",
-          "price": "1500",
-          "priceCurrency": "MXN"
+        "sameAs": [
+          "https://instagram.com/draodettenoyola",
+          "https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7",
+          "https://www.doctosan.com/mx/es/medico/guadalajara/dra-odette-noyola-landazuri-materno-fetal-ginecologia-y-obstetricia-guadalajara-3r7jgo/"
+        ],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Servicios de Ginecología, Obstetricia y Medicina Materno Fetal",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "price": "1200",
+              "priceCurrency": "MXN",
+              "url": "https://draodettenoyola.com/chequeo-ginecologico-guadalajara.html",
+              "itemOffered": {
+                "@type": "MedicalProcedure",
+                "name": "Chequeo Ginecológico Completo (Papanicolaou, Colposcopía, Vaginoscopía y Ultrasonido)",
+                "description": "Chequeo anual preventivo integral que incluye valoración médica personalizada, exploración mamaria clínica, toma de muestra para Papanicolaou (citología cervical), colposcopía, vaginoscopía y ultrasonido ginecológico de alta resolución en tiempo real.",
+                "howPerformed": "Consulta ginecológica en consultorio con ultrasonido pélvico y citología cervical",
+                "procedureType": "https://schema.org/NoninvasiveProcedure"
+              }
+            },
+            {
+              "@type": "Offer",
+              "price": "800",
+              "priceCurrency": "MXN",
+              "url": "https://draodettenoyola.com/consulta-ginecologica-guadalajara.html",
+              "itemOffered": {
+                "@type": "MedicalProcedure",
+                "name": "Consulta Ginecológica y Control Prenatal",
+                "description": "Consulta ginecológica especializada para diagnóstico y tratamiento de infecciones, síndrome de ovario poliquístico (SOP), miomas, asesoría anticonceptiva y seguimiento de embarazo.",
+                "procedureType": "https://schema.org/NoninvasiveProcedure"
+              }
+            },
+            {
+              "@type": "Offer",
+              "price": "1700",
+              "priceCurrency": "MXN",
+              "url": "https://draodettenoyola.com/ultrasonido-estructural.html",
+              "itemOffered": {
+                "@type": "MedicalProcedure",
+                "name": "Ultrasonido Estructural (Morfológico Fetal)",
+                "description": "Evaluación anatómica completa del feto órgano por órgano: sistema nervioso central, corazón, cara, extremidades y columna. Semanas 18.0 a 24.0.",
+                "howPerformed": "Ultrasonido obstétrico transabdominal de alta resolución GE Voluson HDlive",
+                "procedureType": "https://schema.org/NoninvasiveProcedure"
+              }
+            },
+            {
+              "@type": "Offer",
+              "price": "1700",
+              "priceCurrency": "MXN",
+              "url": "https://draodettenoyola.com/#services",
+              "itemOffered": {
+                "@type": "MedicalProcedure",
+                "name": "Tamizaje Genético de Primer Trimestre",
+                "description": "Medición de translucencia nucal, hueso nasal y cálculo de riesgo de aneuploidías (Síndrome de Down, Edwards, Patau). Semanas 11.0 a 13.6.",
+                "procedureType": "https://schema.org/NoninvasiveProcedure"
+              }
+            },
+            {
+              "@type": "Offer",
+              "price": "1500",
+              "priceCurrency": "MXN",
+              "url": "https://draodettenoyola.com/#services",
+              "itemOffered": {
+                "@type": "MedicalProcedure",
+                "name": "Ultrasonido de Tercer Trimestre",
+                "description": "Valoración del crecimiento fetal, Doppler feto-placentario, líquido amniótico y bienestar fetal. A partir de la semana 28.",
+                "procedureType": "https://schema.org/NoninvasiveProcedure"
+              }
+            }
+          ]
         }
       },
       {
         "@type": "FAQPage",
+        "@id": "https://draodettenoyola.com/#faq",
         "mainEntity": [
           {
             "@type": "Question",
@@ -344,7 +458,7 @@
        ═══════════════════════════════════════════════════════════════════ -->
   <nav class="navbar" id="navbar" aria-label="Navegación principal">
     <div class="navbar__inner">
-      <a href="#" class="navbar__brand" aria-label="Inicio">
+      <a href="/" class="navbar__brand" aria-label="Inicio">
         <img src="img/logo.jpg" alt="Logo Dra. Odette Noyola" class="navbar__logo" width="44" height="44" loading="eager">
         <div>
           <div class="navbar__title">Dra. Odette Noyola</div>
@@ -355,9 +469,9 @@
       <!-- Desktop links -->
       <div class="navbar__links">
         <a href="#services">Servicios</a>
-        <a href="chequeo-ginecologico-guadalajara.html">Chequeo ($1,200)</a>
-        <a href="consulta-ginecologica-guadalajara.html">Consulta ($800)</a>
-        <a href="ultrasonido-estructural.html">US Estructural</a>
+        <a href="/chequeo-ginecologico-guadalajara.html">Chequeo ($1,200)</a>
+        <a href="/consulta-ginecologica-guadalajara.html">Consulta ($800)</a>
+        <a href="/ultrasonido-estructural.html">US Estructural</a>
         <a href="#about">Sobre Mí</a>
         <a href="#testimonials">Testimonios</a>
         <a href="#blog">Blog</a>
@@ -381,9 +495,9 @@
       <div class="navbar__drawer-links">
         <a href="#hero">Inicio</a>
         <a href="#services">Servicios</a>
-        <a href="consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
-        <a href="chequeo-ginecologico-guadalajara.html">Chequeo Anual ($1,200)</a>
-        <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
+        <a href="/consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
+        <a href="/chequeo-ginecologico-guadalajara.html">Chequeo Anual ($1,200)</a>
+        <a href="/ultrasonido-estructural.html">Ultrasonido Estructural</a>
         <a href="#about">Sobre Mí</a>
         <a href="#gallery">Consultorio</a>
         <a href="#testimonials">Testimonios</a>
@@ -508,7 +622,7 @@
           <p class="service-card__desc">Chequeo anual preventivo: incluye valoración médica personalizada, exploración de mamas, toma de Papanicolaou, colposcopía, vaginoscopía y ecografía ginecológica en tiempo real.</p>
           <div class="service-card__cta">
             <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20un%20chequeo%20ginecol%C3%B3gico." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
-            <a href="chequeo-ginecologico-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles del Chequeo →</a>
+            <a href="/chequeo-ginecologico-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles del Chequeo →</a>
           </div>
         </div>
       </div>
@@ -536,7 +650,7 @@
           <p class="service-card__desc">Diagnóstico y tratamiento para desajustes del ciclo, infecciones, ovario poliquístico (SOP), miomas, anticoncepción (DIU / implante) y control prenatal.</p>
           <div class="service-card__cta">
             <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20consulta." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
-            <a href="consulta-ginecologica-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles de Consulta →</a>
+            <a href="/consulta-ginecologica-guadalajara.html" class="btn btn-sm btn-outline-teal">Detalles de Consulta →</a>
           </div>
         </div>
       </div>
@@ -564,7 +678,7 @@
           <p class="service-card__desc">Evaluación anatómica completa del feto órgano por órgano: sistema nervioso central, corazón, cara, extremidades y columna vertebral.</p>
           <div class="service-card__cta">
             <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20un%20ultrasonido%20estructural." class="btn btn-sm btn-whatsapp" target="_blank" rel="noopener">Agendar</a>
-            <a href="ultrasonido-estructural.html" class="btn btn-sm btn-outline-teal">Detalles del Estudio →</a>
+            <a href="/ultrasonido-estructural.html" class="btn btn-sm btn-outline-teal">Detalles del Estudio →</a>
           </div>
         </div>
       </div>
@@ -631,7 +745,78 @@
        ═══════════════════════════════════════════════════════════════════ -->
   <section class="about section" id="about">
     <div class="section-header reveal" style="padding-inline: var(--space-5); margin-bottom: var(--space-8);">
-      <h2>Consultorio</h2>
+      <span class="section-label">Trayectoria y Credenciales Verificables</span>
+      <h2>Sobre la Dra. Odette Noyola y su Consultorio</h2>
+    </div>
+
+    <!-- Visible E-E-A-T Credentials & Clinical Trajectory Card -->
+    <div class="eeat-wrapper reveal">
+      <div class="executive-profile">
+        <div class="executive-profile__header">
+          <div class="executive-profile__badges">
+            <span class="badge badge-teal">CMGO Certificada</span>
+            <span class="badge badge-teal">FMF Certified (Londres)</span>
+            <span class="badge badge-rose">Publicada en PubMed 2026</span>
+          </div>
+          <h3 class="executive-profile__name">Dra. Giselle Odette Noyola Landázuri</h3>
+          <p class="executive-profile__specialty">Especialista en Ginecología y Obstetricia · Subespecialista en Medicina Materno Fetal</p>
+        </div>
+
+        <p class="executive-profile__bio">
+          Médica egresada de la <strong>Universidad de Guadalajara (UDG)</strong> con especialidad en Ginecología y Obstetricia y subespecialidad en Medicina Materno Fetal en la <strong>UMAE Hospital de Gineco-Obstetricia del Centro Médico Nacional de Occidente (CMNO / IMSS)</strong>. Combina medicina basada en evidencia, ecografía de alta resolución GE Voluson™ HDlive™ y trato cálido y respetuoso en cada consulta.
+        </p>
+
+        <div class="executive-profile__credentials-grid">
+          <div class="cred-chip">
+            <span class="cred-chip__label">Cédula Profesional (UDG)</span>
+            <span class="cred-chip__value">SEP 13408368 · Médico Cirujano y Partero</span>
+          </div>
+          <div class="cred-chip cred-chip--highlight">
+            <span class="cred-chip__label">Cédula de Especialidad (SEP)</span>
+            <span class="cred-chip__value">14815515 · Ginecología y Obstetricia</span>
+          </div>
+          <div class="cred-chip cred-chip--highlight">
+            <span class="cred-chip__label">Cédula de Subespecialidad (SEP)</span>
+            <span class="cred-chip__value">15692501 · Medicina Materno Fetal</span>
+          </div>
+          <div class="cred-chip">
+            <span class="cred-chip__label">Certificaciones Vigentes</span>
+            <span class="cred-chip__value">Consejo Mexicano (CMGO) · Fetal Medicine Foundation (FMF)</span>
+          </div>
+        </div>
+
+        <div class="eeat-highlights-grid">
+          <div class="eeat-box eeat-box--research">
+            <div class="eeat-box__kicker">Investigación Clínica · PubMed (Agosto 2026)</div>
+            <h4 class="eeat-box__title">Primera autora en predicción de preeclampsia con Doppler</h4>
+            <p class="eeat-box__text">
+              <em>"Ophthalmic Artery Doppler Indices and Maternal Factors in the Prediction of Preeclampsia in a High-Risk Obstetric Population: A Prospective Cohort Study"</em> — <strong>The Journal of Obstetrics and Gynaecology Research</strong> (PMID: 42586580).
+            </p>
+            <div class="eeat-box__links">
+              <a href="https://pubmed.ncbi.nlm.nih.gov/42586580/" target="_blank" rel="noopener noreferrer" class="eeat-link">Ver publicación en PubMed →</a>
+              <a href="https://www.cedulaprofesional.sep.gob.mx/" target="_blank" rel="noopener noreferrer" class="eeat-link eeat-link--muted">Verificar cédulas SEP</a>
+            </div>
+          </div>
+
+          <div class="eeat-box">
+            <div class="eeat-box__kicker">Hospitales Privados y Zonas de Atención</div>
+            <h4 class="eeat-box__title">Partos, cesáreas y cirugía en hospitales líderes de GDL</h4>
+            <ul class="eeat-hospitals">
+              <li>Hospital Puerta de Hierro</li>
+              <li>Hospital San Javier</li>
+              <li>Hospital Ángeles del Carmen</li>
+              <li>Hospital Santa María Chapalita</li>
+            </ul>
+            <p class="eeat-zones">
+              <strong>Zonas de atención y cómo llegar:</strong> Consultorio con estacionamiento en <strong>Av. Niño Obrero 1538, Chapalita Oriente</strong> (fácil acceso desde Chapalita, Ciudad del Sol, Jardines Guadalupe, Providencia, Zapopan Centro y Puerta de Hierro).
+            </p>
+            <div class="eeat-box__links">
+              <a href="https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7" target="_blank" rel="noopener noreferrer" class="eeat-link">Abrir en Google Maps →</a>
+              <a href="https://waze.com/ul?ll=20.665716,-103.407222&navigate=yes" target="_blank" rel="noopener noreferrer" class="eeat-link eeat-link--muted">Ruta en Waze</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div id="gallery" class="anchor-offset" aria-hidden="true"></div>
@@ -880,14 +1065,14 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/sindrome-ovario-poliquistico-sop-tratamiento-guadalajara.html">Síndrome de Ovario Poliquístico (SOP) en Guadalajara: Diagnóstico y Tratamiento</a>
+            <a href="/blog/sindrome-ovario-poliquistico-sop-tratamiento-guadalajara.html">Síndrome de Ovario Poliquístico (SOP) en Guadalajara: Diagnóstico y Tratamiento</a>
           </h3>
           <p class="blog-card__excerpt">
             Conoce los síntomas del SOP (ciclos irregulares, acné, resistencia a la insulina) y cómo realizamos tu diagnóstico con ultrasonido pélvico en Chapalita.
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">6 min de lectura</span>
-            <a href="blog/sindrome-ovario-poliquistico-sop-tratamiento-guadalajara.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/sindrome-ovario-poliquistico-sop-tratamiento-guadalajara.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
@@ -903,14 +1088,14 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/colposcopia-y-papanicolaou-deteccion-vph-guadalajara.html">Colposcopía y Papanicolaou en Guadalajara: Detección Oportuna de VPH</a>
+            <a href="/blog/colposcopia-y-papanicolaou-deteccion-vph-guadalajara.html">Colposcopía y Papanicolaou en Guadalajara: Detección Oportuna de VPH</a>
           </h3>
           <p class="blog-card__excerpt">
-            Descubre por qué combinar Papanicolaou y colposcopía en tu Chequeo Ginecológico Anual (,200 MXN) eleva la precisión diagnóstica arriba del 95%.
+            Descubre por qué combinar Papanicolaou y colposcopía en tu Chequeo Ginecológico Anual ($1,200 MXN) eleva la precisión diagnóstica arriba del 95%.
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">5 min de lectura</span>
-            <a href="blog/colposcopia-y-papanicolaou-deteccion-vph-guadalajara.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/colposcopia-y-papanicolaou-deteccion-vph-guadalajara.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
@@ -926,14 +1111,14 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/miomas-uterinos-y-sangrado-anormal-especialista-guadalajara.html">Miomas Uterinos y Sangrado Abundante: Diagnóstico Conservador</a>
+            <a href="/blog/miomas-uterinos-y-sangrado-anormal-especialista-guadalajara.html">Miomas Uterinos y Sangrado Abundante: Diagnóstico Conservador</a>
           </h3>
           <p class="blog-card__excerpt">
             ¿Periodos muy abundantes, coágulos o dolor pélvico? Evaluamos tus miomas con ultrasonido de alta definición para preservar tu calidad de vida.
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">5 min de lectura</span>
-            <a href="blog/miomas-uterinos-y-sangrado-anormal-especialista-guadalajara.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/miomas-uterinos-y-sangrado-anormal-especialista-guadalajara.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
@@ -949,37 +1134,37 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/metodos-anticonceptivos-diu-mirena-implante-guadalajara.html">Métodos Anticonceptivos en Guadalajara: DIU Mirena, Kyleena e Implante</a>
+            <a href="/blog/metodos-anticonceptivos-diu-mirena-implante-guadalajara.html">Métodos Anticonceptivos en Guadalajara: DIU Mirena, Kyleena e Implante</a>
           </h3>
           <p class="blog-card__excerpt">
             Comparativa médica de efectividad, duración y colocación segura guiada por ultrasonido en nuestro consultorio de Chapalita Oriente.
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">6 min de lectura</span>
-            <a href="blog/metodos-anticonceptivos-diu-mirena-implante-guadalajara.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/metodos-anticonceptivos-diu-mirena-implante-guadalajara.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
 
-      <!-- Card 0: Ginecología Guía -->
+      <!-- Card 0: Guía Chequeo Ginecológico Completo (Landing Principal) -->
       <div class="blog-card" data-stagger-child>
         <div class="blog-card__image-container">
           <picture>
             <source srcset="img/consultorio-ginecologico-chapalita-guadalajara.webp" type="image/webp">
             <img src="img/consultorio-ginecologico-chapalita-guadalajara.jpg" alt="Consultorio ginecológico en Chapalita Guadalajara" width="400" height="250" loading="lazy" class="blog-card__img">
           </picture>
-          <span class="badge badge-teal blog-card__tag">Ginecología Integral</span>
+          <span class="badge badge-teal blog-card__tag">Chequeo Preventivo</span>
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/ginecologa-en-guadalajara-chequeo-integral.html">Ginecóloga en Guadalajara: Guía de Chequeo y Consulta</a>
+            <a href="/chequeo-ginecologico-guadalajara.html">Chequeo Ginecológico Completo en Guadalajara ($1,200 MXN)</a>
           </h3>
           <p class="blog-card__excerpt">
-            Conoce qué incluye una consulta integral con la ginecóloga en Chapalita: Papanicolaou, ultrasonido ginecológico, mamas y prevención.
+            Conoce qué incluye el chequeo anual integral en Chapalita: consulta, Papanicolaou, colposcopía, vaginoscopía, ultrasonido pélvico y exploración mamaria.
           </p>
           <div class="blog-card__footer">
-            <span class="blog-card__time">5 min de lectura</span>
-            <a href="blog/ginecologa-en-guadalajara-chequeo-integral.html" class="blog-card__link">Leer artículo →</a>
+            <span class="blog-card__time">Guía completa</span>
+            <a href="/chequeo-ginecologico-guadalajara.html" class="blog-card__link">Ver detalles →</a>
           </div>
         </div>
       </div>
@@ -995,14 +1180,14 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/cuando-hacer-ultrasonido-estructural.html">¿Cuándo y por qué realizar el Ultrasonido Estructural?</a>
+            <a href="/blog/cuando-hacer-ultrasonido-estructural.html">¿Cuándo y por qué realizar el Ultrasonido Estructural?</a>
           </h3>
           <p class="blog-card__excerpt">
             Conoce por qué las semanas 18.0 a 24.0 son la ventana diagnóstica ideal para la revisión anatómica de los órganos del bebé y cómo prepararte.
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">5 min de lectura</span>
-            <a href="blog/cuando-hacer-ultrasonido-estructural.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/cuando-hacer-ultrasonido-estructural.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
@@ -1018,14 +1203,14 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/tamizaje-genetico-primer-trimestre-guadalajara.html">Tamizaje Genético de Primer Trimestre en Guadalajara</a>
+            <a href="/blog/tamizaje-genetico-primer-trimestre-guadalajara.html">Tamizaje Genético de Primer Trimestre en Guadalajara</a>
           </h3>
           <p class="blog-card__excerpt">
             Explicación médica sobre la medición de translucencia nucal, hueso nasal y cálculo de riesgo para Síndrome de Down (semanas 11.0 a 13.6).
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">6 min de lectura</span>
-            <a href="blog/tamizaje-genetico-primer-trimestre-guadalajara.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/tamizaje-genetico-primer-trimestre-guadalajara.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
@@ -1041,21 +1226,21 @@
         </div>
         <div class="blog-card__body">
           <h3 class="blog-card__title">
-            <a href="blog/signos-alarma-embarazo-alto-riesgo.html">Signos de Alarma en el Embarazo de Alto Riesgo</a>
+            <a href="/blog/signos-alarma-embarazo-alto-riesgo.html">Signos de Alarma en el Embarazo de Alto Riesgo</a>
           </h3>
           <p class="blog-card__excerpt">
             Guía de síntomas críticos que no debes ignorar: dolor de cabeza intenso, zumbidos, sangrado o disminución de movimientos fetales.
           </p>
           <div class="blog-card__footer">
             <span class="blog-card__time">4 min de lectura</span>
-            <a href="blog/signos-alarma-embarazo-alto-riesgo.html" class="blog-card__link">Leer artículo →</a>
+            <a href="/blog/signos-alarma-embarazo-alto-riesgo.html" class="blog-card__link">Leer artículo →</a>
           </div>
         </div>
       </div>
     </div>
 
     <div class="blog-preview__cta reveal">
-      <a href="blog/index.html" class="btn btn-primary">
+      <a href="/blog/" class="btn btn-primary">
         Ver todos los artículos del Blog →
       </a>
     </div>
@@ -1143,15 +1328,15 @@
 
     <div class="location__wrapper">
       <div class="location__map reveal">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.0!2d-103.3999!3d20.6597!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x6a247b7483a5f924!2sDra%20Odette%20Noyola%20Land%C3%A1zuri%20-%20Materno%20Fetal!5e0!3m2!1ses!2smx!4v1692000000000!5m2!1ses!2smx" 
-          width="600" 
-          height="400" 
-          style="border:0;" 
-          allowfullscreen="" 
-          loading="lazy" 
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3733.242940251781!2d-103.4072220239276!3d20.66571598089456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428ae83b8b1a38f%3A0x6a374665a396e959!2sAv.%20Ni%C3%B1o%20Obrero%201538%2C%20Chapalita%20Oriente%2C%2045040%20Zapopan%2C%20Jal.!5e0!3m2!1ses-419!2smx!4v1725000000000!5m2!1ses-419!2smx"
+          width="600"
+          height="400"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          title="Ubicación del consultorio de la Dra. Odette Noyola en Google Maps">
+          title="Ubicación del consultorio de la Dra. Odette Noyola en Av. Niño Obrero 1538, Chapalita Oriente">
         </iframe>
         <div class="location__photo-grid">
           <div class="location__photo-card">
@@ -1353,21 +1538,28 @@
 
             <div class="form-checkbox">
               <input type="checkbox" id="contact-privacy" name="privacy" required checked>
-              <label for="contact-privacy">He leído y acepto el <a href="aviso-de-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y el tratamiento confidencial de mis datos.</label>
+              <label for="contact-privacy">He leído y acepto el <a href="/aviso-de-privacidad.html" target="_blank" rel="noopener">Aviso de Privacidad</a> y el tratamiento confidencial de mis datos.</label>
             </div>
 
             <div class="contact-form__status" id="contact-status" role="alert" style="display:none;"></div>
 
-            <button type="submit" class="btn-submit-premium" id="contact-submit-btn">
-              <span class="btn-submit__text">
-                <span>Enviar Mensaje</span>
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-              </span>
-              <span class="btn-submit__spinner" style="display:none;">
-                <span class="spinner-circle"></span>
-                <span>Enviando mensaje...</span>
-              </span>
-            </button>
+            <div class="contact-form__actions">
+              <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita%20en%20Chapalita." class="btn-whatsapp-direct" data-whatsapp-form-cta target="_blank" rel="noopener">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.486a.5.5 0 00.61.61l4.452-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.38-1.573.5.5 0 00-.39-.058l-3.124 1.049 1.049-3.124a.5.5 0 00-.058-.39A9.94 9.94 0 012.524 12.524 9.94 9.94 0 0112 2a10 10 0 010 20z"/></svg>
+                <span>Enviar cita directo por WhatsApp</span>
+              </a>
+
+              <button type="submit" class="btn-submit-premium btn-submit-secondary" id="contact-submit-btn">
+                <span class="btn-submit__text">
+                  <span>Enviar por Correo / Formulario</span>
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </span>
+                <span class="btn-submit__spinner" style="display:none;">
+                  <span class="spinner-circle"></span>
+                  <span>Enviando mensaje...</span>
+                </span>
+              </button>
+            </div>
           </form>
         </div>
       </div>
@@ -1406,13 +1598,13 @@
           <div class="footer__links-group">
             <h4>Navegación</h4>
             <a href="#hero">Inicio</a>
-            <a href="consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
-            <a href="chequeo-ginecologico-guadalajara.html">Chequeo Anual ($1,200)</a>
-            <a href="ultrasonido-estructural.html">Ultrasonido Estructural</a>
+            <a href="/consulta-ginecologica-guadalajara.html">Consulta Ginecológica</a>
+            <a href="/chequeo-ginecologico-guadalajara.html">Chequeo Anual ($1,200)</a>
+            <a href="/ultrasonido-estructural.html">Ultrasonido Estructural</a>
             <a href="#services">Servicios</a>
             <a href="#about">Sobre Mí</a>
             <a href="#gallery">Galería</a>
-            <a href="blog/index.html">Blog / Artículos</a>
+            <a href="/blog/">Blog / Artículos</a>
           </div>
           <div class="footer__links-group">
             <h4>Pacientes</h4>
@@ -1442,7 +1634,7 @@
         </div>
         <p class="footer__copy">
           © 2026 Dra. Odette Noyola Landázuri. Todos los derechos reservados. |
-          <a href="aviso-de-privacidad.html">Aviso de Privacidad</a>
+          <a href="/aviso-de-privacidad.html">Aviso de Privacidad</a>
         </p>
       </div>
     </div>
@@ -1459,17 +1651,33 @@
     </a>
   </div>
 
+  <!-- Mobile-Only Sticky Local Conversion Bar -->
+  <nav class="mobile-sticky-cta" aria-label="Acciones rápidas de cita y ubicación">
+    <a href="https://wa.me/523327905726?text=Hola%20Dra.%20Odette%2C%20quisiera%20agendar%20una%20cita%20en%20Chapalita." class="mobile-sticky-cta__btn mobile-sticky-cta__btn--wa" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.486a.5.5 0 00.61.61l4.452-1.495A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.94 9.94 0 01-5.38-1.573.5.5 0 00-.39-.058l-3.124 1.049 1.049-3.124a.5.5 0 00-.058-.39A9.94 9.94 0 012.524 12.524 9.94 9.94 0 0112 2a10 10 0 010 20z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a href="tel:+523327905726" class="mobile-sticky-cta__btn mobile-sticky-cta__btn--call">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.003 1.003 0 011.01-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.1.31.03.66-.25.92l-2.2 2.2z"/></svg>
+      <span>Llamar</span>
+    </a>
+    <a href="https://maps.app.goo.gl/hC2AvsH8k1GJ1PmG7" class="mobile-sticky-cta__btn mobile-sticky-cta__btn--map" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5a2.5 2.5 0 010-5 2.5 2.5 0 010 5z"/></svg>
+      <span>Cómo llegar</span>
+    </a>
+  </nav>
+
   <!-- ═══════════════════════════════════════════════════════════════════
        16. LIGHTBOX (Gallery overlay)
        ═══════════════════════════════════════════════════════════════════ -->
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visor de imagen">
     <button class="lightbox__close" id="lightbox-close" aria-label="Cerrar visor">✕</button>
-    <img src="" alt="" class="lightbox__img" id="lightbox-img">
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" alt="Vista ampliada de galería clínica" class="lightbox__img" id="lightbox-img" width="1" height="1">
   </div>
 
   <!-- ═══ Scripts ═══ -->
-  <script src="js/main.js?v=5.6" defer></script>
-  <script src="js/animations.js?v=5.6" defer></script>
+  <script src="js/main.js?v=6.0" defer></script>
+  <script src="js/animations.js?v=6.0" defer></script>
 
 </body>
 </html>
