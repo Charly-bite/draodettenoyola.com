@@ -32,3 +32,10 @@ img/desktop_no_*
 # Archived development assets (moved from public root)
 _source/
 consultorio/
+
+# Runtime state written by the server (bridge WAOS, Windows folder icons)
+data/waos-bridge-cache.json
+desktop.ini
+.dory-icon.ico
+.folder-icon.ico
+.deploy.lock

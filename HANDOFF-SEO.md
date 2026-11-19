@@ -18,4 +18,18 @@ Swarm AGY "Auditoría SEO, GEO y código draodettenoyola.com" (conversación `f6
    - ⏳ Render: poner `ODETTE_BRIDGE_KEY` = el valor de la línea `ODETTE_BRIDGE_KEY=` del `.env` local (hace falta el punto 1).
    - ⏳ Groq: revocar la `GROQ_API_KEY` actual y poner la nueva en `desarrollo:bot\.env` (estuvo hardcodeada en `.bak-pre-wp0\src\odette_waos_server.js` y `.bak-pre-wp0\src\utils\llm.js`).
    - ⏳ La tarea programada `Odette_WAOS_Clinical_6006` está **Disabled** y no hay nada escuchando en :6006 → habilitarla o arrancarla, y escanear el QR en `/admin`.
+   - 🔄 2026-11-19: **Decisión: dejar Render y servir desde desarrollo (.218)** detrás de Cloudflare Tunnel (DNS ya está en Cloudflare). Render no permite cambiar Static→Web (`services[0].type: changing service type not supported`).
+     - ✅ Clon en `desarrollo:...\02-plataformas-activas\dr-odette-web` (commit `7265602`), `.env` prod (`PORT=9996`, `WAOS_BRIDGE_URLS=http://127.0.0.1:6006`, `SKIP_GIT_PUSH=1`).
+     - ✅ Tarea `DrOdette_Web_9996` (SYSTEM, al arranque, bucle de reinicio en `start_dr_odette_web.bat`, log `dr_odette_web.log`). Smoke test: `/` 200, `/server.js` `/.env` `/data/*` 404.
+     - ✅ `cloudflared 2026.11.1` instalado (firma Cloudflare válida).
+     - ✅ **EN PRODUCCIÓN desde 2026-11-19 ~13:45**: túnel Cloudflare `dr-odette-218` (ID `4662ba2a-e804-4aa6-a2b4-ccaf521adcfa`, servicio Windows `cloudflared` automático en .218). Rutas `draodettenoyola.com` y `www` → `http://localhost:9996`. DNS: ambos CNAME proxied al túnel.
+       - Verificado externo: `/` y landings 200, `/server.js` `/.env` `/data/*` 404, http→https y www→apex 301, assets cacheados en Cloudflare.
+       - Lección: Render registra los dominios como *custom hostname* en su Cloudflare for SaaS; mientras existan ahí, ganan sobre el DNS de la zona. Hubo que borrarlos en Render → Custom Domains.
+     - ✅ Render Static Site `dra-odette-page` **suspendido** (no borrado). Rollback: Resume + re-agregar dominios + DNS `@ A 216.24.57.1` y `www CNAME dra-odette-page.onrender.com` (DNS only).
+     - ✅ `bot\src\odette_waos_server.js`: `BRIDGE_TARGETS` → `127.0.0.1:9996` + office-pc (override con `ODETTE_BRIDGE_TARGETS`); respaldo `.bak-pre-tunnel-20261119`. bridge-sync probado: 403 sin/llave mala, 200 con la nueva.
+     - ⏳ Rotar token del túnel (se pegó en el chat): Tunnel → Overview → Rotate token → reinstalar con `scratchpad\instalar_tunel.ps1`.
+     - ⏳ `gh auth login` en .218 y quitar `SKIP_GIT_PUSH=1` del `.env` de `dr-odette-web` (publicar artículos desde /admin hace commit+push).
+     - ⏳ Despliegue de código nuevo: `git pull` en `dr-odette-web` + reiniciar tarea `DrOdette_Web_9996` (no hay auto-deploy).
+     - ⏳ Blueprint de Render sigue fallando sync; eliminar instancia del Blueprint o quitar `render.yaml` del repo.
+     - ⏳ `multer` 1.x → 2.x (vulnerabilidades conocidas).
 3. **GA4 Admin (552583570):** desvincular el Data Stream `15826596407` (Lunoto).
