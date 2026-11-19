@@ -29,7 +29,10 @@ Swarm AGY "Auditoría SEO, GEO y código draodettenoyola.com" (conversación `f6
      - ✅ `bot\src\odette_waos_server.js`: `BRIDGE_TARGETS` → `127.0.0.1:9996` + office-pc (override con `ODETTE_BRIDGE_TARGETS`); respaldo `.bak-pre-tunnel-20261119`. bridge-sync probado: 403 sin/llave mala, 200 con la nueva.
      - ⏳ Rotar token del túnel (se pegó en el chat): Tunnel → Overview → Rotate token → reinstalar con `scratchpad\instalar_tunel.ps1`.
      - ⏳ `gh auth login` en .218 y quitar `SKIP_GIT_PUSH=1` del `.env` de `dr-odette-web` (publicar artículos desde /admin hace commit+push).
-     - ⏳ Despliegue de código nuevo: `git pull` en `dr-odette-web` + reiniciar tarea `DrOdette_Web_9996` (no hay auto-deploy).
-     - ⏳ Blueprint de Render sigue fallando sync; eliminar instancia del Blueprint o quitar `render.yaml` del repo.
-     - ⏳ `multer` 1.x → 2.x (vulnerabilidades conocidas).
+     - ✅ Auto-deploy: tarea `DrOdette_Web_Deploy` (SYSTEM, cada 5 min) corre `ops/deploy-218.ps1`: commit local de lo que escribe /admin → rebase sobre origin/main → npm ci si cambió el lock → reinicio + health check con rollback automático. Log: `deploy.log`. El sitio arranca con `ops/start-218.bat`.
+     - ✅ `render.yaml` eliminado del repo; `multer` 2.x + `npm audit` = 0 vulnerabilidades; GA4 duplicado sin guard quitado de 4 páginas; `data/waos-bridge-cache.json` y `data/heatmap-events.json` ya no se versionan.
+     - ✅ WAOS :6006 activo (tarea `Odette_WAOS_Clinical_6006` habilitada). Bug corregido en `resolveChromeExecutablePath` (elegía la Chrome más vieja de la caché → "Target closed"). QR llega a `/admin` vía bridge local.
+     - ⏳ **Servidor MSSQL `qb-bd-ts` (192.168.2.187) apagado/inalcanzable** (sin ping/SSH/1433): WAOS responde por WhatsApp pero no guarda conversaciones/leads hasta que vuelva.
+     - ⏳ Deploy key de GitHub en .218 para que el auto-deploy suba los artículos publicados desde /admin (hoy quedan como commits locales).
+     - ⏳ Borrar la instancia del Blueprint `dra-odette-page` en Render (ya no hay `render.yaml`).
 3. **GA4 Admin (552583570):** desvincular el Data Stream `15826596407` (Lunoto).
