@@ -47,6 +47,8 @@ const PATH_REDIRECTS = new Map([
   ['/chequeo-ginecologico-guadalajara', '/chequeo-ginecologico-guadalajara.html'],
   ['/consulta-ginecologica-guadalajara', '/consulta-ginecologica-guadalajara.html'],
   ['/ultrasonido-estructural', '/ultrasonido-estructural.html'],
+  ['/tamizaje-genetico-guadalajara', '/tamizaje-genetico-guadalajara.html'],
+  ['/control-prenatal-alto-riesgo-guadalajara', '/control-prenatal-alto-riesgo-guadalajara.html'],
   ['/aviso-de-privacidad', '/aviso-de-privacidad.html'],
   ['/blog/ginecologa-en-guadalajara-chequeo-integral.html', '/chequeo-ginecologico-guadalajara.html'],
   ['/blog/ginecologa-en-guadalajara-chequeo-integral', '/chequeo-ginecologico-guadalajara.html']
@@ -151,6 +153,8 @@ const ALLOWED_ROOT_HTML = new Set([
   'chequeo-ginecologico-guadalajara.html',
   'consulta-ginecologica-guadalajara.html',
   'ultrasonido-estructural.html',
+  'tamizaje-genetico-guadalajara.html',
+  'control-prenatal-alto-riesgo-guadalajara.html',
   'aviso-de-privacidad.html',
   '404.html'
 ]);

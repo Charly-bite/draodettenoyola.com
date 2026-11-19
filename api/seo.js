@@ -44,6 +44,8 @@ const CORE_PAGES = [
   { loc: 'https://draodettenoyola.com/chequeo-ginecologico-guadalajara.html', file: 'chequeo-ginecologico-guadalajara.html', priority: '0.95', changefreq: 'monthly', label: 'Chequeo Ginecológico ($1,200)' },
   { loc: 'https://draodettenoyola.com/consulta-ginecologica-guadalajara.html', file: 'consulta-ginecologica-guadalajara.html', priority: '0.95', changefreq: 'monthly', label: 'Consulta Ginecológica ($800)' },
   { loc: 'https://draodettenoyola.com/ultrasonido-estructural.html', file: 'ultrasonido-estructural.html', priority: '0.90', changefreq: 'monthly', label: 'Ultrasonido Estructural ($1,700)' },
+  { loc: 'https://draodettenoyola.com/tamizaje-genetico-guadalajara.html', file: 'tamizaje-genetico-guadalajara.html', priority: '0.90', changefreq: 'monthly', label: 'Tamizaje Genético 1er Trimestre ($1,700)' },
+  { loc: 'https://draodettenoyola.com/control-prenatal-alto-riesgo-guadalajara.html', file: 'control-prenatal-alto-riesgo-guadalajara.html', priority: '0.90', changefreq: 'monthly', label: 'Control Prenatal y Alto Riesgo ($800)' },
   { loc: 'https://draodettenoyola.com/blog/', file: 'blog/index.html', priority: '0.85', changefreq: 'weekly', label: 'Índice del Blog Médico' },
   { loc: 'https://draodettenoyola.com/aviso-de-privacidad.html', file: 'aviso-de-privacidad.html', priority: '0.30', changefreq: 'yearly', label: 'Aviso de Privacidad' }
 ];

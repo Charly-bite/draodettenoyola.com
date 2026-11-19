@@ -133,7 +133,7 @@ function extractFaqEntries(markdown) {
 
 function isMaternoFetalPost(post) {
   const hay = `${post.slug || ''} ${post.title || ''} ${(post.tags || []).join(' ')}`.toLowerCase();
-  return /ultrasonido|tamizaje|embarazo|alto-riesgo|materno|prenatal|fetal|preeclampsia/.test(hay);
+  return /estructural|tamizaje|embarazo|alto-riesgo|materno|prenatal|fetal|preeclampsia/.test(hay);
 }
 
 function buildContextualServicesHtml(post) {
@@ -141,19 +141,19 @@ function buildContextualServicesHtml(post) {
   const cards = isMfm
     ? [
         {
+          href: '/tamizaje-genetico-guadalajara.html',
+          title: 'Tamizaje Genético 1er Trimestre ($1,700 MXN)',
+          desc: 'Translucencia nucal, marcadores FMF y cribado de preeclampsia en semanas 11.0–13.6.'
+        },
+        {
           href: '/ultrasonido-estructural.html',
           title: 'Ultrasonido Estructural Fetal ($1,700 MXN)',
           desc: 'Evaluación anatómica órgano por órgano (semanas 18–24) con GE Voluson HDlive y certificación FMF.'
         },
         {
-          href: '/consulta-ginecologica-guadalajara.html',
-          title: 'Consulta Ginecológica y Control Prenatal ($800 MXN)',
-          desc: 'Seguimiento de embarazo de bajo y alto riesgo en Chapalita Oriente, Guadalajara / Zapopan.'
-        },
-        {
-          href: '/chequeo-ginecologico-guadalajara.html',
-          title: 'Chequeo Ginecológico Completo ($1,200 MXN)',
-          desc: 'Consulta, Papanicolaou, colposcopía, vaginoscopía, ultrasonido pélvico y revisión mamaria.'
+          href: '/control-prenatal-alto-riesgo-guadalajara.html',
+          title: 'Control Prenatal y Embarazo de Alto Riesgo ($800 MXN)',
+          desc: 'Vigilancia de preeclampsia, diabetes gestacional y Doppler con subespecialista Materno Fetal en Chapalita.'
         }
       ]
     : [

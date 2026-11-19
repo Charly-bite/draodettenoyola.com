@@ -212,6 +212,8 @@ router.get('/page-list', requireAuth, (req, res) => {
     { id: 'chequeo-ginecologico-guadalajara.html', title: 'Chequeo Ginecológico ($1,200)', url: '/chequeo-ginecologico-guadalajara.html?canvas=1', path: 'chequeo-ginecologico-guadalajara.html' },
     { id: 'consulta-ginecologica-guadalajara.html', title: 'Consulta Ginecológica ($800)', url: '/consulta-ginecologica-guadalajara.html?canvas=1', path: 'consulta-ginecologica-guadalajara.html' },
     { id: 'ultrasonido-estructural.html', title: 'Ultrasonido Estructural ($1,700)', url: '/ultrasonido-estructural.html?canvas=1', path: 'ultrasonido-estructural.html' },
+    { id: 'tamizaje-genetico-guadalajara.html', title: 'Tamizaje Genético ($1,700)', url: '/tamizaje-genetico-guadalajara.html?canvas=1', path: 'tamizaje-genetico-guadalajara.html' },
+    { id: 'control-prenatal-alto-riesgo-guadalajara.html', title: 'Control Prenatal y Alto Riesgo ($800)', url: '/control-prenatal-alto-riesgo-guadalajara.html?canvas=1', path: 'control-prenatal-alto-riesgo-guadalajara.html' },
     { id: 'blog/index.html', title: 'Blog Principal', url: '/blog/?canvas=1', path: 'blog/index.html' }
   ];
   res.json(pages);
