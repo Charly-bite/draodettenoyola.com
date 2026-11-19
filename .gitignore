@@ -39,3 +39,4 @@ desktop.ini
 .dory-icon.ico
 .folder-icon.ico
 .deploy.lock
+data/heatmap-events.json
